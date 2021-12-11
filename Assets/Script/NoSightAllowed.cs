@@ -9,6 +9,7 @@ public class NoSightAllowed : MonoBehaviour
     private Button eye_UI;
     public Sprite Eye_Open;
     public Sprite Eye_Close;
+    public GameObject F;
 
     public KeyCode keyF;
 
@@ -21,6 +22,7 @@ public class NoSightAllowed : MonoBehaviour
     
     private void Start()
     {
+        TimerActive = true;
         eye_UI = GetComponent<Button>();
         eye_UI.GetComponent<Image>().sprite = Eye_Open;
         currentTime = 5f;
@@ -28,6 +30,7 @@ public class NoSightAllowed : MonoBehaviour
 
     public void ChangeSprite()
     {
+        //Button Stuff
         if(eye_UI.image.sprite == Eye_Open)
         {
             eye_UI.image.sprite = Eye_Close; //close
@@ -48,24 +51,32 @@ public class NoSightAllowed : MonoBehaviour
 
     private void Update()
     { 
+        //IDK Key biinding
         if(Input.GetKeyDown(keyF))
         {
             FadeToColor(eye_UI.colors.pressedColor);
             eye_UI.onClick.Invoke();
         }
-        else  if(Input.GetKeyUp(keyF))
+        else if(Input.GetKeyUp(keyF))
         {
             FadeToColor(eye_UI.colors.normalColor);
         }
 
+        //Timer
         if(TimerActive)
         {
             currentTime -= 1 * Time.deltaTime;
             countdownText.text = currentTime.ToString("0");
 
-            if (currentTime <= 1)
+            if (currentTime <= 1 || TriggerCantOpen.Enter)
             {
                 currentTime = 5;
+                SceneManager.LoadScene("Death");
+            }
+
+            //Cannot Open
+            if (TriggerCantOpen.Enter)
+            {
                 SceneManager.LoadScene("Death");
             }
         }

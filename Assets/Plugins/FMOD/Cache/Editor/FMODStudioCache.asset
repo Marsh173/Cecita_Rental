@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-8593263200853399103
+--- !u!114 &-9191587439855417824
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -26,7 +26,7 @@ MonoBehaviour:
   - Jump
   - Land
   Exists: 1
---- !u!114 &-7736945182860177260
+--- !u!114 &-7166029582550349788
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -45,7 +45,7 @@ MonoBehaviour:
     Data3: 374548664
     Data4: -1446468774
   Banks:
-  - {fileID: 248850809800853418}
+  - {fileID: -1417879517397981280}
   IsStream: 1
   Is3D: 1
   IsOneShot: 1
@@ -53,7 +53,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 13500
---- !u!114 &-5714851059365852902
+--- !u!114 &-6663186378888497364
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -62,24 +62,184 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Footstep/Speed Switch
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Footstep
   m_EditorClassIdentifier: 
-  Name: Speed Switch
-  StudioPath: 
-  Min: 0
-  Max: 1
-  Default: 0
-  ID:
-    data1: 3565639249
-    data2: 1567507022
-  Type: 2
-  IsGlobal: 0
-  Labels:
-  - Walking
-  - Running
+  Path: event:/Footstep
+  Guid:
+    Data1: -937053069
+    Data2: 1271571729
+    Data3: -1665258871
+    Data4: 6802052
+  Banks:
+  - {fileID: -1417879517397981280}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters:
+  - {fileID: 235330954754521026}
+  - {fileID: 7481340257309598872}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-5264446713221286217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Jump & Land
+  m_EditorClassIdentifier: 
+  Path: event:/Jump & Land
+  Guid:
+    Data1: 820211512
+    Data2: 1147515555
+    Data3: -128658505
+    Data4: -1411389865
+  Banks:
+  - {fileID: -1417879517397981280}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters:
+  - {fileID: -9191587439855417824}
+  - {fileID: -772301456926020390}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 514
+--- !u!114 &-4132140307958808861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Broadcast/Graffiti
+  m_EditorClassIdentifier: 
+  Path: event:/Broadcast/Graffiti
+  Guid:
+    Data1: -1619807865
+    Data2: 1157080515
+    Data3: 552470437
+    Data4: -374603029
+  Banks:
+  - {fileID: -1417879517397981280}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 11500
+--- !u!114 &-3951795063384457447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Broadcast/Walkers
+  m_EditorClassIdentifier: 
+  Path: event:/Broadcast/Walkers
+  Guid:
+    Data1: 1647139783
+    Data2: 1293270394
+    Data3: -1612910689
+    Data4: 2799028
+  Banks:
+  - {fileID: -1417879517397981280}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 10000
+--- !u!114 &-3531877871947615593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Elevator
+  m_EditorClassIdentifier: 
+  Path: event:/Elevator
+  Guid:
+    Data1: 568199149
+    Data2: 1272717640
+    Data3: -814422361
+    Data4: 825621910
+  Banks:
+  - {fileID: -1417879517397981280}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 3550
+--- !u!114 &-2135316911969202235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Broadcast/Elevator
+  m_EditorClassIdentifier: 
+  Path: event:/Broadcast/Elevator
+  Guid:
+    Data1: 2007445817
+    Data2: 1326772722
+    Data3: -1490575488
+    Data4: 478994741
+  Banks:
+  - {fileID: -1417879517397981280}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 8000
+--- !u!114 &-1417879517397981280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: CecitaRentalsFMOD/Build/Desktop/Master.bank
+  Name: Master
+  StudioPath: bank:/Master
+  lastModified: 638272203753364829
+  FileSizes:
+  - Name: Desktop
+    Value: 4834720
   Exists: 1
---- !u!114 &-4628272512422526356
+--- !u!114 &-1171162237124760774
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -98,7 +258,7 @@ MonoBehaviour:
     Data3: -1985725299
     Data4: -687470360
   Banks:
-  - {fileID: 248850809800853418}
+  - {fileID: -1417879517397981280}
   IsStream: 1
   Is3D: 0
   IsOneShot: 1
@@ -106,61 +266,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 50000
---- !u!114 &-4240554559171376237
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Broadcast/Broadcast Start
-  m_EditorClassIdentifier: 
-  Path: event:/Broadcast/Broadcast Start
-  Guid:
-    Data1: -1889354808
-    Data2: 1186889082
-    Data3: -109615956
-    Data4: 1834658173
-  Banks:
-  - {fileID: 248850809800853418}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 7000
---- !u!114 &-4084328830041806418
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Cecita Death
-  m_EditorClassIdentifier: 
-  Path: event:/Cecita Death
-  Guid:
-    Data1: 1458972710
-    Data2: 1235140722
-    Data3: -1945244774
-    Data4: -1867359918
-  Banks:
-  - {fileID: 248850809800853418}
-  IsStream: 1
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 12000
---- !u!114 &-2187176889060224026
+--- !u!114 &-772301456926020390
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -186,90 +292,7 @@ MonoBehaviour:
   - wood
   - carpet
   Exists: 1
---- !u!114 &11400000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d32cf7c32a3ed8347bac48ef5ed56d82, type: 3}
-  m_Name: FMODStudioCache
-  m_EditorClassIdentifier: 
-  EditorBanks:
-  - {fileID: 9098162564516665836}
-  - {fileID: 248850809800853418}
-  EditorEvents:
-  - {fileID: 4472963205769784367}
-  - {fileID: 7489925299274269942}
-  - {fileID: 8884657230716067290}
-  - {fileID: 8805096310019699738}
-  - {fileID: 8924081283965175219}
-  - {fileID: -4084328830041806418}
-  - {fileID: -4628272512422526356}
-  - {fileID: 687169545634957532}
-  - {fileID: 554509249820064972}
-  - {fileID: 795339632600565494}
-  - {fileID: -7736945182860177260}
-  - {fileID: 2012111674567525637}
-  - {fileID: -4240554559171376237}
-  EditorParameters: []
-  MasterBanks:
-  - {fileID: 248850809800853418}
-  StringsBanks:
-  - {fileID: 9098162564516665836}
-  cacheTime: 638258106288240974
-  cacheVersion: 10
---- !u!114 &248850809800853418
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.bank
-  m_EditorClassIdentifier: 
-  Path: CecitaRentalsFMOD/Build/Desktop/Master.bank
-  Name: Master
-  StudioPath: bank:/Master
-  lastModified: 638258106288240974
-  FileSizes:
-  - Name: Desktop
-    Value: 4801216
-  Exists: 1
---- !u!114 &554509249820064972
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Broadcast/Elevator
-  m_EditorClassIdentifier: 
-  Path: event:/Broadcast/Elevator
-  Guid:
-    Data1: 2007445817
-    Data2: 1326772722
-    Data3: -1490575488
-    Data4: 478994741
-  Banks:
-  - {fileID: 248850809800853418}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 8000
---- !u!114 &687169545634957532
+--- !u!114 &-311235456129526941
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -288,7 +311,7 @@ MonoBehaviour:
     Data3: 2106249372
     Data4: -1129687588
   Banks:
-  - {fileID: 248850809800853418}
+  - {fileID: -1417879517397981280}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -296,7 +319,70 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 4500
---- !u!114 &795339632600565494
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d32cf7c32a3ed8347bac48ef5ed56d82, type: 3}
+  m_Name: FMODStudioCache
+  m_EditorClassIdentifier: 
+  EditorBanks:
+  - {fileID: 6372005530235313919}
+  - {fileID: -1417879517397981280}
+  EditorEvents:
+  - {fileID: 3359778832660179333}
+  - {fileID: -311235456129526941}
+  - {fileID: -5264446713221286217}
+  - {fileID: -2135316911969202235}
+  - {fileID: 4865203911811118779}
+  - {fileID: -6663186378888497364}
+  - {fileID: 8571205848062672590}
+  - {fileID: -1171162237124760774}
+  - {fileID: -4132140307958808861}
+  - {fileID: -7166029582550349788}
+  - {fileID: 981079703603299493}
+  - {fileID: -3951795063384457447}
+  - {fileID: 3574745299148009765}
+  - {fileID: -3531877871947615593}
+  EditorParameters: []
+  MasterBanks:
+  - {fileID: -1417879517397981280}
+  StringsBanks:
+  - {fileID: 6372005530235313919}
+  cacheTime: 638272203753395402
+  cacheVersion: 131605
+--- !u!114 &235330954754521026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Footstep/Speed Switch
+  m_EditorClassIdentifier: 
+  Name: Speed Switch
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 3565639249
+    data2: 1567507022
+  Type: 2
+  IsGlobal: 0
+  Labels:
+  - Walking
+  - Running
+  Exists: 1
+--- !u!114 &981079703603299493
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -306,24 +392,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Broadcast/Graffiti
+  m_Name: event:/Ambience
   m_EditorClassIdentifier: 
-  Path: event:/Broadcast/Graffiti
+  Path: event:/Ambience
   Guid:
-    Data1: -1619807865
-    Data2: 1157080515
-    Data3: 552470437
-    Data4: -374603029
+    Data1: -579552604
+    Data2: 1263672615
+    Data3: 1968994455
+    Data4: -532612961
   Banks:
-  - {fileID: 248850809800853418}
+  - {fileID: -1417879517397981280}
   IsStream: 1
   Is3D: 1
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 11500
---- !u!114 &2012111674567525637
+  Length: 90115
+--- !u!114 &3359778832660179333
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -333,24 +419,51 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Broadcast/Walkers
+  m_Name: event:/Cecita Death
   m_EditorClassIdentifier: 
-  Path: event:/Broadcast/Walkers
+  Path: event:/Cecita Death
   Guid:
-    Data1: 1647139783
-    Data2: 1293270394
-    Data3: -1612910689
-    Data4: 2799028
+    Data1: 1458972710
+    Data2: 1235140722
+    Data3: -1945244774
+    Data4: -1867359918
   Banks:
-  - {fileID: 248850809800853418}
+  - {fileID: -1417879517397981280}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 12000
+--- !u!114 &3574745299148009765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Broadcast/Broadcast Start
+  m_EditorClassIdentifier: 
+  Path: event:/Broadcast/Broadcast Start
+  Guid:
+    Data1: -1889354808
+    Data2: 1186889082
+    Data3: -109615956
+    Data4: 1834658173
+  Banks:
+  - {fileID: -1417879517397981280}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 10000
---- !u!114 &4472963205769784367
+  Length: 7000
+--- !u!114 &4865203911811118779
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -360,26 +473,44 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Jump & Land
+  m_Name: event:/WrongWay
   m_EditorClassIdentifier: 
-  Path: event:/Jump & Land
+  Path: event:/WrongWay
   Guid:
-    Data1: 820211512
-    Data2: 1147515555
-    Data3: -128658505
-    Data4: -1411389865
+    Data1: 1868952924
+    Data2: 1330019868
+    Data3: -576878695
+    Data4: 1512391936
   Banks:
-  - {fileID: 248850809800853418}
-  IsStream: 0
+  - {fileID: -1417879517397981280}
+  IsStream: 1
   Is3D: 1
-  IsOneShot: 1
-  Parameters:
-  - {fileID: -8593263200853399103}
-  - {fileID: -2187176889060224026}
+  IsOneShot: 0
+  Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 514
---- !u!114 &7335591012739370276
+  Length: 70000
+--- !u!114 &6372005530235313919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.strings.bank
+  m_EditorClassIdentifier: 
+  Path: CecitaRentalsFMOD/Build/Desktop/Master.strings.bank
+  Name: Master.strings
+  StudioPath: bank:/Master.strings
+  lastModified: 638272203753395402
+  FileSizes:
+  - Name: Desktop
+    Value: 1492
+  Exists: 1
+--- !u!114 &7481340257309598872
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -405,7 +536,7 @@ MonoBehaviour:
   - wood
   - carpet
   Exists: 1
---- !u!114 &7489925299274269942
+--- !u!114 &8571205848062672590
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -415,123 +546,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Footstep
+  m_Name: event:/VideoTest
   m_EditorClassIdentifier: 
-  Path: event:/Footstep
+  Path: event:/VideoTest
   Guid:
-    Data1: -937053069
-    Data2: 1271571729
-    Data3: -1665258871
-    Data4: 6802052
+    Data1: -1484789887
+    Data2: 1338638046
+    Data3: 1365461156
+    Data4: -449414202
   Banks:
-  - {fileID: 248850809800853418}
+  - {fileID: -1417879517397981280}
   IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters:
-  - {fileID: -5714851059365852902}
-  - {fileID: 7335591012739370276}
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
---- !u!114 &8805096310019699738
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Elevator
-  m_EditorClassIdentifier: 
-  Path: event:/Elevator
-  Guid:
-    Data1: 568199149
-    Data2: 1272717640
-    Data3: -814422361
-    Data4: 825621910
-  Banks:
-  - {fileID: 248850809800853418}
-  IsStream: 1
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 3550
---- !u!114 &8884657230716067290
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Ambience
-  m_EditorClassIdentifier: 
-  Path: event:/Ambience
-  Guid:
-    Data1: -579552604
-    Data2: 1263672615
-    Data3: 1968994455
-    Data4: -532612961
-  Banks:
-  - {fileID: 248850809800853418}
-  IsStream: 1
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 90115
---- !u!114 &8924081283965175219
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/WrongWay
-  m_EditorClassIdentifier: 
-  Path: event:/WrongWay
-  Guid:
-    Data1: 1868952924
-    Data2: 1330019868
-    Data3: -576878695
-    Data4: 1512391936
-  Banks:
-  - {fileID: 248850809800853418}
-  IsStream: 1
   Is3D: 1
   IsOneShot: 0
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 70000
---- !u!114 &9098162564516665836
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.strings.bank
-  m_EditorClassIdentifier: 
-  Path: CecitaRentalsFMOD/Build/Desktop/Master.strings.bank
-  Name: Master.strings
-  StudioPath: bank:/Master.strings
-  lastModified: 638258106288240974
-  FileSizes:
-  - Name: Desktop
-    Value: 1452
-  Exists: 1
+  Length: 6072

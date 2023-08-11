@@ -1,20 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PlayerInteract : MonoBehaviour
 {
     public Camera cam;
+    public TMP_Text message;
+    private GameObject lastHitObject;
 
     [SerializeField]
-    private float distance = 3f;
+    private float distance = 6f;
 
     [SerializeField]
     private LayerMask mask;
 
     private void Start()
     {
-        
+        message.text = "";
     }
 
     private void Update()
@@ -26,7 +29,30 @@ public class PlayerInteract : MonoBehaviour
         {
             if(hitInfo.collider.GetComponent<Interactable>() != null)
             {
-                Debug.Log(hitInfo.collider.GetComponent<Interactable>().promptMessage);
+                //Debug.Log(hitInfo.collider.GetComponent<Interactable>().promptMessage);
+                hitInfo.collider.GetComponent<Interactable>().BaseInteract();
+                message.text = hitInfo.collider.GetComponent<Interactable>().promptMessage;
+                GameObject hitObject = hitInfo.collider.gameObject;
+                lastHitObject = hitObject;
+                Outline outlineScript = hitObject.AddComponent<Outline>();
+            }
+            else
+            {
+                message.text = "";
+                
+            }
+        }
+        else
+        {
+            message.text = "";
+            if (lastHitObject != null)
+            {
+                Outline scriptToDetach = lastHitObject.GetComponent<Outline>();
+                if (scriptToDetach != null)
+                {
+                    Destroy(scriptToDetach);
+                }
+                lastHitObject = null;
             }
         }
     }

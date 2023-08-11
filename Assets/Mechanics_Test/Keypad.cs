@@ -12,6 +12,8 @@ public class Keypad : MonoBehaviour
     [SerializeField] private TMP_Text Ans3d;
 
     public Canvas canvasToDestroy;
+    public GameObject keypadObj;
+    public LayerMask newLayer;
     
 
     public void Number(int number)
@@ -34,6 +36,7 @@ public class Keypad : MonoBehaviour
             Ans3d.text = "PASS";
             Ans3d.color = Color.green;
             door.SetBool("Open", true);
+            keypadObj.layer = newLayer;
             Destroy(canvasToDestroy.gameObject);
         }
         else

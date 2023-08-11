@@ -10,6 +10,8 @@ public class Keypad : MonoBehaviour
     public string Answer = "1234";
     [SerializeField] private Animator door;
     [SerializeField] private TMP_Text Ans3d;
+
+    public Canvas canvasToDestroy;
     
 
     public void Number(int number)
@@ -32,6 +34,7 @@ public class Keypad : MonoBehaviour
             Ans3d.text = "PASS";
             Ans3d.color = Color.green;
             door.SetBool("Open", true);
+            Destroy(canvasToDestroy.gameObject);
         }
         else
         {

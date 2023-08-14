@@ -54,7 +54,6 @@ public class TV : Interactable
                 else if(TvIsOn && isRecorded)
                 {
                     TvIsOn = false;
-                    isRecorded = false;
                     plane.SetActive(false);
                     videoPlayer.SetActive(false);
                     promptMessage = "No need to use TV Anymore";

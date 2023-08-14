@@ -1,16 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class AudioStation : Interactable
 {
-    public GameObject AudioCanvas;
     public bool interacted;
 
     private void Start()
     {
         interacted = false;
-        AudioCanvas.SetActive(false);
+        
     }
 
 
@@ -22,7 +22,7 @@ public class AudioStation : Interactable
         {
             if (Input.GetMouseButtonDown(0))
             {
-                AudioCanvas.SetActive(true);
+                SceneManager.LoadScene("UITEST");
             }
         }
     }

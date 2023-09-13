@@ -8,10 +8,10 @@ public class TriggerEye : MonoBehaviour
 
     private void Start()
     {
-        eye.active = false;
+        eye.SetActive(false);
     }
     private void OnTriggerEnter(Collider other)
     {
-        eye.active = true;
+        eye.SetActive(true);
     }
 }

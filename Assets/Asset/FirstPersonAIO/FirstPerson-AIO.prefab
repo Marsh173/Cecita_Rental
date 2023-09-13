@@ -44,6 +44,8 @@ GameObject:
   - component: {fileID: 81419976148993170}
   - component: {fileID: 124044488792268592}
   - component: {fileID: 6510269474316679535}
+  - component: {fileID: 815451300}
+  - component: {fileID: 815451301}
   m_Layer: 0
   m_Name: Player Camera
   m_TagString: MainCamera
@@ -115,7 +117,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1264833946912854}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!124 &124044488792268592
 Behaviour:
   m_ObjectHideFlags: 0
@@ -137,7 +139,79 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attenuationObject: {fileID: 0}
-  ListenerNumber: -1
+--- !u!114 &815451300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1264833946912854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 948f4100a11a5c24981795d21301da5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  volumeTrigger: {fileID: 4288335847994348}
+  volumeLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  stopNaNPropagation: 1
+  finalBlitToCameraTarget: 0
+  antialiasingMode: 0
+  temporalAntialiasing:
+    jitterSpread: 0.75
+    sharpness: 0.25
+    stationaryBlending: 0.95
+    motionBlending: 0.85
+  subpixelMorphologicalAntialiasing:
+    quality: 2
+  fastApproximateAntialiasing:
+    fastMode: 0
+    keepAlpha: 0
+  fog:
+    enabled: 1
+    excludeSkybox: 1
+  debugLayer:
+    lightMeter:
+      width: 512
+      height: 256
+      showCurves: 1
+    histogram:
+      width: 512
+      height: 256
+      channel: 3
+    waveform:
+      exposure: 0.12
+      height: 256
+    vectorscope:
+      size: 256
+      exposure: 0.12
+    overlaySettings:
+      linearDepth: 0
+      motionColorIntensity: 4
+      motionGridSize: 64
+      colorBlindnessType: 0
+      colorBlindnessStrength: 1
+  m_Resources: {fileID: 11400000, guid: d82512f9c8e5d4a4d938b575d47f88d4, type: 2}
+  m_ShowToolkit: 0
+  m_ShowCustomSorter: 0
+  breakBeforeColorGrading: 0
+  m_BeforeTransparentBundles: []
+  m_BeforeStackBundles: []
+  m_AfterStackBundles: []
+--- !u!114 &815451301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1264833946912854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attenuationObject: {fileID: 0}
 --- !u!1 &1743903104223250
 GameObject:
   m_ObjectHideFlags: 0
@@ -151,10 +225,11 @@ GameObject:
   - component: {fileID: 54587624234064098}
   - component: {fileID: 136239539305442568}
   - component: {fileID: 114051214696948948}
+  - component: {fileID: 164064635}
   m_Layer: 0
   m_Name: FirstPerson-AIO
   m_TagString: Player
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -180,10 +255,10 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1743903104223250}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 3052a2f7b6a070f4288880df7400c6d9, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -296,9 +371,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.4
-  m_Height: 2
+  m_Height: 3
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!114 &114051214696948948
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -314,33 +389,33 @@ MonoBehaviour:
   controllerPauseState: 0
   enableCameraMovement: 1
   mouseInputInversion: 0
-  cameraInputMethod: 0
-  verticalRotationRange: 170
-  mouseSensitivity: 10
+  cameraInputMethod: 1
+  verticalRotationRange: 90
+  mouseSensitivity: 2
   fOVToMouseSensitivity: 1
   cameraSmoothing: 5
-  lockAndHideCursor: 1
+  lockAndHideCursor: 0
   playerCamera: {fileID: 20724644957976244}
   enableCameraShake: 1
-  autoCrosshair: 1
+  autoCrosshair: 0
   drawStaminaMeter: 1
   Crosshair: {fileID: 21300000, guid: 7fa7752f7f2a3fc4fbc2bcaea5671e2d, type: 3}
   targetAngles: {x: 0, y: 0, z: 0}
   playerCanMove: 1
   walkByDefault: 1
   walkSpeed: 4
-  sprintKey: 304
-  sprintSpeed: 8
+  sprintKey: 0
+  sprintSpeed: 0.1
   jumpPower: 5
   canJump: 1
   canHoldJump: 0
-  useStamina: 1
+  useStamina: 0
   staminaDepletionSpeed: 2
   staminaLevel: 50
   speed: 0
   staminaInternal: 0
   _crouchModifiers:
-    useCrouch: 1
+    useCrouch: 0
     toggleCrouch: 0
     crouchKey: 306
     crouchWalkSpeedMultiplier: 0.5
@@ -350,7 +425,7 @@ MonoBehaviour:
     gravityMultiplier: 1
     zeroFrictionMaterial: {fileID: 0}
     highFrictionMaterial: {fileID: 0}
-    maxSlopeAngle: 70
+    maxSlopeAngle: 55
     maxWallShear: 89
     maxStepHeight: 0.2
     curntGroundNormal: {x: 0, y: 0, z: 0}
@@ -369,15 +444,15 @@ MonoBehaviour:
   headbobHeight: 1
   headbobSideMovement: 0.5
   jumpLandIntensity: 3
-  enableAudioSFX: 1
+  enableAudioSFX: 0
   Volume: 5
   jumpSound: {fileID: 0}
   landSound: {fileID: 0}
   footStepSounds:
+  - {fileID: 8300000, guid: 3052a2f7b6a070f4288880df7400c6d9, type: 3}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
-  fsmode: 1
+  fsmode: 0
   dynamicFootstep:
     materialMode: 0
     woodPhysMat: []
@@ -395,7 +470,8 @@ MonoBehaviour:
     mudMat: []
     customMat: []
     currentClipSet: []
-    woodClipSet: []
+    woodClipSet:
+    - {fileID: 8300000, guid: 3052a2f7b6a070f4288880df7400c6d9, type: 3}
     metalAndGlassClipSet: []
     grassClipSet:
     - {fileID: 8300000, guid: e70c5fa5ed6b97f41aa555d63ca56d42, type: 3}
@@ -435,3 +511,40 @@ MonoBehaviour:
     - {fileID: 8300000, guid: fef61cddf814a2c49bf7a6c33791c766, type: 3}
     - {fileID: 8300000, guid: 73f938638097f8042ad7842aa5b04ac5, type: 3}
     - {fileID: 8300000, guid: e06c6ae1948cafd45a952ab85ebe4fa7, type: 3}
+--- !u!114 &164064635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1743903104223250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f9c75309f27c104897679e5bd9b3bc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FootstepsEventPath:
+    Guid:
+      Data1: -937053069
+      Data2: 1271571729
+      Data3: -1665258871
+      Data4: 6802052
+    Path: event:/Footstep
+  JumpingEventPath:
+    Guid:
+      Data1: 820211512
+      Data2: 1147515555
+      Data3: -128658505
+      Data4: -1411389865
+    Path: event:/Jump & Land
+  MaterialParameterName: Material
+  SpeedParameterName: Speed Switch
+  JumpOrLandParameterName: Jump Or Land
+  StepDistance: 1
+  RayDistance: 1.4
+  StartRunningTime: 0.3
+  JumpInputName: Jump
+  MaterialTypes:
+  - wood
+  - carpet
+  DefulatMaterialValue: 0

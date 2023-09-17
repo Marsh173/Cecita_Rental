@@ -6,6 +6,8 @@ public class TriggerEye : MonoBehaviour
 {
     public GameObject eye;
     public static bool enteredCantOpen;
+    public GameObject MonsterZone;
+    private bool ZoneHasPlayed = false;
 
     private void Start()
     {
@@ -32,6 +34,31 @@ public class TriggerEye : MonoBehaviour
         {
             eye.SetActive(true);
             enteredCantOpen = true;
+        }
+
+        if (other.CompareTag("ConstrainedSight"))
+        {
+            FirstPersonAIO.instance.cameraInputMethod = FirstPersonAIO.CameraInputMethod.TraditionalWithConstraints;
+        }
+
+
+        if (other.CompareTag("EnterMonster"))
+        {
+            if (!ZoneHasPlayed)
+            {
+                MonsterZone.GetComponent<Animation>().Play();
+                ZoneHasPlayed = true;
+            }
+        }
+
+
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("ConstrainedSight"))
+        {
+            FirstPersonAIO.instance.cameraInputMethod = FirstPersonAIO.CameraInputMethod.Traditional;
         }
     }
 }

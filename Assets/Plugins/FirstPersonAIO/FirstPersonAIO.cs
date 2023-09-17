@@ -71,6 +71,7 @@ public class FirstPersonAIO : MonoBehaviour {
 
     #region Variables
 
+    public static FirstPersonAIO instance; 
     #region Input Settings
     public bool controllerPauseState = false;
     #endregion
@@ -272,8 +273,8 @@ public class FirstPersonAIO : MonoBehaviour {
 
     private void Start(){
         #region Look Settings - Start
-
-        if(autoCrosshair || drawStaminaMeter){
+        instance = this;
+        if (autoCrosshair || drawStaminaMeter){
             Canvas canvas = new GameObject("AutoCrosshair").AddComponent<Canvas>();
             canvas.gameObject.AddComponent<CanvasScaler>().uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
             canvas.renderMode = RenderMode.ScreenSpaceOverlay;

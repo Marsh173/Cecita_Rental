@@ -18,6 +18,8 @@ public class playlistManager : MonoBehaviour
     {
         Inventory.SetActive(false);
         Instance = this;
+        //hide cursor at game start
+        Cursor.visible = false;
     }
 
     public void Add(playlistItems Item)
@@ -32,6 +34,9 @@ public class playlistManager : MonoBehaviour
             if(Inventory.activeSelf)
             {
                 Inventory.SetActive(false);
+
+                //hide cursor when close inventory 
+                Cursor.visible = false;
             }
             else if(!Inventory.activeSelf)
             {
@@ -39,6 +44,9 @@ public class playlistManager : MonoBehaviour
 
                 //List every item each time the inventory is opened
                 ListItems();
+
+                //show cursor when open inventory 
+                Cursor.visible = true;
             }
         }
     }

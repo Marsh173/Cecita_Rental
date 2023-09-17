@@ -6,9 +6,11 @@ using UnityEngine.SceneManagement;
 
 public class NoSightAllowed : MonoBehaviour
 {
+    public static NoSightAllowed instance;
     private Button eye_UI;
     public Sprite Eye_Open;
     public Sprite Eye_Close;
+    public GameObject SoundCollecting, itemAdded;
     public GameObject F;
 
     public KeyCode keyF;
@@ -16,13 +18,14 @@ public class NoSightAllowed : MonoBehaviour
     public Animator anim;
 
     public static float countDown;
-    float countDownTime = 5f;
+    float countDownTime = 20f;
     public Text countdownText;
     bool TimerActive;
 
     
     private void Start()
     {
+        instance = this;
         TimerActive = true;
         eye_UI = GetComponent<Button>();
         eye_UI.GetComponent<Image>().sprite = Eye_Open;
@@ -37,6 +40,7 @@ public class NoSightAllowed : MonoBehaviour
         {
             FadeToColor(eye_UI.colors.pressedColor);
             eye_UI.onClick.Invoke();
+            F.GetComponent<Text>().text = F.GetComponent<Text>().text == "Press F to open your eyes" ? "Press F to close your eyes" : "Press F to open your eyes";
         }
         else if(Input.GetKeyUp(keyF))
         {
@@ -63,7 +67,7 @@ public class NoSightAllowed : MonoBehaviour
             {
                 countDown = countDownTime;
                 Debug.Log("u dead");
-                //SceneManager.LoadScene("Death");
+                SceneManager.LoadScene("Death");
             }
         }
         else

@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class ItemPickup : MonoBehaviour
 {
-    public playlistItems Item;
-   
+    public playlistItems AItem;
+    public NormalItems NItem;
+
     void CollectSound()
     {
         Debug.Log("collected");
-        playlistManager.Instance.Add(Item);
+        playlistManager.Instance.Add(AItem);
+        //playlistManager.Instance.Add(NItem);
         Destroy(gameObject);
     }
 

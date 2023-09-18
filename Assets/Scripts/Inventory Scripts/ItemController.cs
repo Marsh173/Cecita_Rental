@@ -5,5 +5,6 @@ using UnityEngine;
 public class ItemController : MonoBehaviour
 {
     //store's item information/scriptable object
-    public playlistItems ItemInfo;
+    public playlistItems AItemInfo;
+    public NormalItems NItemInfo;
 }

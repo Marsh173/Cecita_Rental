@@ -7,7 +7,8 @@ using TMPro;
 public class playlistManager : MonoBehaviour
 {
     public static playlistManager Instance;
-    public List<playlistItems> Items = new List<playlistItems>();
+    public List<playlistItems> AItems = new List<playlistItems>();
+    //public List<NormalItems> NItems = new List<NormalItems>();
 
     public Transform ItemContent;
     public GameObject InventoryItem;
@@ -24,7 +25,7 @@ public class playlistManager : MonoBehaviour
 
     public void Add(playlistItems Item)
     {
-        Items.Add(Item);
+        AItems.Add(Item);
     }
 
     private void Update()
@@ -59,7 +60,7 @@ public class playlistManager : MonoBehaviour
             Destroy(item.gameObject);
         }
 
-        foreach(var item in Items)
+        foreach(var item in AItems)
         {
             //find the elemets in each item and replace inventory default
             GameObject itemobj = Instantiate(InventoryItem, ItemContent);

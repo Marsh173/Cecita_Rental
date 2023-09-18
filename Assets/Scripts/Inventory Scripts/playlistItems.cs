@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Item",menuName = "create new item")]
+[CreateAssetMenu(fileName = "New Audio Item", menuName = "create new audio Item")]
 public class playlistItems : ScriptableObject
 {
     public string audioId;

@@ -18,7 +18,7 @@ public class NoSightAllowed : MonoBehaviour
     public Animator anim;
 
     public static float countDown;
-    float countDownTime = 20f;
+    float countDownTime = 5f;
     public Text countdownText;
     bool TimerActive;
 

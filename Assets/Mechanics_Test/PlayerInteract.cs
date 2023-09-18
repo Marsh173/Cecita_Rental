@@ -29,12 +29,15 @@ public class PlayerInteract : MonoBehaviour
         {
             if(hitInfo.collider.GetComponent<Interactable>() != null)
             {
+                if (hitInfo.collider.gameObject.GetComponent<Outline>() == null)
+                {
                 //Debug.Log(hitInfo.collider.GetComponent<Interactable>().promptMessage);
                 hitInfo.collider.GetComponent<Interactable>().BaseInteract();
                 message.text = hitInfo.collider.GetComponent<Interactable>().promptMessage;
                 GameObject hitObject = hitInfo.collider.gameObject;
                 lastHitObject = hitObject;
                 Outline outlineScript = hitObject.AddComponent<Outline>();
+                }
             }
             else
             {
@@ -47,12 +50,14 @@ public class PlayerInteract : MonoBehaviour
             message.text = "";
             if (lastHitObject != null)
             {
+                lastHitObject.GetComponent<Interactable>().BaseDisableInteract();
                 Outline scriptToDetach = lastHitObject.GetComponent<Outline>();
                 if (scriptToDetach != null)
                 {
                     Destroy(scriptToDetach);
                 }
                 lastHitObject = null;
+
             }
         }
     }

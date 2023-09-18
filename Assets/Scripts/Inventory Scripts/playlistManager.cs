@@ -8,10 +8,10 @@ public class playlistManager : MonoBehaviour
 {
     public static playlistManager Instance;
     public List<playlistItems> AItems = new List<playlistItems>();
-    //public List<NormalItems> NItems = new List<NormalItems>();
+    public List<NormalItems> NItems = new List<NormalItems>();
 
-    public Transform ItemContent;
-    public GameObject InventoryItem;
+    public Transform PlaylistItemContent, NormalItemContent;
+    public GameObject PlaylistItem, NormalItem;
     public KeyCode inventoryKey;
     public GameObject Inventory;
 
@@ -23,9 +23,14 @@ public class playlistManager : MonoBehaviour
         Cursor.visible = false;
     }
 
-    public void Add(playlistItems Item)
+    public void AddPlaylist(playlistItems Item)
     {
         AItems.Add(Item);
+    }
+
+    public void AddNormal(NormalItems Item)
+    {
+        NItems.Add(Item);
     }
 
     private void Update()
@@ -55,7 +60,7 @@ public class playlistManager : MonoBehaviour
     public void ListItems()
     {
         //clean inventory before listing the items
-        foreach(Transform item in ItemContent)
+        foreach(Transform item in PlaylistItemContent)
         {
             Destroy(item.gameObject);
         }
@@ -63,7 +68,7 @@ public class playlistManager : MonoBehaviour
         foreach(var item in AItems)
         {
             //find the elemets in each item and replace inventory default
-            GameObject itemobj = Instantiate(InventoryItem, ItemContent);
+            GameObject itemobj = Instantiate(PlaylistItem, PlaylistItemContent);
             var itemName = itemobj.transform.Find("itemName").GetComponent<TMP_Text>();
             var itemIcon = itemobj.transform.Find("icon").GetComponent<Image>();
             var itemAudio = itemobj.transform.Find("audio").GetComponent<AudioSource>();
@@ -72,6 +77,25 @@ public class playlistManager : MonoBehaviour
             itemName.text = item.displayName;
             itemIcon.sprite = item.icon;
             itemAudio.clip = item.audio;
+        }
+
+
+        //clean inventory before listing the items
+        foreach (Transform item in NormalItemContent)
+        {
+            Destroy(item.gameObject);
+        }
+
+        foreach (var item in NItems)
+        {
+            //find the elemets in each item and replace inventory default
+            GameObject itemobj = Instantiate(NormalItem, NormalItemContent);
+            var itemName = itemobj.transform.Find("itemName").GetComponent<TMP_Text>();
+            var itemIcon = itemobj.transform.Find("icon").GetComponent<Image>();
+
+            //display name and image in inventory UI
+            itemName.text = item.displayName;
+            itemIcon.sprite = item.icon;
         }
     }
 

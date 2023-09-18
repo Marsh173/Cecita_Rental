@@ -2,15 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KeypadObj : Interactable
+public class EarPiece : Interactable
 {
-    public GameObject keypadCanvas;
     public bool interacted;
+    public NormalItems NItem;
 
     private void Start()
     {
         interacted = false;
-        keypadCanvas.SetActive(false);
     }
 
 
@@ -22,10 +21,18 @@ public class KeypadObj : Interactable
         {
             if (Input.GetMouseButtonDown(0))
             {
-                keypadCanvas.SetActive(true);
+                PickupMe();
+                interacted = false;
             }
-            interacted = false;
         }
+    }
+
+    private void PickupMe()
+    {
+        Debug.Log("collected");
+        playlistManager.Instance.AddNormal(NItem);
+        //playlistManager.Instance.Add(NItem);
+        Destroy(gameObject);
     }
 
     protected override void Interact()
@@ -39,5 +46,4 @@ public class KeypadObj : Interactable
         //Debug.Log("Interacted with Player");
         interacted = false;
     }
-
 }

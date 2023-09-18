@@ -10,14 +10,14 @@ public class ItemPickup : MonoBehaviour
     void CollectSound()
     {
         Debug.Log("collected");
-        playlistManager.Instance.Add(AItem);
+        playlistManager.Instance.AddPlaylist(AItem);
         //playlistManager.Instance.Add(NItem);
         Destroy(gameObject);
     }
 
     private void OnMouseDown()
     {
-        CollectSound();
+        //CollectSound();
     }
 
     

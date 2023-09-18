@@ -70,6 +70,12 @@ public class TV : Interactable
         interacted = true;
     }
 
+    protected override void DisableInteract()
+    {
+        //Debug.Log("Interacted with Player");
+        interacted = false;
+    }
+
     public void Record()
     {
         if (TvIsOn)

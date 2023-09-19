@@ -132,6 +132,33 @@ MonoBehaviour:
   - Walking
   - Running
   Exists: 1
+--- !u!114 &-5988136988129758206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Monsters/Walker-HeavyFootsteps
+  m_EditorClassIdentifier: 
+  Path: event:/Monsters/Walker-HeavyFootsteps
+  Guid:
+    Data1: -811906022
+    Data2: 1112828830
+    Data3: -401904753
+    Data4: -2139386136
+  Banks:
+  - {fileID: 7815312984354957286}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 11010
 --- !u!114 &-5555404576915507164
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -430,6 +457,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 11500
+--- !u!114 &-2165811446055215932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Door_Open
+  m_EditorClassIdentifier: 
+  Path: event:/Door_Open
+  Guid:
+    Data1: -2082476107
+    Data2: 1138018954
+    Data3: -1483352190
+    Data4: -5521762
+  Banks:
+  - {fileID: 7815312984354957286}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1150
 --- !u!114 &-1453088567841646255
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -561,22 +615,52 @@ MonoBehaviour:
   - {fileID: 1948433691188683484}
   - {fileID: -5555404576915507164}
   - {fileID: -2343771137215987159}
-  - {fileID: 4944782056647505911}
   - {fileID: -916565052917550380}
   - {fileID: 1754401523702453003}
   - {fileID: -3018680342839604009}
   - {fileID: -7395076646731946515}
   - {fileID: 856089627733779089}
   - {fileID: -2785899474979224497}
-  - {fileID: 5071982425779075815}
   - {fileID: -1453088567841646255}
+  - {fileID: 759530575150742605}
+  - {fileID: 1187001634526592167}
+  - {fileID: -2165811446055215932}
+  - {fileID: 7430702110295282118}
+  - {fileID: -5988136988129758206}
   EditorParameters: []
   MasterBanks:
   - {fileID: 7815312984354957286}
   StringsBanks:
   - {fileID: 8507399412015436865}
-  cacheTime: 638306638606615180
+  cacheTime: 638307474652479592
   cacheVersion: 131605
+--- !u!114 &759530575150742605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Tests/VideoTest
+  m_EditorClassIdentifier: 
+  Path: event:/Tests/VideoTest
+  Guid:
+    Data1: -1484789887
+    Data2: 1338638046
+    Data3: 1365461156
+    Data4: -449414202
+  Banks:
+  - {fileID: 7815312984354957286}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 6072
 --- !u!114 &856089627733779089
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -604,6 +688,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 10000
+--- !u!114 &1187001634526592167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Door_Close
+  m_EditorClassIdentifier: 
+  Path: event:/Door_Close
+  Guid:
+    Data1: 1547944841
+    Data2: 1318022181
+    Data3: 633945248
+    Data4: 1309534174
+  Banks:
+  - {fileID: 7815312984354957286}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1150
 --- !u!114 &1674498351819129036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -875,60 +986,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 90115
---- !u!114 &4944782056647505911
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/VideoTest
-  m_EditorClassIdentifier: 
-  Path: event:/VideoTest
-  Guid:
-    Data1: -1484789887
-    Data2: 1338638046
-    Data3: 1365461156
-    Data4: -449414202
-  Banks:
-  - {fileID: 7815312984354957286}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 0
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 6072
---- !u!114 &5071982425779075815
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Elevator
-  m_EditorClassIdentifier: 
-  Path: event:/Elevator
-  Guid:
-    Data1: 568199149
-    Data2: 1272717640
-    Data3: -814422361
-    Data4: 825621910
-  Banks:
-  - {fileID: 7815312984354957286}
-  IsStream: 1
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 3550
 --- !u!114 &5098495618513122101
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1005,6 +1062,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 10000
+--- !u!114 &7430702110295282118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Old/Elevator_Open
+  m_EditorClassIdentifier: 
+  Path: event:/Old/Elevator_Open
+  Guid:
+    Data1: 568199149
+    Data2: 1272717640
+    Data3: -814422361
+    Data4: 825621910
+  Banks:
+  - {fileID: 7815312984354957286}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 3550
 --- !u!114 &7815312984354957286
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1020,10 +1104,10 @@ MonoBehaviour:
   Path: CecitaRentalsFMOD/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638306638606595234
+  lastModified: 638307474652449667
   FileSizes:
   - Name: Desktop
-    Value: 9995136
+    Value: 10177056
   Exists: 1
 --- !u!114 &7929504694150048070
 MonoBehaviour:
@@ -1113,10 +1197,10 @@ MonoBehaviour:
   Path: CecitaRentalsFMOD/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638306638606615180
+  lastModified: 638307474652479592
   FileSizes:
   - Name: Desktop
-    Value: 1590
+    Value: 1754
   Exists: 1
 --- !u!114 &8898417225976249920
 MonoBehaviour:

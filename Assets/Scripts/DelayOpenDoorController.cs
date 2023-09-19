@@ -12,6 +12,14 @@ public class DelayOpenDoorController : MonoBehaviour
 
     [SerializeField] private float delay = 0.0f;
 
+    public GameObject doorOpenSound;
+
+    private void Start()
+    {
+        doorOpenSound.SetActive(false);
+    }
+
+
     private void Update()
     {
         if (!OpenDoorNow)
@@ -28,6 +36,7 @@ public class DelayOpenDoorController : MonoBehaviour
         yield return new WaitForSeconds(delay);
         Debug.Log("finish delay");
         myDoor.Play(doorOpen, 0, 0.0f);
+        doorOpenSound.SetActive(true);
        
     }
 

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 915902933637165387}
   - component: {fileID: 915902933637165384}
   - component: {fileID: 915902933637165385}
+  - component: {fileID: 8828569566192919967}
   m_Layer: 0
   m_Name: CloseDoor Trigger
   m_TagString: Untagged
@@ -113,6 +114,37 @@ MonoBehaviour:
   closeTrigger: 1
   doorOpen: DoorOpen
   doorClose: DoorClose
+--- !u!114 &8828569566192919967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 915902933637165390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1547944841
+      Data2: 1318022181
+      Data3: 633945248
+      Data4: 1309534174
+    Path: event:/Door_Close
+  Event: 
+  PlayEvent: 3
+  StopEvent: 2
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &915902935468933923
 GameObject:
   m_ObjectHideFlags: 0
@@ -123,6 +155,7 @@ GameObject:
   m_Component:
   - component: {fileID: 915902935468933922}
   - component: {fileID: 915902935468933948}
+  - component: {fileID: 5326213031368791541}
   m_Layer: 0
   m_Name: One-Way Delay Door
   m_TagString: Untagged
@@ -161,6 +194,38 @@ MonoBehaviour:
   myDoor: {fileID: 4144927403493989589}
   doorOpen: DoorOpen
   delay: 50
+  doorOpenSound: {fileID: 5622511794270897289}
+--- !u!114 &5326213031368791541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 915902935468933923}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -2082476107
+      Data2: 1138018954
+      Data3: -1483352190
+      Data4: -5521762
+    Path: event:/Door_Open
+  Event: 
+  PlayEvent: 11
+  StopEvent: 2
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &4144927403493989595
 GameObject:
   m_ObjectHideFlags: 0
@@ -191,7 +256,8 @@ Transform:
   m_LocalRotation: {x: -0, y: -1, z: -0, w: 0}
   m_LocalPosition: {x: -1.0248985, y: 1.310692, z: 2.3407898}
   m_LocalScale: {x: 1.0249, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 5839269745689936327}
   m_Father: {fileID: 915902935468933922}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
@@ -276,3 +342,65 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!1 &5622511794270897289
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5839269745689936327}
+  - component: {fileID: 6383325425635371626}
+  m_Layer: 0
+  m_Name: open sound
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5839269745689936327
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5622511794270897289}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6912563380406480090}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6383325425635371626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5622511794270897289}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -2082476107
+      Data2: 1138018954
+      Data3: -1483352190
+      Data4: -5521762
+    Path: event:/Door_Open
+  Event: 
+  PlayEvent: 11
+  StopEvent: 2
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20

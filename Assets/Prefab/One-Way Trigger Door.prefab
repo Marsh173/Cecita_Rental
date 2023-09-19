@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1750941655008523047}
   - component: {fileID: 1750941655008523040}
   - component: {fileID: 1750941655008523041}
+  - component: {fileID: 2286555913333524465}
   m_Layer: 0
   m_Name: OpenDoor Trigger
   m_TagString: Untagged
@@ -113,6 +114,37 @@ MonoBehaviour:
   closeTrigger: 0
   doorOpen: DoorOpen
   doorClose: DoorClose
+--- !u!114 &2286555913333524465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1750941655008523042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -2082476107
+      Data2: 1138018954
+      Data3: -1483352190
+      Data4: -5521762
+    Path: event:/Door_Open
+  Event: 
+  PlayEvent: 3
+  StopEvent: 2
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &1750941655697271085
 GameObject:
   m_ObjectHideFlags: 0
@@ -159,6 +191,7 @@ GameObject:
   - component: {fileID: 1750941656451275589}
   - component: {fileID: 1750941656451275590}
   - component: {fileID: 1750941656451275591}
+  - component: {fileID: 1037009918512232046}
   m_Layer: 0
   m_Name: CloseDoor Trigger
   m_TagString: Untagged
@@ -259,6 +292,37 @@ MonoBehaviour:
   closeTrigger: 1
   doorOpen: DoorOpen
   doorClose: DoorClose
+--- !u!114 &1037009918512232046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1750941656451275584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1547944841
+      Data2: 1318022181
+      Data3: 633945248
+      Data4: 1309534174
+    Path: event:/Door_Close
+  Event: 
+  PlayEvent: 3
+  StopEvent: 2
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &3277729331837843157
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,7 +10,7 @@ public class ItemPickup : MonoBehaviour
     void CollectSound()
     {
         Debug.Log("collected");
-        playlistManager.Instance.AddPlaylist(AItem);
+        InventoryManager.Instance.AddPlaylist(AItem);
         //playlistManager.Instance.Add(NItem);
         Destroy(gameObject);
     }

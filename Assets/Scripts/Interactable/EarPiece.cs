@@ -30,7 +30,7 @@ public class EarPiece : Interactable
     private void PickupMe()
     {
         Debug.Log("collected");
-        playlistManager.Instance.AddNormal(NItem);
+        InventoryManager.Instance.AddNormal(NItem);
         //playlistManager.Instance.Add(NItem);
         Destroy(gameObject);
     }

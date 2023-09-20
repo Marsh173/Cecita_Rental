@@ -14,7 +14,7 @@ public class CollectableSound : MonoBehaviour
     private void OnDisable()
     {
         NoSightAllowed.instance.SoundCollecting.SetActive(false);
-        playlistManager.Instance.AddPlaylist(Myitem); 
+        InventoryManager.Instance.AddPlaylist(Myitem); 
         NoSightAllowed.instance.itemAdded.SetActive(true);
     }
 

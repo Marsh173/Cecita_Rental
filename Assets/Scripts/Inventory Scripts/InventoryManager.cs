@@ -4,9 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class playlistManager : MonoBehaviour
+public class InventoryManager : MonoBehaviour
 {
-    public static playlistManager Instance;
+    public static InventoryManager Instance;
     public List<playlistItems> AItems = new List<playlistItems>();
     public List<NormalItems> NItems = new List<NormalItems>();
 
@@ -14,6 +14,8 @@ public class playlistManager : MonoBehaviour
     public GameObject PlaylistItem, NormalItem;
     public KeyCode inventoryKey;
     public GameObject Inventory;
+
+    public bool equipmentCollected = false;
 
     private void Awake()
     {
@@ -96,6 +98,14 @@ public class playlistManager : MonoBehaviour
             //display name and image in inventory UI
             itemName.text = item.displayName;
             itemIcon.sprite = item.icon;
+        }
+    }
+
+    public void FindEquipment()
+    {
+        if(NItems.Find(item => item.name == "ear buds") && NItems.Find(item => item.name == "recorder"))
+        {
+            equipmentCollected = true;
         }
     }
 

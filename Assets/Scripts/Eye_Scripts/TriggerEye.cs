@@ -7,7 +7,9 @@ public class TriggerEye : MonoBehaviour
     public GameObject eye;
     public static bool enteredCantOpen;
     public GameObject MonsterZone;
-    private bool ZoneHasPlayed = false;
+    public GameObject DeadEndZone;
+    private bool MonsterZoneHasPlayed = false;
+    private bool DeadEndZoneHasPlayed = false;
 
     private void Start()
     {
@@ -17,10 +19,11 @@ public class TriggerEye : MonoBehaviour
     //check if the mechanic needs to be activated
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Outside"))
+        if (other.CompareTag("Hallway"))
         {
             enteredCantOpen = false;
             eye.SetActive(true);
+            FirstPersonAIO.instance.cameraInputMethod = FirstPersonAIO.CameraInputMethod.TraditionalWithConstraints;
         }
 
         if (other.CompareTag("Enclosed"))
@@ -34,20 +37,25 @@ public class TriggerEye : MonoBehaviour
         {
             eye.SetActive(true);
             enteredCantOpen = true;
-        }
-
-        if (other.CompareTag("ConstrainedSight"))
-        {
             FirstPersonAIO.instance.cameraInputMethod = FirstPersonAIO.CameraInputMethod.TraditionalWithConstraints;
         }
 
 
         if (other.CompareTag("EnterMonster"))
         {
-            if (!ZoneHasPlayed)
+            if (!MonsterZoneHasPlayed)
             {
                 MonsterZone.GetComponent<Animation>().Play();
-                ZoneHasPlayed = true;
+                MonsterZoneHasPlayed = true;
+            }
+        }
+
+        if(other.CompareTag("EnterDeadEnd"))
+        {
+            if (!DeadEndZoneHasPlayed)
+            {
+                DeadEndZone.GetComponent<Animation>().Play();
+                DeadEndZoneHasPlayed = true;
             }
         }
 
@@ -56,7 +64,7 @@ public class TriggerEye : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("ConstrainedSight"))
+        if (other.CompareTag("Hallway") || other.CompareTag("CantOpen"))
         {
             FirstPersonAIO.instance.cameraInputMethod = FirstPersonAIO.CameraInputMethod.Traditional;
         }

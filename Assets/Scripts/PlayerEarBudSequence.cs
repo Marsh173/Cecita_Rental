@@ -21,7 +21,8 @@ public class PlayerEarBudSequence : MonoBehaviour
         if (InventoryManager.equipmentCollected && !firstAudioPlayed)
         {
             earBudVoice.clip = Resources.Load<AudioClip>("Night 0/" + "Night 0 - Hi");
-            earBudVoice.Play();
+            StartCoroutine(delayPlay());
+            earBudVoice.PlayOneShot(earBudVoice.clip);
         }
     }
 
@@ -29,17 +30,26 @@ public class PlayerEarBudSequence : MonoBehaviour
     {
         if (other.CompareTag("EnterMonster"))
         {
-            earBudVoice.clip = Resources.Load<AudioClip>("Night 0/" + "Night 0 - Stop!");
+            earBudVoice.clip = Resources.Load<AudioClip>("Night 0/" + "stop2");
             earBudVoice.PlayOneShot(earBudVoice.clip);
+            Destroy(other);
         }
 
         if (other.CompareTag("EnterDeadEnd"))
         {
             earBudVoice.clip = Resources.Load<AudioClip>("Night 0/" + "Night 0 - DeadEnd");
             earBudVoice.PlayOneShot(earBudVoice.clip);
+            Destroy(other);
         }
+
+        if (other.CompareTag("walker Trigger"))
+        {
+            earBudVoice.clip = Resources.Load<AudioClip>("Night 0/" + "Night 0 - stick to wall");
+            earBudVoice.PlayOneShot(earBudVoice.clip);
+        }
+        
     }
-    private void OnTriggerExit(Collider other)
+   /* private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("EnterMonster") && !invisibleWall)
         {
@@ -48,12 +58,10 @@ public class PlayerEarBudSequence : MonoBehaviour
             earBudVoice.PlayOneShot(earBudVoice.clip);
         }
 
-    }
-    IEnumerator delayOpen()
+    }*/
+    IEnumerator delayPlay()
     {
-
         firstAudioPlayed = true;
         yield return new WaitForSeconds(delay);
-
     }
 }

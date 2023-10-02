@@ -8,21 +8,25 @@ public class PlayerEarBudSequence : MonoBehaviour
     public GameObject invisibleWall;
 
     private bool firstAudioPlayed;
+
+    bool DelayedAlready;
     [SerializeField] private float delay = 0.0f;
     void Start()
     {
         earBudVoice = GetComponent<AudioSource>();
         firstAudioPlayed = false;
+        StartCoroutine(delayPlay());
+        DelayedAlready = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (InventoryManager.equipmentCollected && !firstAudioPlayed)
+        if (InventoryManager.equipmentCollected && !firstAudioPlayed && DelayedAlready)
         {
             earBudVoice.clip = Resources.Load<AudioClip>("Night 0/" + "Night 0 - Hi");
-            StartCoroutine(delayPlay());
             earBudVoice.PlayOneShot(earBudVoice.clip);
+            firstAudioPlayed = true;
         }
     }
 
@@ -61,7 +65,8 @@ public class PlayerEarBudSequence : MonoBehaviour
     }*/
     IEnumerator delayPlay()
     {
-        firstAudioPlayed = true;
         yield return new WaitForSeconds(delay);
+        DelayedAlready = true;
+        Debug.Log("waited 48s");
     }
 }

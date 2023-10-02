@@ -24,6 +24,7 @@ public class TriggerEye : MonoBehaviour
             enteredCantOpen = false;
             eye.SetActive(true);
             FirstPersonAIO.instance.cameraInputMethod = FirstPersonAIO.CameraInputMethod.TraditionalWithConstraints;
+
         }
 
         if (other.CompareTag("Enclosed"))

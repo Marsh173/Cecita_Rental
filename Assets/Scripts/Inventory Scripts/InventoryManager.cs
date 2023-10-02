@@ -15,7 +15,7 @@ public class InventoryManager : MonoBehaviour
     public KeyCode inventoryKey;
     public GameObject Inventory;
 
-    public bool equipmentCollected = false;
+    public static bool equipmentCollected = false;
 
     private void Awake()
     {
@@ -56,6 +56,11 @@ public class InventoryManager : MonoBehaviour
                 //show cursor when open inventory 
                 Cursor.visible = true;
             }
+        }
+
+        if(!equipmentCollected)
+        {
+            FindEquipment();
         }
     }
 
@@ -101,11 +106,13 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
+    //detect if earbud and recorder are collected
     public void FindEquipment()
     {
         if(NItems.Find(item => item.name == "ear buds") && NItems.Find(item => item.name == "recorder"))
         {
             equipmentCollected = true;
+            Debug.Log("Equiped " + equipmentCollected);
         }
     }
 

@@ -6,6 +6,8 @@ public class DelayOpenDoorController : MonoBehaviour
 {
     [SerializeField] private Animator myDoor = null;
     private bool OpenDoorNow = false;
+    private bool delayFinish = false;
+    private bool hasPlayed = false;
 
     [SerializeField] private string doorOpen = "DoorOpen";
     
@@ -17,6 +19,8 @@ public class DelayOpenDoorController : MonoBehaviour
     private void Start()
     {
         doorOpenSound.SetActive(false);
+        delayFinish = false;
+        hasPlayed = false;
     }
 
 
@@ -24,19 +28,33 @@ public class DelayOpenDoorController : MonoBehaviour
     {
         if (!OpenDoorNow)
         {
-            Debug.Log("to delay");
+            Debug.Log("start delay");
             StartCoroutine(delayOpen());
         }
-    
+
+        if (delayFinish && InventoryManager.equipmentCollected && !hasPlayed)
+        {
+            hasPlayed = true;
+            Debug.Log("open");
+            myDoor.Play(doorOpen, 0, 0.0f);
+            doorOpenSound.SetActive(true);
+        }
+
     }
 
     IEnumerator delayOpen()
     {
         OpenDoorNow = true;
         yield return new WaitForSeconds(delay);
-        Debug.Log("finish delay");
-        myDoor.Play(doorOpen, 0, 0.0f);
-        doorOpenSound.SetActive(true);
+        delayFinish = true;
+        Debug.Log("finish delay" + delayFinish);
+
+       /* if(InventoryManager.equipmentCollected)
+        {
+            myDoor.Play(doorOpen, 0, 0.0f);
+            doorOpenSound.SetActive(true);
+        }*/
+       
        
     }
 

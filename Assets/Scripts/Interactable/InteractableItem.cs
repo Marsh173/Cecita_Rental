@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EarPiece : Interactable
+public class InteractableItem : Interactable
 {
     public bool interacted;
     public NormalItems NItem;
@@ -34,7 +34,7 @@ public class EarPiece : Interactable
         //playlistManager.Instance.Add(NItem);
         Destroy(gameObject);
     }
-
+    
     protected override void Interact()
     {
         //Debug.Log("Interacted with Player");
@@ -46,4 +46,5 @@ public class EarPiece : Interactable
         //Debug.Log("Interacted with Player");
         interacted = false;
     }
+
 }

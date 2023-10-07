@@ -8,14 +8,20 @@ public class CollectableSound : MonoBehaviour
 
     private void OnEnable()
     {
-        NoSightAllowed.instance.SoundCollecting.SetActive(true);
+        if (NoSightAllowed.instance != null)
+        {
+            NoSightAllowed.instance.SoundCollecting.SetActive(true);
+        }
     }
 
     private void OnDisable()
     {
-        NoSightAllowed.instance.SoundCollecting.SetActive(false);
-        InventoryManager.Instance.AddPlaylist(Myitem); 
-        NoSightAllowed.instance.itemAdded.SetActive(true);
+        if (NoSightAllowed.instance != null)
+        {
+            NoSightAllowed.instance.SoundCollecting.SetActive(false);
+            InventoryManager.Instance.AddPlaylist(Myitem);
+            NoSightAllowed.instance.itemAdded.SetActive(true);
+        }
     }
 
 }

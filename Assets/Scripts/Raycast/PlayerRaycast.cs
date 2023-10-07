@@ -16,6 +16,9 @@ public class PlayerRaycast : MonoBehaviour
 
         if (Physics.Raycast(ray, out RaycastHit hit, range))
         {
+            if (hit.collider.GetComponent<InteractedEvent>() == null)
+                return;
+
             hit.collider.GetComponent<InteractedEvent>().RunEvent();
         }
     }

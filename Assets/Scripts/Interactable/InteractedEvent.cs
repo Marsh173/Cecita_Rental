@@ -5,30 +5,35 @@ using UnityEngine.Events;
 
 public class InteractedEvent : InteractableItem
 {
-    public UnityEvent EventOnInteraction;
-    [SerializeField] int holdTime;
+    PlayerInteract playerInteract;
+
+    [SerializeField] int waitTime;
     Coroutine coroutineRef;
+    public UnityEvent EventPreRecording;
+
+    private void Start()
+    {
+        playerInteract = FindObjectOfType<PlayerInteract>();
+    }
 
     public void Update()
     {
-        if (interacted)
+        if (playerInteract.hasTurnedOn)
         {
-            if (Input.GetKeyDown(KeyCode.R)) coroutineRef = StartCoroutine(RunRecordEvents());
-            if (Input.GetKeyUp(KeyCode.R)) StopCoroutine(coroutineRef);
+            if (interacted)
+            {
+                if (Input.GetMouseButtonDown(0)) coroutineRef = StartCoroutine(RunRecordEvents());
+                //if (Input.GetMouseButtonUp(0)) StopCoroutine(coroutineRef);                           //In case we want a hold to record input
+            }
         }
-        else if (coroutineRef != null) StopCoroutine(coroutineRef);
     }
 
-    // Update is called once per frame
-    public void RunEvent()
-    {
-        EventOnInteraction.Invoke();
-    }
+
 
     IEnumerator RunRecordEvents()
     {
-        yield return new WaitForSeconds(holdTime);
-        RunEvent();
+        EventPreRecording.Invoke();
         RecordMe();
+        yield return new WaitForSeconds(waitTime);                                                       //Put this line on top or middle of this section of code in case we want a hold input to complete the recording
     }
 }

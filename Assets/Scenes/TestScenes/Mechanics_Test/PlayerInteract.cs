@@ -2,9 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.Events;
 
 public class PlayerInteract : MonoBehaviour
 {
+    //Event system
+    public bool hasTurnedOn = false;
+    public UnityEvent EventTurnOnInteraction;
+    public UnityEvent EventTurnOffInteraction;
+
     public Camera cam;
     public TMP_Text message;
     private GameObject lastHitObject;
@@ -22,6 +28,24 @@ public class PlayerInteract : MonoBehaviour
 
     private void Update()
     {
+        //Event system to turn camera on/off
+        if (Input.GetKeyUp(KeyCode.R))
+        {
+            if (!hasTurnedOn)
+            {
+                RunTurnOnEvent();
+                hasTurnedOn = true;
+            }
+
+            else
+            {
+                RunTurnOffEvent();
+                hasTurnedOn = false;
+            }
+        }
+        //End of Event system code
+
+
         Ray ray = new Ray(cam.transform.position, cam.transform.forward);
         Debug.DrawRay(ray.origin, ray.direction * distance);
         RaycastHit hitInfo;
@@ -60,6 +84,16 @@ public class PlayerInteract : MonoBehaviour
 
             }
         }
+    }
+
+    public void RunTurnOnEvent()
+    {
+        EventTurnOnInteraction.Invoke();
+    }
+
+    public void RunTurnOffEvent()
+    {
+        EventTurnOffInteraction.Invoke();
     }
 
 }

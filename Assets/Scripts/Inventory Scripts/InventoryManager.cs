@@ -7,8 +7,13 @@ using TMPro;
 public class InventoryManager : MonoBehaviour
 {
     public static InventoryManager Instance;
-    public List<playlistItems> AItems = new List<playlistItems>();
+    public List<PlaylistItems> AItems = new List<PlaylistItems>();
     public List<NormalItems> NItems = new List<NormalItems>();
+    //Audio list
+    public AudioSource audioSource;
+    public AudioClip[] soundArray;
+    public AudioClip sound;
+    public int audioIndex = 0;
 
     public Transform PlaylistItemContent, NormalItemContent;
     public GameObject PlaylistItem, NormalItem;
@@ -25,7 +30,7 @@ public class InventoryManager : MonoBehaviour
         Cursor.visible = false;
     }
 
-    public void AddPlaylist(playlistItems Item)
+    public void AddPlaylist(PlaylistItems Item)
     {
         AItems.Add(Item);
     }

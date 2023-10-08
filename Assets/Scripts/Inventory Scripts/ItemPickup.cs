@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ItemPickup : MonoBehaviour
 {
-    public playlistItems AItem;
+    public PlaylistItems AItem;
     public NormalItems NItem;
 
     void CollectSound()

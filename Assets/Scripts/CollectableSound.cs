@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CollectableSound : MonoBehaviour
 {
-    public playlistItems Myitem;
+    public PlaylistItems Myitem;
 
     private void OnEnable()
     {

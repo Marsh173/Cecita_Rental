@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class InteractedEvent : InteractableItem
+public class InteractableItemWithEvent : InteractableItem
 {
     PlayerInteract playerInteract;
 

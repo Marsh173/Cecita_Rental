@@ -13,6 +13,7 @@ public class PlayerInteract : MonoBehaviour
 
     public Camera cam;
     public TMP_Text message;
+    public GameObject itemIcon;
     private GameObject lastHitObject;
 
     [SerializeField]
@@ -58,6 +59,12 @@ public class PlayerInteract : MonoBehaviour
                 //Debug.Log(hitInfo.collider.GetComponent<Interactable>().promptMessage);
                 hitInfo.collider.GetComponent<Interactable>().BaseInteract();
                 message.text = hitInfo.collider.GetComponent<Interactable>().promptMessage;
+
+                //Turn on interactble item icon
+                itemIcon = hitInfo.collider.GetComponent<Interactable>().promptIcon;
+                itemIcon.SetActive(true);
+                //
+
                 GameObject hitObject = hitInfo.collider.gameObject;
                 lastHitObject = hitObject;
                 Outline outlineScript = hitObject.AddComponent<Outline>();
@@ -66,12 +73,25 @@ public class PlayerInteract : MonoBehaviour
             else
             {
                 message.text = "";
-                
+
+                //Turn off interactable item icon
+                itemIcon.SetActive(false);
+                itemIcon = null;
+                //
             }
         }
         else
         {
             message.text = "";
+
+            //Turn off interactable item icon
+            if (itemIcon != null)
+            {
+                itemIcon.SetActive(false);
+                itemIcon = null;
+            }
+            //
+
             if (lastHitObject != null)
             {
                 lastHitObject.GetComponent<Interactable>().BaseDisableInteract();

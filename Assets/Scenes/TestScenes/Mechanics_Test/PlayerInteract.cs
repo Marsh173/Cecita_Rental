@@ -23,7 +23,10 @@ public class PlayerInteract : MonoBehaviour
 
     private void Start()
     {
-        message.text = "";
+        if (message!= null)
+        {
+            message.text = "";
+        }
     }
 
     private void Update()
@@ -57,21 +60,30 @@ public class PlayerInteract : MonoBehaviour
                 {
                 //Debug.Log(hitInfo.collider.GetComponent<Interactable>().promptMessage);
                 hitInfo.collider.GetComponent<Interactable>().BaseInteract();
-                message.text = hitInfo.collider.GetComponent<Interactable>().promptMessage;
-                GameObject hitObject = hitInfo.collider.gameObject;
+                if (message != null)
+                {
+                    message.text = hitInfo.collider.GetComponent<Interactable>().promptMessage;
+                }
+                    GameObject hitObject = hitInfo.collider.gameObject;
                 lastHitObject = hitObject;
                 Outline outlineScript = hitObject.AddComponent<Outline>();
                 }
             }
             else
             {
-                message.text = "";
+                if (message != null)
+                {
+                    message.text = "";
+                }
                 
             }
         }
         else
         {
-            message.text = "";
+            if (message != null)
+            {
+                message.text = "";
+            }
             if (lastHitObject != null)
             {
                 lastHitObject.GetComponent<Interactable>().BaseDisableInteract();

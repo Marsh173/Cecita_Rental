@@ -13,6 +13,7 @@ public class PlayerEarBudSequence : MonoBehaviour
     public GameObject inventory;
 
     private bool firstAudioPlayed;
+    public bool level2, level3;
 
     bool DelayedAlready;
     [SerializeField] private float delay = 0.0f;
@@ -31,9 +32,7 @@ public class PlayerEarBudSequence : MonoBehaviour
     {
         if (InventoryManager.equipmentCollected && !firstAudioPlayed)
         {
-            earBudVoice.clip = Resources.Load<AudioClip>("Night 0/" + "Night 0 - Hi");
-            earBudVoice.PlayOneShot(earBudVoice.clip);
-            StartCoroutine(delayPlay());
+            StartCoroutine(AudioSequence());
             firstAudioPlayed = true;
         }
         
@@ -89,10 +88,30 @@ public class PlayerEarBudSequence : MonoBehaviour
         }
 
     }*/
-   IEnumerator delayPlay()
+   IEnumerator AudioSequence()
     {
         yield return new WaitForSeconds(delay);
+        earBudVoice.clip = Resources.Load<AudioClip>("Night 0/" + "Night 0 - Hi");
+        earBudVoice.PlayOneShot(earBudVoice.clip);
         DelayedAlready = true;
-        Debug.Log("finish delay");
+        Debug.Log("finish playing audio 1");
+
+
+        while (level2 == false)
+        {
+            yield return null;
+        }
+
+        //This broadcast contains the basic rules to your survival, listen carefully. (emphasize)
+
+
+        while (level3 == false)
+        {
+            yield return null;
+        }
+
+        //They have eyes in the hallways. Close your eyes when you?re out, you can?t let them know. Now, open the door, I will guide you.
     }
+
+
 }

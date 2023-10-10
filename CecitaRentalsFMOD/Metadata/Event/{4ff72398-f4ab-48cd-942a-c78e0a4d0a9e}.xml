@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="Event" id="{4ff72398-f4ab-48cd-942a-c78e0a4d0a9e}">
 		<property name="name">
-			<value>Wall_Rubbing</value>
+			<value>Wall_Rubbing_Left</value>
 		</property>
 		<property name="outputFormat">
 			<value>2</value>
@@ -100,9 +100,6 @@
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{0abcd88d-7ecc-4cee-bfba-9855537906df}">
-		<property name="volume">
-			<value>-7</value>
-		</property>
 		<property name="name">
 			<value>Audio 1</value>
 		</property>
@@ -136,7 +133,14 @@
 			<destination>{f4a762ef-04d6-4745-a69b-b0fce0b2d4d4}</destination>
 		</relationship>
 	</object>
-	<object class="MixerBusPanner" id="{88ec0e58-0ea2-4086-9ad2-2ba186d3147a}" />
+	<object class="MixerBusPanner" id="{88ec0e58-0ea2-4086-9ad2-2ba186d3147a}">
+		<property name="surroundPanDirection">
+			<value>-95.9468613</value>
+		</property>
+		<property name="surroundPanExtent">
+			<value>124.876373</value>
+		</property>
+	</object>
 	<object class="MixerBusFader" id="{7b789716-2af1-4db8-b397-a0bad1aa684c}" />
 	<object class="MixerBusEffectChain" id="{245594b5-aa11-4ad4-a6ba-882c5542a88b}">
 		<relationship name="effects">

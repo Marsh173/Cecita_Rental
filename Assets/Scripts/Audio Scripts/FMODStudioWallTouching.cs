@@ -9,23 +9,27 @@ namespace FMODUnity
         public LayerMask WallLayer;
 
         [Header("FMOD Settings")]
-        [SerializeField] EventReference WallTouchingEventPath;
-        FMOD.Studio.EventInstance Rubbing;
+        [SerializeField] EventReference WallTouchingLeftEventPath;
+        [SerializeField] EventReference WallTouchingRightEventPath;
+        FMOD.Studio.EventInstance Rubbing_Left;
+        FMOD.Studio.EventInstance Rubbing_Right;
 
         private bool isTouchingLeftWall;
         private bool isTouchingRightWall;
         private bool isWalking;
-        private bool hasChangedPosition = false;
+       
 
         private void Start()
         {
-            Rubbing = FMODUnity.RuntimeManager.CreateInstance(WallTouchingEventPath); //create FMOD instance to play event           
+            Rubbing_Left = FMODUnity.RuntimeManager.CreateInstance(WallTouchingLeftEventPath); //create FMOD instance to play event           
+            Rubbing_Right = FMODUnity.RuntimeManager.CreateInstance(WallTouchingRightEventPath);
             isWalking = false;    
         }
 
         private void Update()
         {
-            FMODUnity.RuntimeManager.AttachInstanceToGameObject(Rubbing, transform, GetComponent<Rigidbody>()); //attach to gameobject in order to play
+            FMODUnity.RuntimeManager.AttachInstanceToGameObject(Rubbing_Left, transform, GetComponent<Rigidbody>()); //attach to gameobject in order to play
+            FMODUnity.RuntimeManager.AttachInstanceToGameObject(Rubbing_Right, transform, GetComponent<Rigidbody>());
 
             isWalking = Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D);
 
@@ -43,39 +47,43 @@ namespace FMODUnity
 
         void PlayRubbingSound()
         {
-            FMOD.Studio.PLAYBACK_STATE fmodPbState;
-            Rubbing.getPlaybackState(out fmodPbState);
+            
 
             if (isTouchingLeftWall && isWalking) 
             {
-                Debug.Log("Touched Left Wall && isWalking!");
-                
+                //Debug.Log("Touched Left Wall && isWalking!");
+
+                FMOD.Studio.PLAYBACK_STATE fmodPbState;
+                Rubbing_Left.getPlaybackState(out fmodPbState);
+
                 if (fmodPbState != FMOD.Studio.PLAYBACK_STATE.PLAYING)
-                {   
-                    Rubbing.start();
-                    Debug.Log("Play rubbing sound now...");
+                {
+                    Rubbing_Left.start();
+                    //Debug.Log("Play rubbing sound now...");
                 }
 
                
             }
             else if (isTouchingRightWall && isWalking)
             {
-                Debug.Log("Touched Right Wall");
-               
+                //Debug.Log("Touched Right Wall");
+                FMOD.Studio.PLAYBACK_STATE fmodPbState;
+                Rubbing_Right.getPlaybackState(out fmodPbState);
 
                 if (fmodPbState != FMOD.Studio.PLAYBACK_STATE.PLAYING)
                 {
-                   
-                    Rubbing.start();
-                    Debug.Log("Play rubbing sound now...");
+
+                    Rubbing_Right.start();
+                    //Debug.Log("Play rubbing sound now...");
                 }
 
             }
             else
             {
-                
-                Rubbing.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-                Debug.Log("Stopped...");
+
+                Rubbing_Left.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                Rubbing_Right.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                //Debug.Log("Stopped...");
             }
             
         }

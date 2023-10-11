@@ -2,6 +2,7 @@
 using UnityEditor;
 #endif
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 namespace FMODUnity
@@ -88,8 +89,25 @@ namespace FMODUnity
             Debug.Log("Override Attenuation");
         }
 
-        #if UNITY_EDITOR
-                [CustomEditor(typeof(FMODStudioChangeMusic))]
+        private void OnEnable()
+        {
+            SceneManager.sceneUnloaded += OnSceneUnloaded;
+        }
+
+        private void OnDisable()
+        {
+            SceneManager.sceneUnloaded -= OnSceneUnloaded;
+        }
+
+        private void OnSceneUnloaded(Scene unloadedScene)
+        {
+            // Stop the audio playback here
+            beautiful_broadcast.release();
+            awful_broadcast.release();
+        }
+
+#if UNITY_EDITOR
+        [CustomEditor(typeof(FMODStudioChangeMusic))]
                 public class FMODStudioChangeMusicEditor : Editor
                 {
                     private SerializedProperty maxDistanceProperty;

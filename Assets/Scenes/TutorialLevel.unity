@@ -5100,6 +5100,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7998873466008628779, guid: 53b7c4abcc3e12b48a32afdbb70f832a, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8454068281095666352, guid: 53b7c4abcc3e12b48a32afdbb70f832a, type: 3}
       propertyPath: PlayEvent
       value: 3
@@ -5111,6 +5115,10 @@ PrefabInstance:
     - target: {fileID: 8454068281095666352, guid: 53b7c4abcc3e12b48a32afdbb70f832a, type: 3}
       propertyPath: CollisionTag
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 8718507855150848789, guid: 53b7c4abcc3e12b48a32afdbb70f832a, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8718507855150848789, guid: 53b7c4abcc3e12b48a32afdbb70f832a, type: 3}
       propertyPath: m_Center.x
@@ -12940,6 +12948,37 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4545650248907387615, guid: 53b7c4abcc3e12b48a32afdbb70f832a, type: 3}
   m_PrefabInstance: {fileID: 1136534569}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1722951758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1722951757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: Player
+  EventReference:
+    Guid:
+      Data1: -1952275839
+      Data2: 1213896104
+      Data3: 406805152
+      Data4: -1508835468
+    Path: event:/Broadcast Music
+  Event: 
+  PlayEvent: 1
+  StopEvent: 4
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 1
+  OverrideMinDistance: 2
+  OverrideMaxDistance: 25
 --- !u!65 &1722951760
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -7,13 +7,12 @@ using UnityEngine.Events;
 public class PlayerInteract : MonoBehaviour
 {
     //Event system
-    public bool hasRecorderTurnedOn = false;
+    public bool hasTurnedOn = false;
     public UnityEvent EventTurnOnInteraction;
     public UnityEvent EventTurnOffInteraction;
 
     public Camera cam;
     public TMP_Text message;
-    public GameObject itemIcon;
     private GameObject lastHitObject;
 
     [SerializeField]
@@ -24,7 +23,10 @@ public class PlayerInteract : MonoBehaviour
 
     private void Start()
     {
-        message.text = "";
+        if (message!= null)
+        {
+            message.text = "";
+        }
     }
 
     private void Update()
@@ -32,16 +34,16 @@ public class PlayerInteract : MonoBehaviour
         //Event system to turn camera on/off
         if (Input.GetKeyUp(KeyCode.R))
         {
-            if (!hasRecorderTurnedOn)
+            if (!hasTurnedOn)
             {
                 RunTurnOnEvent();
-                hasRecorderTurnedOn = true;
+                hasTurnedOn = true;
             }
 
             else
             {
                 RunTurnOffEvent();
-                hasRecorderTurnedOn = false;
+                hasTurnedOn = false;
             }
         }
         //End of Event system code
@@ -58,40 +60,30 @@ public class PlayerInteract : MonoBehaviour
                 {
                 //Debug.Log(hitInfo.collider.GetComponent<Interactable>().promptMessage);
                 hitInfo.collider.GetComponent<Interactable>().BaseInteract();
-                message.text = hitInfo.collider.GetComponent<Interactable>().promptMessage;
-
-                //Turn on interactble item icon
-                itemIcon = hitInfo.collider.GetComponent<Interactable>().promptIcon;
-                itemIcon.SetActive(true);
-                //
-
-                GameObject hitObject = hitInfo.collider.gameObject;
+                if (message != null)
+                {
+                    message.text = hitInfo.collider.GetComponent<Interactable>().promptMessage;
+                }
+                    GameObject hitObject = hitInfo.collider.gameObject;
                 lastHitObject = hitObject;
                 Outline outlineScript = hitObject.AddComponent<Outline>();
                 }
             }
             else
             {
-                message.text = "";
-
-                //Turn off interactable item icon
-                itemIcon.SetActive(false);
-                itemIcon = null;
-                //
+                if (message != null)
+                {
+                    message.text = "";
+                }
+                
             }
         }
         else
         {
-            message.text = "";
-
-            //Turn off interactable item icon
-            if (itemIcon != null)
+            if (message != null)
             {
-                itemIcon.SetActive(false);
-                itemIcon = null;
+                message.text = "";
             }
-            //
-
             if (lastHitObject != null)
             {
                 lastHitObject.GetComponent<Interactable>().BaseDisableInteract();

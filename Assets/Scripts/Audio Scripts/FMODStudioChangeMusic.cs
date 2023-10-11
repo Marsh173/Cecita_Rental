@@ -1,4 +1,6 @@
-
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 using UnityEngine;
 
 
@@ -86,6 +88,57 @@ namespace FMODUnity
             Debug.Log("Override Attenuation");
         }
 
+        #if UNITY_EDITOR
+                [CustomEditor(typeof(FMODStudioChangeMusic))]
+                public class FMODStudioChangeMusicEditor : Editor
+                {
+                    private SerializedProperty maxDistanceProperty;
+                    private SerializedProperty minDistanceProperty;
+
+                    private void OnEnable()
+                    {
+                        maxDistanceProperty = serializedObject.FindProperty("maxDistance");
+                        minDistanceProperty = serializedObject.FindProperty("minDistance");
+                    }
+
+                    public override void OnInspectorGUI()
+                    {
+                        // Draw default inspector fields
+                        DrawDefaultInspector();
+
+                        // Update serialized object
+                        serializedObject.Update();
+
+                        // Apply changes to the serialized object
+                        serializedObject.ApplyModifiedProperties();
+                    }
+
+                    protected void OnSceneGUI()
+                    {
+                        FMODStudioChangeMusic targetScript = (FMODStudioChangeMusic)target;
+
+                        GUIStyle labelStyle = new GUIStyle();
+                        labelStyle.fontSize = 50;
+                        labelStyle.alignment = TextAnchor.MiddleCenter; // Center the text
+                        labelStyle.normal.textColor = Color.red;
+
+
+                // Allow the max and min distances to be adjusted interactively in the Scene View
+                float newMaxDistance = Handles.RadiusHandle(Quaternion.identity, targetScript.transform.position, targetScript.maxDistance);
+                        float newMinDistance = Handles.RadiusHandle(Quaternion.identity, targetScript.transform.position, targetScript.minDistance);
+
+                        if (newMaxDistance != targetScript.maxDistance || newMinDistance != targetScript.minDistance)
+                        {
+                            Undo.RecordObject(targetScript, "Change Max and Min Distances");
+                            targetScript.maxDistance = newMaxDistance;
+                            targetScript.minDistance = newMinDistance;
+                        }
+
+                        // Display the audio icon label
+                        Handles.Label(targetScript.transform.position, "SOUND!", labelStyle);
+            }
+                }
+        #endif
 
 
     }

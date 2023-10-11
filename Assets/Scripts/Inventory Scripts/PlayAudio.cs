@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class PlayAudio : MonoBehaviour
 {
     private AudioSource sound;
     public GameObject bTextObj;
-    Text buttonText;
+    TMP_Text buttonText;
     bool playing;
     float timePlaying;
 
@@ -15,8 +16,7 @@ public class PlayAudio : MonoBehaviour
     {
         playing = false;
         sound = gameObject.GetComponent<AudioSource>();
-        buttonText = bTextObj.GetComponent<Text>();
-        Debug.Log(buttonText);
+        buttonText = bTextObj.GetComponent<TMP_Text>();
     }
 
     // Update is called once per frame

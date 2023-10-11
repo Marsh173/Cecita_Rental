@@ -47,6 +47,8 @@ public class InventoryManager : MonoBehaviour
             if(Inventory.activeSelf)
             {
                 Inventory.SetActive(false);
+                FirstPersonAIO.instance.enableCameraMovement = true;
+                FirstPersonAIO.instance.playerCanMove = true;
 
                 //hide cursor when close inventory 
                 Cursor.visible = false;
@@ -54,6 +56,8 @@ public class InventoryManager : MonoBehaviour
             else if(!Inventory.activeSelf)
             {
                 Inventory.SetActive(true);
+                FirstPersonAIO.instance.enableCameraMovement = false;
+                FirstPersonAIO.instance.playerCanMove = false;
 
                 //List every item each time the inventory is opened
                 ListItems();

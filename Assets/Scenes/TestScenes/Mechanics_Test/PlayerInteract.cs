@@ -24,7 +24,7 @@ public class PlayerInteract : MonoBehaviour
 
     private void Start()
     {
-        message.text = "";
+        if (message.text != null) message.text = "";
     }
 
     private void Update()
@@ -72,7 +72,7 @@ public class PlayerInteract : MonoBehaviour
             }
             else
             {
-                message.text = "";
+                if (message.text != null) message.text = "";
 
                 //Turn off interactable item icon                                                   -Bryan's latest
                 itemIcon.SetActive(false);
@@ -82,7 +82,7 @@ public class PlayerInteract : MonoBehaviour
         }
         else
         {
-            message.text = "";
+            if (message.text != null) message.text = "";
 
             //Turn off interactable item icon                                                       -Bryan's latest
             if (itemIcon != null)

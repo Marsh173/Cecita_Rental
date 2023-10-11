@@ -194,15 +194,14 @@ GameObject:
   m_Component:
   - component: {fileID: 1786473008633198075}
   - component: {fileID: 1864706369305122763}
+  - component: {fileID: 1784866648515469907}
   - component: {fileID: 1730774124000607265}
   - component: {fileID: 1810759179440032203}
   - component: {fileID: 1824008681546727447}
-  - component: {fileID: 1784866648515469907}
   - component: {fileID: 1784866648515469934}
-  - component: {fileID: 1784866648515469935}
-  - component: {fileID: 1784866648515469932}
-  - component: {fileID: 1784866648515469906}
   - component: {fileID: 853425280604392184}
+  - component: {fileID: 1784866648515469935}
+  - component: {fileID: 1784866648515469906}
   m_Layer: 0
   m_Name: FirstPerson-AIO
   m_TagString: Player
@@ -322,6 +321,14 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!81 &1784866648515469907
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1784319153359301841}
+  m_Enabled: 1
 --- !u!54 &1730774124000607265
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -368,7 +375,7 @@ MonoBehaviour:
   enableCameraMovement: 1
   mouseInputInversion: 0
   cameraInputMethod: 0
-  verticalRotationRange: 90
+  verticalRotationRange: 140
   mouseSensitivity: 2
   fOVToMouseSensitivity: 1
   cameraSmoothing: 5
@@ -489,14 +496,6 @@ MonoBehaviour:
     - {fileID: 8300000, guid: fef61cddf814a2c49bf7a6c33791c766, type: 3}
     - {fileID: 8300000, guid: 73f938638097f8042ad7842aa5b04ac5, type: 3}
     - {fileID: 8300000, guid: e06c6ae1948cafd45a952ab85ebe4fa7, type: 3}
---- !u!81 &1784866648515469907
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1784319153359301841}
-  m_Enabled: 1
 --- !u!114 &1784866648515469934
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -534,75 +533,6 @@ MonoBehaviour:
   - wood
   - carpet
   DefulatMaterialValue: 0
---- !u!114 &1784866648515469935
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1784319153359301841}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2884dcd01bf3064db3b94b85f73d1ec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hasTurnedOn: 0
-  EventTurnOnInteraction:
-    m_PersistentCalls:
-      m_Calls: []
-  EventTurnOffInteraction:
-    m_PersistentCalls:
-      m_Calls: []
-  cam: {fileID: 1768997895139496567}
-  message: {fileID: 0}
-  distance: 6
-  mask:
-    serializedVersion: 2
-    m_Bits: 128
---- !u!114 &1784866648515469932
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1784319153359301841}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 901db4f15ca451042994ee9d6cd75312, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  WallLayer:
-    serializedVersion: 2
-    m_Bits: 384
-  WallTouchingLeftEventPath:
-    Guid:
-      Data1: 1341596568
-      Data2: 1221457067
-      Data3: -1899550060
-      Data4: -1643492086
-    Path: event:/Wall_Rubbing_Left
-  WallTouchingRightEventPath:
-    Guid:
-      Data1: -660937912
-      Data2: 1169481425
-      Data3: 181601201
-      Data4: -1523348749
-    Path: event:/Wall_Rubbing_Right
---- !u!114 &1784866648515469906
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1784319153359301841}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26f29f5da85bf7c4486c6d91246e0d09, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eye: {fileID: 0}
-  MonsterZone: {fileID: 0}
-  DeadEndZone: {fileID: 0}
 --- !u!114 &853425280604392184
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -632,6 +562,46 @@ MonoBehaviour:
       Data3: 181601201
       Data4: -1523348749
     Path: event:/Wall_Rubbing_Right
+--- !u!114 &1784866648515469935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1784319153359301841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2884dcd01bf3064db3b94b85f73d1ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hasTurnedOn: 0
+  EventTurnOnInteraction:
+    m_PersistentCalls:
+      m_Calls: []
+  EventTurnOffInteraction:
+    m_PersistentCalls:
+      m_Calls: []
+  cam: {fileID: 1768997895139496567}
+  message: {fileID: 0}
+  distance: 6
+  mask:
+    serializedVersion: 2
+    m_Bits: 128
+--- !u!114 &1784866648515469906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1784319153359301841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26f29f5da85bf7c4486c6d91246e0d09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eye: {fileID: 0}
+  MonsterZone: {fileID: 0}
+  DeadEndZone: {fileID: 0}
 --- !u!1 &1784866649624928378
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,12 +7,13 @@ using UnityEngine.Events;
 public class PlayerInteract : MonoBehaviour
 {
     //Event system
-    public bool hasTurnedOn = false;
+    public bool hasRecorderTurnedOn = false;
     public UnityEvent EventTurnOnInteraction;
     public UnityEvent EventTurnOffInteraction;
 
     public Camera cam;
     public TMP_Text message;
+    public GameObject itemIcon;
     private GameObject lastHitObject;
 
     [SerializeField]
@@ -23,27 +24,24 @@ public class PlayerInteract : MonoBehaviour
 
     private void Start()
     {
-        if (message!= null)
-        {
-            message.text = "";
-        }
+        message.text = "";
     }
 
     private void Update()
     {
-        //Event system to turn camera on/off
+        //Event system to turn camera on/off                                                        -Bryan
         if (Input.GetKeyUp(KeyCode.R))
         {
-            if (!hasTurnedOn)
+            if (!hasRecorderTurnedOn)
             {
                 RunTurnOnEvent();
-                hasTurnedOn = true;
+                hasRecorderTurnedOn = true;
             }
 
             else
             {
                 RunTurnOffEvent();
-                hasTurnedOn = false;
+                hasRecorderTurnedOn = false;
             }
         }
         //End of Event system code
@@ -60,30 +58,40 @@ public class PlayerInteract : MonoBehaviour
                 {
                 //Debug.Log(hitInfo.collider.GetComponent<Interactable>().promptMessage);
                 hitInfo.collider.GetComponent<Interactable>().BaseInteract();
-                if (message != null)
-                {
-                    message.text = hitInfo.collider.GetComponent<Interactable>().promptMessage;
-                }
-                    GameObject hitObject = hitInfo.collider.gameObject;
+                message.text = hitInfo.collider.GetComponent<Interactable>().promptMessage;
+
+                //Turn on interactble item icon                                                     -Bryan's latest
+                itemIcon = hitInfo.collider.GetComponent<Interactable>().promptIcon;
+                itemIcon.SetActive(true);
+                //
+
+                GameObject hitObject = hitInfo.collider.gameObject;
                 lastHitObject = hitObject;
                 Outline outlineScript = hitObject.AddComponent<Outline>();
                 }
             }
             else
             {
-                if (message != null)
-                {
-                    message.text = "";
-                }
-                
+                message.text = "";
+
+                //Turn off interactable item icon                                                   -Bryan's latest
+                itemIcon.SetActive(false);
+                itemIcon = null;
+                //
             }
         }
         else
         {
-            if (message != null)
+            message.text = "";
+
+            //Turn off interactable item icon                                                       -Bryan's latest
+            if (itemIcon != null)
             {
-                message.text = "";
+                itemIcon.SetActive(false);
+                itemIcon = null;
             }
+            //
+
             if (lastHitObject != null)
             {
                 lastHitObject.GetComponent<Interactable>().BaseDisableInteract();

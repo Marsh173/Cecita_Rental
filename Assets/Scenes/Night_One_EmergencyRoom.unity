@@ -402,6 +402,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 7799719709490085288, guid: 0af122e4cbeaf4ba19581bfe17e4010b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7799719709490085292, guid: 0af122e4cbeaf4ba19581bfe17e4010b, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -488,6 +492,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7799719709715727977, guid: 0af122e4cbeaf4ba19581bfe17e4010b, type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7799719710042798176, guid: 0af122e4cbeaf4ba19581bfe17e4010b, type: 3}
+      propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1253,7 +1261,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db47eab4db5cc364da17e7dcede4e292, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioClips: []
   invisibleWall: {fileID: 0}
+  tutorialMessageObj: {fileID: 0}
+  inventory: {fileID: 0}
+  openDoorTrigger: {fileID: 0}
+  tutoriaMessage: {fileID: 0}
   delay: 48
 --- !u!114 &798061580
 MonoBehaviour:
@@ -1719,7 +1732,7 @@ MonoBehaviour:
   promptIcon: {fileID: 1032740069}
   interacted: 0
   NItem: {fileID: 11400000, guid: 34ae2b45d0d20484aaae8b7b50fd3748, type: 2}
-  AItem: {fileID: 11400000, guid: 80bec9b84b7c6c44ea336eb72c9e7443, type: 2}
+  AItem: {fileID: 11400000, guid: c50c7fd325cb4874aa729c4521726788, type: 2}
   recordWaitTime: 0
   interactWaitTime: 0
   EventPreRecording:
@@ -1739,7 +1752,19 @@ MonoBehaviour:
         m_CallState: 2
   EventOnInteraction:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 939044525}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &955535282 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5670845325073304808, guid: 67d374d0aa6148b4aa47c710c0491d4d, type: 3}
@@ -5942,6 +5967,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2489584626494328668, guid: 67d374d0aa6148b4aa47c710c0491d4d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2489584626797589657, guid: 67d374d0aa6148b4aa47c710c0491d4d, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -6029,6 +6058,18 @@ PrefabInstance:
     - target: {fileID: 2489584626797589661, guid: 67d374d0aa6148b4aa47c710c0491d4d, type: 3}
       propertyPath: m_Name
       value: Canvas_Inventory
+      objectReference: {fileID: 0}
+    - target: {fileID: 2489584627392016714, guid: 67d374d0aa6148b4aa47c710c0491d4d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8374781028922987792, guid: 67d374d0aa6148b4aa47c710c0491d4d, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8374781028922987792, guid: 67d374d0aa6148b4aa47c710c0491d4d, type: 3}
+      propertyPath: m_Color.r
+      value: 0.2249273
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 67d374d0aa6148b4aa47c710c0491d4d, type: 3}

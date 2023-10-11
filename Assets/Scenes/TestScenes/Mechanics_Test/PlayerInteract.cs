@@ -7,7 +7,7 @@ using UnityEngine.Events;
 public class PlayerInteract : MonoBehaviour
 {
     //Event system
-    public bool hasTurnedOn = false;
+    public bool hasRecorderTurnedOn = false;
     public UnityEvent EventTurnOnInteraction;
     public UnityEvent EventTurnOffInteraction;
 
@@ -32,16 +32,16 @@ public class PlayerInteract : MonoBehaviour
         //Event system to turn camera on/off
         if (Input.GetKeyUp(KeyCode.R))
         {
-            if (!hasTurnedOn)
+            if (!hasRecorderTurnedOn)
             {
                 RunTurnOnEvent();
-                hasTurnedOn = true;
+                hasRecorderTurnedOn = true;
             }
 
             else
             {
                 RunTurnOffEvent();
-                hasTurnedOn = false;
+                hasRecorderTurnedOn = false;
             }
         }
         //End of Event system code

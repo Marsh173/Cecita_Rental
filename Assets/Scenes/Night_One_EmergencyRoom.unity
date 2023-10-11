@@ -1282,7 +1282,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2884dcd01bf3064db3b94b85f73d1ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hasTurnedOn: 0
+  hasRecorderTurnedOn: 0
   EventTurnOnInteraction:
     m_PersistentCalls:
       m_Calls:
@@ -1720,7 +1720,8 @@ MonoBehaviour:
   interacted: 0
   NItem: {fileID: 11400000, guid: 34ae2b45d0d20484aaae8b7b50fd3748, type: 2}
   AItem: {fileID: 11400000, guid: 80bec9b84b7c6c44ea336eb72c9e7443, type: 2}
-  waitTime: 0
+  recordWaitTime: 0
+  interactWaitTime: 0
   EventPreRecording:
     m_PersistentCalls:
       m_Calls:
@@ -1736,6 +1737,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  EventOnInteraction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &955535282 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5670845325073304808, guid: 67d374d0aa6148b4aa47c710c0491d4d, type: 3}
@@ -2022,7 +2026,8 @@ MonoBehaviour:
   interacted: 0
   NItem: {fileID: 11400000, guid: 34ae2b45d0d20484aaae8b7b50fd3748, type: 2}
   AItem: {fileID: 11400000, guid: 6c699157040311c468310e2bf4a0ce1c, type: 2}
-  waitTime: 0
+  recordWaitTime: 0
+  interactWaitTime: 0
   EventPreRecording:
     m_PersistentCalls:
       m_Calls:
@@ -2038,6 +2043,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  EventOnInteraction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!65 &998133507
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2063,7 +2071,9 @@ GameObject:
   - component: {fileID: 999808253}
   - component: {fileID: 999808252}
   - component: {fileID: 999808251}
-  m_Layer: 0
+  - component: {fileID: 999808255}
+  - component: {fileID: 999808256}
+  m_Layer: 7
   m_Name: time puzzle clue paper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2146,6 +2156,50 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!114 &999808255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 999808250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37feb22ac0081c14a86bcdb8a83927c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  promptMessage: Check instructions
+  promptIcon: {fileID: 1642027277}
+  interacted: 0
+  NItem: {fileID: 0}
+  AItem: {fileID: 0}
+  recordWaitTime: 0
+  interactWaitTime: 0
+  EventPreRecording:
+    m_PersistentCalls:
+      m_Calls: []
+  EventOnInteraction:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!95 &999808256
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 999808250}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 02f00d1b830a12546b892eea32643486, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1016082272
 GameObject:
   m_ObjectHideFlags: 0
@@ -4382,6 +4436,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: de6f152253fdb4c40adb23dadd5b7b29, type: 3}
+--- !u!1 &1642027277 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7942034647631729265, guid: 67d374d0aa6148b4aa47c710c0491d4d, type: 3}
+  m_PrefabInstance: {fileID: 5670845325218775898}
+  m_PrefabAsset: {fileID: 0}
 --- !u!20 &1666254490 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 20724644957976244, guid: 2e62f5703e5f8d2488a5e1bc8433be41, type: 3}

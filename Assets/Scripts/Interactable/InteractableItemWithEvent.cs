@@ -7,9 +7,11 @@ public class InteractableItemWithEvent : InteractableItem
 {
     PlayerInteract playerInteract;
 
-    [SerializeField] int waitTime;
+    [SerializeField] int recordWaitTime;
+    [SerializeField] int interactWaitTime;
     Coroutine coroutineRef;
     public UnityEvent EventPreRecording;
+    public UnityEvent EventOnInteraction;
 
     private void Start()
     {
@@ -18,7 +20,7 @@ public class InteractableItemWithEvent : InteractableItem
 
     public void Update()
     {
-        if (playerInteract.hasTurnedOn)
+        if (playerInteract.hasRecorderTurnedOn)
         {
             if (interacted)
             {
@@ -26,14 +28,27 @@ public class InteractableItemWithEvent : InteractableItem
                 //if (Input.GetMouseButtonUp(0)) StopCoroutine(coroutineRef);                           //In case we want a hold to record input
             }
         }
+        else
+        {
+            if (interacted)
+            {
+                if (Input.GetMouseButtonDown(0)) coroutineRef = StartCoroutine(RunInteractEvents());
+                //if (Input.GetMouseButtonUp(0)) StopCoroutine(coroutineRef);                           //In case we want a hold to record input
+            }
+        }
     }
 
 
+    IEnumerator RunInteractEvents()
+    {
+        EventOnInteraction.Invoke();
+        yield return new WaitForSeconds(interactWaitTime);                                                       //Put this line on top or middle of this section of code in case we want a hold input to complete the recording
+    }
 
     IEnumerator RunRecordEvents()
     {
         EventPreRecording.Invoke();
         RecordMe();
-        yield return new WaitForSeconds(waitTime);                                                       //Put this line on top or middle of this section of code in case we want a hold input to complete the recording
+        yield return new WaitForSeconds(recordWaitTime);                                                       //Put this line on top or middle of this section of code in case we want a hold input to complete the recording
     }
 }

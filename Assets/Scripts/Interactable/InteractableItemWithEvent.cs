@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class InteractableItemWithEvent : InteractableItem
 {
-    PlayerInteract playerInteract;
+    protected PlayerInteract playerInteract;
 
     [SerializeField] int recordWaitTime;
     [SerializeField] int interactWaitTime;
@@ -39,13 +39,13 @@ public class InteractableItemWithEvent : InteractableItem
     }
 
 
-    IEnumerator RunInteractEvents()
+    protected IEnumerator RunInteractEvents()
     {
         EventOnInteraction.Invoke();
         yield return new WaitForSeconds(interactWaitTime);                                                       //Put this line on top or middle of this section of code in case we want a hold input to complete the recording
     }
 
-    IEnumerator RunRecordEvents()
+    protected IEnumerator RunRecordEvents()
     {
         EventPreRecording.Invoke();
         RecordMe();

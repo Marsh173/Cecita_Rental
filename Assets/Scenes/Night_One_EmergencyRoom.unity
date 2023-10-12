@@ -2096,7 +2096,7 @@ GameObject:
   - component: {fileID: 999808253}
   - component: {fileID: 999808252}
   - component: {fileID: 999808251}
-  - component: {fileID: 999808255}
+  - component: {fileID: 999808257}
   - component: {fileID: 999808256}
   m_Layer: 7
   m_Name: time puzzle clue paper
@@ -2181,31 +2181,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!114 &999808255
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 999808250}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37feb22ac0081c14a86bcdb8a83927c5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  promptMessage: Check instructions
-  promptIcon: {fileID: 1642027277}
-  interacted: 0
-  NItem: {fileID: 0}
-  AItem: {fileID: 0}
-  recordWaitTime: 0
-  interactWaitTime: 0
-  EventPreRecording:
-    m_PersistentCalls:
-      m_Calls: []
-  EventOnInteraction:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!95 &999808256
 Animator:
   serializedVersion: 3
@@ -2225,6 +2200,74 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &999808257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 999808250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa61abfb00d114d47a35db8429a4d2e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  promptMessage: ha
+  promptIcon: {fileID: 1642027277}
+  interacted: 0
+  NItem: {fileID: 0}
+  AItem: {fileID: 0}
+  recordWaitTime: 0
+  interactWaitTime: 0
+  EventPreRecording:
+    m_PersistentCalls:
+      m_Calls: []
+  EventOnInteraction:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 999808254}
+        m_TargetAssemblyTypeName: UnityEngine.Transform, UnityEngine
+        m_MethodName: LookAt
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 939044526}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Transform, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  Input_LMBClick: 0
+  Input_LMBDoubleClick: 0
+  Input_LMBSlideLeft: 0
+  Input_LMBSlideRight: 0
+  Input_LMBSlideUp: 0
+  Input_LMBSlideDown: 0
+  Input_ScrollWheelRollForward: 0
+  Input_ScrollWheelRollBackward: 0
+  Input_LMBAndRMBClick: 0
+  Input_LMBAndRMBHold: 0
+  Input_MouseShake_LeftRight: 1
+  Input_MouseShake_UpDown: 0
+  rage_MouseShake: 0
+  MouseShake_LeftRight_Threshold: 20
+  MouseShake_UpDown_Threshold: 100
+  buttonHoldTime: 2
+  EventOnSpecialInteraction:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 999808250}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1016082272
 GameObject:
   m_ObjectHideFlags: 0

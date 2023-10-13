@@ -72,6 +72,7 @@ public class SpecialInteractableItemWithEvent : InteractableItemWithEvent
             EventOnPressEscape.Invoke();
             interactedAndClicked = false;
             hasEventPostInteractionTriggered = false;
+            UnityEngine.Cursor.lockState = CursorLockMode.Locked; UnityEngine.Cursor.visible = false;
         }
 
         if (playerInteract.hasRecorderTurnedOn)
@@ -89,6 +90,7 @@ public class SpecialInteractableItemWithEvent : InteractableItemWithEvent
                 if (!hasEventPostInteractionTriggered)
                 {
                     EventPostInteraction.Invoke();
+                    UnityEngine.Cursor.lockState = CursorLockMode.None; UnityEngine.Cursor.visible = true;
                     Debug.Log("PAused");
                     hasEventPostInteractionTriggered = true; 
                 }

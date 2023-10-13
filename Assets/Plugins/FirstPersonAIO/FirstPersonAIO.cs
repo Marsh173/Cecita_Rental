@@ -762,8 +762,8 @@ public class FirstPersonAIO : MonoBehaviour {
     public void ControllerPause(){
         controllerPauseState = !controllerPauseState;
         if(lockAndHideCursor){
-            Cursor.lockState = controllerPauseState? CursorLockMode.None : CursorLockMode.Locked;
-            Cursor.visible = controllerPauseState;
+            //Cursor.lockState = controllerPauseState? CursorLockMode.None : CursorLockMode.Locked;
+            //Cursor.visible = controllerPauseState;
         }
     }
 

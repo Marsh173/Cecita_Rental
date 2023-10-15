@@ -87,11 +87,19 @@ namespace FMODUnity
                 }
 
             }
+            else if(!isTouchingLeftWall && !isTouchingRightWall)
+            {
+                Rubbing_Left.release();
+                Rubbing_Right.release();
+            }
             else
             {
 
                 Rubbing_Left.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
                 Rubbing_Right.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+
+                Rubbing_Left.release();
+                
                 //Debug.Log("Stopped...");
             }
             
@@ -116,12 +124,13 @@ namespace FMODUnity
                     {
                         Wall_Hit.start();
 
-                        Debug.Log(timeInHitWall);
+                        //Debug.Log(timeInHitWall);
 
                         if (timeInHitWall >= durationOfHitSound)
                         {
                             hitSoundPlayed = true;
-                            Debug.Log("Hit Sound played");
+                            Wall_Hit.release();
+                            //Debug.Log("Hit Sound played");
                         }
 
 
@@ -135,11 +144,12 @@ namespace FMODUnity
             }
             else
             {
+                
                 Wall_Hit.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
 
                 timeInHitWall = 0.0f;
                 hitSoundPlayed = false;
-                Debug.Log("away from wall");
+                //Debug.Log("away from wall");
             }
         }
     }

@@ -11,6 +11,12 @@ public class PlayAudio : MonoBehaviour
     TMP_Text buttonText;
     bool playing;
     float timePlaying;
+    private PuzzleHandler puzzleHandler;
+
+    private void Awake()
+    {
+        puzzleHandler = FindObjectOfType<PuzzleHandler>();
+    }
 
     void Start()
     {
@@ -32,7 +38,10 @@ public class PlayAudio : MonoBehaviour
     {
         if (!playing)
         {
-            Debug.Log(sound.clip.ToString());
+            if (puzzleHandler.detectedNames[0] == "") { puzzleHandler.detectedNames[0] = sound.clip.ToString(); }
+            else if (puzzleHandler.detectedNames [1] == "") { puzzleHandler.detectedNames[1] = sound.clip.ToString(); }
+            else if (puzzleHandler.detectedNames[2] == "") { puzzleHandler.detectedNames[2] = sound.clip.ToString(); }
+            else if (puzzleHandler.detectedNames[3] == "") { puzzleHandler.detectedNames[3] = sound.clip.ToString(); }
             playing = true;
             sound.Play();
             buttonText.text = "Pause";

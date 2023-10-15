@@ -54,20 +54,23 @@ public class PlayerInteract : MonoBehaviour
         {
             if(hitInfo.collider.GetComponent<Interactable>() != null)
             {
-                if (hitInfo.collider.gameObject.GetComponent<Outline>() == null)
+                if (lastHitObject == null)                                                                  //Make sure overlapped interactable objects remove outlines as intended
                 {
-                //Debug.Log(hitInfo.collider.GetComponent<Interactable>().promptMessage);
-                hitInfo.collider.GetComponent<Interactable>().BaseInteract();
-                message.text = hitInfo.collider.GetComponent<Interactable>().promptMessage;
+                    if (hitInfo.collider.gameObject.GetComponent<Outline>() == null)
+                    {
+                        //Debug.Log(hitInfo.collider.GetComponent<Interactable>().promptMessage);
+                        hitInfo.collider.GetComponent<Interactable>().BaseInteract();
+                        message.text = hitInfo.collider.GetComponent<Interactable>().promptMessage;
 
-                //Turn on interactble item icon                                                     -Bryan's latest
-                itemIcon = hitInfo.collider.GetComponent<Interactable>().promptIcon;
-                itemIcon.SetActive(true);
-                //
+                        //Turn on interactble item icon                                                     -Bryan's latest
+                        itemIcon = hitInfo.collider.GetComponent<Interactable>().promptIcon;
+                        itemIcon.SetActive(true);
+                        //
 
-                GameObject hitObject = hitInfo.collider.gameObject;
-                lastHitObject = hitObject;
-                Outline outlineScript = hitObject.AddComponent<Outline>();
+                        GameObject hitObject = hitInfo.collider.gameObject;
+                        lastHitObject = hitObject;
+                        Outline outlineScript = hitObject.AddComponent<Outline>();
+                    }
                 }
             }
             else

@@ -7,7 +7,7 @@ public class PlayerEarBudSequence : MonoBehaviour
 {
     public AudioClip[] audioClips;
     private AudioSource earBudVoice;
-    public GameObject invisibleWall, tutorialMessageObj, inventory, openDoorTrigger;
+    public GameObject invisibleWall, tutorialMessageObj, inventory, interactiveDoor;
     public TMP_Text tutoriaMessage;
 
     private bool firstAudioPlayed, TabToOpen, FinishInventory;
@@ -16,7 +16,7 @@ public class PlayerEarBudSequence : MonoBehaviour
     [SerializeField] private float delay = 0.0f;
     void Start()
     {
-        openDoorTrigger.SetActive(false);
+        interactiveDoor.layer = 0; //set door to default layer
         tutorialMessageObj.SetActive(false);
         tutoriaMessage = tutorialMessageObj.GetComponent<TMP_Text>();
         earBudVoice = GetComponent<AudioSource>();
@@ -113,7 +113,7 @@ public class PlayerEarBudSequence : MonoBehaviour
         Debug.Log(inventory.activeInHierarchy);
         earBudVoice.clip = Resources.Load<AudioClip>("Night 0/" + "Night 0 - Hallway");
         earBudVoice.PlayOneShot(earBudVoice.clip);
-        openDoorTrigger.SetActive(true);
+        interactiveDoor.layer = 7; //set door to be interactble layer
     }
 
 

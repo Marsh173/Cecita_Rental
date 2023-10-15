@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class InteractableItem : Interactable
 {
-    public bool interacted;
+    private protected bool interacted;
+    protected private bool interactedAndClicked = false;
     public NormalItems NItem;
     public PlaylistItems AItem;
 

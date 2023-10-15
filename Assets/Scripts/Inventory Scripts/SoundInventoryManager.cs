@@ -50,6 +50,8 @@ public class SoundInventoryManager : MonoBehaviour
             if (Input.GetAxis("Mouse ScrollWheel") < 0f && Inventory.activeSelf)
             {
                 Inventory.SetActive(false);
+                FirstPersonAIO.instance.enableCameraMovement = true;
+                FirstPersonAIO.instance.playerCanMove = true;
 
                 //hide cursor when close inventory 
                 Cursor.visible = false;
@@ -58,6 +60,8 @@ public class SoundInventoryManager : MonoBehaviour
             else if (Input.GetAxis("Mouse ScrollWheel") > 0f)
             {
                 Inventory.SetActive(true);
+                FirstPersonAIO.instance.enableCameraMovement = false;
+                FirstPersonAIO.instance.playerCanMove = false;
 
                 //List every item each time the inventory is opened
                 ListItems();

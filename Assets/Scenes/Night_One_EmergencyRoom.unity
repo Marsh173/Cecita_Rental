@@ -1378,6 +1378,17 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 798061578}
   m_Enabled: 1
+--- !u!114 &798061584 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114051214696948948, guid: 2e62f5703e5f8d2488a5e1bc8433be41, type: 3}
+  m_PrefabInstance: {fileID: 2036221370}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 798061578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf1a5ad4f9ffb154ca7813fdad11017a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &798061588 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4448068258976056, guid: 2e62f5703e5f8d2488a5e1bc8433be41, type: 3}
@@ -2224,6 +2235,69 @@ MonoBehaviour:
       m_Calls: []
   EventOnInteraction:
     m_PersistentCalls:
+      m_Calls: []
+  EventPostInteraction:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 798061584}
+        m_TargetAssemblyTypeName: FirstPersonAIO, Assembly-CSharp-firstpass
+        m_MethodName: DisableMovement
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  EventOnPressEscape:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 798061584}
+        m_TargetAssemblyTypeName: FirstPersonAIO, Assembly-CSharp-firstpass
+        m_MethodName: EnableMovement
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+  Input_LMBClick: 1
+  Input_LMBSlideLeft: 0
+  Input_LMBSlideRight: 0
+  Input_LMBSlideUp: 0
+  Input_LMBSlideDown: 0
+  Input_ScrollWheelRollForward: 0
+  Input_ScrollWheelRollBackward: 0
+  Input_LMBAndRMBClick: 0
+  Input_LMBAndRMBHold: 0
+  Input_MouseShake_LeftRight: 0
+  Input_MouseShake_UpDown: 0
+  rage_MouseShake: 0
+  MouseShake_LeftRight_Threshold: 20
+  MouseShake_UpDown_Threshold: 100
+  buttonHoldTime: 2
+  EventOnSpecialInteraction_LMBClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 999808254}
+        m_TargetAssemblyTypeName: UnityEngine.Transform, UnityEngine
+        m_MethodName: LookAt
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 998133505}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Transform, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  EventOnSpecialInteraction_LMBDoubleClick:
+    m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 999808254}
         m_TargetAssemblyTypeName: UnityEngine.Transform, UnityEngine
@@ -2237,37 +2311,36 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  Input_LMBClick: 0
-  Input_LMBDoubleClick: 0
-  Input_LMBSlideLeft: 0
-  Input_LMBSlideRight: 0
-  Input_LMBSlideUp: 0
-  Input_LMBSlideDown: 0
-  Input_ScrollWheelRollForward: 0
-  Input_ScrollWheelRollBackward: 0
-  Input_LMBAndRMBClick: 0
-  Input_LMBAndRMBHold: 0
-  Input_MouseShake_LeftRight: 1
-  Input_MouseShake_UpDown: 0
-  rage_MouseShake: 0
-  MouseShake_LeftRight_Threshold: 20
-  MouseShake_UpDown_Threshold: 100
-  buttonHoldTime: 2
-  EventOnSpecialInteraction:
+  EventOnSpecialInteraction_LMBSlideLeft:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 999808250}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
+  EventOnSpecialInteraction_LMBSlideRight:
+    m_PersistentCalls:
+      m_Calls: []
+  EventOnSpecialInteraction_LMBSlideUp:
+    m_PersistentCalls:
+      m_Calls: []
+  EventOnSpecialInteraction_LMBSlideDown:
+    m_PersistentCalls:
+      m_Calls: []
+  EventOnSpecialInteraction_ScrollWheelRollForward:
+    m_PersistentCalls:
+      m_Calls: []
+  EventOnSpecialInteraction_ScrollWheelRollBackward:
+    m_PersistentCalls:
+      m_Calls: []
+  EventOnSpecialInteraction_LMBAndRMBClick:
+    m_PersistentCalls:
+      m_Calls: []
+  EventOnSpecialInteraction_LMBAndRMBHold:
+    m_PersistentCalls:
+      m_Calls: []
+  EventOnSpecialInteraction_MouseShakeLeftRight:
+    m_PersistentCalls:
+      m_Calls: []
+  EventOnSpecialInteraction_MouseShakeUpDown:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1016082272
 GameObject:
   m_ObjectHideFlags: 0

@@ -32,6 +32,7 @@ public class PlayAudio : MonoBehaviour
     {
         if (!playing)
         {
+            Debug.Log(sound.clip.ToString());
             playing = true;
             sound.Play();
             buttonText.text = "Pause";

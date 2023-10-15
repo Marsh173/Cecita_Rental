@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class NoSightAllowed : MonoBehaviour
 {
@@ -43,7 +44,7 @@ public class NoSightAllowed : MonoBehaviour
         {
             FadeToColor(eye_UI.colors.pressedColor);
             eye_UI.onClick.Invoke();
-            F.GetComponent<Text>().text = F.GetComponent<Text>().text == "Press F to open  your eyes" ? "Press F to close your eyes" : "Press F to open  your eyes";
+            F.GetComponent<TMP_Text>().text = F.GetComponent<TMP_Text>().text == "Press F to open  your eyes" ? "Press F to close your eyes" : "Press F to open  your eyes";
             if (F.GetComponent<Text>().text == "Press F to close your eyes")
             {
                 EyeChargeBar-= 20f;

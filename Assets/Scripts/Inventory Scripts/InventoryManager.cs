@@ -15,7 +15,7 @@ public class InventoryManager : MonoBehaviour
     public AudioClip sound;
     public int audioIndex = 0;
 
-    public Transform PlaylistItemContent, NormalItemContent;
+    public Transform PlaylistBroadcastContent, PlaylistMonsterContent, NormalItemContent;
     public GameObject PlaylistItem, NormalItem;
     public KeyCode inventoryKey;
     public GameObject Inventory;
@@ -76,7 +76,7 @@ public class InventoryManager : MonoBehaviour
     public void ListItems()
     {
         //clean inventory before listing the items
-        foreach(Transform item in PlaylistItemContent)
+        foreach(Transform item in PlaylistBroadcastContent)
         {
             Destroy(item.gameObject);
         }
@@ -84,8 +84,9 @@ public class InventoryManager : MonoBehaviour
         foreach(var item in AItems)
         {
             //find the elemets in each item and replace inventory default
-            GameObject itemobj = Instantiate(PlaylistItem, PlaylistItemContent);
+            GameObject itemobj = Instantiate(PlaylistItem, PlaylistBroadcastContent);
             var itemName = itemobj.transform.Find("itemName").GetComponent<TMP_Text>();
+            var itemLength = itemobj.transform.Find("audioLength").GetComponent<TMP_Text>();
             var itemIcon = itemobj.transform.Find("icon").GetComponent<Image>();
             var itemAudio = itemobj.transform.Find("audio").GetComponent<AudioSource>();
 

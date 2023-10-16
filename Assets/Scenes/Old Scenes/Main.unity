@@ -3914,6 +3914,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   eye: {fileID: 414537977}
   MonsterZone: {fileID: 0}
+  DeadEndZone: {fileID: 0}
 --- !u!1 &122441503
 GameObject:
   m_ObjectHideFlags: 0
@@ -7975,14 +7976,14 @@ MonoBehaviour:
       Data2: 1271571729
       Data3: -1665258871
       Data4: 6802052
-    Path: event:/Footstep
+    Path: event:/Player/Footstep
   JumpingEventPath:
     Guid:
       Data1: 820211512
       Data2: 1147515555
       Data3: -128658505
       Data4: -1411389865
-    Path: event:/Jump & Land
+    Path: event:/Player/Jump & Land
   MaterialParameterName: Material
   SpeedParameterName: Speed Switch
   JumpOrLandParameterName: Jump Or Land
@@ -8792,7 +8793,7 @@ MonoBehaviour:
       Data2: 1263672615
       Data3: 1968994455
       Data4: -532612961
-    Path: event:/Ambience
+    Path: event:/Ambience/Ambience
   Event: 
   PlayEvent: 1
   StopEvent: 0
@@ -9322,6 +9323,9 @@ MonoBehaviour:
   keyF: 102
   anim: {fileID: 444846006}
   countdownText: {fileID: 792457558}
+  EyeChargeBar: 0
+  ChargeBarUI: {fileID: 0}
+  RedAura: {fileID: 0}
 --- !u!114 &414537980
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9816,7 +9820,7 @@ MonoBehaviour:
       Data2: 1263672615
       Data3: 1968994455
       Data4: -532612961
-    Path: event:/Ambience
+    Path: event:/Ambience/Ambience
   Event: 
   PlayEvent: 1
   StopEvent: 0

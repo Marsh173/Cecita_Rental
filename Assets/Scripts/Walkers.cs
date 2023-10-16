@@ -12,7 +12,7 @@ public class Walkers : MonoBehaviour
 
     private void Start()
     {
-        walker.SetActive(false);
+        //walker.SetActive(false);
     }
 
     private void Update()
@@ -28,7 +28,7 @@ public class Walkers : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             trigger = true;
-            walker.SetActive(true);
+            //walker.SetActive(true);
             //walker.transform.position = Vector3.MoveTowards(walker.transform.position, stop.position, speed * Time.deltaTime * 2f);
         }
     }

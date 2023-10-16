@@ -8,21 +8,24 @@ public class MainMenu : MonoBehaviour
     public static bool Setting;
     //public GameObject settingMenu;
 
+    public string sceneName;
+    
+
     public void ExitButton()
     {
         Application.Quit();
         Debug.Log("Game Closed");
     }
 
-    public void StartButton()
+    public void LoadScene()
     {
-        SceneManager.LoadScene("TutorialLevel");
+        SceneManager.LoadScene(sceneName);
     }
 
-    public void BackButton()
-    {
-        SceneManager.LoadScene("Start_Screen");
-    }
+    //public void BackButton()
+    //{
+    //    SceneManager.LoadScene("Start_Screen");
+    //}
     /*
     public void SettingButton()
     {

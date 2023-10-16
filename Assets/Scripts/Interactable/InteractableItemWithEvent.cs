@@ -24,8 +24,11 @@ public class InteractableItemWithEvent : InteractableItem
         {
             if (interacted)
             {
-                if (Input.GetMouseButtonDown(0)) coroutineRef = StartCoroutine(RunRecordEvents());
-                //if (Input.GetMouseButtonUp(0)) StopCoroutine(coroutineRef);                           //In case we want a hold to record input
+                if (this.AItem != null)
+                {
+                    if (Input.GetMouseButtonDown(0)) coroutineRef = StartCoroutine(RunRecordEvents());
+                    //if (Input.GetMouseButtonUp(0)) StopCoroutine(coroutineRef);                           //In case we want a hold to record input
+                }
             }
         }
         else

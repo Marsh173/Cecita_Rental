@@ -30,7 +30,7 @@ public class Bed : Interactable
     private void GoToSleep()
     {
         Debug.Log("Sleep");
-        SceneManager.LoadScene("TemporaryEnd");
+        SceneManager.LoadScene("TemporaryMenu");
 
     }
 

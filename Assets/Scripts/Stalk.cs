@@ -30,7 +30,7 @@ public class Stalk : MonoBehaviour
             }
         }
 
-        Debug.Log(stalker.transform.position);
+        //Debug.Log(stalker.transform.position);
     }
 
     private void OnTriggerEnter(Collider other)

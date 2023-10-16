@@ -787,7 +787,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db47eab4db5cc364da17e7dcede4e292, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioClips: []
   invisibleWall: {fileID: 0}
+  tutorialMessageObj: {fileID: 0}
+  inventory: {fileID: 0}
+  interactiveDoor: {fileID: 0}
+  tutoriaMessage: {fileID: 0}
   delay: 48
 --- !u!114 &798061580
 MonoBehaviour:
@@ -816,7 +821,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2884dcd01bf3064db3b94b85f73d1ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hasTurnedOn: 0
+  hasRecorderTurnedOn: 0
   EventTurnOnInteraction:
     m_PersistentCalls:
       m_Calls:
@@ -849,6 +854,7 @@ MonoBehaviour:
         m_CallState: 2
   cam: {fileID: 1666254490}
   message: {fileID: 0}
+  itemIcon: {fileID: 0}
   distance: 6
   mask:
     serializedVersion: 2
@@ -871,14 +877,14 @@ MonoBehaviour:
       Data2: 1271571729
       Data3: -1665258871
       Data4: 6802052
-    Path: event:/Footstep
+    Path: event:/Player/Footstep
   JumpingEventPath:
     Guid:
       Data1: 820211512
       Data2: 1147515555
       Data3: -128658505
       Data4: -1411389865
-    Path: event:/Jump & Land
+    Path: event:/Player/Jump & Land
   MaterialParameterName: Material
   SpeedParameterName: Speed Switch
   JumpOrLandParameterName: Jump Or Land
@@ -1048,10 +1054,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   promptMessage: Record the phone
-  interacted: 0
+  promptIcon: {fileID: 0}
   NItem: {fileID: 11400000, guid: 34ae2b45d0d20484aaae8b7b50fd3748, type: 2}
   AItem: {fileID: 11400000, guid: 80bec9b84b7c6c44ea336eb72c9e7443, type: 2}
-  waitTime: 0
+  recordWaitTime: 0
+  interactWaitTime: 0
   EventPreRecording:
     m_PersistentCalls:
       m_Calls:
@@ -1067,6 +1074,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  EventOnInteraction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &959561574
 GameObject:
   m_ObjectHideFlags: 0
@@ -3104,7 +3114,8 @@ MonoBehaviour:
   soundArray: []
   sound: {fileID: 0}
   audioIndex: 0
-  PlaylistItemContent: {fileID: 0}
+  PlaylistBroadcastContent: {fileID: 0}
+  PlaylistMonsterContent: {fileID: 0}
   NormalItemContent: {fileID: 0}
   PlaylistItem: {fileID: 302162671290387368, guid: baffac96d8524db4e9a242a4905fef25, type: 3}
   NormalItem: {fileID: 302162671290387368, guid: 1d284e297a1689d46958f79a7635e65d, type: 3}

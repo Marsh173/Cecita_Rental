@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4657,6 +4657,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   promptMessage: Open Up Audio Analysis Software
+  promptIcon: {fileID: 0}
   interacted: 0
 --- !u!65 &939979902
 BoxCollider:
@@ -12109,6 +12110,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   promptMessage: Use Keypad
+  promptIcon: {fileID: 0}
   keypadCanvas: {fileID: 1540004370}
   interacted: 0
 --- !u!1 &1698456572
@@ -12267,14 +12269,14 @@ MonoBehaviour:
       Data2: 1271571729
       Data3: -1665258871
       Data4: 6802052
-    Path: event:/Footstep
+    Path: event:/Player/Footstep
   JumpingEventPath:
     Guid:
       Data1: 820211512
       Data2: 1147515555
       Data3: -128658505
       Data4: -1411389865
-    Path: event:/Jump & Land
+    Path: event:/Player/Jump & Land
   MaterialParameterName: Material
   SpeedParameterName: Speed Switch
   JumpOrLandParameterName: Jump Or Land
@@ -12298,8 +12300,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2884dcd01bf3064db3b94b85f73d1ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hasRecorderTurnedOn: 0
+  EventTurnOnInteraction:
+    m_PersistentCalls:
+      m_Calls: []
+  EventTurnOffInteraction:
+    m_PersistentCalls:
+      m_Calls: []
   cam: {fileID: 1799023716}
   message: {fileID: 1454074439}
+  itemIcon: {fileID: 0}
   distance: 3
   mask:
     serializedVersion: 2
@@ -14187,6 +14197,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   promptMessage: Turn on the TV
+  promptIcon: {fileID: 0}
   recorder: {fileID: 1347490225}
   plane: {fileID: 1081559762}
   videoPlayer: {fileID: 1529988534}

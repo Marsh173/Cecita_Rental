@@ -1871,7 +1871,7 @@ MonoBehaviour:
       Data2: 1263672615
       Data3: 1968994455
       Data4: -532612961
-    Path: event:/Ambience
+    Path: event:/Ambience/Ambience
   Event: 
   PlayEvent: 1
   StopEvent: 2
@@ -2997,14 +2997,14 @@ MonoBehaviour:
       Data2: 1271571729
       Data3: -1665258871
       Data4: 6802052
-    Path: event:/Footstep
+    Path: event:/Player/Footstep
   JumpingEventPath:
     Guid:
       Data1: 820211512
       Data2: 1147515555
       Data3: -128658505
       Data4: -1411389865
-    Path: event:/Jump & Land
+    Path: event:/Player/Jump & Land
   MaterialParameterName: Material
   SpeedParameterName: Speed Switch
   JumpOrLandParameterName: Jump Or Land
@@ -3028,8 +3028,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2884dcd01bf3064db3b94b85f73d1ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hasRecorderTurnedOn: 0
+  EventTurnOnInteraction:
+    m_PersistentCalls:
+      m_Calls: []
+  EventTurnOffInteraction:
+    m_PersistentCalls:
+      m_Calls: []
   cam: {fileID: 569255088}
   message: {fileID: 1628562683}
+  itemIcon: {fileID: 0}
   distance: 6
   mask:
     serializedVersion: 2
@@ -3069,7 +3077,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db47eab4db5cc364da17e7dcede4e292, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioClips: []
   invisibleWall: {fileID: 0}
+  tutorialMessageObj: {fileID: 0}
+  inventory: {fileID: 0}
+  interactiveDoor: {fileID: 0}
+  tutoriaMessage: {fileID: 0}
   delay: 48
 --- !u!1 &758318385
 GameObject:
@@ -3909,6 +3922,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1944919868}
     m_Modifications:
+    - target: {fileID: 326688146056182194, guid: 9770faf31f50944dc930a95fd41224d3, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 565132426263621391, guid: 9770faf31f50944dc930a95fd41224d3, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -4100,6 +4117,18 @@ PrefabInstance:
     - target: {fileID: 565132427025217151, guid: 9770faf31f50944dc930a95fd41224d3, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -453
+      objectReference: {fileID: 0}
+    - target: {fileID: 7799719708765084979, guid: 9770faf31f50944dc930a95fd41224d3, type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7799719710361274759, guid: 9770faf31f50944dc930a95fd41224d3, type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8764404540223605500, guid: 9770faf31f50944dc930a95fd41224d3, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9770faf31f50944dc930a95fd41224d3, type: 3}
@@ -14246,7 +14275,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AItems: []
   NItems: []
-  PlaylistItemContent: {fileID: 45274887}
+  audioSource: {fileID: 0}
+  soundArray: []
+  sound: {fileID: 0}
+  audioIndex: 0
+  PlaylistBroadcastContent: {fileID: 0}
+  PlaylistMonsterContent: {fileID: 0}
   NormalItemContent: {fileID: 1993614010}
   PlaylistItem: {fileID: 302162671290387368, guid: baffac96d8524db4e9a242a4905fef25, type: 3}
   NormalItem: {fileID: 302162671290387368, guid: 1d284e297a1689d46958f79a7635e65d, type: 3}
@@ -18835,6 +18869,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   promptMessage: LMB to GO TO SLEEP
+  promptIcon: {fileID: 0}
   interacted: 0
 --- !u!23 &2618963751644708376
 MeshRenderer:

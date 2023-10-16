@@ -28691,7 +28691,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db47eab4db5cc364da17e7dcede4e292, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioClips: []
   invisibleWall: {fileID: 0}
+  tutorialMessageObj: {fileID: 0}
+  inventory: {fileID: 0}
+  interactiveDoor: {fileID: 0}
+  tutoriaMessage: {fileID: 0}
   delay: 48
 --- !u!114 &1481782931
 MonoBehaviour:
@@ -28720,8 +28725,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2884dcd01bf3064db3b94b85f73d1ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hasRecorderTurnedOn: 0
+  EventTurnOnInteraction:
+    m_PersistentCalls:
+      m_Calls: []
+  EventTurnOffInteraction:
+    m_PersistentCalls:
+      m_Calls: []
   cam: {fileID: 672829097}
   message: {fileID: 0}
+  itemIcon: {fileID: 0}
   distance: 6
   mask:
     serializedVersion: 2
@@ -28744,14 +28757,14 @@ MonoBehaviour:
       Data2: 1271571729
       Data3: -1665258871
       Data4: 6802052
-    Path: event:/Footstep
+    Path: event:/Player/Footstep
   JumpingEventPath:
     Guid:
       Data1: 820211512
       Data2: 1147515555
       Data3: -128658505
       Data4: -1411389865
-    Path: event:/Jump & Land
+    Path: event:/Player/Jump & Land
   MaterialParameterName: Material
   SpeedParameterName: Speed Switch
   JumpOrLandParameterName: Jump Or Land

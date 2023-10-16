@@ -514,14 +514,14 @@ MonoBehaviour:
       Data2: 1271571729
       Data3: -1665258871
       Data4: 6802052
-    Path: event:/Footstep
+    Path: event:/Player/Footstep
   JumpingEventPath:
     Guid:
       Data1: 820211512
       Data2: 1147515555
       Data3: -128658505
       Data4: -1411389865
-    Path: event:/Jump & Land
+    Path: event:/Player/Jump & Land
   MaterialParameterName: Material
   SpeedParameterName: Speed Switch
   JumpOrLandParameterName: Jump Or Land
@@ -554,14 +554,21 @@ MonoBehaviour:
       Data2: 1221457067
       Data3: -1899550060
       Data4: -1643492086
-    Path: event:/Wall_Rubbing_Left
+    Path: event:/Player/Wall_Rubbing_Left
   WallTouchingRightEventPath:
     Guid:
       Data1: -660937912
       Data2: 1169481425
       Data3: 181601201
       Data4: -1523348749
-    Path: event:/Wall_Rubbing_Right
+    Path: event:/Player/Wall_Rubbing_Right
+  WallHitEventPath:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!114 &1784866648515469935
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -574,7 +581,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2884dcd01bf3064db3b94b85f73d1ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hasTurnedOn: 0
+  hasRecorderTurnedOn: 0
   EventTurnOnInteraction:
     m_PersistentCalls:
       m_Calls: []
@@ -583,6 +590,7 @@ MonoBehaviour:
       m_Calls: []
   cam: {fileID: 1768997895139496567}
   message: {fileID: 0}
+  itemIcon: {fileID: 0}
   distance: 6
   mask:
     serializedVersion: 2

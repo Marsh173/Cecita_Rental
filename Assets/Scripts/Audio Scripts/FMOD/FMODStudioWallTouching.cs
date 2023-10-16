@@ -68,7 +68,7 @@ namespace FMODUnity
                 if (fmodPbState != FMOD.Studio.PLAYBACK_STATE.PLAYING)
                 {
                     Rubbing_Left.start();
-                    //Debug.Log("Play rubbing sound now...");
+                    Debug.Log("Play rubbing sound now...");
                 }
 
                
@@ -83,22 +83,18 @@ namespace FMODUnity
                 {
 
                     Rubbing_Right.start();
-                    //Debug.Log("Play rubbing sound now...");
+                    Debug.Log("Play rubbing sound now...");
                 }
 
             }
-            else if(!isTouchingLeftWall && !isTouchingRightWall)
-            {
-                Rubbing_Left.release();
-                Rubbing_Right.release();
-            }
+            
             else
             {
 
                 Rubbing_Left.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
                 Rubbing_Right.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
 
-                Rubbing_Left.release();
+                
                 
                 //Debug.Log("Stopped...");
             }

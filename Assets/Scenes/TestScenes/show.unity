@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -305,14 +305,14 @@ MonoBehaviour:
       Data2: 1271571729
       Data3: -1665258871
       Data4: 6802052
-    Path: event:/Footstep
+    Path: event:/Player/Footstep
   JumpingEventPath:
     Guid:
       Data1: 820211512
       Data2: 1147515555
       Data3: -128658505
       Data4: -1411389865
-    Path: event:/Jump & Land
+    Path: event:/Player/Jump & Land
   MaterialParameterName: Material
   SpeedParameterName: Speed Switch
   JumpOrLandParameterName: Jump Or Land
@@ -410,6 +410,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eye: {fileID: 1167495631}
+  MonsterZone: {fileID: 0}
+  DeadEndZone: {fileID: 0}
 --- !u!43 &14389153
 Mesh:
   m_ObjectHideFlags: 0
@@ -6068,6 +6070,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eye: {fileID: 1167495631}
+  MonsterZone: {fileID: 0}
+  DeadEndZone: {fileID: 0}
 --- !u!65 &510657150
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6601,7 +6605,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87c34899639a41e4da636abda4300c41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Item: {fileID: 11400000, guid: 7bbdd3c036444864e93be642bccac0fb, type: 2}
+  AItem: {fileID: 0}
+  NItem: {fileID: 0}
 --- !u!114 &592444986
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6614,7 +6619,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57b65781b5308634db3ed118ac5ce6c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemInfo: {fileID: 11400000, guid: 7bbdd3c036444864e93be642bccac0fb, type: 2}
+  AItemInfo: {fileID: 0}
+  NItemInfo: {fileID: 0}
 --- !u!135 &592444987
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -9943,9 +9949,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e137c11ff51d6f46936410d6bd20cad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Items: []
-  ItemContent: {fileID: 249781126}
-  InventoryItem: {fileID: 302162671290387368, guid: baffac96d8524db4e9a242a4905fef25, type: 3}
+  AItems: []
+  NItems: []
+  audioSource: {fileID: 0}
+  soundArray: []
+  sound: {fileID: 0}
+  audioIndex: 0
+  PlaylistBroadcastContent: {fileID: 0}
+  PlaylistMonsterContent: {fileID: 0}
+  NormalItemContent: {fileID: 0}
+  PlaylistItem: {fileID: 0}
+  NormalItem: {fileID: 0}
   inventoryKey: 9
   Inventory: {fileID: 760903938}
 --- !u!43 &1341305726
@@ -11178,7 +11192,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87c34899639a41e4da636abda4300c41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Item: {fileID: 11400000, guid: d27dc4f345e2e36499cfabc4c769d8a3, type: 2}
+  AItem: {fileID: 0}
+  NItem: {fileID: 0}
 --- !u!114 &1708208416
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11191,7 +11206,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57b65781b5308634db3ed118ac5ce6c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemInfo: {fileID: 11400000, guid: d27dc4f345e2e36499cfabc4c769d8a3, type: 2}
+  AItemInfo: {fileID: 0}
+  NItemInfo: {fileID: 0}
 --- !u!135 &1708208417
 SphereCollider:
   m_ObjectHideFlags: 0

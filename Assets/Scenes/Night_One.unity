@@ -433,7 +433,8 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 3
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6435934263050725322, guid: c187bc2bd497e53468d65957e840b3e0, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: c187bc2bd497e53468d65957e840b3e0, type: 3}
 --- !u!4 &9583180 stripped
 Transform:
@@ -1562,7 +1563,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1786473008633198075, guid: 3faea09d74789b24e83273e5f863ac31, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -99.7
+      value: 0.13
       objectReference: {fileID: 0}
     - target: {fileID: 1786473008633198075, guid: 3faea09d74789b24e83273e5f863ac31, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1570,7 +1571,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1786473008633198075, guid: 3faea09d74789b24e83273e5f863ac31, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -37.7
+      value: -45.75
       objectReference: {fileID: 0}
     - target: {fileID: 1786473008633198075, guid: 3faea09d74789b24e83273e5f863ac31, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2887,7 +2888,6 @@ GameObject:
   - component: {fileID: 209714596}
   - component: {fileID: 209714595}
   - component: {fileID: 209714593}
-  - component: {fileID: 209714594}
   m_Layer: 0
   m_Name: Behind the Doors Trigger
   m_TagString: Untagged
@@ -2940,19 +2940,6 @@ MonoBehaviour:
   OverrideAttenuation: 0
   OverrideMinDistance: 1
   OverrideMaxDistance: 20
---- !u!65 &209714594
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 209714591}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 5.5601225}
-  m_Center: {x: 0, y: -0.000000051027005, z: 2.2800596}
 --- !u!23 &209714595
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -6791,6 +6778,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2842972356422183678, guid: 8ee4ee59e2b667b49bd084970ee47abd, type: 3}
   m_PrefabInstance: {fileID: 661994354}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &664289941 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 6101063208340009615, guid: c187bc2bd497e53468d65957e840b3e0, type: 3}
+  m_PrefabInstance: {fileID: 848115325}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &678461291
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6948,6 +6940,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 7374382430287514350, guid: 45ecdf9f71a768f45b9323c79aaa8c99, type: 3}
   m_PrefabInstance: {fileID: 678461291}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &684966587 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7074337521807118303, guid: 8165256db8ad1ec44929f67b7fe66ca9, type: 3}
+  m_PrefabInstance: {fileID: 1782095295}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &685027050
 PrefabInstance:
@@ -9159,7 +9156,7 @@ MonoBehaviour:
     Path: event:/Monsters/Door Chase/Ambience Tension
   Event: 
   PlayEvent: 3
-  StopEvent: 4
+  StopEvent: 2
   AllowFadeout: 1
   TriggerOnce: 0
   Preload: 0
@@ -9900,6 +9897,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1013381490}
   m_Mesh: {fileID: 4732937762076777578, guid: 059bc165bd3a98143b6a0dd000c532cd, type: 3}
+--- !u!1 &1014924603 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7074337521807118303, guid: 8165256db8ad1ec44929f67b7fe66ca9, type: 3}
+  m_PrefabInstance: {fileID: 1229376801}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1018737021
 GameObject:
   m_ObjectHideFlags: 0
@@ -10977,6 +10979,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1098289041}
   m_Mesh: {fileID: 7272181163259254108, guid: 059bc165bd3a98143b6a0dd000c532cd, type: 3}
+--- !u!1 &1120442490 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7074337521807118303, guid: 8165256db8ad1ec44929f67b7fe66ca9, type: 3}
+  m_PrefabInstance: {fileID: 1777098198}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1129512877
 GameObject:
   m_ObjectHideFlags: 0
@@ -11058,6 +11065,111 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1129512877}
   m_Mesh: {fileID: 7272181163259254108, guid: 059bc165bd3a98143b6a0dd000c532cd, type: 3}
+--- !u!1 &1146050988
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1146050989}
+  - component: {fileID: 1146050993}
+  - component: {fileID: 1146050992}
+  - component: {fileID: 1146050991}
+  - component: {fileID: 1146050990}
+  m_Layer: 0
+  m_Name: Door Knock Trigger (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 419385456094870383, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1146050989
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1146050988}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 31.6, y: 0, z: 11}
+  m_LocalScale: {x: 3.2313993, y: 2.3362, z: 1.89244}
+  m_Children: []
+  m_Father: {fileID: 848115326}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1146050990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1146050988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -1121863478
+      Data2: 1275372623
+      Data3: -96007026
+      Data4: 607573858
+    Path: event:/AboutDoors/Door Knock
+  Event: 
+  PlayEvent: 3
+  StopEvent: 2
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &1146050991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1146050988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b364780aed4d1c4c928ea25cdc68780, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myDoor: {fileID: 664289941}
+  open: {fileID: 7400000, guid: bf83d9ca97011c2468e37c0a378cce5c, type: 2}
+  close: {fileID: 7400000, guid: 2eb00230edc34a2459922b0cd69669f6, type: 2}
+  OpenmaxDelay: 0.5
+  OpenminDelay: 0.2
+  ClosemaxDelay: 0.5
+  CloseminDelay: 0.1
+--- !u!65 &1146050992
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1146050988}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 6}
+  m_Center: {x: -0.84, y: 0, z: -1.95}
+--- !u!33 &1146050993
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1146050988}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1001 &1152425310
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11789,6 +11901,14 @@ PrefabInstance:
       propertyPath: speed
       value: 3.5
       objectReference: {fileID: 0}
+    - target: {fileID: 7074337523325829901, guid: 8165256db8ad1ec44929f67b7fe66ca9, type: 3}
+      propertyPath: player_location
+      value: 
+      objectReference: {fileID: 74692379}
+    - target: {fileID: 7074337523325829901, guid: 8165256db8ad1ec44929f67b7fe66ca9, type: 3}
+      propertyPath: monster_location
+      value: 
+      objectReference: {fileID: 1014924603}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8165256db8ad1ec44929f67b7fe66ca9, type: 3}
 --- !u!1001 &1238417340
@@ -12020,6 +12140,14 @@ PrefabInstance:
       propertyPath: speed
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 7074337523325829901, guid: 8165256db8ad1ec44929f67b7fe66ca9, type: 3}
+      propertyPath: player_location
+      value: 
+      objectReference: {fileID: 74692379}
+    - target: {fileID: 7074337523325829901, guid: 8165256db8ad1ec44929f67b7fe66ca9, type: 3}
+      propertyPath: monster_location
+      value: 
+      objectReference: {fileID: 1589341144}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8165256db8ad1ec44929f67b7fe66ca9, type: 3}
 --- !u!1 &1252782372
@@ -16423,6 +16551,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1580748221}
   m_Mesh: {fileID: 7272181163259254108, guid: 059bc165bd3a98143b6a0dd000c532cd, type: 3}
+--- !u!1 &1589341144 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7074337521807118303, guid: 8165256db8ad1ec44929f67b7fe66ca9, type: 3}
+  m_PrefabInstance: {fileID: 1251963713}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1600173467
 GameObject:
   m_ObjectHideFlags: 0
@@ -17126,7 +17259,7 @@ MonoBehaviour:
     Path: event:/Monsters/Door Chase/Music Tension
   Event: 
   PlayEvent: 3
-  StopEvent: 4
+  StopEvent: 2
   AllowFadeout: 1
   TriggerOnce: 0
   Preload: 0
@@ -17795,7 +17928,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1700176260
 Transform:
   m_ObjectHideFlags: 0
@@ -18932,7 +19065,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2890735405182334242, guid: 8165256db8ad1ec44929f67b7fe66ca9, type: 3}
       propertyPath: PlayEvent
-      value: 3
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 2890735405182334242, guid: 8165256db8ad1ec44929f67b7fe66ca9, type: 3}
       propertyPath: EventReference.Path
@@ -19046,6 +19179,22 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 3.81
       objectReference: {fileID: 0}
+    - target: {fileID: 7074337523325829901, guid: 8165256db8ad1ec44929f67b7fe66ca9, type: 3}
+      propertyPath: initial_pos.x
+      value: -4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7074337523325829901, guid: 8165256db8ad1ec44929f67b7fe66ca9, type: 3}
+      propertyPath: close_distance
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7074337523325829901, guid: 8165256db8ad1ec44929f67b7fe66ca9, type: 3}
+      propertyPath: player_location
+      value: 
+      objectReference: {fileID: 74692379}
+    - target: {fileID: 7074337523325829901, guid: 8165256db8ad1ec44929f67b7fe66ca9, type: 3}
+      propertyPath: monster_location
+      value: 
+      objectReference: {fileID: 1120442490}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8165256db8ad1ec44929f67b7fe66ca9, type: 3}
 --- !u!1001 &1782095295
@@ -19191,6 +19340,18 @@ PrefabInstance:
       propertyPath: speed
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 7074337523325829901, guid: 8165256db8ad1ec44929f67b7fe66ca9, type: 3}
+      propertyPath: initial_pos.x
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7074337523325829901, guid: 8165256db8ad1ec44929f67b7fe66ca9, type: 3}
+      propertyPath: player_location
+      value: 
+      objectReference: {fileID: 74692379}
+    - target: {fileID: 7074337523325829901, guid: 8165256db8ad1ec44929f67b7fe66ca9, type: 3}
+      propertyPath: monster_location
+      value: 
+      objectReference: {fileID: 684966587}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8165256db8ad1ec44929f67b7fe66ca9, type: 3}
 --- !u!1001 &1784388347
@@ -20265,7 +20426,7 @@ MonoBehaviour:
     Path: event:/Monsters/Door Chase/Ambience Tension 3
   Event: 
   PlayEvent: 3
-  StopEvent: 4
+  StopEvent: 2
   AllowFadeout: 1
   TriggerOnce: 0
   Preload: 0
@@ -20629,24 +20790,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1968276929}
   m_Mesh: {fileID: 7272181163259254108, guid: 059bc165bd3a98143b6a0dd000c532cd, type: 3}
---- !u!1 &1978625614 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3003794039202407172, guid: 8165256db8ad1ec44929f67b7fe66ca9, type: 3}
-  m_PrefabInstance: {fileID: 1777098198}
-  m_PrefabAsset: {fileID: 0}
---- !u!65 &1978625617
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1978625614}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 9.415746, y: 2.3592002, z: 1.2422801}
-  m_Center: {x: 1.6984189, y: -0.6795995, z: 16.385515}
 --- !u!1 &1985958719
 GameObject:
   m_ObjectHideFlags: 0

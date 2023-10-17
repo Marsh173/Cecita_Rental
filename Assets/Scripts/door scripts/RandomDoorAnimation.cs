@@ -24,50 +24,50 @@ public class RandomDoorAnimation : MonoBehaviour
     {
         openAnimationName = open.name;
         closeAnimationName = close.name;
+        loopAnimation = true;
     }
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
-        {
+        {/*
             if (!openTrigger)
-            {
+            {*/
                 Debug.Log("open");
                 myDoor.Play(openAnimationName, 0, 0.0f);
-                gameObject.transform.position = new Vector3 (gameObject.transform.position.x, gameObject.transform.position.y - 100f, gameObject.transform.position.z);
+                gameObject.GetComponent<BoxCollider>().enabled = false;
                 openTrigger = true;
-                Debug.Log(openTrigger);
-            }
+
+            //}
         }
     }
 
     private void Update()
     {
-        actualODelay = Random.Range(OpenminDelay, OpenmaxDelay);
-        actualCDelay = Random.Range(CloseminDelay, ClosemaxDelay);
-        
         if(loopAnimation)
         {
-            Debug.Log("start");
+            loopAnimation = false;
             StartCoroutine(animationFrequent());
         }
     }
 
     IEnumerator animationFrequent()
     {
-        loopAnimation = false;
+        actualCDelay = Random.Range(CloseminDelay, ClosemaxDelay);
+
         if (myDoor.GetCurrentAnimatorStateInfo(0).IsName(openAnimationName))
         {
-            yield return new WaitForSeconds(actualCDelay);
+            yield return new WaitForSeconds(actualCDelay); 
             myDoor.Play(closeAnimationName, 0, 0.0f);
+            Debug.Log("close");
         }
-
-        Debug.Log("close");
-        if(myDoor.GetCurrentAnimatorStateInfo(0).IsName(closeAnimationName))
+        
+        actualODelay = Random.Range(OpenminDelay, OpenmaxDelay);
+        if (myDoor.GetCurrentAnimatorStateInfo(0).IsName(closeAnimationName))
         {
             yield return new WaitForSeconds(actualODelay);
             myDoor.Play(openAnimationName, 0, 0.0f);
+            Debug.Log("open2");
         }
-        Debug.Log("open2");
         loopAnimation = true;
     }
 }

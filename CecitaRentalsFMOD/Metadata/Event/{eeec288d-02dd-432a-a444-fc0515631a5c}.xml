@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="Event" id="{eeec288d-02dd-432a-a444-fc0515631a5c}">
 		<property name="name">
-			<value>Walker-HighHeels</value>
+			<value>Walker-Woman</value>
 		</property>
 		<property name="outputFormat">
 			<value>2</value>
@@ -53,14 +53,14 @@
 			<destination>{bf84e335-2dc1-4f49-b2fb-71e2bd84b23f}</destination>
 		</relationship>
 		<relationship name="output">
-			<destination>{4f1e3ae9-67eb-4a12-aced-ad619fd0a3d4}</destination>
+			<destination>{0d308116-dc24-42a9-992e-30e29630cd78}</destination>
 		</relationship>
 	</object>
 	<object class="EventAutomatableProperties" id="{143fa267-99e4-4896-9cd0-551066e4f860}" />
 	<object class="MarkerTrack" id="{773cd5de-3646-41d8-8e34-39a4ac66aedd}" />
 	<object class="GroupTrack" id="{61d7f31f-9be4-4a36-a12e-68484e701e20}">
 		<relationship name="modules">
-			<destination>{d72d2b64-4db5-498d-a43a-8386e5d474d4}</destination>
+			<destination>{32411167-7d43-44fc-8771-31145b9868d3}</destination>
 		</relationship>
 		<relationship name="mixerGroup">
 			<destination>{92d828e1-5d62-4c27-8a05-e0e5e5f1da33}</destination>
@@ -68,7 +68,7 @@
 	</object>
 	<object class="Timeline" id="{ca4f8d00-0b19-44d2-af31-b5f51978b7e9}">
 		<relationship name="modules">
-			<destination>{d72d2b64-4db5-498d-a43a-8386e5d474d4}</destination>
+			<destination>{32411167-7d43-44fc-8771-31145b9868d3}</destination>
 		</relationship>
 		<relationship name="markers">
 			<destination>{bf648ff2-f47a-458a-8f79-9c831ff2b305}</destination>
@@ -76,7 +76,7 @@
 	</object>
 	<object class="EventMixerMaster" id="{6435bf39-44de-4413-93a1-e69bbe71e0f5}">
 		<property name="volume">
-			<value>1.5</value>
+			<value>4</value>
 		</property>
 		<relationship name="effectChain">
 			<destination>{0f1d0ec5-9a44-4134-8779-97c0b8a446e2}</destination>
@@ -94,12 +94,15 @@
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{bf84e335-2dc1-4f49-b2fb-71e2bd84b23f}" />
-	<object class="SingleSound" id="{d72d2b64-4db5-498d-a43a-8386e5d474d4}">
+	<object class="SingleSound" id="{32411167-7d43-44fc-8771-31145b9868d3}">
 		<property name="length">
-			<value>28.055510204081632</value>
+			<value>10.244047443115177</value>
+		</property>
+		<property name="timelockedOffset">
+			<value>0.25595255688482293</value>
 		</property>
 		<relationship name="audioFile">
-			<destination>{ceb794ca-74ff-46ee-912f-5049909ef24d}</destination>
+			<destination>{30dbff6b-532b-452e-9182-36c33790cc64}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{92d828e1-5d62-4c27-8a05-e0e5e5f1da33}">
@@ -121,7 +124,7 @@
 			<value>0</value>
 		</property>
 		<property name="length">
-			<value>28.055510204081632</value>
+			<value>10.18</value>
 		</property>
 		<relationship name="timeline">
 			<destination>{ca4f8d00-0b19-44d2-af31-b5f51978b7e9}</destination>
@@ -143,7 +146,6 @@
 			<destination>{63ee34c1-2d9a-4bd3-9144-64a29d9fe61b}</destination>
 			<destination>{c905f2e6-5830-49f4-8dbd-08628d824ff3}</destination>
 			<destination>{a5291a31-229c-4c93-9963-bc47920adcfd}</destination>
-			<destination>{a03c0d45-c58c-4f6b-bd03-b771ff77ec60}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{eb42137b-0f52-4145-8a69-9971ac9470d9}" />
@@ -164,11 +166,6 @@
 	<object class="LimiterEffect" id="{a5291a31-229c-4c93-9963-bc47920adcfd}">
 		<property name="ceiling">
 			<value>-0.600000024</value>
-		</property>
-	</object>
-	<object class="PitchShifterEffect" id="{a03c0d45-c58c-4f6b-bd03-b771ff77ec60}">
-		<property name="pitch">
-			<value>1.35000002</value>
 		</property>
 	</object>
 </objects>

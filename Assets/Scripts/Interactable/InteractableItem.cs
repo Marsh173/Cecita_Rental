@@ -41,8 +41,8 @@ public class InteractableItem : Interactable
     public void RecordMe()
     {
         Debug.Log("Recorded");
-        if (!SoundInventoryManager.Instance.AItems.Contains(AItem))
-            SoundInventoryManager.Instance.AddPlaylist(AItem);
+        if (!RecorderInventoryManager.Instance.AItems.Contains(AItem))
+            RecorderInventoryManager.Instance.AddPlaylist(AItem);
         //playlistManager.Instance.Add(NItem);
         //Destroy(gameObject);
     }

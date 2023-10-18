@@ -92,6 +92,7 @@ public class InventoryManager : MonoBehaviour
 
             //display name and image in inventory UI
             itemName.text = item.displayName;
+            itemLength.text = item.audioLength;
             itemIcon.sprite = item.icon;
             itemAudio.clip = item.audio;
         }

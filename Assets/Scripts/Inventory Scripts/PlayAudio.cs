@@ -10,7 +10,6 @@ public class PlayAudio : MonoBehaviour
     public GameObject bTextObj;
     TMP_Text buttonText;
     bool playing;
-    float timePlaying;
     private PuzzleHandler puzzleHandler;
 
     private void Awake()
@@ -34,7 +33,7 @@ public class PlayAudio : MonoBehaviour
         }
     }
 
-    public void playSound()
+    public void playPuzzleSound()
     {
         if (!playing)
         {
@@ -54,5 +53,22 @@ public class PlayAudio : MonoBehaviour
         }
 
         Debug.Log(playing);
+    }
+
+    public void playInventorySound()
+    {
+        if (!sound.isPlaying)
+        {
+            Debug.Log("playing");
+            playing = true;
+            sound.Play();
+            buttonText.text = "Pause";
+        }
+        else
+        {
+            sound.Pause();
+            buttonText.text = "Play";
+            playing = false;
+        }
     }
 }

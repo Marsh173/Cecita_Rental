@@ -9,7 +9,7 @@ public class PuzzleHandler : InteractableItem                               //Pu
     public string[] correctNames = { "Correct Object 1", "Correct Object 2", "Correct Object 3", "Correct Object 4" };
     public string[] detectedNames = { "Input 1", "Input 2", "Input 3", "Input 4" };
     public UnityEvent EventOnPuzzleSolved;
-    private bool hasSolvedPuzzle = false;
+    public static bool hasSolvedClockPuzzle = false;
     //private int passwordLength;
 
 
@@ -24,11 +24,11 @@ public class PuzzleHandler : InteractableItem                               //Pu
     {
         if (interacted)
         {
-            if (correctNames.SequenceEqual(detectedNames) && !hasSolvedPuzzle)
+            if (correctNames.SequenceEqual(detectedNames) && !hasSolvedClockPuzzle)
             {
                 EventOnPuzzleSolved.Invoke();
                 Debug.Log("PuzzleSolved");
-                hasSolvedPuzzle = true;
+                hasSolvedClockPuzzle = true;
             }
         }
 

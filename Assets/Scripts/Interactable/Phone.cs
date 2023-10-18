@@ -63,9 +63,13 @@ public class Phone : MonoBehaviour
 
     public void CallNumber()
     {
-        if (phoneNumber == correctNumber)
+        if (PuzzleHandler.hasSolvedClockPuzzle && phoneNumber == correctNumber)
         {
-            PhoneNumberText.text = "dialing...";
+            PhoneNumberText.text = "dialing...(You cleared the level!)";
+        }
+        else if(!PuzzleHandler.hasSolvedClockPuzzle && phoneNumber == correctNumber)
+        {
+            PhoneNumberText.text = "dialing...Did you get the time correctly?";
         }
         else
         {
@@ -76,7 +80,7 @@ public class Phone : MonoBehaviour
 
     IEnumerator WrongNumber()
     {
-        PhoneNumberText.text = "Wrong!";
+        PhoneNumberText.text = "Wrong Number";
         CanDial = false;
         yield return new WaitForSeconds(1);
         phoneNumber = "";

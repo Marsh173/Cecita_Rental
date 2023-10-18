@@ -7,6 +7,8 @@ public class Walkers : MonoBehaviour
     public float speed;
     public Transform stop;
     public GameObject walker;
+    bool stopMoving = false;
+
 
     [Header("Audio Detection")]
     public GameObject monster_sound;
@@ -26,16 +28,19 @@ public class Walkers : MonoBehaviour
         monster_sound.transform.localPosition = initial_pos;
         //Debug.Log("Initial: " + initial_pos);
         //Debug.Log(monster_sound.transform.localPosition);
+
     }
 
     private void Update()
     {
         MovingSoundPosition();
 
-        if (trigger)
+        if (trigger && !stopMoving)
         {
             walker.transform.position = Vector3.MoveTowards(walker.transform.position, stop.position, speed * Time.deltaTime * 2f);
         }
+
+
 
         if(walker.transform.position == stop.position)
         {
@@ -47,6 +52,7 @@ public class Walkers : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        
         if (other.CompareTag("Player"))
         {
             trigger = true;
@@ -54,7 +60,19 @@ public class Walkers : MonoBehaviour
             //walker.SetActive(true);
             //walker.transform.position = Vector3.MoveTowards(walker.transform.position, stop.position, speed * Time.deltaTime * 2f);
         }
+
     }
+
+    private void OnTriggerExit(Collider other)
+    {
+        
+        if (other.CompareTag("Monster"))
+        {
+            stopMoving = true;
+            walker.SetActive(false);
+        }
+    }
+
 
     private void MovingSoundPosition()
     {

@@ -9,7 +9,7 @@ public class PhoneInstruction : MonoBehaviour
 {
     public RawImage ItemCam;
     public bool isInCam;
-    public GameObject ItemUI;
+    //public GameObject ItemUI;
 
     public void ItemInteract()
     {
@@ -19,7 +19,7 @@ public class PhoneInstruction : MonoBehaviour
         FirstPersonAIO.instance.playerCanMove = false;
         isInCam = true;
         Cursor.visible = true;
-        ItemUI.SetActive(true);
+        //ItemUI.SetActive(true);
     }
 
     private void Update()
@@ -33,7 +33,7 @@ public class PhoneInstruction : MonoBehaviour
                 FirstPersonAIO.instance.enableCameraMovement = true;
                 FirstPersonAIO.instance.playerCanMove = true;
                 Cursor.visible = false;
-                ItemUI.SetActive(false);
+                //ItemUI.SetActive(false);
             }
         }
     }

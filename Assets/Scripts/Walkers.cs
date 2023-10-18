@@ -72,7 +72,7 @@ public class Walkers : MonoBehaviour
 
         float distance = (monster_loc - player_loc).magnitude;
 
-        Debug.Log(distance);
+        //Debug.Log(distance);
 
         if(distance <= close_distance)
         {

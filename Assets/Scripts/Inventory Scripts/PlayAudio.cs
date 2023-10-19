@@ -38,10 +38,16 @@ public class PlayAudio : MonoBehaviour
     {
         if (!playing)
         {
-            if (puzzleHandler.detectedNames[0] == "") { puzzleHandler.detectedNames[0] = sound.clip.ToString(); }
-            else if (puzzleHandler.detectedNames [1] == "") { puzzleHandler.detectedNames[1] = sound.clip.ToString(); }
-            else if (puzzleHandler.detectedNames[2] == "") { puzzleHandler.detectedNames[2] = sound.clip.ToString(); }
-            else if (puzzleHandler.detectedNames[3] == "") { puzzleHandler.detectedNames[3] = sound.clip.ToString(); }
+            //if (puzzleHandler.detectedNames[0] == "") { puzzleHandler.detectedNames[0] = sound.clip.ToString(); }
+            //else if (puzzleHandler.detectedNames[1] == "") { puzzleHandler.detectedNames[1] = sound.clip.ToString(); }
+            //else if (puzzleHandler.detectedNames[2] == "") { puzzleHandler.detectedNames[2] = sound.clip.ToString(); }
+            //else if (puzzleHandler.detectedNames[3] == "") { puzzleHandler.detectedNames[3] = sound.clip.ToString(); }
+
+            for (int i = 0; i < puzzleHandler.detectedNames.Count; i++) 
+            {
+                if (puzzleHandler.detectedNames[i] == "") { puzzleHandler.detectedNames[i] = sound.clip.ToString(); break; }
+            }
+
             playing = true;
             sound.Play();
             buttonText.text = "Pause";

@@ -6,17 +6,18 @@ using UnityEngine.Events;
 
 public class PuzzleHandler : InteractableItem                               //Puzzle Logic partially handled by PlayAudio.cs
 {
-    public string[] correctNames = { "Correct Object 1", "Correct Object 2", "Correct Object 3", "Correct Object 4" };
-    public string[] detectedNames = { "Input 1", "Input 2", "Input 3", "Input 4" };
+    [Tooltip("Enter the correct answer <in string> in the correct order here")] public List<string> correctNames;
+    public List<string> detectedNames;
     public UnityEvent EventOnPuzzleSolved;
     private bool hasSolvedPuzzle = false;
     //private int passwordLength;
 
 
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
-        //passwordLength =  correctNames.Length;
+        detectedNames = new List<string>();
+        for (int i = 0; i < correctNames.Count; i++) { detectedNames.Add(""); }
     }
 
     // Update is called once per frame
@@ -32,12 +33,16 @@ public class PuzzleHandler : InteractableItem                               //Pu
             }
         }
 
-        if (detectedNames[0] != "" && detectedNames[1] != "" && detectedNames[2] != "" && detectedNames[3] != "")
+        bool listFull = true;
+
+        foreach (string inputName in detectedNames)
         {
-            detectedNames[0] = "";
-            detectedNames[1] = "";
-            detectedNames[2] = "";
-            detectedNames[3] = "";
+            if (inputName == "") { listFull = false; break; }
+        }
+
+        if (listFull)
+        {
+            for (int i = 0; i < detectedNames.Count; i++) { detectedNames[i] = ""; }
         }
 
 /*        if (detectedNames.Length > passwordLength)

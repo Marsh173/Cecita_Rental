@@ -22,6 +22,10 @@ public class PlayerInteract : MonoBehaviour
     [SerializeField]
     private LayerMask mask;
 
+    [Header("Crosshair")]
+    public GameObject crosshair;
+
+
     private void Start()
     {
         if (message.text != null) message.text = "";
@@ -65,7 +69,9 @@ public class PlayerInteract : MonoBehaviour
                         //Turn on interactble item icon                                                     -Bryan's latest
                         itemIcon = hitInfo.collider.GetComponent<Interactable>().promptIcon;
                         itemIcon.SetActive(true);
-                        //
+                        //Turn off crosshair
+                        if (crosshair.activeSelf) crosshair.SetActive(false);
+
 
                         GameObject hitObject = hitInfo.collider.gameObject;
                         lastHitObject = hitObject;
@@ -80,7 +86,8 @@ public class PlayerInteract : MonoBehaviour
                 //Turn off interactable item icon                                                   -Bryan's latest
                 itemIcon.SetActive(false);
                 itemIcon = null;
-                //
+                //Turn on crosshair
+                if (!crosshair.activeSelf) crosshair.SetActive(true);
             }
         }
         else
@@ -93,7 +100,8 @@ public class PlayerInteract : MonoBehaviour
                 itemIcon.SetActive(false);
                 itemIcon = null;
             }
-            //
+            //Turn on crosshair
+            if (!crosshair.activeSelf) crosshair.SetActive(true);
 
             if (lastHitObject != null)
             {

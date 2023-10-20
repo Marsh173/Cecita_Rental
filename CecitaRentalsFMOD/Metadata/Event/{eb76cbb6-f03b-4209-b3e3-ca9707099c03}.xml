@@ -70,6 +70,9 @@
 		<relationship name="modules">
 			<destination>{8f30966e-4189-4390-bf99-f79acf4e0007}</destination>
 		</relationship>
+		<relationship name="markers">
+			<destination>{ca6b34bb-f612-40ef-aad1-cf0bbb93ecc1}</destination>
+		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{0d437ac1-0e49-414f-b563-46ede525a2c2}">
 		<property name="volume">
@@ -93,7 +96,7 @@
 	<object class="MixerBusPanner" id="{a41d2a19-36bc-4208-a390-330b88b248d7}" />
 	<object class="MultiSound" id="{8f30966e-4189-4390-bf99-f79acf4e0007}">
 		<property name="length">
-			<value>0.70999999999999996</value>
+			<value>0.63</value>
 		</property>
 		<relationship name="fadeOutCurve">
 			<destination>{506d00c0-d9c9-4e60-ac17-49094b705fe2}</destination>
@@ -120,6 +123,20 @@
 		</relationship>
 		<relationship name="output">
 			<destination>{0d437ac1-0e49-414f-b563-46ede525a2c2}</destination>
+		</relationship>
+	</object>
+	<object class="LoopRegion" id="{ca6b34bb-f612-40ef-aad1-cf0bbb93ecc1}">
+		<property name="position">
+			<value>0</value>
+		</property>
+		<property name="length">
+			<value>0.25</value>
+		</property>
+		<relationship name="timeline">
+			<destination>{7f360e96-514e-40b8-a63a-e950d10c356c}</destination>
+		</relationship>
+		<relationship name="markerTrack">
+			<destination>{969fe8b7-cadf-439e-9053-5cc7f8648e92}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusEffectChain" id="{d2af761f-1583-4d47-9f58-d595bde21934}">
@@ -181,18 +198,21 @@
 	</object>
 	<object class="AutomationPoint" id="{21a62750-2de0-4fa8-8690-14631637f492}">
 		<property name="position">
-			<value>0.56999999999999984</value>
+			<value>0.54000000000000004</value>
 		</property>
 		<property name="value">
 			<value>1</value>
 		</property>
 		<property name="curveShape">
-			<value>0.25471893</value>
+			<value>-0.809224308</value>
+		</property>
+		<property name="isSCurve">
+			<value>true</value>
 		</property>
 	</object>
 	<object class="AutomationPoint" id="{d66ac46d-1d26-4d2e-ae14-606d584d6922}">
 		<property name="position">
-			<value>0.70999999999999996</value>
+			<value>0.63</value>
 		</property>
 		<property name="value">
 			<value>0</value>

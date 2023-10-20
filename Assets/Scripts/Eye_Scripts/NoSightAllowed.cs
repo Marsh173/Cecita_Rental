@@ -11,15 +11,14 @@ public class NoSightAllowed : MonoBehaviour
     private Button eye_UI;
     public Sprite Eye_Open;
     public Sprite Eye_Close;
-    public GameObject SoundCollecting, itemAdded;
-    public GameObject F;
+    public GameObject SoundCollecting, itemAdded, F;
 
     public KeyCode keyF;
 
     public Animator anim;
 
     public static float countDown;
-    float countDownTime = 5f;
+    [SerializeField] private float countDownTime = 5f;
     public Text countdownText;
     bool TimerActive;
     public float EyeChargeBar;
@@ -28,6 +27,8 @@ public class NoSightAllowed : MonoBehaviour
     
     private void Start()
     {
+        TriggerEye.restarted = false;
+        TriggerEye.dead = false;
         instance = this;
         TimerActive = true;
         eye_UI = GetComponent<Button>();
@@ -45,12 +46,13 @@ public class NoSightAllowed : MonoBehaviour
             FadeToColor(eye_UI.colors.pressedColor);
             eye_UI.onClick.Invoke();
             F.GetComponent<TMP_Text>().text = F.GetComponent<TMP_Text>().text == "Press F to open  your eyes" ? "Press F to close your eyes" : "Press F to open  your eyes";
+
             if (F.GetComponent<TMP_Text>().text == "Press F to close your eyes")
             {
                 EyeChargeBar-= 20f;
                 if (EyeChargeBar < 0)
                 {
-                    SceneManager.LoadScene("Death");
+                    TriggerEye.dead = true;
                 }
                 ChargeBarUI.GetComponent<Image>().fillAmount = EyeChargeBar/100f;
             }
@@ -71,14 +73,14 @@ public class NoSightAllowed : MonoBehaviour
             {
                 countDownTime = 2f;
             }
-            else
+            else// if(TriggerEye.restarted)
             {
                 countDownTime = 5f;
             }
 
             countDown -= 1 * Time.deltaTime;
             countdownText.text = countDown.ToString("0");
-            if(countDown <= 2.5f)
+            if(countDown <= 3f)
             {
                 RedAura.color = new Color(RedAura.color.r, RedAura.color.g, RedAura.color.b, (3f - countDown) / 3f );
             }
@@ -86,14 +88,16 @@ public class NoSightAllowed : MonoBehaviour
             //death when timer's out
             if (countDown <= 0)
             {
+                TriggerEye.dead = true;
                 countDown = countDownTime;
-                SceneManager.LoadScene("Death");
             }
         }
         else
         {
             countDown = countDownTime; 
         }
+
+        
     }
 
     //Animation

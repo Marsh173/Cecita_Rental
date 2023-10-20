@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TriggerDoorController : MonoBehaviour
 {
@@ -25,7 +26,10 @@ public class TriggerDoorController : MonoBehaviour
             {
                 Debug.Log("close");
                 myDoor.Play(doorClose, 0, 0.0f);
-                gameObject.SetActive(false);
+                /*if(SceneManager.GetActiveScene().name != "TutorialLevel")
+                {*/
+                    gameObject.SetActive(false);
+                /*}*/
             }
         }
     }

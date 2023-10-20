@@ -10,17 +10,18 @@ public class PlayerEarBudSequence : MonoBehaviour
     public GameObject invisibleWall, tutorialMessageObj, inventory, interactiveDoor;
     public TMP_Text tutoriaMessage;
 
-    private bool firstAudioPlayed, TabToOpen, FinishInventory;
+    private bool firstAudioPlayed, TabToOpen, FinishInventory, firstWarning;
     private bool DelayedAlready;
 
     [SerializeField] private float delay = 0.0f;
     void Start()
     {
+
         interactiveDoor.layer = 0; //set door to default layer
         tutorialMessageObj.SetActive(false);
         tutoriaMessage = tutorialMessageObj.GetComponent<TMP_Text>();
         earBudVoice = GetComponent<AudioSource>();
-        DelayedAlready = firstAudioPlayed = FinishInventory = TabToOpen = false;
+        DelayedAlready = firstAudioPlayed = FinishInventory = TabToOpen = firstWarning = false;
 
         Debug.Log(inventory.activeInHierarchy);
     }
@@ -52,6 +53,15 @@ public class PlayerEarBudSequence : MonoBehaviour
             }
         }
 
+        if(!firstWarning && NoSightAllowed.countDown <= 3f)
+        {
+            Debug.Log("warn");
+            Debug.Log(firstWarning);
+            earBudVoice.clip = Resources.Load<AudioClip>("Night 0/" + "Night 0 - Close!");
+            earBudVoice.PlayOneShot(earBudVoice.clip);
+            firstWarning = true;
+        }
+
 
     }
     
@@ -64,12 +74,12 @@ public class PlayerEarBudSequence : MonoBehaviour
             Destroy(other);
         }
 
-        if (other.CompareTag("EnterDeadEnd"))
+       /* if (other.CompareTag("EnterDeadEnd"))
         {
             earBudVoice.clip = Resources.Load<AudioClip>("Night 0/" + "Night 0 - DeadEnd");
             earBudVoice.PlayOneShot(earBudVoice.clip);
             Destroy(other);
-        }
+        }*/
 
         if (other.CompareTag("walker Trigger"))
         {

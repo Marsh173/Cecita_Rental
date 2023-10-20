@@ -1,19 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TriggerEye : MonoBehaviour
 {
-    public GameObject eye;
-    public static bool enteredCantOpen;
-    public GameObject MonsterZone;
-    public GameObject DeadEndZone;
-    private bool MonsterZoneHasPlayed = false;
-    private bool DeadEndZoneHasPlayed = false;
+    public GameObject eye, MonsterZone, DeadEndZone, player, checkpoint;
+    private bool MonsterZoneHasPlayed, DeadEndZoneHasPlayed = false;
+    public static bool enteredCantOpen, dead, restarted;
 
     private void Start()
     {
         eye.SetActive(false);
+        dead = restarted = false;
+    }
+
+    private void Update()
+    {
+        //check death status
+        deathSituations();
     }
 
     //check if the mechanic needs to be activated
@@ -69,5 +74,29 @@ public class TriggerEye : MonoBehaviour
         {
             FirstPersonAIO.instance.cameraInputMethod = FirstPersonAIO.CameraInputMethod.Traditional;
         }
+    }
+
+    public void deathSituations()
+    {
+        //instant restart when in tutorial level
+        if (dead)
+        {
+            if (SceneManager.GetActiveScene().name == "TutorialLevel" || SceneManager.GetActiveScene().name == "TutorialLevel restart")
+            {
+                SceneManager.LoadScene("TutorialLevel restart");
+                //Respawn();
+            }
+            else SceneManager.LoadScene("Death");
+        }
+
+    }
+    IEnumerator Respawn()
+    {
+        Destroy(gameObject, 1f);
+        yield return new WaitForSeconds(1f);
+        Instantiate(player, checkpoint.transform);
+        Debug.Log("respawned");
+        restarted = true;
+        //player.transform.position = checkpoint.transform.position;
     }
 }

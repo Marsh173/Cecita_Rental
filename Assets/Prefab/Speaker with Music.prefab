@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4170460078374465884}
   - component: {fileID: 8718507855150848789}
   - component: {fileID: 7998873466008628779}
+  - component: {fileID: 169654748283797139}
   m_Layer: 0
   m_Name: Broadcast Music
   m_TagString: Untagged
@@ -52,7 +53,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4545650248907387615}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 05e9b4fa5f9739e48bd5804b40330627, type: 3}
   m_Name: 
@@ -74,6 +75,37 @@ MonoBehaviour:
   OverrideAttenuation: 0
   minDistance: 2
   maxDistance: 30
+--- !u!114 &169654748283797139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4545650248907387615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: Player
+  EventReference:
+    Guid:
+      Data1: -1952275839
+      Data2: 1213896104
+      Data3: 406805152
+      Data4: -1508835468
+    Path: event:/Broadcast Music
+  Event: 
+  PlayEvent: 1
+  StopEvent: 3
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &5477645211918690412
 GameObject:
   m_ObjectHideFlags: 0

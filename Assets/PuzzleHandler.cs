@@ -9,8 +9,13 @@ public class PuzzleHandler : InteractableItem                               //Pu
     [Tooltip("Enter the correct answer <in string> in the correct order here")] public List<string> correctNames;
     public List<string> detectedNames;
     public UnityEvent EventOnPuzzleSolved;
+    public UnityEvent EventOnPuzzleFailed;
+    [Tooltip("Triggers EventOnPuzzleFailed_End when timer reaches 0")]public int puzzleFailedResetTimer;
+    public UnityEvent EventOnPuzzleFailed_End;
     public static bool hasSolvedClockPuzzle = false;
+    public static bool correctInput = false;
     //private int passwordLength;
+    Coroutine coroutineRef;
 
 
     // Start is called before the first frame update
@@ -28,6 +33,7 @@ public class PuzzleHandler : InteractableItem                               //Pu
             if (correctNames.SequenceEqual(detectedNames) && !hasSolvedClockPuzzle)
             {
                 EventOnPuzzleSolved.Invoke();
+                correctInput = true;
                 Debug.Log("PuzzleSolved");
                 hasSolvedClockPuzzle = true;
             }
@@ -43,6 +49,7 @@ public class PuzzleHandler : InteractableItem                               //Pu
         if (listFull)
         {
             for (int i = 0; i < detectedNames.Count; i++) { detectedNames[i] = ""; }
+            if (!correctInput) { coroutineRef = StartCoroutine(RunInteractEvents());}
         }
 
 /*        if (detectedNames.Length > passwordLength)
@@ -50,5 +57,12 @@ public class PuzzleHandler : InteractableItem                               //Pu
             System.Array.Clear(detectedNames, 0, correctNames.Length);
         }
 */
+    }
+
+    private IEnumerator RunInteractEvents()
+    {
+        EventOnPuzzleFailed.Invoke();
+        yield return new WaitForSeconds(puzzleFailedResetTimer);                                                       //Put this line on top or middle of this section of code in case we want a hold input to complete the recording
+        EventOnPuzzleFailed_End.Invoke();
     }
 }

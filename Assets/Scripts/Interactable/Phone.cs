@@ -33,11 +33,13 @@ public class Phone : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.C))
             {
                 Debug.Log("esc");
+                PhoneCam.enabled = false;                           //IMPORTANT: ALWAYS TURN OFF ITEM CAMERAS ON EXITING ITEM INTERACTION
                 PhoneCam.DOFade(0, 1.2f);
                 FirstPersonAIO.instance.enableCameraMovement = true;
                 FirstPersonAIO.instance.playerCanMove = true;
                 Cursor.visible = false;
                 PhoneUI.SetActive(false);
+                CanDial = false;
             }
         }
     }

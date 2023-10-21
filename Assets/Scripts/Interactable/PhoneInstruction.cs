@@ -29,10 +29,12 @@ public class PhoneInstruction : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.C))
             {
                 Debug.Log("esc");
+                ItemCam.enabled = false;                                    //IMPORTANT: ALWAYS TURN OFF ITEM CAMERAS ON EXITING ITEM INTERACTION
                 ItemCam.DOFade(0, 1.2f);
                 FirstPersonAIO.instance.enableCameraMovement = true;
                 FirstPersonAIO.instance.playerCanMove = true;
                 Cursor.visible = false;
+                isInCam = false;
                 //ItemUI.SetActive(false);
             }
         }

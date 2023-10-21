@@ -70,7 +70,7 @@ public class PlayerInteract : MonoBehaviour
                         itemIcon = hitInfo.collider.GetComponent<Interactable>().promptIcon;
                         itemIcon.SetActive(true);
                         //Turn off crosshair
-                        if (crosshair.activeSelf) crosshair.SetActive(false);
+                        if (crosshair != null && crosshair.activeSelf) crosshair.SetActive(false);
 
 
                         GameObject hitObject = hitInfo.collider.gameObject;
@@ -87,7 +87,7 @@ public class PlayerInteract : MonoBehaviour
                 itemIcon.SetActive(false);
                 itemIcon = null;
                 //Turn on crosshair
-                if (!crosshair.activeSelf) crosshair.SetActive(true);
+                if (crosshair != null && !crosshair.activeSelf) crosshair.SetActive(true);
             }
         }
         else
@@ -101,7 +101,7 @@ public class PlayerInteract : MonoBehaviour
                 itemIcon = null;
             }
             //Turn on crosshair
-            if (!crosshair.activeSelf) crosshair.SetActive(true);
+            if (crosshair != null && !crosshair.activeSelf) crosshair.SetActive(true);
 
             if (lastHitObject != null)
             {

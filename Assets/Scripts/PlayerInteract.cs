@@ -18,12 +18,15 @@ public class PlayerInteract : MonoBehaviour
 
     [SerializeField]
     private float distance = 6f;
+    private float wallHitDistance = 6f;
 
     [SerializeField]
     private LayerMask mask;
 
     [Header("Crosshair")]
     public GameObject crosshair;
+
+    private int LayerWall;
 
 
     private void Start()
@@ -50,10 +53,12 @@ public class PlayerInteract : MonoBehaviour
         }
         //End of Event system code
 
-
+        #region General Raycast
         Ray ray = new Ray(cam.transform.position, cam.transform.forward);
         Debug.DrawRay(ray.origin, ray.direction * distance);
         RaycastHit hitInfo;
+
+
         if(Physics.Raycast(ray, out hitInfo, distance, mask))
         {
             if(hitInfo.collider.GetComponent<Interactable>() != null)
@@ -115,6 +120,9 @@ public class PlayerInteract : MonoBehaviour
 
             }
         }
+        #endregion
+
+
     }
 
     public void RunTurnOnEvent()

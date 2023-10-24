@@ -203,6 +203,8 @@ GameObject:
   - component: {fileID: 853425280604392184}
   - component: {fileID: 1784866648515469935}
   - component: {fileID: 1784866648515469906}
+  - component: {fileID: 74692380}
+  - component: {fileID: 74692390}
   m_Layer: 0
   m_Name: FirstPerson-AIO
   m_TagString: Player
@@ -401,7 +403,7 @@ MonoBehaviour:
   speed: 0
   staminaInternal: 0
   _crouchModifiers:
-    useCrouch: 0
+    useCrouch: 1
     toggleCrouch: 0
     crouchKey: 306
     crouchWalkSpeedMultiplier: 0.5
@@ -565,11 +567,11 @@ MonoBehaviour:
     Path: event:/Player/Wall_Rubbing_Right
   WallHitEventPath:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: 569019735
+      Data2: 1250927468
+      Data3: -1470568564
+      Data4: -2081375391
+    Path: event:/Player/FrontWall Detection
 --- !u!114 &1784866648515469935
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -585,17 +587,42 @@ MonoBehaviour:
   hasRecorderTurnedOn: 0
   EventTurnOnInteraction:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 545596522306111995}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   EventTurnOffInteraction:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 545596522306111995}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   cam: {fileID: 1768997895139496567}
   message: {fileID: 0}
   itemIcon: {fileID: 0}
-  distance: 6
+  distance: 2
   mask:
     serializedVersion: 2
     m_Bits: 128
+  crosshair: {fileID: 0}
 --- !u!114 &1784866648515469906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -611,6 +638,62 @@ MonoBehaviour:
   eye: {fileID: 0}
   MonsterZone: {fileID: 0}
   DeadEndZone: {fileID: 0}
+  player: {fileID: 0}
+  checkpoint: {fileID: 0}
+--- !u!114 &74692380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1784319153359301841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: Hallway
+  EventReference:
+    Guid:
+      Data1: 1865955658
+      Data2: 1231091764
+      Data3: 1160505744
+      Data4: -833572479
+    Path: event:/Player/Breathing
+  Event: 
+  PlayEvent: 3
+  StopEvent: 2
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &74692390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1784319153359301841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d28e02e6c60ebf540984388bf3a72b7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 1768997895139496567}
+  distance: 2
+  mask:
+    serializedVersion: 2
+    m_Bits: 256
+  EventOnWallHit:
+    m_PersistentCalls:
+      m_Calls: []
+  EventOnWallHitExit:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1784866649624928378
 GameObject:
   m_ObjectHideFlags: 0
@@ -765,6 +848,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 643767a94c8b49349993e60871418309, type: 3}
+--- !u!1 &545596522306111995 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 643767a94c8b49349993e60871418309, type: 3}
+  m_PrefabInstance: {fileID: 816049784475595946}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &925922423865267009 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 643767a94c8b49349993e60871418309, type: 3}

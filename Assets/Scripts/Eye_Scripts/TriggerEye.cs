@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using TMPro;
+
 
 public class TriggerEye : MonoBehaviour
 {
@@ -29,6 +32,9 @@ public class TriggerEye : MonoBehaviour
             enteredCantOpen = false;
             eye.SetActive(true);
             FirstPersonAIO.instance.cameraInputMethod = FirstPersonAIO.CameraInputMethod.TraditionalWithConstraints;
+            NoSightAllowed.instance.TimerActive = true;
+            NoSightAllowed.instance.F.GetComponent<TMP_Text>().text = "Press F to close your eyes";
+            NoSightAllowed.instance.countdownText.enabled = true;
 
         }
 
@@ -37,6 +43,23 @@ public class TriggerEye : MonoBehaviour
             //play open eye animation then false
             enteredCantOpen = false;
             eye.SetActive(false);
+
+
+            //Reset the charge bar and disable the red aura effect                                       --Eric's latest
+            if (NoSightAllowed.instance != null)
+            {
+                Debug.Log("enter enclosed");
+                NoSightAllowed.instance.JustEyeOpenAnimation();
+                NoSightAllowed.instance.TimerActive = false;
+                NoSightAllowed.countDown = NoSightAllowed.instance.countDownTime;
+                Color tempcolor = NoSightAllowed.instance.RedAura.color;
+                NoSightAllowed.instance.RedAura.color = new Color(tempcolor.r, tempcolor.g, tempcolor.b, 0);
+                NoSightAllowed.instance.countdownText.text = "5";
+                NoSightAllowed.instance.EyeChargeBar = 100;
+                NoSightAllowed.instance.ChargeBarUI.GetComponent<Image>().fillAmount = 1;
+                NoSightAllowed.instance.F.GetComponent<TMP_Text>().text = "Press F to open your eyes";
+
+            }
         }
 
         if (other.CompareTag("CantOpen"))

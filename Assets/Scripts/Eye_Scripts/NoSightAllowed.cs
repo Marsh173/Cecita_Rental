@@ -9,8 +9,7 @@ public class NoSightAllowed : MonoBehaviour
 {
     public static NoSightAllowed instance;
     private Button eye_UI;
-    public Sprite Eye_Open;
-    public Sprite Eye_Close;
+    public Sprite Eye_Open, Eye_Close;
     public GameObject SoundCollecting, itemAdded, F;
 
     public KeyCode keyF;
@@ -21,19 +20,32 @@ public class NoSightAllowed : MonoBehaviour
     [SerializeField] private float countDownTime = 5f;
     public Text countdownText;
     bool TimerActive;
-    public float EyeChargeBar;
+    public float EyeChargeBar, EyeBarDecreaseAmount;
     public GameObject ChargeBarUI;
     public RawImage RedAura;
-    
+
+    private void OnEnable()
+    {
+        Respawn.restarted = false;
+        Respawn.dead = false;
+        instance = this;
+        countDown = countDownTime = 5f;
+        anim.SetBool("isBegun", false);
+        EyeChargeBar = 100f;
+        EyeBarDecreaseAmount = 20f;
+        RedAura.color = new Color(RedAura.color.r, RedAura.color.g, RedAura.color.b, 0);
+        ChargeBarUI.GetComponent<Image>().fillAmount = EyeChargeBar / 100f;
+    }
+
     private void Start()
     {
-        TriggerEye.restarted = false;
-        TriggerEye.dead = false;
-        instance = this;
+        Respawn.restarted = false;
+        Respawn.dead = false;
+        //instance = this;
         TimerActive = true;
         eye_UI = GetComponent<Button>();
         eye_UI.GetComponent<Image>().sprite = Eye_Open;
-        countDown = countDownTime;
+        countDown = countDownTime = 5f;
         anim.SetBool("isBegun", false);
         EyeChargeBar = 100;
     }
@@ -49,10 +61,11 @@ public class NoSightAllowed : MonoBehaviour
 
             if (F.GetComponent<TMP_Text>().text == "Press F to close your eyes")
             {
-                EyeChargeBar-= 20f;
+                EyeChargeBar-= EyeBarDecreaseAmount;
+
                 if (EyeChargeBar < 0)
                 {
-                    TriggerEye.dead = true;
+                    Respawn.dead = true;
                 }
                 ChargeBarUI.GetComponent<Image>().fillAmount = EyeChargeBar/100f;
             }
@@ -88,7 +101,7 @@ public class NoSightAllowed : MonoBehaviour
             //death when timer's out
             if (countDown <= 0)
             {
-                TriggerEye.dead = true;
+                Respawn.dead = true;
                 countDown = countDownTime;
             }
         }

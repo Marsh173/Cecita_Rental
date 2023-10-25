@@ -65,14 +65,14 @@ public class Phone : MonoBehaviour
 
     public void CallNumber()
     {
-        if (PuzzleHandler.hasSolvedClockPuzzle && phoneNumber == correctNumber)
+        if (phoneNumber == correctNumber) //PuzzleHandler.hasSolvedClockPuzzle && 
         {
             PhoneNumberText.text = "dialing...(You cleared the level!)";
         }
-        else if(!PuzzleHandler.hasSolvedClockPuzzle && phoneNumber == correctNumber)
-        {
-            PhoneNumberText.text = "dialing...Did you get the time correctly?";
-        }
+        //else if(!PuzzleHandler.hasSolvedClockPuzzle && phoneNumber == correctNumber)
+        //{
+        //    PhoneNumberText.text = "dialing...Did you get the time correctly?";
+        //}
         else
         {
             StartCoroutine(WrongNumber());

@@ -18,12 +18,13 @@ public class NoSightAllowed : MonoBehaviour
     public Animator anim;
 
     public static float countDown;
-    [SerializeField] private float countDownTime = 5f;
+    [SerializeField] public float countDownTime = 5f;
     public Text countdownText;
-    bool TimerActive;
+    public bool TimerActive;
     public float EyeChargeBar;
     public GameObject ChargeBarUI;
     public RawImage RedAura;
+    public bool IsInSafeSpace;
     
     private void Start()
     {
@@ -45,7 +46,7 @@ public class NoSightAllowed : MonoBehaviour
         {
             FadeToColor(eye_UI.colors.pressedColor);
             eye_UI.onClick.Invoke();
-            F.GetComponent<TMP_Text>().text = F.GetComponent<TMP_Text>().text == "Press F to open  your eyes" ? "Press F to close your eyes" : "Press F to open  your eyes";
+            F.GetComponent<TMP_Text>().text = F.GetComponent<TMP_Text>().text == "Press F to open your eyes" ? "Press F to close your eyes" : "Press F to open your eyes";
 
             if (F.GetComponent<TMP_Text>().text == "Press F to close your eyes")
             {
@@ -130,4 +131,10 @@ public class NoSightAllowed : MonoBehaviour
         graphic.CrossFadeColor(color, eye_UI.colors.fadeDuration, true, true);
     }
 
+    public void JustEyeOpenAnimation()
+    {
+        eye_UI.image.sprite = Eye_Open; //open
+        anim.SetBool("isBegun", false);
+        anim.SetBool("isOpen", true);
+    }
 }

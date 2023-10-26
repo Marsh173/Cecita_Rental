@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class TriggerEye : MonoBehaviour
 {
-    public GameObject eye, MonsterZone, DeadEndZone;
+    public GameObject eyeIcon, MonsterZone, DeadEndZone;
     private bool MonsterZoneHasPlayed, DeadEndZoneHasPlayed = false;
     public static bool enteredCantOpen;
 
     private void Start()
     {
-        eye.SetActive(false);
+        eyeIcon.SetActive(false);
     }
 
     private void Update()
     {
-       
+
     }
 
     //check if the mechanic needs to be activated
@@ -24,21 +24,23 @@ public class TriggerEye : MonoBehaviour
         if (other.CompareTag("Hallway"))
         {
             enteredCantOpen = false;
-            eye.SetActive(true);
+            eyeIcon.SetActive(true);
             FirstPersonAIO.instance.cameraInputMethod = FirstPersonAIO.CameraInputMethod.TraditionalWithConstraints;
 
         }
 
         if (other.CompareTag("Enclosed"))
         {
-            //play open eye animation then false
             enteredCantOpen = false;
-            eye.SetActive(false);
+            //play open eye animation then false
+
+            //NoSightAllowed.instance.ResetChargeBar();
+            eyeIcon.SetActive(false);
         }
 
         if (other.CompareTag("CantOpen"))
         {
-            eye.SetActive(true);
+            eyeIcon.SetActive(true);
             enteredCantOpen = true;
             FirstPersonAIO.instance.cameraInputMethod = FirstPersonAIO.CameraInputMethod.TraditionalWithConstraints;
         }
@@ -53,7 +55,7 @@ public class TriggerEye : MonoBehaviour
             }
         }
 
-        if(other.CompareTag("EnterDeadEnd"))
+        if (other.CompareTag("EnterDeadEnd"))
         {
             if (!DeadEndZoneHasPlayed)
             {
@@ -72,4 +74,5 @@ public class TriggerEye : MonoBehaviour
             FirstPersonAIO.instance.cameraInputMethod = FirstPersonAIO.CameraInputMethod.Traditional;
         }
     }
+
 }

@@ -11,43 +11,53 @@ public class NoSightAllowed : MonoBehaviour
     private Button eye_UI;
     public Sprite Eye_Open, Eye_Close;
     public GameObject SoundCollecting, itemAdded, F;
-
     public KeyCode keyF;
-
     public Animator anim;
 
+    //timer
     public static float countDown;
     [SerializeField] private float countDownTime = 5f;
-    public Text countdownText;
+    public TMP_Text countdownText;
     bool TimerActive;
-    public float EyeChargeBar, EyeBarDecreaseAmount;
-    public GameObject ChargeBarUI;
-    public RawImage RedAura;
 
-    private void OnEnable()
-    {
-        Respawn.restarted = false;
-        Respawn.dead = false;
-        instance = this;
-        countDown = countDownTime = 5f;
-        anim.SetBool("isBegun", false);
-        EyeChargeBar = 100f;
-        EyeBarDecreaseAmount = 20f;
-        RedAura.color = new Color(RedAura.color.r, RedAura.color.g, RedAura.color.b, 0);
-        ChargeBarUI.GetComponent<Image>().fillAmount = EyeChargeBar / 100f;
-    }
+    //warning bar
+    public float EyeBarDecreaseSpeed, RechargeSpeed;
+    private float CurrentEyeBarAmount;
+    public GameObject ChargeBarUI;
+    public Image RedAura, BarImage;
 
     private void Start()
     {
         Respawn.restarted = false;
         Respawn.dead = false;
-        //instance = this;
+        instance = this;
+
         TimerActive = true;
         eye_UI = GetComponent<Button>();
         eye_UI.GetComponent<Image>().sprite = Eye_Open;
         countDown = countDownTime = 5f;
         anim.SetBool("isBegun", false);
-        EyeChargeBar = 100;
+
+        CurrentEyeBarAmount = 100f;
+        BarImage = ChargeBarUI.GetComponent<Image>();
+    }
+    //reset everything when enabled (entered a safe room)
+    private void OnEnable()
+    {
+        Respawn.restarted = false;
+        Respawn.dead = false;
+        instance = this;
+
+        TimerActive = true;
+        countdownText.enabled = true;
+        countDown = countDownTime = 5f;
+        eye_UI.image.sprite = Eye_Open;
+        anim.SetBool("isBegun", false);
+
+        CurrentEyeBarAmount = 100f;
+        BarImage.fillAmount = 1f;
+
+        RedAura.color = new Color(RedAura.color.r, RedAura.color.g, RedAura.color.b, 0);
     }
 
     private void Update()
@@ -59,15 +69,9 @@ public class NoSightAllowed : MonoBehaviour
             eye_UI.onClick.Invoke();
             F.GetComponent<TMP_Text>().text = F.GetComponent<TMP_Text>().text == "Press F to open  your eyes" ? "Press F to close your eyes" : "Press F to open  your eyes";
 
+            //eye open
             if (F.GetComponent<TMP_Text>().text == "Press F to close your eyes")
             {
-                EyeChargeBar-= EyeBarDecreaseAmount;
-
-                if (EyeChargeBar < 0)
-                {
-                    Respawn.dead = true;
-                }
-                ChargeBarUI.GetComponent<Image>().fillAmount = EyeChargeBar/100f;
             }
             else
             {
@@ -86,13 +90,14 @@ public class NoSightAllowed : MonoBehaviour
             {
                 countDownTime = 2f;
             }
-            else// if(TriggerEye.restarted)
+            else
             {
                 countDownTime = 5f;
             }
 
             countDown -= 1 * Time.deltaTime;
             countdownText.text = countDown.ToString("0");
+
             if(countDown <= 3f)
             {
                 RedAura.color = new Color(RedAura.color.r, RedAura.color.g, RedAura.color.b, (3f - countDown) / 3f );
@@ -102,15 +107,37 @@ public class NoSightAllowed : MonoBehaviour
             if (countDown <= 0)
             {
                 Respawn.dead = true;
-                countDown = countDownTime;
+                countdownText.text = "";
             }
         }
         else
         {
-            countDown = countDownTime; 
+            countDown = countDownTime;
+
+            //StartCoroutine(RechargeBar());
+            if (CurrentEyeBarAmount < 100)
+            {
+                CurrentEyeBarAmount = Mathf.SmoothDamp(BarImage.fillAmount * 100f, 100f, ref RechargeSpeed, 500 * Time.deltaTime);
+                BarImage.fillAmount = CurrentEyeBarAmount / 100f;
+            }
         }
 
-        
+        if (F.GetComponent<TMP_Text>().text == "Press F to close your eyes")
+        {
+            CurrentEyeBarAmount = Mathf.SmoothDamp(BarImage.fillAmount * 100, 0, ref EyeBarDecreaseSpeed, 500 * Time.deltaTime);
+            Debug.Log(CurrentEyeBarAmount);
+            BarImage.fillAmount = CurrentEyeBarAmount / 100f;
+            
+            if (CurrentEyeBarAmount < 0)
+            {
+                Respawn.dead = true;
+            }
+        }
+        /*else
+        {
+            RedAura.color = new Color(RedAura.color.r, RedAura.color.g, RedAura.color.b, 0);
+        }*/
+
     }
 
     //Animation
@@ -119,6 +146,7 @@ public class NoSightAllowed : MonoBehaviour
         //
         if (eye_UI.image.sprite == Eye_Open)
         {
+            RedAura.color = new Color(RedAura.color.r, RedAura.color.g, RedAura.color.b, 0);
             eye_UI.image.sprite = Eye_Close; //close
             anim.SetBool("isBegun", true);
             anim.SetBool("isOpen", false);
@@ -143,4 +171,9 @@ public class NoSightAllowed : MonoBehaviour
         graphic.CrossFadeColor(color, eye_UI.colors.fadeDuration, true, true);
     }
 
+    private IEnumerator RechargeBar()
+    {
+        yield return new WaitForSeconds(2);
+
+    }
 }

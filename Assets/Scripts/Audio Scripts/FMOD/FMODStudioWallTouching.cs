@@ -107,7 +107,7 @@ namespace FMODUnity
 
         void PlayHitSound()
         {
-            if (isHitWall)
+            if (isHitWall && isWalking)
             {
                 FMOD.Studio.PLAYBACK_STATE fmodPbState;
                 Wall_Hit.getPlaybackState(out fmodPbState);

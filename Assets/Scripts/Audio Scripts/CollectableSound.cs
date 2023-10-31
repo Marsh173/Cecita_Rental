@@ -10,7 +10,7 @@ public class CollectableSound : MonoBehaviour
     {
         if (NoSightAllowed.instance != null)
         {
-            NoSightAllowed.instance.SoundCollecting.SetActive(true);
+            NoSightAllowed.instance.SoundCollectingMessage.SetActive(true);
         }
     }
 
@@ -18,7 +18,7 @@ public class CollectableSound : MonoBehaviour
     {
         if (NoSightAllowed.instance != null)
         {
-            NoSightAllowed.instance.SoundCollecting.SetActive(false);
+            NoSightAllowed.instance.SoundCollectingMessage.SetActive(false);
             InventoryManager.Instance.AddPlaylist(Myitem);
             NoSightAllowed.instance.itemAdded.SetActive(true);
         }

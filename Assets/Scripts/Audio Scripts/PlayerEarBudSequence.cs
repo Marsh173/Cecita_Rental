@@ -48,7 +48,7 @@ public class PlayerEarBudSequence : MonoBehaviour
 
             if (!inventory.activeInHierarchy && TabToOpen && !earBudVoice.isPlaying)
             {
-                Debug.Log("close inventory");
+                //Debug.Log("close inventory");
                 FinishInventory = true;
             }
         }

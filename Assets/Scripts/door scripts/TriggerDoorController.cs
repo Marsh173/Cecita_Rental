@@ -5,32 +5,50 @@ using UnityEngine.SceneManagement;
 
 public class TriggerDoorController : MonoBehaviour
 {
-    [SerializeField] private Animator myDoor = null;
-    [SerializeField] private bool openTrigger = false;
-    [SerializeField] private bool closeTrigger = false;
+    [SerializeField]
+    private Animator myDoorAnimate;
+    private bool openTrigger = false;
+    private bool closeTrigger = false;
 
-    [SerializeField] private string doorOpen = "DoorOpen";
-    [SerializeField] private string doorClose = "DoorClose";
+    private string doorOpen = "DoorOpen";
+    private string doorClose = "DoorClose";
+    private string Idle = "Idle";
+    AnimatorClipInfo[] m_CurrentClipInfo;
 
+    private void Start()
+    {
+        Debug.Log("Animator Test"+myDoorAnimate.GetCurrentAnimatorClipInfo(0)[0].clip.name);
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
             if (openTrigger)
             {
-                Debug.Log(myDoor);
-                myDoor.Play(doorOpen, 0,0.0f);
+                Debug.Log(myDoorAnimate);
+                myDoorAnimate.Play(doorOpen, 0,0.0f);
                 gameObject.SetActive(false);
             }
             else if (closeTrigger)
             {
                 Debug.Log("close");
-                myDoor.Play(doorClose, 0, 0.0f);
-                /*if(SceneManager.GetActiveScene().name != "TutorialLevel")
-                {*/
+                StartCoroutine(ReturnToClose());
+
+                if (!gameObject.CompareTag("startRoomDoor"))
+                {
                     gameObject.SetActive(false);
-                /*}*/
+                }
+
+
             }
         }
+    }
+
+
+    IEnumerator ReturnToClose ()
+    {
+        myDoorAnimate.Play(doorClose, 0, 0.0f);
+        yield return new WaitForSeconds(0.01f);
+        myDoorAnimate.Play(Idle, 0, 0.0f);
     }
 }

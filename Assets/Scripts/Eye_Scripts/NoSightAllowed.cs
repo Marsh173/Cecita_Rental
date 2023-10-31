@@ -10,7 +10,7 @@ public class NoSightAllowed : MonoBehaviour
     public static NoSightAllowed instance;
     private Button eye_UI;
     public Sprite Eye_Open, Eye_Close;
-    public GameObject SoundCollecting, itemAdded, FInstruction;
+    public GameObject SoundCollectingMessage, itemAdded, FInstruction;
     public Animator anim;
 
     //timer

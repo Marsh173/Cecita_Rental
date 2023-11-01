@@ -205,6 +205,7 @@ GameObject:
   - component: {fileID: 1784866648515469906}
   - component: {fileID: 74692380}
   - component: {fileID: 74692390}
+  - component: {fileID: 5326717526596135503}
   m_Layer: 0
   m_Name: FirstPerson-AIO
   m_TagString: Player
@@ -635,11 +636,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26f29f5da85bf7c4486c6d91246e0d09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eye: {fileID: 0}
+  eyeIcon: {fileID: 0}
   MonsterZone: {fileID: 0}
   DeadEndZone: {fileID: 0}
-  player: {fileID: 0}
-  checkpoint: {fileID: 0}
 --- !u!114 &74692380
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -694,6 +693,24 @@ MonoBehaviour:
   EventOnWallHitExit:
     m_PersistentCalls:
       m_Calls: []
+  length: 0
+  ForwardWallHitUI: {fileID: 0}
+  BackWallHitUI: {fileID: 0}
+  RightWallHitUI: {fileID: 0}
+  LeftWallHitUI: {fileID: 0}
+--- !u!114 &5326717526596135503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1784319153359301841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79a096c1ab3105546a77bb5ebb11841a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  checkpoint: {fileID: 0}
 --- !u!1 &1784866649624928378
 GameObject:
   m_ObjectHideFlags: 0

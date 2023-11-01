@@ -26,7 +26,7 @@ public class PhoneInstruction : MonoBehaviour
     {
         if (isInCam)
         {
-            if (Input.GetKeyDown(KeyCode.C))
+            if (Input.GetKeyDown(KeyCode.Escape))
             {
                 Debug.Log("esc");
                 ItemCam.enabled = false;                                    //IMPORTANT: ALWAYS TURN OFF ITEM CAMERAS ON EXITING ITEM INTERACTION

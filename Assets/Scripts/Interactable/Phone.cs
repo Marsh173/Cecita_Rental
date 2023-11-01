@@ -30,7 +30,7 @@ public class Phone : MonoBehaviour
     {
         if (isInCam)
         {
-            if (Input.GetKeyDown(KeyCode.C))
+            if (Input.GetKeyDown(KeyCode.Escape))
             {
                 Debug.Log("esc");
                 PhoneCam.enabled = false;                           //IMPORTANT: ALWAYS TURN OFF ITEM CAMERAS ON EXITING ITEM INTERACTION
@@ -46,7 +46,7 @@ public class Phone : MonoBehaviour
 
     public void AddNumber(float temp)
     {
-        if (phoneNumber.Length <10 && CanDial)
+        if (phoneNumber.Length <5 && CanDial)
         {
             phoneNumber += temp;
             PhoneNumberText.text = phoneNumber;
@@ -67,7 +67,7 @@ public class Phone : MonoBehaviour
     {
         if (phoneNumber == correctNumber) //PuzzleHandler.hasSolvedClockPuzzle && 
         {
-            PhoneNumberText.text = "dialing...(You cleared the level!)";
+            PhoneNumberText.text = "dialing...";
         }
         //else if(!PuzzleHandler.hasSolvedClockPuzzle && phoneNumber == correctNumber)
         //{
@@ -82,7 +82,7 @@ public class Phone : MonoBehaviour
 
     IEnumerator WrongNumber()
     {
-        PhoneNumberText.text = "Wrong Number";
+        PhoneNumberText.text = "Wrong";
         CanDial = false;
         yield return new WaitForSeconds(1);
         phoneNumber = "";

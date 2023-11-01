@@ -119,7 +119,7 @@ MonoBehaviour:
     - prefix: '-'
       name: Subheader
       font: {fileID: 0}
-      fontSize: 10
+      fontSize: 13
       fontAlignment: 3
       fontStyle: 1
       textFormatting: 0
@@ -183,7 +183,7 @@ MonoBehaviour:
           m_Top: 0
           m_Bottom: 0
         m_Font: {fileID: 0}
-        m_FontSize: 10
+        m_FontSize: 13
         m_FontStyle: 1
         m_Alignment: 3
         m_WordWrap: 0
@@ -1112,6 +1112,16 @@ MonoBehaviour:
           m_Text: EventTrigger
           m_Image: {fileID: 4845907150990230842, guid: 0000000000000000d000000000000000, type: 0}
           m_Tooltip: EventTrigger
+        shown: 0
+        isBuiltIn: 1
+        script: {fileID: 0}
+      - displayName: FbxPrefab
+        name: UnityEngine.Formats.Fbx.Exporter.FbxPrefab, Unity.Formats.Fbx.Runtime,
+          Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        content:
+          m_Text: FbxPrefab
+          m_Image: {fileID: 0}
+          m_Tooltip: FbxPrefab
         shown: 0
         isBuiltIn: 1
         script: {fileID: 0}
@@ -2807,24 +2817,16 @@ MonoBehaviour:
         shown: 0
         isBuiltIn: 0
         script: {fileID: 11500000, guid: d2884dcd01bf3064db3b94b85f73d1ec, type: 3}
-      - displayName: Recorder
-        name: Recorder, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      - displayName: InteractableItem
+        name: InteractableItem, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+          PublicKeyToken=null
         content:
-          m_Text: Recorder
+          m_Text: InteractableItem
           m_Image: {fileID: -8204150473280056172, guid: 0000000000000000d000000000000000, type: 0}
-          m_Tooltip: Recorder
+          m_Tooltip: InteractableItem
         shown: 0
         isBuiltIn: 0
         script: {fileID: 11500000, guid: fe0823493b3fe476ca2ae629e21eeba8, type: 3}
-      - displayName: EarPiece
-        name: EarPiece, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-        content:
-          m_Text: EarPiece
-          m_Image: {fileID: -8204150473280056172, guid: 0000000000000000d000000000000000, type: 0}
-          m_Tooltip: EarPiece
-        shown: 0
-        isBuiltIn: 0
-        script: {fileID: 11500000, guid: f7476aae929c04c5490e142bc3a4d57f, type: 3}
       - displayName: DelayOpenDoorController
         name: DelayOpenDoorController, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
           PublicKeyToken=null
@@ -2844,6 +2846,112 @@ MonoBehaviour:
         shown: 0
         isBuiltIn: 0
         script: {fileID: 11500000, guid: d5b2f22e260200f4b9abf2704dd0aa2c, type: 3}
+      - displayName: WallHitCheck
+        name: WallHitCheck, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        content:
+          m_Text: WallHitCheck
+          m_Image: {fileID: -8204150473280056172, guid: 0000000000000000d000000000000000, type: 0}
+          m_Tooltip: WallHitCheck
+        shown: 0
+        isBuiltIn: 0
+        script: {fileID: 11500000, guid: d28e02e6c60ebf540984388bf3a72b7d, type: 3}
+      - displayName: FMODStudioWallTouching
+        name: FMODUnity.FMODStudioWallTouching, Assembly-CSharp, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+        content:
+          m_Text: FMODStudioWallTouching
+          m_Image: {fileID: -8204150473280056172, guid: 0000000000000000d000000000000000, type: 0}
+          m_Tooltip: FMODStudioWallTouching
+        shown: 0
+        isBuiltIn: 0
+        script: {fileID: 11500000, guid: 901db4f15ca451042994ee9d6cd75312, type: 3}
+      - displayName: Respawn
+        name: Respawn, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        content:
+          m_Text: Respawn
+          m_Image: {fileID: -8204150473280056172, guid: 0000000000000000d000000000000000, type: 0}
+          m_Tooltip: Respawn
+        shown: 0
+        isBuiltIn: 0
+        script: {fileID: 11500000, guid: 79a096c1ab3105546a77bb5ebb11841a, type: 3}
+      - displayName: TriggerDoorController
+        name: TriggerDoorController, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+          PublicKeyToken=null
+        content:
+          m_Text: TriggerDoorController
+          m_Image: {fileID: -8204150473280056172, guid: 0000000000000000d000000000000000, type: 0}
+          m_Tooltip: TriggerDoorController
+        shown: 0
+        isBuiltIn: 0
+        script: {fileID: 11500000, guid: 7e3b626f5aaea5740975126f14b0cbb7, type: 3}
+      - displayName: RecorderInventoryManager
+        name: RecorderInventoryManager, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+          PublicKeyToken=null
+        content:
+          m_Text: RecorderInventoryManager
+          m_Image: {fileID: -8204150473280056172, guid: 0000000000000000d000000000000000, type: 0}
+          m_Tooltip: RecorderInventoryManager
+        shown: 0
+        isBuiltIn: 0
+        script: {fileID: 11500000, guid: 4ff16acadf49093439022f42d8abcd28, type: 3}
+      - displayName: PhoneInstruction
+        name: PhoneInstruction, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+          PublicKeyToken=null
+        content:
+          m_Text: PhoneInstruction
+          m_Image: {fileID: -8204150473280056172, guid: 0000000000000000d000000000000000, type: 0}
+          m_Tooltip: PhoneInstruction
+        shown: 0
+        isBuiltIn: 0
+        script: {fileID: 11500000, guid: 20905b8e26f7d4678a98e4edf7c1abca, type: 3}
+      - displayName: InteractableItemWithEvent
+        name: InteractableItemWithEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+          PublicKeyToken=null
+        content:
+          m_Text: InteractableItemWithEvent
+          m_Image: {fileID: -8204150473280056172, guid: 0000000000000000d000000000000000, type: 0}
+          m_Tooltip: InteractableItemWithEvent
+        shown: 0
+        isBuiltIn: 0
+        script: {fileID: 11500000, guid: 37feb22ac0081c14a86bcdb8a83927c5, type: 3}
+      - displayName: Phone
+        name: Phone, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        content:
+          m_Text: Phone
+          m_Image: {fileID: -8204150473280056172, guid: 0000000000000000d000000000000000, type: 0}
+          m_Tooltip: Phone
+        shown: 0
+        isBuiltIn: 0
+        script: {fileID: 11500000, guid: 6e39f30c5b2074aa09c1b57371e1b73d, type: 3}
+      - displayName: Outline
+        name: Outline, Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral,
+          PublicKeyToken=null
+        content:
+          m_Text: Outline
+          m_Image: {fileID: -8204150473280056172, guid: 0000000000000000d000000000000000, type: 0}
+          m_Tooltip: Outline
+        shown: 0
+        isBuiltIn: 0
+        script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+      - displayName: UISpriteAnim
+        name: UISpriteAnim, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        content:
+          m_Text: UISpriteAnim
+          m_Image: {fileID: -8204150473280056172, guid: 0000000000000000d000000000000000, type: 0}
+          m_Tooltip: UISpriteAnim
+        shown: 0
+        isBuiltIn: 0
+        script: {fileID: 11500000, guid: 8dab5544115aecd41b3d4f0a6b8ca5a7, type: 3}
+      - displayName: RandomDoorAnimation
+        name: RandomDoorAnimation, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+          PublicKeyToken=null
+        content:
+          m_Text: RandomDoorAnimation
+          m_Image: {fileID: -8204150473280056172, guid: 0000000000000000d000000000000000, type: 0}
+          m_Tooltip: RandomDoorAnimation
+        shown: 0
+        isBuiltIn: 0
+        script: {fileID: 11500000, guid: 5b364780aed4d1c4c928ea25cdc68780, type: 3}
     excludedComponents:
       name: Excluded
       components:
@@ -3726,6 +3834,16 @@ MonoBehaviour:
           m_Text: EventTrigger
           m_Image: {fileID: 4845907150990230842, guid: 0000000000000000d000000000000000, type: 0}
           m_Tooltip: EventTrigger
+        shown: 0
+        isBuiltIn: 1
+        script: {fileID: 0}
+      - displayName: FbxPrefab
+        name: UnityEngine.Formats.Fbx.Exporter.FbxPrefab, Unity.Formats.Fbx.Runtime,
+          Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        content:
+          m_Text: FbxPrefab
+          m_Image: {fileID: 0}
+          m_Tooltip: FbxPrefab
         shown: 0
         isBuiltIn: 1
         script: {fileID: 0}
@@ -6108,6 +6226,16 @@ MonoBehaviour:
           m_Text: EventTrigger
           m_Image: {fileID: 4845907150990230842, guid: 0000000000000000d000000000000000, type: 0}
           m_Tooltip: EventTrigger
+        shown: 0
+        isBuiltIn: 1
+        script: {fileID: 0}
+      - displayName: FbxPrefab
+        name: UnityEngine.Formats.Fbx.Exporter.FbxPrefab, Unity.Formats.Fbx.Runtime,
+          Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        content:
+          m_Text: FbxPrefab
+          m_Image: {fileID: 0}
+          m_Tooltip: FbxPrefab
         shown: 0
         isBuiltIn: 1
         script: {fileID: 0}
@@ -7613,4 +7741,4 @@ MonoBehaviour:
         script: {fileID: 0}
     unityVersion: 2020.3.20f1
     isDirty: 0
-    UnityCount: 238
+    UnityCount: 239

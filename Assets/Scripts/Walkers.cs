@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class Walkers : MonoBehaviour
 {
+    //AI patrol 
+    public Transform[] patrolPoints;
+    int currentPointIndex = 0;
+
+    //
     public float speed;
     public Transform stop;
     public GameObject walker;
@@ -35,10 +40,19 @@ public class Walkers : MonoBehaviour
     {
         MovingSoundPosition();
 
-        if (trigger && !stopMoving)
-        {
-            walker.transform.position = Vector3.MoveTowards(walker.transform.position, stop.position, speed * Time.deltaTime * 2f);
-        }
+        //if (trigger && !stopMoving)
+        //{
+            if (walker.transform.position != patrolPoints[currentPointIndex].position)
+            {
+                walker.transform.position = Vector3.MoveTowards(walker.transform.position, patrolPoints[currentPointIndex].position, speed * Time.deltaTime * 2f);
+                Vector3 direction = patrolPoints[currentPointIndex].position - walker.transform.position;
+                walker.transform.forward = Vector3.Lerp(walker.transform.forward, direction, 0.08f);
+            }
+            else
+            {
+                currentPointIndex = (currentPointIndex + 1) % patrolPoints.Length;
+            }
+        //}
 
 
 

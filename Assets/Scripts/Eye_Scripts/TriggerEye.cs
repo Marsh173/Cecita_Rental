@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TriggerEye : MonoBehaviour
 {
-    public GameObject eyeIcon, MonsterZone, DeadEndZone;
+    [SerializeField] private GameObject eyeIcon, MonsterZone, DeadEndZone;
     private bool MonsterZoneHasPlayed, DeadEndZoneHasPlayed = false;
     public static bool enteredCantOpen;
 

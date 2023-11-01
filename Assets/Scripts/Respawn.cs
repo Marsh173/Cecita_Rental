@@ -45,11 +45,8 @@ public class Respawn : MonoBehaviour
     IEnumerator RespawnRoutiine()
     {
         dead = false;
-        //playerInScene = GameObject.Find("FirstPerson-AIO");
-        //Destroy(playerInScene, 1f);
         yield return new WaitForSeconds(1f);
-        //Instantiate(playerPrefab, checkpoint.transform);
-        Debug.Log("respawned");
+        //Debug.Log("respawned");
         playerInScene.transform.position = checkpoint.transform.position;
     }
 }

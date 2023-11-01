@@ -124,7 +124,7 @@ public class NoSightAllowed : MonoBehaviour
             if(TimerActive && CurrentEyeBarAmount != 0)
             {
                 CurrentEyeBarAmount -= 100/countDownTime * Time.deltaTime;
-                Debug.Log("speed" + 100 / countDownTime * Time.deltaTime);
+                //Debug.Log("speed" + 100 / countDownTime * Time.deltaTime);
 
             }
             

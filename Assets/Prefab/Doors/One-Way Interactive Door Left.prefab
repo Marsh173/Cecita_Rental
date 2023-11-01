@@ -111,6 +111,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   promptMessage: Open the Door
   promptIcon: {fileID: 0}
+  interacted: 0
   NItem: {fileID: 0}
   AItem: {fileID: 0}
   recordWaitTime: 0
@@ -1008,10 +1009,10 @@ Transform:
   m_LocalPosition: {x: -0.02, y: 0.78, z: -32.519}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1069480103508364561}
   - {fileID: 798518595133525981}
   - {fileID: 7220260932567123325}
   - {fileID: 7498132079553855193}
+  - {fileID: 1069480103508364561}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
@@ -1044,11 +1045,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7220260932567123326}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 6.13}
-  m_LocalScale: {x: 3.3529, y: 2.3362, z: 1.8924383}
+  m_LocalPosition: {x: 0, y: 0, z: 4.5}
+  m_LocalScale: {x: 3.3529, y: 2.3362, z: 0.9105656}
   m_Children: []
   m_Father: {fileID: 7220260932161113183}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &7220260932567123312
 MeshFilter:
@@ -1124,11 +1125,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e3b626f5aaea5740975126f14b0cbb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myDoor: {fileID: 4624918839280821040}
+  myDoorAnimator: {fileID: 4624918839280821040}
   openTrigger: 0
   closeTrigger: 1
-  doorOpen: DoorLeftOpen
-  doorClose: DoorLeftClose
 --- !u!114 &7220260932567123324
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1189,7 +1188,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7220260932161113183}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &102455115975858954
 MonoBehaviour:
@@ -1255,7 +1254,7 @@ Transform:
   - {fileID: 7173254353550180516}
   - {fileID: 2568354410325251596}
   m_Father: {fileID: 7220260932161113183}
-  m_RootOrder: 0
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &311634755836573450
 MeshFilter:
@@ -1343,7 +1342,7 @@ Transform:
   - {fileID: 6214385007384635260}
   - {fileID: 96705056903553548}
   m_Father: {fileID: 7220260932161113183}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2274158082891962643
 MeshFilter:

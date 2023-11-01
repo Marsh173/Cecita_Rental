@@ -86,7 +86,7 @@ namespace FMODUnity
             awful_broadcast.setProperty(FMOD.Studio.EVENT_PROPERTY.MINIMUM_DISTANCE, originalMinDistance);
             awful_broadcast.setProperty(FMOD.Studio.EVENT_PROPERTY.MAXIMUM_DISTANCE, originalMaxDistance);
 
-            Debug.Log("Override Attenuation");
+            //Debug.Log("Override Attenuation");
         }
 
         private void OnEnable()

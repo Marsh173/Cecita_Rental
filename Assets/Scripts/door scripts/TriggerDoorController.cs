@@ -5,19 +5,16 @@ using UnityEngine.SceneManagement;
 
 public class TriggerDoorController : MonoBehaviour
 {
-    [SerializeField]
-    private Animator myDoorAnimate;
-    private bool openTrigger = false;
-    private bool closeTrigger = false;
-
+    [SerializeField] private Animator myDoorAnimator;
+    [SerializeField] private bool openTrigger = false;
+    [SerializeField] private bool closeTrigger = false;
     private string doorOpen = "DoorOpen";
     private string doorClose = "DoorClose";
     private string Idle = "Idle";
-    AnimatorClipInfo[] m_CurrentClipInfo;
 
     private void Start()
     {
-        Debug.Log("Animator Test"+myDoorAnimate.GetCurrentAnimatorClipInfo(0)[0].clip.name);
+       openTrigger = closeTrigger = false;
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -25,30 +22,53 @@ public class TriggerDoorController : MonoBehaviour
         {
             if (openTrigger)
             {
-                Debug.Log(myDoorAnimate);
-                myDoorAnimate.Play(doorOpen, 0,0.0f);
-                gameObject.SetActive(false);
+                myDoorAnimator.SetBool("Opened", false);
+                myDoorAnimator.SetBool("Closed", true);
+
+                Debug.Log("Closed" + myDoorAnimator.GetBool("Closed"));
+                Debug.Log("Opened" + myDoorAnimator.GetBool("Opened"));
+
             }
             else if (closeTrigger)
             {
-                Debug.Log("close");
-                StartCoroutine(ReturnToClose());
+                myDoorAnimator.SetBool("Opened", true);
+                myDoorAnimator.SetBool("Closed", false);
+
+                Debug.Log("Closed" + myDoorAnimator.GetBool("Closed"));
+                Debug.Log("Opened" + myDoorAnimator.GetBool("Opened"));
 
                 if (!gameObject.CompareTag("startRoomDoor"))
                 {
                     gameObject.SetActive(false);
                 }
-
-
+               
             }
         }
     }
 
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            /*if (gameObject.CompareTag("LoungeDoor") && !myDoorAnimator.GetBool("Opened") && myDoorAnimator.GetBool("Closed"))
+            {
+                myDoorAnimator.SetBool("Opened", true);
+                myDoorAnimator.SetBool("Closed", false);
+            }
+            else
+            {
+                myDoorAnimator.SetBool("Opened", false);
+                myDoorAnimator.SetBool("Closed", false);
 
+                Debug.Log("Closed" + myDoorAnimator.GetBool("Closed"));
+                Debug.Log("Opened" + myDoorAnimator.GetBool("Opened"));
+            }*/
+        }
+    }
     IEnumerator ReturnToClose ()
     {
-        myDoorAnimate.Play(doorClose, 0, 0.0f);
-        yield return new WaitForSeconds(0.01f);
-        myDoorAnimate.Play(Idle, 0, 0.0f);
+        yield return new WaitForSeconds(1f); 
+        myDoorAnimator.SetBool("Opened", true);
+        myDoorAnimator.SetBool("Closed", false);
     }
 }

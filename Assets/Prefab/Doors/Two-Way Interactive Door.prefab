@@ -118,7 +118,7 @@ Transform:
   - {fileID: 6103496345340620876}
   - {fileID: 1528027476961658622}
   m_Father: {fileID: 5245014500120954094}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1221643825464282072
 MeshFilter:
@@ -406,7 +406,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5245014500120954094}
-  m_RootOrder: 1
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3872665691145258423
 MonoBehaviour:
@@ -547,12 +547,12 @@ Transform:
   m_LocalPosition: {x: -100.079865, y: 0.87, z: -107.6}
   m_LocalScale: {x: 1.0817032, y: 1, z: 1}
   m_Children:
-  - {fileID: 4969505105832785512}
-  - {fileID: 3872665691145258416}
-  - {fileID: 6097408114284391236}
   - {fileID: 4641965257084498656}
   - {fileID: 881595764614007024}
   - {fileID: 5245014501591928268}
+  - {fileID: 4969505105832785512}
+  - {fileID: 3872665691145258416}
+  - {fileID: 6097408114284391236}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -589,7 +589,7 @@ Transform:
   m_LocalScale: {x: 3.3529, y: 2.3362, z: 1.8924383}
   m_Children: []
   m_Father: {fileID: 5245014500120954094}
-  m_RootOrder: 5
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5245014501591928257
 MeshFilter:
@@ -665,11 +665,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e3b626f5aaea5740975126f14b0cbb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myDoor: {fileID: 8874629789344155463}
+  myDoorAnimator: {fileID: 8874629789344155463}
   openTrigger: 0
   closeTrigger: 1
-  doorOpen: DoorLeftOpen
-  doorClose: DoorLeftClose
 --- !u!114 &5245014501591928269
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -881,6 +879,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   promptMessage: Open the Door
   promptIcon: {fileID: 0}
+  interacted: 0
   NItem: {fileID: 0}
   AItem: {fileID: 0}
   recordWaitTime: 0
@@ -950,7 +949,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5245014500120954094}
-  m_RootOrder: 0
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3283814161008169915
 MonoBehaviour:
@@ -1340,7 +1339,7 @@ Transform:
   - {fileID: 6321431879174378081}
   - {fileID: 2066582141570527975}
   m_Father: {fileID: 5245014500120954094}
-  m_RootOrder: 2
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4102382203686896093
 MeshFilter:
@@ -1424,7 +1423,7 @@ Transform:
   m_LocalScale: {x: 3.3529, y: 2.3362, z: 1.8924383}
   m_Children: []
   m_Father: {fileID: 5245014500120954094}
-  m_RootOrder: 4
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &6709641414793585743
 MeshFilter:
@@ -1500,11 +1499,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e3b626f5aaea5740975126f14b0cbb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myDoor: {fileID: 8874629789344155463}
+  myDoorAnimator: {fileID: 8874629789344155463}
   openTrigger: 1
   closeTrigger: 0
-  doorOpen: DoorLeftOpen
-  doorClose: DoorLeftClose
 --- !u!114 &4615516149069876632
 MonoBehaviour:
   m_ObjectHideFlags: 0

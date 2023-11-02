@@ -6172,7 +6172,20 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3003794039202407172, guid: 8165256db8ad1ec44929f67b7fe66ca9, type: 3}
   m_PrefabInstance: {fileID: 7074337521674803589}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1089508901
+--- !u!65 &1089508902
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1089508900}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.754167, y: 1, z: 0.5327092}
+  m_Center: {x: -1.8770833, y: 0, z: -0.23364548}
+--- !u!114 &1089508903
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -6201,19 +6214,6 @@ MonoBehaviour:
   OverrideAttenuation: 1
   minDistance: 2
   maxDistance: 24
---- !u!65 &1089508902
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1089508900}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 4.754167, y: 1, z: 0.5327092}
-  m_Center: {x: -1.8770833, y: 0, z: -0.23364548}
 --- !u!1 &1128033567
 GameObject:
   m_ObjectHideFlags: 0
@@ -13379,6 +13379,11 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 302162671290387369, guid: 5f5430113ff8d4848aa453fdb0b64481, type: 3}
   m_PrefabInstance: {fileID: 7085262659499757396}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &1539618646 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7074337523019683464, guid: 8165256db8ad1ec44929f67b7fe66ca9, type: 3}
+  m_PrefabInstance: {fileID: 7074337521674803589}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1540670779
 GameObject:
   m_ObjectHideFlags: 0
@@ -14845,6 +14850,46 @@ PrefabInstance:
       propertyPath: myDoorAnimator
       value: 
       objectReference: {fileID: 1191433558}
+    - target: {fileID: 7220260932567123315, guid: 6bd61431720ed91419b90ee44717180e, type: 3}
+      propertyPath: doorOpenEventPath.Path
+      value: event:/AboutDoors/Door_Open
+      objectReference: {fileID: 0}
+    - target: {fileID: 7220260932567123315, guid: 6bd61431720ed91419b90ee44717180e, type: 3}
+      propertyPath: doorCloseEventPath.Path
+      value: event:/AboutDoors/Door_Close
+      objectReference: {fileID: 0}
+    - target: {fileID: 7220260932567123315, guid: 6bd61431720ed91419b90ee44717180e, type: 3}
+      propertyPath: doorOpenEventPath.Guid.Data1
+      value: -2082476107
+      objectReference: {fileID: 0}
+    - target: {fileID: 7220260932567123315, guid: 6bd61431720ed91419b90ee44717180e, type: 3}
+      propertyPath: doorOpenEventPath.Guid.Data2
+      value: 1138018954
+      objectReference: {fileID: 0}
+    - target: {fileID: 7220260932567123315, guid: 6bd61431720ed91419b90ee44717180e, type: 3}
+      propertyPath: doorOpenEventPath.Guid.Data3
+      value: -1483352190
+      objectReference: {fileID: 0}
+    - target: {fileID: 7220260932567123315, guid: 6bd61431720ed91419b90ee44717180e, type: 3}
+      propertyPath: doorOpenEventPath.Guid.Data4
+      value: -5521762
+      objectReference: {fileID: 0}
+    - target: {fileID: 7220260932567123315, guid: 6bd61431720ed91419b90ee44717180e, type: 3}
+      propertyPath: doorCloseEventPath.Guid.Data1
+      value: 1547944841
+      objectReference: {fileID: 0}
+    - target: {fileID: 7220260932567123315, guid: 6bd61431720ed91419b90ee44717180e, type: 3}
+      propertyPath: doorCloseEventPath.Guid.Data2
+      value: 1318022181
+      objectReference: {fileID: 0}
+    - target: {fileID: 7220260932567123315, guid: 6bd61431720ed91419b90ee44717180e, type: 3}
+      propertyPath: doorCloseEventPath.Guid.Data3
+      value: 633945248
+      objectReference: {fileID: 0}
+    - target: {fileID: 7220260932567123315, guid: 6bd61431720ed91419b90ee44717180e, type: 3}
+      propertyPath: doorCloseEventPath.Guid.Data4
+      value: 1309534174
+      objectReference: {fileID: 0}
     - target: {fileID: 7220260932567123325, guid: 6bd61431720ed91419b90ee44717180e, type: 3}
       propertyPath: m_LocalScale.z
       value: 0.85104847
@@ -14861,7 +14906,8 @@ PrefabInstance:
       propertyPath: m_TagString
       value: startRoomDoor
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7220260932567123324, guid: 6bd61431720ed91419b90ee44717180e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 6bd61431720ed91419b90ee44717180e, type: 3}
 --- !u!1 &1844016580
 GameObject:
@@ -20235,6 +20281,46 @@ PrefabInstance:
       propertyPath: myDoorAnimator
       value: 
       objectReference: {fileID: 430777140}
+    - target: {fileID: 1750941655008523041, guid: 31b3a2a7aaafe9748a13cd92b4079c32, type: 3}
+      propertyPath: doorOpenEventPath.Path
+      value: event:/AboutDoors/Door_Open
+      objectReference: {fileID: 0}
+    - target: {fileID: 1750941655008523041, guid: 31b3a2a7aaafe9748a13cd92b4079c32, type: 3}
+      propertyPath: doorCloseEventPath.Path
+      value: event:/AboutDoors/Door_Close
+      objectReference: {fileID: 0}
+    - target: {fileID: 1750941655008523041, guid: 31b3a2a7aaafe9748a13cd92b4079c32, type: 3}
+      propertyPath: doorOpenEventPath.Guid.Data1
+      value: -2082476107
+      objectReference: {fileID: 0}
+    - target: {fileID: 1750941655008523041, guid: 31b3a2a7aaafe9748a13cd92b4079c32, type: 3}
+      propertyPath: doorOpenEventPath.Guid.Data2
+      value: 1138018954
+      objectReference: {fileID: 0}
+    - target: {fileID: 1750941655008523041, guid: 31b3a2a7aaafe9748a13cd92b4079c32, type: 3}
+      propertyPath: doorOpenEventPath.Guid.Data3
+      value: -1483352190
+      objectReference: {fileID: 0}
+    - target: {fileID: 1750941655008523041, guid: 31b3a2a7aaafe9748a13cd92b4079c32, type: 3}
+      propertyPath: doorOpenEventPath.Guid.Data4
+      value: -5521762
+      objectReference: {fileID: 0}
+    - target: {fileID: 1750941655008523041, guid: 31b3a2a7aaafe9748a13cd92b4079c32, type: 3}
+      propertyPath: doorCloseEventPath.Guid.Data1
+      value: 1547944841
+      objectReference: {fileID: 0}
+    - target: {fileID: 1750941655008523041, guid: 31b3a2a7aaafe9748a13cd92b4079c32, type: 3}
+      propertyPath: doorCloseEventPath.Guid.Data2
+      value: 1318022181
+      objectReference: {fileID: 0}
+    - target: {fileID: 1750941655008523041, guid: 31b3a2a7aaafe9748a13cd92b4079c32, type: 3}
+      propertyPath: doorCloseEventPath.Guid.Data3
+      value: 633945248
+      objectReference: {fileID: 0}
+    - target: {fileID: 1750941655008523041, guid: 31b3a2a7aaafe9748a13cd92b4079c32, type: 3}
+      propertyPath: doorCloseEventPath.Guid.Data4
+      value: 1309534174
+      objectReference: {fileID: 0}
     - target: {fileID: 1750941655697271084, guid: 31b3a2a7aaafe9748a13cd92b4079c32, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -20291,11 +20377,53 @@ PrefabInstance:
       propertyPath: myDoorAnimator
       value: 
       objectReference: {fileID: 430777140}
+    - target: {fileID: 1750941656451275591, guid: 31b3a2a7aaafe9748a13cd92b4079c32, type: 3}
+      propertyPath: doorOpenEventPath.Path
+      value: event:/AboutDoors/Door_Open
+      objectReference: {fileID: 0}
+    - target: {fileID: 1750941656451275591, guid: 31b3a2a7aaafe9748a13cd92b4079c32, type: 3}
+      propertyPath: doorCloseEventPath.Path
+      value: event:/AboutDoors/Door_Close
+      objectReference: {fileID: 0}
+    - target: {fileID: 1750941656451275591, guid: 31b3a2a7aaafe9748a13cd92b4079c32, type: 3}
+      propertyPath: doorOpenEventPath.Guid.Data1
+      value: -2082476107
+      objectReference: {fileID: 0}
+    - target: {fileID: 1750941656451275591, guid: 31b3a2a7aaafe9748a13cd92b4079c32, type: 3}
+      propertyPath: doorOpenEventPath.Guid.Data2
+      value: 1138018954
+      objectReference: {fileID: 0}
+    - target: {fileID: 1750941656451275591, guid: 31b3a2a7aaafe9748a13cd92b4079c32, type: 3}
+      propertyPath: doorOpenEventPath.Guid.Data3
+      value: -1483352190
+      objectReference: {fileID: 0}
+    - target: {fileID: 1750941656451275591, guid: 31b3a2a7aaafe9748a13cd92b4079c32, type: 3}
+      propertyPath: doorOpenEventPath.Guid.Data4
+      value: -5521762
+      objectReference: {fileID: 0}
+    - target: {fileID: 1750941656451275591, guid: 31b3a2a7aaafe9748a13cd92b4079c32, type: 3}
+      propertyPath: doorCloseEventPath.Guid.Data1
+      value: 1547944841
+      objectReference: {fileID: 0}
+    - target: {fileID: 1750941656451275591, guid: 31b3a2a7aaafe9748a13cd92b4079c32, type: 3}
+      propertyPath: doorCloseEventPath.Guid.Data2
+      value: 1318022181
+      objectReference: {fileID: 0}
+    - target: {fileID: 1750941656451275591, guid: 31b3a2a7aaafe9748a13cd92b4079c32, type: 3}
+      propertyPath: doorCloseEventPath.Guid.Data3
+      value: 633945248
+      objectReference: {fileID: 0}
+    - target: {fileID: 1750941656451275591, guid: 31b3a2a7aaafe9748a13cd92b4079c32, type: 3}
+      propertyPath: doorCloseEventPath.Guid.Data4
+      value: 1309534174
+      objectReference: {fileID: 0}
     - target: {fileID: 5410849760298419924, guid: 31b3a2a7aaafe9748a13cd92b4079c32, type: 3}
       propertyPath: m_LocalPosition.z
       value: 2.198
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2286555913333524465, guid: 31b3a2a7aaafe9748a13cd92b4079c32, type: 3}
+    - {fileID: 1037009918512232046, guid: 31b3a2a7aaafe9748a13cd92b4079c32, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 31b3a2a7aaafe9748a13cd92b4079c32, type: 3}
 --- !u!1001 &1784866648865528818
 PrefabInstance:
@@ -28773,6 +28901,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Actual Monster
       objectReference: {fileID: 0}
+    - target: {fileID: 7074337523325829901, guid: 8165256db8ad1ec44929f67b7fe66ca9, type: 3}
+      propertyPath: patrolPoints.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7074337523325829901, guid: 8165256db8ad1ec44929f67b7fe66ca9, type: 3}
+      propertyPath: patrolPoints.Array.data[0]
+      value: 
+      objectReference: {fileID: 1539618646}
+    - target: {fileID: 7074337523325829901, guid: 8165256db8ad1ec44929f67b7fe66ca9, type: 3}
+      propertyPath: patrolPoints.Array.data[1]
+      value: 
+      objectReference: {fileID: 1539618646}
     m_RemovedComponents:
     - {fileID: 2890735405182334242, guid: 8165256db8ad1ec44929f67b7fe66ca9, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 8165256db8ad1ec44929f67b7fe66ca9, type: 3}

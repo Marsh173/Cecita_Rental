@@ -9,6 +9,8 @@ namespace FMODUnity
 {
     public class FMODStudioChangeMusic : MonoBehaviour
     {
+        FMOD.ChannelGroup mcg;
+        FMOD.Studio.Bus Masterbus;
 
         [Header("FMOD Settings")]
         [SerializeField] EventReference BeautifulBroadcastEventPath;
@@ -29,6 +31,7 @@ namespace FMODUnity
 
         void Start()
         {
+            OnEnable();
             beautiful_broadcast = FMODUnity.RuntimeManager.CreateInstance(BeautifulBroadcastEventPath);
             beautiful_broadcast.setProperty(FMOD.Studio.EVENT_PROPERTY.MINIMUM_DISTANCE, originalMinDistance);
             beautiful_broadcast.setProperty(FMOD.Studio.EVENT_PROPERTY.MAXIMUM_DISTANCE, originalMaxDistance);
@@ -38,6 +41,8 @@ namespace FMODUnity
             awful_broadcast.setProperty(FMOD.Studio.EVENT_PROPERTY.MAXIMUM_DISTANCE, originalMaxDistance);
 
             beautiful_broadcast.start();
+
+            Masterbus = FMODUnity.RuntimeManager.GetBus("Bus:/");
         }
 
         
@@ -99,11 +104,15 @@ namespace FMODUnity
             SceneManager.sceneUnloaded -= OnSceneUnloaded;
         }
 
-        private void OnSceneUnloaded(Scene unloadedScene)
+        public void OnSceneUnloaded(Scene unloadedScene)
         {
             // Stop the audio playback here
             beautiful_broadcast.release();
             awful_broadcast.release();
+            Debug.Log("Unloaded");
+            FMODUnity.RuntimeManager.CoreSystem.getMasterChannelGroup(out mcg);
+            mcg.stop();
+            Masterbus.stopAllEvents(FMOD.Studio.STOP_MODE.IMMEDIATE);
         }
 
 #if UNITY_EDITOR

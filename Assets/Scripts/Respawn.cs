@@ -5,9 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class Respawn : MonoBehaviour
 {
-    public GameObject playerInScene, /*playerPrefab,*/ checkpoint;
+    //public GameObject playerInScene;
+    [SerializeField] private Transform checkpoint;
     public static bool dead, restarted;
-    // Start is called before the first frame update
     void Start()
     {
         dead = restarted = false;
@@ -22,9 +22,9 @@ public class Respawn : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Player"))
+        if(other.CompareTag("checkpoint"))
         {
-            checkpoint = gameObject;
+            checkpoint = other.transform;
         }
     }
 
@@ -33,20 +33,24 @@ public class Respawn : MonoBehaviour
         //instant restart when in tutorial level
         if (dead)
         {
-            if (SceneManager.GetActiveScene().name == "TutorialLevel" || SceneManager.GetActiveScene().name == "TutorialLevel restart")
+            if (SceneManager.GetActiveScene().name == "TutorialLevel")
             {
                 //SceneManager.LoadScene("TutorialLevel restart");
                 StartCoroutine(RespawnRoutiine());
             }
-            else SceneManager.LoadScene("Death");
+            //else SceneManager.LoadScene("Death");
+            StartCoroutine(RespawnRoutiine());
         }
 
     }
     IEnumerator RespawnRoutiine()
     {
         dead = false;
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
         //Debug.Log("respawned");
-        playerInScene.transform.position = checkpoint.transform.position;
+        if(checkpoint != null)
+        {
+            transform.position = checkpoint.position;
+        }
     }
 }

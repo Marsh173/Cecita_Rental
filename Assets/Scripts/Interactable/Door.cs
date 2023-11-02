@@ -11,17 +11,26 @@ public class Door : InteractableItemWithEvent
     public GameObject openSound;
     public GameObject closeSound;
 
+
+
+
     public void ChangeBehavior()
     {
+
+        //Issue: when you exit lounge, door closes behind you on trigger.
+        //When you reenter the lounge on trigger, this interact door state is set to "close the door". 
+        //so you have to interact once - close the door, then interact the second time to open door.
+
+
         if(promptMessage.Contains("Open the Door"))
         {
             promptMessage = "Close the Door";
             anim.Play(DoorOpenClip);
             openSound.SetActive(true);
             closeSound.SetActive(false);
-            
+          
         }
-        else if(promptMessage.Contains("Close the Door"))
+        if(promptMessage.Contains("Close the Door"))
         {
             promptMessage = "Open the Door";
             anim.Play(DoorCloseClip);

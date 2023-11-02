@@ -71,7 +71,7 @@ namespace FMODUnity
                     beautiful_broadcast.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
                     awful_broadcast.start();
                     awful_broadcast.release();
-                    Debug.Log("Play awful sound now...");
+                   // Debug.Log("Play awful sound now...");
                 }
 
                 

@@ -569,7 +569,6 @@ GameObject:
   - component: {fileID: 5245014501591928256}
   - component: {fileID: 5245014501591928259}
   - component: {fileID: 5245014501591928258}
-  - component: {fileID: 5245014501591928269}
   m_Layer: 0
   m_Name: CloseDoor Trigger
   m_TagString: Untagged
@@ -668,37 +667,20 @@ MonoBehaviour:
   myDoorAnimator: {fileID: 8874629789344155463}
   openTrigger: 0
   closeTrigger: 1
---- !u!114 &5245014501591928269
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5245014501591928271}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CollisionTag: 
-  EventReference:
+  doorOpenEventPath:
     Guid:
-      Data1: 1547944841
-      Data2: 1318022181
-      Data3: 633945248
-      Data4: 1309534174
-    Path: event:/AboutDoors/Door_Close
-  Event: 
-  PlayEvent: 3
-  StopEvent: 2
-  AllowFadeout: 1
-  TriggerOnce: 0
-  Preload: 0
-  AllowNonRigidbodyDoppler: 0
-  Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: 1
-  OverrideMaxDistance: 20
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  doorCloseEventPath:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!1 &5432738138612231266
 GameObject:
   m_ObjectHideFlags: 0
@@ -1403,7 +1385,6 @@ GameObject:
   - component: {fileID: 7247593741561212294}
   - component: {fileID: 4574767221852269255}
   - component: {fileID: 6231854648012578027}
-  - component: {fileID: 4615516149069876632}
   m_Layer: 0
   m_Name: OpenDoorTrigger
   m_TagString: Untagged
@@ -1502,34 +1483,17 @@ MonoBehaviour:
   myDoorAnimator: {fileID: 8874629789344155463}
   openTrigger: 1
   closeTrigger: 0
---- !u!114 &4615516149069876632
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9121521872402863214}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CollisionTag: 
-  EventReference:
+  doorOpenEventPath:
     Guid:
-      Data1: 1547944841
-      Data2: 1318022181
-      Data3: 633945248
-      Data4: 1309534174
-    Path: event:/AboutDoors/Door_Close
-  Event: 
-  PlayEvent: 3
-  StopEvent: 2
-  AllowFadeout: 1
-  TriggerOnce: 0
-  Preload: 0
-  AllowNonRigidbodyDoppler: 0
-  Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: 1
-  OverrideMaxDistance: 20
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  doorCloseEventPath:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 

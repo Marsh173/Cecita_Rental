@@ -311,10 +311,10 @@ MonoBehaviour:
   Path: CecitaRentalsFMOD/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638345397565285580
+  lastModified: 638345411631243390
   FileSizes:
   - Name: Desktop
-    Value: 3236
+    Value: 3286
   Exists: 1
 --- !u!114 &-5174120981335453660
 MonoBehaviour:
@@ -546,11 +546,38 @@ MonoBehaviour:
   Path: CecitaRentalsFMOD/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638345397565207392
+  lastModified: 638345411631183554
   FileSizes:
   - Name: Desktop
-    Value: 22660032
+    Value: 23216512
   Exists: 1
+--- !u!114 &-426930133484440356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Monsters/Walker-HeavyFootsteps_Muffled
+  m_EditorClassIdentifier: 
+  Path: event:/Monsters/Walker-HeavyFootsteps_Muffled
+  Guid:
+    Data1: 939871151
+    Data2: 1317348166
+    Data3: -565389177
+    Data4: 1041614947
+  Banks:
+  - {fileID: -467159901301284631}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 11010
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -613,12 +640,13 @@ MonoBehaviour:
   - {fileID: -5174120981335453660}
   - {fileID: 850576777099311202}
   - {fileID: 5658462486832258605}
+  - {fileID: -426930133484440356}
   EditorParameters: []
   MasterBanks:
   - {fileID: -467159901301284631}
   StringsBanks:
   - {fileID: -5605573005749433500}
-  cacheTime: 638345397565285580
+  cacheTime: 638345411631243390
   cacheVersion: 131605
 --- !u!114 &98072704038401942
 MonoBehaviour:
@@ -750,13 +778,13 @@ MonoBehaviour:
     Data4: 1292558837
   Banks:
   - {fileID: -467159901301284631}
-  IsStream: 0
+  IsStream: 1
   Is3D: 1
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 0
+  Length: 1200
 --- !u!114 &897494510526107420
 MonoBehaviour:
   m_ObjectHideFlags: 0

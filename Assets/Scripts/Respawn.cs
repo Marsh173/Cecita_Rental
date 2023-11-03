@@ -8,6 +8,9 @@ public class Respawn : MonoBehaviour
     //public GameObject playerInScene;
     [SerializeField] private Transform checkpoint;
     public static bool dead, restarted;
+
+    public GameObject placeholderDeathText;
+
     void Start()
     {
         dead = restarted = false;
@@ -50,6 +53,7 @@ public class Respawn : MonoBehaviour
         //Debug.Log("respawned");
         if(checkpoint != null)
         {
+            placeholderDeathText.SetActive(true);
             transform.position = checkpoint.position;
         }
     }

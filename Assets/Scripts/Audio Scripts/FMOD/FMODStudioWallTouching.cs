@@ -68,7 +68,7 @@ namespace FMODUnity
                 if (fmodPbState != FMOD.Studio.PLAYBACK_STATE.PLAYING)
                 {
                     Rubbing_Left.start();
-                    Debug.Log("Play rubbing sound now...");
+                    //Debug.Log("Play rubbing sound now...");
                 }
 
                
@@ -83,7 +83,7 @@ namespace FMODUnity
                 {
 
                     Rubbing_Right.start();
-                    Debug.Log("Play rubbing sound now...");
+                    //Debug.Log("Play rubbing sound now...");
                 }
 
             }

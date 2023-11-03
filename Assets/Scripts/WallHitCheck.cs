@@ -1,10 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
+//using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 using UnityEngine.UI;
 using UnityEngine.Events;
-using UnityEditor.PackageManager;
+//using UnityEditor.PackageManager;
 
 public class WallHitCheck : MonoBehaviour
 {
@@ -23,7 +23,6 @@ public class WallHitCheck : MonoBehaviour
     public float length;
     RaycastHit hit;
     public GameObject ForwardWallHitUI;
-    public GameObject BackWallHitUI;
     public GameObject RightWallHitUI;
     public GameObject LeftWallHitUI;
 
@@ -36,34 +35,6 @@ public class WallHitCheck : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        #region Wallhit Raycast
-        Ray wallRay = new Ray(cam.transform.position, cam.transform.forward);
-        Debug.DrawRay(wallRay.origin, wallRay.direction * distance);
-        RaycastHit wallhit;
-
-        if (Physics.Raycast(wallRay, out wallhit, distance, mask))
-        {
-            if (wallhit.transform.gameObject.layer == LayerWall)
-            {
-                if (!hasWallHitEnterEventTriggered)
-                {
-                    EventOnWallHit.Invoke();
-                    hasWallHitEnterEventTriggered = true;
-                    hasWallHitExitEventTriggered = false;
-                    //Debug.Log("Walllllll" + RaycastHit.distance);
-                }
-            }
-        }
-        else 
-        {
-            if (!hasWallHitExitEventTriggered)
-            {
-                hasWallHitEnterEventTriggered = false;
-                hasWallHitExitEventTriggered= true;
-                //EventOnWallHitExit.Invoke(); Debug.Log("nothingggg");
-            }
-        }
-        #endregion
 
 
         #region Forward WallHit UI

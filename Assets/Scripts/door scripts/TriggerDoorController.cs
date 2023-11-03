@@ -118,6 +118,12 @@ public class TriggerDoorController : MonoBehaviour
 
             }
 
+            else if (!gameObject.CompareTag("LoungeDoor"))
+            {
+                myDoorAnimator.SetBool("Opened", false);
+                myDoorAnimator.SetBool("Closed", false);
+            }
+
             /*if (gameObject.CompareTag("LoungeDoor") && !myDoorAnimator.GetBool("Opened") && myDoorAnimator.GetBool("Closed"))
             {
                 myDoorAnimator.SetBool("Opened", true);

@@ -14,10 +14,25 @@ public class Phone : MonoBehaviour
     public TMP_Text PhoneNumberText;
     public string correctNumber;
     private bool CanDial;
+    public Camera playercam;
+    public Transform PhoneCamTrans;
     public void PhoneInteract()
     {
         PhoneCam.enabled = true;
         PhoneCam.DOFade(1, 1.2f);
+        FirstPersonAIO.instance.enableCameraMovement = false;
+        FirstPersonAIO.instance.playerCanMove = false;
+        isInCam = true;
+        Cursor.visible = true;
+        PhoneUI.SetActive(true);
+        CanDial = true;
+    }
+
+
+    public void PhoneInteract2()
+    {
+        playercam.transform.DOMove(PhoneCamTrans.position, 2, true);
+        playercam.transform.DORotate(PhoneCamTrans.rotation.eulerAngles, 2);
         FirstPersonAIO.instance.enableCameraMovement = false;
         FirstPersonAIO.instance.playerCanMove = false;
         isInCam = true;

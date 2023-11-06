@@ -38,7 +38,6 @@ public class Respawn : MonoBehaviour
         {
             if (SceneManager.GetActiveScene().name == "TutorialLevel")
             {
-                //SceneManager.LoadScene("TutorialLevel restart");
                 StartCoroutine(RespawnRoutiine());
             }
             //else SceneManager.LoadScene("Death");
@@ -50,10 +49,14 @@ public class Respawn : MonoBehaviour
     {
         dead = false;
         yield return new WaitForSeconds(0.5f);
-        //Debug.Log("respawned");
+        Debug.Log("respawned");
         if(checkpoint != null)
         {
-            placeholderDeathText.SetActive(true);
+            if(placeholderDeathText != null)
+            {
+                placeholderDeathText.SetActive(true);
+            }
+
             transform.position = checkpoint.position;
         }
     }

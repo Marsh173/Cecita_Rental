@@ -51,7 +51,7 @@ public class NoSightAllowed : MonoBehaviour
         TimerActive = true;
         countdownText.enabled = true;
         countDown = countDownTime = 5f;
-        eye_UI.image.sprite = Eye_Open;
+        //eye_UI.image.sprite = Eye_Open;
         anim.SetBool("isBegun", false);
 
         CurrentEyeBarAmount = 100f;
@@ -128,8 +128,9 @@ public class NoSightAllowed : MonoBehaviour
 
             }
             
-            if (CurrentEyeBarAmount < 0)
+            if (CurrentEyeBarAmount <= 0 || countDown <= 0)
             {
+                Debug.Log(Respawn.dead);
                 Respawn.dead = true;
             }
         }

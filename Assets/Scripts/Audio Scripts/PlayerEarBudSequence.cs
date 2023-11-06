@@ -7,7 +7,7 @@ public class PlayerEarBudSequence : MonoBehaviour
 {
     public AudioClip[] audioClips;
     private AudioSource earBudVoice;
-    public GameObject invisibleWall, tutorialMessageObj, inventory, interactiveDoor;
+    public GameObject invisibleWall, tutorialMessageObj, inventory, interactiveDoor, eyeicon;
     public TMP_Text tutoriaMessage;
 
     private bool firstAudioPlayed, TabToOpen, FinishInventory, firstWarning;
@@ -53,10 +53,11 @@ public class PlayerEarBudSequence : MonoBehaviour
             }
         }
 
-        if(!firstWarning && NoSightAllowed.countDown <= 3f)
+        if(!firstWarning && NoSightAllowed.countDown <= 2f && eyeicon.active && InventoryManager.equipmentCollected)
         {
             Debug.Log("warn");
             Debug.Log(firstWarning);
+            earBudVoice.Stop();
             earBudVoice.clip = Resources.Load<AudioClip>("Night 0/" + "Night 0 - Close!");
             earBudVoice.PlayOneShot(earBudVoice.clip);
             firstWarning = true;
@@ -67,25 +68,34 @@ public class PlayerEarBudSequence : MonoBehaviour
     
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("EnterMonster"))
+        if(InventoryManager.equipmentCollected)
         {
-            earBudVoice.clip = Resources.Load<AudioClip>("Night 0/" + "Night 0 - Stop!");
-            earBudVoice.PlayOneShot(earBudVoice.clip);
-            Destroy(other);
-        }
+            if (other.CompareTag("EnterMonster"))
+            {
+                earBudVoice.clip = Resources.Load<AudioClip>("Night 0/" + "Night 0 - Stop!");
+                earBudVoice.PlayOneShot(earBudVoice.clip);
+                Destroy(other);
+            }
 
-       /* if (other.CompareTag("EnterDeadEnd"))
-        {
-            earBudVoice.clip = Resources.Load<AudioClip>("Night 0/" + "Night 0 - DeadEnd");
-            earBudVoice.PlayOneShot(earBudVoice.clip);
-            Destroy(other);
-        }*/
+            if (other.CompareTag("FollowMusicA"))
+            {
+                earBudVoice.clip = Resources.Load<AudioClip>("Night 0/" + "Night 0 - Follow music");
+                earBudVoice.PlayOneShot(earBudVoice.clip);
+                Destroy(other);
+            }
 
-        if (other.CompareTag("walker Trigger"))
-        {
-            earBudVoice.clip = Resources.Load<AudioClip>("Night 0/" + "Night 0 - stick to wall");
-            earBudVoice.PlayOneShot(earBudVoice.clip);
+            if (other.CompareTag("walker Trigger"))
+            {
+                earBudVoice.clip = Resources.Load<AudioClip>("Night 0/" + "Night 0 - stick to wall");
+                earBudVoice.PlayOneShot(earBudVoice.clip);
+                Destroy(other);
+            }
         }
+        else
+        {
+            earBudVoice.Stop();
+        }
+        
         
     }
    /* private void OnTriggerExit(Collider other)

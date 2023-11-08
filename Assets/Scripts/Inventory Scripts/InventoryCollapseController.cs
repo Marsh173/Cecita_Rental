@@ -21,6 +21,8 @@ public class InventoryCollapseController : MonoBehaviour
         else if(catagory == "Monster")
         {
             monster_viewport.SetActive(true);
+            monsterspe_title.SetActive(true);
+            //monsterspe_t.anchoredPosition = new Vector3(audio_t.anchoredPosition.x, monster_t.anchoredPosition.y - 25, 0);
         }
     }
 
@@ -29,12 +31,13 @@ public class InventoryCollapseController : MonoBehaviour
         if (catagory == "Audio")
         {
             audio_viewport.SetActive(false);
-            monster_title.GetComponent<RectTransform>().anchoredPosition = new Vector3(audio_t.anchoredPosition.x, audio_t.anchoredPosition.y + 50, 0);
+            monster_title.GetComponent<RectTransform>().anchoredPosition = new Vector3(audio_t.anchoredPosition.x, audio_t.anchoredPosition.y + 175, 0);
             monsterspe_t.anchoredPosition = new Vector3(audio_t.anchoredPosition.x, monster_t.anchoredPosition.y - 25, 0);
         }
         else if (catagory == "Monster")
         {
             monster_viewport.SetActive(false);
+            monsterspe_title.SetActive(false);
         }
     }
 

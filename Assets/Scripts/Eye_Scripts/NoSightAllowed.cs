@@ -14,14 +14,14 @@ public class NoSightAllowed : MonoBehaviour
     public Animator anim;
 
     //timer
-    public static float countDown;
+    private float countDown, openedTimes;
     [SerializeField] private float countDownTime = 5f;
     private TMP_Text countdownText, FInstructionText;
     bool TimerActive;
 
     //warning bar
     public float EyeBarDecreaseSpeed, RechargeSpeed;
-    private float CurrentEyeBarAmount;
+    public static float CurrentEyeBarAmount;
     public GameObject ChargeBarUI;
     public Image RedAura, BarImage;
     private WaitForSeconds rechargeTick = new WaitForSeconds(0.001f);
@@ -61,7 +61,7 @@ public class NoSightAllowed : MonoBehaviour
         CurrentEyeBarAmount = 100f;
         BarImage.fillAmount = 1f;
         wallHitUI.SetActive(false);
-
+        openedTimes = 0;
     }
 
     private void Update()
@@ -127,20 +127,20 @@ public class NoSightAllowed : MonoBehaviour
             //decrease when eye open
             if(TimerActive && CurrentEyeBarAmount != 0)
             {
-                CurrentEyeBarAmount -= 100/countDownTime * Time.deltaTime;
-                //Debug.Log("speed" + 100 / countDownTime * Time.fixedDeltaTime);
-
+                CurrentEyeBarAmount -= 100/(countDownTime - openedTimes / 2) * Time.deltaTime;
+                Debug.Log("speed" + 100/(countDownTime - openedTimes / 2) * Time.deltaTime);
+                Debug.Log(openedTimes);
 
             }
 
-            if (CurrentEyeBarAmount <= 0 || countDown <= 0)
+            if (CurrentEyeBarAmount <= 0)
             {
                 //Debug.Log(Respawn.dead);
                 Respawn.dead = true;
             }
         }
         BarImage.fillAmount = CurrentEyeBarAmount / 100f;
-        Debug.Log(countDown);
+        //Debug.Log(countDown);
     }
 
     //Animation
@@ -161,6 +161,7 @@ public class NoSightAllowed : MonoBehaviour
         //open eye animation
         else
         {
+            openedTimes++;
             eye_UI.image.sprite = Eye_Open;
             anim.SetBool("isBegun", false);
             anim.SetBool("isOpen", true);

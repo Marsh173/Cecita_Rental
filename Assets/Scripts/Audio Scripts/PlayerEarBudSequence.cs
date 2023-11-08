@@ -53,7 +53,7 @@ public class PlayerEarBudSequence : MonoBehaviour
             }
         }
 
-        if(!firstWarning && NoSightAllowed.countDown <= 2f && eyeicon.active && InventoryManager.equipmentCollected)
+        if(!firstWarning && NoSightAllowed.CurrentEyeBarAmount <= 25f && eyeicon.active && InventoryManager.equipmentCollected)
         {
             Debug.Log("warn");
             Debug.Log(firstWarning);

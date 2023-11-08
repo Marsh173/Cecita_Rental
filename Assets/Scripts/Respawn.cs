@@ -58,8 +58,8 @@ public class Respawn : MonoBehaviour
             /*transform.position = checkpoint.position;
             transform.rotation = checkpoint.rotation;*/
 
-            Debug.Log("respawned");
-            Debug.Log(playerPos);
+            //Debug.Log("respawned");
+            //Debug.Log(playerPos.rotation);
 
             if (placeholderDeathText != null)
             {

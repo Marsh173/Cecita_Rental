@@ -10,13 +10,13 @@ public class NoSightAllowed : MonoBehaviour
     public static NoSightAllowed instance;
     private Button eye_UI;
     public Sprite Eye_Open, Eye_Close;
-    public GameObject SoundCollectingMessage, itemAdded, FInstruction;
+    public GameObject SoundCollectingMessage, itemAdded, FInstruction, wallHitUI;
     public Animator anim;
 
     //timer
     public static float countDown;
     [SerializeField] private float countDownTime = 5f;
-    public TMP_Text countdownText;
+    private TMP_Text countdownText, FInstructionText;
     bool TimerActive;
 
     //warning bar
@@ -35,11 +35,13 @@ public class NoSightAllowed : MonoBehaviour
         TimerActive = true;
         eye_UI = GetComponent<Button>();
         eye_UI.GetComponent<Image>().sprite = Eye_Open;
+        FInstructionText = FInstruction.GetComponent<TMP_Text>();
         countDown = countDownTime = 5f;
         anim.SetBool("isBegun", false);
 
         CurrentEyeBarAmount = 100f;
         BarImage = ChargeBarUI.GetComponent<Image>();
+        wallHitUI.SetActive(false);
     }
     //reset everything when enabled (entered a safe room)
     private void OnEnable()
@@ -47,29 +49,32 @@ public class NoSightAllowed : MonoBehaviour
         Respawn.restarted = false;
         Respawn.dead = false;
         instance = this;
-
+        
+        RedAura.color = new Color(RedAura.color.r, RedAura.color.g, RedAura.color.b, 0);
         TimerActive = true;
-        countdownText.enabled = true;
+        //countdownText.enabled = true;
         countDown = countDownTime = 5f;
-        //eye_UI.image.sprite = Eye_Open;
+        eye_UI.image.sprite = Eye_Open;
+        FInstructionText.text = "Press F to close your eyes";
         anim.SetBool("isBegun", false);
 
         CurrentEyeBarAmount = 100f;
         BarImage.fillAmount = 1f;
+        wallHitUI.SetActive(false);
 
-        RedAura.color = new Color(RedAura.color.r, RedAura.color.g, RedAura.color.b, 0);
     }
 
-    private void FixedUpdate()
+    private void Update()
     { 
         if(Input.GetKeyDown(KeyCode.F))
         {
-            ChangeSprite();
+            EyeAnimation();
+            Debug.Log("animation played");
             //eye_UI.onClick.Invoke();
-            FInstruction.GetComponent<TMP_Text>().text = FInstruction.GetComponent<TMP_Text>().text == "Press F to open your eyes" ? "Press F to close your eyes" : "Press F to open your eyes";
+            FInstructionText.text = FInstructionText.text == "Press F to open your eyes" ? "Press F to close your eyes" : "Press F to open your eyes";
 
             //eye close recharge bar
-            if (FInstruction.GetComponent<TMP_Text>().text == "Press F to open your eyes")
+            if (FInstructionText.text == "Press F to open your eyes")
             {
                 if(rechargeC != null)
                 {
@@ -79,7 +84,7 @@ public class NoSightAllowed : MonoBehaviour
                 rechargeC = StartCoroutine(RechargeBar());
                 RedAura.color = new Color(RedAura.color.r, RedAura.color.g, RedAura.color.b, 0);
             }
-            else
+            else if (rechargeC != null)
             {
                 StopCoroutine(rechargeC);
             }
@@ -97,37 +102,37 @@ public class NoSightAllowed : MonoBehaviour
                 countDownTime = 5f;
             }
 
-            countDown -= 1 * Time.deltaTime;
+            //countDown -= 1 * Time.deltaTime;
             //countdownText.text = countDown.ToString("0");
 
-            if(countDown <= 3f)
+            if (CurrentEyeBarAmount <= 25f)
             {
-                RedAura.color = new Color(RedAura.color.r, RedAura.color.g, RedAura.color.b, (3f - countDown) / 3f );
+                RedAura.color = new Color(RedAura.color.r, RedAura.color.g, RedAura.color.b, (2.5f - CurrentEyeBarAmount / 10f) / 2f );
             }
 
-            //death when timer's out
-            /*if (countDown <= 0)
+            /*//death when timer's out
+            if (countDown <= 0)
             {
-                Respawn.dead = true;
                 countdownText.text = "";
             }*/
         }
-        else
+        /*else
         {
             countDown = countDownTime;
-        }
+        }*/
 
         //recharge bar
-        if (FInstruction.GetComponent<TMP_Text>().text == "Press F to close your eyes")
+        if (FInstructionText.text == "Press F to close your eyes")
         {
             //decrease when eye open
             if(TimerActive && CurrentEyeBarAmount != 0)
             {
                 CurrentEyeBarAmount -= 100/countDownTime * Time.deltaTime;
-                //Debug.Log("speed" + 100 / countDownTime * Time.deltaTime);
+                Debug.Log("speed" + 100 / countDownTime * Time.fixedDeltaTime);
+
 
             }
-            
+
             if (CurrentEyeBarAmount <= 0 || countDown <= 0)
             {
                 Debug.Log(Respawn.dead);
@@ -135,33 +140,35 @@ public class NoSightAllowed : MonoBehaviour
             }
         }
         BarImage.fillAmount = CurrentEyeBarAmount / 100f;
+        Debug.Log(countDown);
     }
 
     //Animation
-    public void ChangeSprite()
+    public void EyeAnimation()
     {
         //close eye animation
         if (eye_UI.image.sprite == Eye_Open)
         {
-            RedAura.color = new Color(RedAura.color.r, RedAura.color.g, RedAura.color.b, 0);
-            FInstruction.GetComponent<TMP_Text>().text = "Press F to close your eyes";
             eye_UI.image.sprite = Eye_Close;
             anim.SetBool("isBegun", true);
             anim.SetBool("isOpen", false);
+            wallHitUI.SetActive(true);
             TimerActive = false;
-            countdownText.enabled = false;
-
+            RedAura.color = new Color(RedAura.color.r, RedAura.color.g, RedAura.color.b, 0);
+            //FInstructionText.text = "Press F to close your eyes";
+            //countdownText.enabled = false;
         }
         //open eye animation
         else
         {
             eye_UI.image.sprite = Eye_Open;
-            FInstruction.GetComponent<TMP_Text>().text = "Press F to open your eyes";
-            //anim.SetBool("isBegun", false);
+            anim.SetBool("isBegun", false);
             anim.SetBool("isOpen", true);
+            wallHitUI.SetActive(false);
             TimerActive = true;
-            countdownText.enabled = true;
-            
+            //FInstructionText.text = "Press F to open  your eyes";
+            //countdownText.enabled = true;
+
         }
     }
 
@@ -174,7 +181,7 @@ public class NoSightAllowed : MonoBehaviour
     private IEnumerator RechargeBar()
     {
         yield return new WaitForSeconds(1.5f);
-        Debug.Log("waited");
+        Debug.Log("recharge waited");
         while (CurrentEyeBarAmount < 100)
         {
             CurrentEyeBarAmount += RechargeSpeed * Time.deltaTime;
@@ -182,5 +189,7 @@ public class NoSightAllowed : MonoBehaviour
         }
 
         rechargeC = null;
+
+        Debug.Log("recharge finished");
     }
 }

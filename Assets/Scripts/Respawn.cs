@@ -8,12 +8,13 @@ public class Respawn : MonoBehaviour
     //public GameObject playerInScene;
     [SerializeField] private Transform checkpoint;
     public static bool dead, restarted;
-
+    private Transform playerPos;
     public GameObject placeholderDeathText;
 
     void Start()
     {
         dead = restarted = false;
+        playerPos = GetComponent<Transform>();
     }
 
     // Update is called once per frame
@@ -48,16 +49,22 @@ public class Respawn : MonoBehaviour
     IEnumerator RespawnRoutiine()
     {
         dead = false;
-        yield return new WaitForSeconds(0.5f);
-        Debug.Log("respawned");
+        yield return new WaitForSeconds(0.1f);
         if(checkpoint != null)
         {
-            if(placeholderDeathText != null)
+            playerPos.SetPositionAndRotation(checkpoint.transform.position, checkpoint.transform.rotation);
+
+            //playerPos = checkpoint;
+            /*transform.position = checkpoint.position;
+            transform.rotation = checkpoint.rotation;*/
+
+            Debug.Log("respawned");
+            Debug.Log(playerPos);
+
+            if (placeholderDeathText != null)
             {
                 placeholderDeathText.SetActive(true);
             }
-
-            transform.position = checkpoint.position;
         }
     }
 }

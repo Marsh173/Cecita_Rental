@@ -23,19 +23,9 @@ public class TriggerEye : MonoBehaviour
     {
         if (other.CompareTag("Hallway"))
         {
-            enteredCantOpen = false;
+            //enteredCantOpen = false;
             eyeIcon.SetActive(true);
             FirstPersonAIO.instance.cameraInputMethod = FirstPersonAIO.CameraInputMethod.TraditionalWithConstraints;
-
-        }
-
-        if (other.CompareTag("Enclosed"))
-        {
-            enteredCantOpen = false;
-            //play open eye animation then false
-
-            //NoSightAllowed.instance.ResetChargeBar();
-            eyeIcon.SetActive(false);
         }
 
         if (other.CompareTag("CantOpen"))
@@ -44,8 +34,21 @@ public class TriggerEye : MonoBehaviour
             enteredCantOpen = true;
             FirstPersonAIO.instance.cameraInputMethod = FirstPersonAIO.CameraInputMethod.TraditionalWithConstraints;
         }
+        else
+        {
+            enteredCantOpen = false;
+        }
 
+        if (other.CompareTag("Enclosed"))
+        {
+            FirstPersonAIO.instance.cameraInputMethod = FirstPersonAIO.CameraInputMethod.Traditional;
+            //enteredCantOpen = false;
+            //needs to play open eye animation then false
 
+            eyeIcon.SetActive(false);
+        }
+
+        //tutorial stuff start
         if (other.CompareTag("EnterMonster"))
         {
             if (!MonsterZoneHasPlayed)
@@ -54,15 +57,16 @@ public class TriggerEye : MonoBehaviour
                 MonsterZoneHasPlayed = true;
             }
         }
+        //tutorial stuff end
 
-        if (other.CompareTag("EnterDeadEnd"))
+        /*if (other.CompareTag("EnterDeadEnd"))
         {
             if (!DeadEndZoneHasPlayed)
             {
                 DeadEndZone.GetComponent<Animation>().Play();
                 DeadEndZoneHasPlayed = true;
             }
-        }
+        }*/
 
 
     }
@@ -72,6 +76,11 @@ public class TriggerEye : MonoBehaviour
         if (other.CompareTag("Hallway") || other.CompareTag("CantOpen"))
         {
             FirstPersonAIO.instance.cameraInputMethod = FirstPersonAIO.CameraInputMethod.Traditional;
+        }
+
+        if (other.CompareTag("CantOpen"))
+        {
+            enteredCantOpen = false;
         }
     }
 

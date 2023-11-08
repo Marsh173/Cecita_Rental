@@ -51,6 +51,8 @@ namespace FMODUnity
             FMODUnity.RuntimeManager.AttachInstanceToGameObject(beautiful_broadcast, transform, GetComponent<Rigidbody>()); 
             FMODUnity.RuntimeManager.AttachInstanceToGameObject(awful_broadcast, transform, GetComponent<Rigidbody>());
 
+            DeathReset();
+
             if (OverrideAttenuation)
             {
                 SetAttenuationDistances(minDistance, maxDistance);
@@ -62,6 +64,7 @@ namespace FMODUnity
             if(other.tag == "Player")
             {
                 //fade out beautiful music, fade in awful music
+                Debug.Log("enter trigger");
 
                 FMOD.Studio.PLAYBACK_STATE fmodPbState;
                 awful_broadcast.getPlaybackState(out fmodPbState);
@@ -70,11 +73,29 @@ namespace FMODUnity
                 {
                     beautiful_broadcast.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
                     awful_broadcast.start();
-                    awful_broadcast.release();
-                   // Debug.Log("Play awful sound now...");
+                    //awful_broadcast.release();
+                    Debug.Log("Play awful sound now...");
                 }
 
                 
+            }
+        }
+
+        private void DeathReset()
+        {
+            if (Respawn.dead)
+            {
+                Debug.Log("reset broadcast");
+                FMOD.Studio.PLAYBACK_STATE fmodPbState;
+                beautiful_broadcast.getPlaybackState(out fmodPbState);
+
+                if (fmodPbState != FMOD.Studio.PLAYBACK_STATE.PLAYING)
+                {
+                    awful_broadcast.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                    beautiful_broadcast.start();
+                    //beautiful_broadcast.release();
+                    // Debug.Log("Play awful sound now...");
+                }
             }
         }
 

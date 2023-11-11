@@ -7,7 +7,7 @@ public class PlayerEarBudSequence : MonoBehaviour
 {
     public AudioClip[] audioClips;
     private AudioSource earBudVoice;
-    public GameObject invisibleWall, tutorialMessageObj, inventory, interactiveDoor, eyeicon;
+    public GameObject invisibleWall, tutorialMessageObj, inventory, interactiveDoor, eyeicon, UIPauseTutorial;
     public TMP_Text tutoriaMessage;
 
     private bool firstAudioPlayed, TabToOpen, FinishInventory, firstWarning;
@@ -16,7 +16,7 @@ public class PlayerEarBudSequence : MonoBehaviour
     [SerializeField] private float delay = 0.0f;
     void Start()
     {
-
+        UIPauseTutorial.SetActive(false);
         interactiveDoor.layer = 0; //set door to default layer
         tutorialMessageObj.SetActive(false);
         tutoriaMessage = tutorialMessageObj.GetComponent<TMP_Text>();
@@ -63,7 +63,11 @@ public class PlayerEarBudSequence : MonoBehaviour
             firstWarning = true;
         }
 
-
+        if(Input.GetKeyDown(KeyCode.F) && Time.timeScale == 0)
+        {
+            UIPauseTutorial.SetActive(false);
+            Time.timeScale = 1;
+        }
     }
     
     private void OnTriggerEnter(Collider other)
@@ -89,6 +93,12 @@ public class PlayerEarBudSequence : MonoBehaviour
                 earBudVoice.clip = Resources.Load<AudioClip>("Night 0/" + "Night 0 - stick to wall");
                 earBudVoice.PlayOneShot(earBudVoice.clip);
                 Destroy(other);
+            }
+
+            if (other.CompareTag("Hallway"))
+            {
+                Time.timeScale = 0;
+                UIPauseTutorial.SetActive(true);
             }
         }
         else

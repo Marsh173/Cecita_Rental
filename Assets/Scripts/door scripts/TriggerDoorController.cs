@@ -39,8 +39,8 @@ public class TriggerDoorController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
-        {
+        if (other.CompareTag("Player") || (other.CompareTag("Monster") && this.CompareTag("MonsterDoor")))
+        { 
             if (openTrigger)
             {
                 myDoorAnimator.SetBool("Opened", false);
@@ -79,6 +79,7 @@ public class TriggerDoorController : MonoBehaviour
             }
             
         }
+
     }
 
     private void OnTriggerExit(Collider other)

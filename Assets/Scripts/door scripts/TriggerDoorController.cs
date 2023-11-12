@@ -13,7 +13,7 @@ public class TriggerDoorController : MonoBehaviour
     private string doorOpen = "DoorOpen";
     private string doorClose = "DoorClose";
     private string Idle = "Idle";
-
+    public static bool playedCloseAnim = false;
 
     [Header("Door Sounds")]
     [SerializeField] EventReference doorOpenEventPath;
@@ -34,13 +34,24 @@ public class TriggerDoorController : MonoBehaviour
         Masterbus = FMODUnity.RuntimeManager.GetBus("Bus:/");
     }
 
-
+    //private void Update()
+    //{
+    //    if (gameObject.CompareTag("LoungeDoor") && openTrigger && playedCloseAnim)
+    //    {
+    //        Debug.Log("DoorLeftClose animation started playing.");
+    //        openTrigger = false;
+    //        closeTrigger = true;
+    //        playedCloseAnim = false;
+    //    }
+    //}
 
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player") || (other.CompareTag("Monster") && this.CompareTag("MonsterDoor")))
-        { 
+        {
+
+            
             if (openTrigger)
             {
                 myDoorAnimator.SetBool("Opened", false);
@@ -54,9 +65,9 @@ public class TriggerDoorController : MonoBehaviour
                 doorOpenSound.getPlaybackState(out fmodPbState);
                 if (fmodPbState != FMOD.Studio.PLAYBACK_STATE.PLAYING)
                 {
-                    Debug.Log("this");
+                    
                     doorOpenSound.start();
-                    Debug.Log("that");
+                    
                 }
 
             }
@@ -69,15 +80,25 @@ public class TriggerDoorController : MonoBehaviour
                 doorCloseSound.getPlaybackState(out fmodPbState);
                 if (fmodPbState != FMOD.Studio.PLAYBACK_STATE.PLAYING) doorCloseSound.start();
 
-                //Debug.Log("Closed" + myDoorAnimator.GetBool("Closed"));
-                //Debug.Log("Opened" + myDoorAnimator.GetBool("Opened"));
+                if (gameObject.CompareTag("LoungeDoorInside"))
+                {
+                    GameObject taggedObject = GameObject.FindWithTag("LoungeDoor");
+                    if (taggedObject != null)
+                    {
+                        Debug.Log("change to Close trigger!");
+                        TriggerDoorController trigScript = taggedObject.GetComponent<TriggerDoorController>();
 
-                //if (!gameObject.CompareTag("startRoomDoor"))
-                //{
-                //    gameObject.SetActive(false);
-                //}              
+                        if (trigScript == null) Debug.Log("more than one object has this LoungeDoor tag");
+
+                        trigScript.closeTrigger = true;
+                        trigScript.openTrigger = false;
+
+                    }
+                }
+
+    
             }
-            
+
         }
 
     }
@@ -86,24 +107,30 @@ public class TriggerDoorController : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            
             //disble close trigger when player is inside
             if (gameObject.CompareTag("LoungeDoorInside") && closeTrigger)
             {
-                Debug.Log("inside the lounge");
+                
                 closeTrigger = false;
                 myDoorAnimator.SetBool("Opened", false);
+
             }
 
             //change the outside trigger from open door to close door.
-            else if(gameObject.CompareTag("LoungeDoor") && openTrigger)
-            {
-                openTrigger = false;
-                closeTrigger = true;
-            }
+            //check if open door trigger has been used (close door animation is played) 
+            //else if (gameObject.CompareTag("LoungeDoor") && openTrigger && playedCloseAnim)
+            //{
+            //    Debug.Log("DoorLeftClose animation started playing.");
+            //    openTrigger = false;
+            //    closeTrigger = true;
+
+            //}
 
             //change the outside trigger from close door to open door.
             else if (gameObject.CompareTag("LoungeDoor") && closeTrigger)
             {
+                
                 openTrigger = true;
                 closeTrigger = false;
 
@@ -111,12 +138,11 @@ public class TriggerDoorController : MonoBehaviour
                 GameObject taggedObject = GameObject.FindWithTag("LoungeDoorInside");
                 if(taggedObject != null)
                 {
-                    Debug.Log("enable close trigger!");
+                    
                     TriggerDoorController trigScript = taggedObject.GetComponent<TriggerDoorController>();
                     trigScript.closeTrigger = true;
                     
                 }
-
             }
 
             else if (!gameObject.CompareTag("LoungeDoor"))
@@ -125,19 +151,7 @@ public class TriggerDoorController : MonoBehaviour
                 myDoorAnimator.SetBool("Closed", false);
             }
 
-            /*if (gameObject.CompareTag("LoungeDoor") && !myDoorAnimator.GetBool("Opened") && myDoorAnimator.GetBool("Closed"))
-            {
-                myDoorAnimator.SetBool("Opened", true);
-                myDoorAnimator.SetBool("Closed", false);
-            }
-            else
-            {
-                myDoorAnimator.SetBool("Opened", false);
-                myDoorAnimator.SetBool("Closed", false);
-
-                Debug.Log("Closed" + myDoorAnimator.GetBool("Closed"));
-                Debug.Log("Opened" + myDoorAnimator.GetBool("Opened"));
-            }*/
+           
         }
     }
     IEnumerator ReturnToClose ()
@@ -158,4 +172,6 @@ public class TriggerDoorController : MonoBehaviour
         mcg.stop();
         Masterbus.stopAllEvents(FMOD.Studio.STOP_MODE.IMMEDIATE);
     }
+
+    
 }

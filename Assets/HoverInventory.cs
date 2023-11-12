@@ -14,7 +14,7 @@ public class HoverInventory : MonoBehaviour
 
     private void Update()
     {
-        hovertext.GetComponent<RectTransform>().anchoredPosition = new Vector3(Input.mousePosition.x - Screen.width/2, Input.mousePosition.y - Screen.height/2, 0);
+        hovertext.GetComponent<RectTransform>().anchoredPosition = new Vector3(Input.mousePosition.x - Screen.width/2, Input.mousePosition.y - Screen.height/2 + 25, 0);
     }
     public void showhovertext()
     {

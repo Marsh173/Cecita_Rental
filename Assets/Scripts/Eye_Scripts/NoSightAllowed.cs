@@ -8,7 +8,7 @@ using TMPro;
 public class NoSightAllowed : MonoBehaviour
 {
     public static NoSightAllowed instance;
-    private Button eye_UI;
+    [SerializeField] private Button eye_UI;
     public Sprite Eye_Open, Eye_Close;
     public GameObject SoundCollectingMessage, itemAdded, FInstruction, wallHitUI;
     public Animator anim;
@@ -33,7 +33,7 @@ public class NoSightAllowed : MonoBehaviour
         instance = this;
 
         TimerActive = true;
-        eye_UI = GetComponent<Button>();
+        eye_UI = this.GetComponent<Button>();
         eye_UI.GetComponent<Image>().sprite = Eye_Open;
         FInstructionText = FInstruction.GetComponent<TMP_Text>();
         countDown = countDownTime = 5f;

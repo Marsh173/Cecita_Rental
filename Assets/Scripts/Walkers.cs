@@ -78,16 +78,16 @@ public class Walkers : MonoBehaviour
         }
 
     }
-
+/*
     private void OnTriggerExit(Collider other)
     {
         
         if (other.CompareTag("Monster"))
         {
             stopMoving = true;
-            walker.SetActive(false);
+            //walker.SetActive(false);
         }
-    }
+    }*/
 
 
     //private void MovingSoundPosition()

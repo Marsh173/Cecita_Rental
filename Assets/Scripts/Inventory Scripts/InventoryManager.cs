@@ -20,7 +20,9 @@ public class InventoryManager : MonoBehaviour
     public KeyCode inventoryKey;
     public GameObject Inventory;
 
+    //Find Specific Item
     public static bool equipmentCollected = false;
+    public static bool ThirdFloorElevatorCardCollected = false;
 
     private void Awake()
     {
@@ -70,6 +72,11 @@ public class InventoryManager : MonoBehaviour
         if(!equipmentCollected)
         {
             FindEquipment();
+        }
+
+        if (!ThirdFloorElevatorCardCollected)
+        {
+            FindThirdFloorElevatorCard();
         }
     }
 
@@ -123,7 +130,16 @@ public class InventoryManager : MonoBehaviour
         if(NItems.Find(item => item.name == "ear buds") && NItems.Find(item => item.name == "recorder"))
         {
             equipmentCollected = true;
-            Debug.Log("Equiped " + equipmentCollected);
+            //Debug.Log("Equiped " + equipmentCollected);
+        }
+    }
+
+    public void FindThirdFloorElevatorCard()
+    {
+        if (NItems.Find(item => item.name == "ElevatorCard"))
+        {
+            ThirdFloorElevatorCardCollected = true;
+            //Debug.Log("Got Elevator card " + ThirdFloorElevatorCardCollected);
         }
     }
 

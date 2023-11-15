@@ -37,12 +37,13 @@ public class InspectionCameraTransition : MonoBehaviour
 
     public void TransitCamToOriginalPos()
     {
-        Debug.Log("esc");
+        Debug.Log(originalCamPosition.position);
+        Debug.Log(originalCamPosition.rotation.eulerAngles);
         isInCam = false;
-        playercam.transform.DOMove(originalCamPosition.position, 1);
-        playercam.transform.DORotate(originalCamPosition.rotation.eulerAngles, 1);
-        FirstPersonAIO.instance.enableCameraMovement = true;
-        FirstPersonAIO.instance.playerCanMove = true;
+        //playercam.transform.position = originalCamPosition.position;
+        //playercam.transform.rotation = originalCamPosition.rotation;
+        playercam.transform.DOMove(originalCamPosition.position, 0.5f);
+        playercam.transform.DORotate(originalCamPosition.rotation.eulerAngles, 0.5f).OnComplete(() => EnableMovement());
         Cursor.visible = false;
         inspectionButton.SetActive(false);
         inspectionWindow.SetActive(false);
@@ -61,5 +62,11 @@ public class InspectionCameraTransition : MonoBehaviour
         isInCam = true;
         inspectionButton.SetActive(true);
         PlayBody.GetComponent<MeshRenderer>().enabled = false;
+    }
+
+    private void EnableMovement()
+    {
+        FirstPersonAIO.instance.enableCameraMovement = true;
+        FirstPersonAIO.instance.playerCanMove = true;
     }
 }

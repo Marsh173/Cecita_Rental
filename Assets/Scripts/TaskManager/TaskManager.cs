@@ -11,6 +11,7 @@ public class TaskManager : MonoBehaviour
     public GameObject ObjectivePrefab;
     public GameObject ObjectivePrefabAnim;
     public GameObject TaskUI, TaskAnimUI;
+    public bool UIShown;
 
     private void Awake()
     {
@@ -22,10 +23,14 @@ public class TaskManager : MonoBehaviour
 
     private void Start()
     {
-        AssignObejctive("Task Parent");
-        AssignObejctive("Task Parent2");
+        //AssignObejctive("Task Parent2");
+        UIShown = true;
     }
 
+    public void AssignTask(string tempText)
+    {
+        AssignObejctive(tempText);
+    }
 
     public void AssignObejctive(string ObjectiveText)
     {
@@ -146,14 +151,15 @@ public class TaskManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            AssignObejctive("Task Child", ObjectiveList[0]);
-        }
+        //if (Input.GetKeyDown(KeyCode.A))
+        //{
+        //    AssignObejctive("Task Child", ObjectiveList[0]);
+        //}
 
-        if (Input.GetKeyDown(KeyCode.S))
+        if (Input.GetKeyDown(KeyCode.P))
         {
-            ObjectiveList[ObjectiveList.Count - 1].Fademe();
+            UIShown = !UIShown;
+            TaskUI.SetActive(UIShown);
         }
     }
 

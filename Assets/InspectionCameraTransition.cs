@@ -14,13 +14,14 @@ public class InspectionCameraTransition : MonoBehaviour
 
     public GameObject inspectionButton; //for adding transcript overlay
     public GameObject inspectionWindow;
+    private GameObject PlayBody;
 
     private void Start()
     {
         playercam = FirstPersonAIO.instance.gameObject.GetComponentInChildren<Camera>();
         originalCamPosition = playercam.transform;
         inspectionButton.SetActive(false);
-
+        PlayBody = FirstPersonAIO.instance.transform.GetChild(1).gameObject;
     }
 
     private void Update()
@@ -29,22 +30,30 @@ public class InspectionCameraTransition : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
-                Debug.Log("esc");
-                playercam.transform.DOMove(originalCamPosition.position, 1);
-                playercam.transform.DORotate(originalCamPosition.rotation.eulerAngles, 1);
-                FirstPersonAIO.instance.enableCameraMovement = true;
-                FirstPersonAIO.instance.playerCanMove = true;
-                Cursor.visible = false;
-                isInCam = false;
-                inspectionButton.SetActive(false);
-                inspectionWindow.SetActive(false);
+                TransitCamToOriginalPos();
             }
         }
     }
 
+    public void TransitCamToOriginalPos()
+    {
+        Debug.Log(originalCamPosition.position);
+        Debug.Log(originalCamPosition.rotation.eulerAngles);
+        isInCam = false;
+        //playercam.transform.position = originalCamPosition.position;
+        //playercam.transform.rotation = originalCamPosition.rotation;
+        playercam.transform.DOMove(originalCamPosition.position, 0.5f);
+        playercam.transform.DORotate(originalCamPosition.rotation.eulerAngles, 0.5f).OnComplete(() => EnableMovement());
+        Cursor.visible = false;
+        inspectionButton.SetActive(false);
+        inspectionWindow.SetActive(false);
+        PlayBody.GetComponent<MeshRenderer>().enabled = true;
+        //outline + prompt message hide
+    }
+
     public void TransitCamToInspectionPos()
     {
-        
+        originalCamPosition = playercam.transform;
         playercam.transform.DOMove(InspectionCam.position, 1);
         playercam.transform.DORotate(InspectionCam.rotation.eulerAngles, 1);
         FirstPersonAIO.instance.enableCameraMovement = false;
@@ -52,5 +61,12 @@ public class InspectionCameraTransition : MonoBehaviour
         Cursor.visible = true;
         isInCam = true;
         inspectionButton.SetActive(true);
+        PlayBody.GetComponent<MeshRenderer>().enabled = false;
+    }
+
+    private void EnableMovement()
+    {
+        FirstPersonAIO.instance.enableCameraMovement = true;
+        FirstPersonAIO.instance.playerCanMove = true;
     }
 }

@@ -166,7 +166,7 @@ public class NoSightAllowed : MonoBehaviour
         //open eye animation
         else
         {
-            if (EyeBarImage.fillAmount >= 0.1f)
+            if (100 - openedTimes * 10 > 10f)
             {
                 openedTimes++;
             }

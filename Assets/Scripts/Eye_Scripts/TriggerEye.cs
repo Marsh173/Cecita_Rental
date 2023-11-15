@@ -15,7 +15,11 @@ public class TriggerEye : MonoBehaviour
 
     private void Update()
     {
-
+         if (Respawn.dead)
+        {
+            eyeIcon.SetActive(false);
+            FirstPersonAIO.instance.cameraInputMethod = FirstPersonAIO.CameraInputMethod.Traditional;
+        }
     }
 
     //check if the mechanic needs to be activated

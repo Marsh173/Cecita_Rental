@@ -8,8 +8,7 @@ using FMODUnity;
 public class TriggerDoorController : MonoBehaviour
 {
     [SerializeField] private Animator myDoorAnimator;
-    [SerializeField] public bool openTrigger = false;
-    [SerializeField] public bool closeTrigger = false;
+    [SerializeField] public bool openTrigger = false, closeTrigger = false, playedOpen = false;
     private string doorOpen = "DoorOpen";
     private string doorClose = "DoorClose";
     private string Idle = "Idle";
@@ -32,18 +31,25 @@ public class TriggerDoorController : MonoBehaviour
         doorOpenSound.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject.transform));
         doorCloseSound.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject.transform));
         Masterbus = FMODUnity.RuntimeManager.GetBus("Bus:/");
+
+        playedOpen = false;
     }
 
-    //private void Update()
-    //{
-    //    if (gameObject.CompareTag("LoungeDoor") && openTrigger && playedCloseAnim)
-    //    {
-    //        Debug.Log("DoorLeftClose animation started playing.");
-    //        openTrigger = false;
-    //        closeTrigger = true;
-    //        playedCloseAnim = false;
-    //    }
-    //}
+    private void Update()
+    {
+        if(Respawn.dead)
+        {
+            gameObject.SetActive(true);
+        }
+
+        /*if (gameObject.CompareTag("LoungeDoor") && openTrigger && playedCloseAnim)
+        {
+            Debug.Log("DoorLeftClose animation started playing.");
+            openTrigger = false;
+            closeTrigger = true;
+            playedCloseAnim = false;
+        }*/
+    }
 
 
     private void OnTriggerEnter(Collider other)
@@ -63,11 +69,12 @@ public class TriggerDoorController : MonoBehaviour
 
                 FMOD.Studio.PLAYBACK_STATE fmodPbState;
                 doorOpenSound.getPlaybackState(out fmodPbState);
-                if (fmodPbState != FMOD.Studio.PLAYBACK_STATE.PLAYING)
+                
+                if (fmodPbState != FMOD.Studio.PLAYBACK_STATE.PLAYING && !playedOpen)
                 {
                     
                     doorOpenSound.start();
-                    
+                    playedOpen = true;
                 }
 
             }
@@ -78,9 +85,14 @@ public class TriggerDoorController : MonoBehaviour
                
                 FMOD.Studio.PLAYBACK_STATE fmodPbState;
                 doorCloseSound.getPlaybackState(out fmodPbState);
-                if (fmodPbState != FMOD.Studio.PLAYBACK_STATE.PLAYING) doorCloseSound.start();
 
-                if (gameObject.CompareTag("LoungeDoorInside"))
+                if (fmodPbState != FMOD.Studio.PLAYBACK_STATE.PLAYING)
+                {
+                    playedOpen = false;
+                    doorCloseSound.start();
+                }
+
+                    if (gameObject.CompareTag("LoungeDoorInside"))
                 {
                     GameObject taggedObject = GameObject.FindWithTag("LoungeDoor");
                     if (taggedObject != null)
@@ -113,7 +125,8 @@ public class TriggerDoorController : MonoBehaviour
             {
                 
                 closeTrigger = false;
-                myDoorAnimator.SetBool("Opened", false);
+                //myDoorAnimator.SetBool("Opened", false);
+                myDoorAnimator.SetBool("Closed", true);
 
             }
 
@@ -145,8 +158,9 @@ public class TriggerDoorController : MonoBehaviour
                 }
             }
 
-            else if (!gameObject.CompareTag("LoungeDoor"))
+            else if (!gameObject.CompareTag("LoungeDoor") && closeTrigger)
             {
+                gameObject.SetActive(false);
                 myDoorAnimator.SetBool("Opened", false);
                 myDoorAnimator.SetBool("Closed", false);
             }

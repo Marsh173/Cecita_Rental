@@ -26,7 +26,7 @@ public class Walkers : MonoBehaviour
 
     private void Start()
     {
-        walker.SetActive(false);
+        //walker.SetActive(false);
         //monster_sound.SetActive(false);
         //playerObj = GameObject.FindGameObjectWithTag("Player");
 

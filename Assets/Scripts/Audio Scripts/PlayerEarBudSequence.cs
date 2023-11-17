@@ -10,7 +10,7 @@ public class PlayerEarBudSequence : MonoBehaviour
     public GameObject invisibleWall, tutorialMessageObj, inventory, interactiveDoor, eyeicon, UIPauseTutorial, taskPlaceholder1, taskPlaceholder2;
     public TMP_Text tutoriaMessage;
 
-    private bool firstAudioPlayed, TabToOpen, FinishInventory, firstWarning;
+    private bool firstAudioPlayed, TabToOpen, FinishInventory, firstEyeWarning, firstInfrontWarning;
     private bool DelayedAlready;
 
     [SerializeField] private float delay = 0.0f;
@@ -23,7 +23,7 @@ public class PlayerEarBudSequence : MonoBehaviour
         taskPlaceholder1.SetActive(true);
         tutoriaMessage = tutorialMessageObj.GetComponent<TMP_Text>();
         earBudVoice = GetComponent<AudioSource>();
-        DelayedAlready = firstAudioPlayed = FinishInventory = TabToOpen = firstWarning = false;
+        DelayedAlready = firstAudioPlayed = FinishInventory = TabToOpen = firstEyeWarning = firstInfrontWarning = false;
 
 
         Debug.Log(inventory.activeInHierarchy);
@@ -57,14 +57,14 @@ public class PlayerEarBudSequence : MonoBehaviour
             }
         }
 
-        if(!firstWarning && NoSightAllowed.CurrentEyeBarAmount <= 25f && eyeicon.active && InventoryManager.equipmentCollected)
+        if(!firstEyeWarning && NoSightAllowed.CurrentEyeBarAmount <= 25f && eyeicon.active && InventoryManager.equipmentCollected)
         {
             Debug.Log("warn");
-            Debug.Log(firstWarning);
+            Debug.Log(firstEyeWarning);
             earBudVoice.Stop();
             earBudVoice.clip = Resources.Load<AudioClip>("Night 0/" + "Night 0 - Close!");
             earBudVoice.PlayOneShot(earBudVoice.clip);
-            firstWarning = true;
+            firstEyeWarning = true;
         }
 
         if(Input.GetKeyDown(KeyCode.F) && Time.timeScale == 0)
@@ -106,11 +106,11 @@ public class PlayerEarBudSequence : MonoBehaviour
                 UIPauseTutorial.SetActive(true);
             }
 
-            if(other.CompareTag("InFrontOfMonster"))
+            if(other.CompareTag("InFrontOfMonster") && !firstInfrontWarning)
             {
                 earBudVoice.clip = Resources.Load<AudioClip>("Night 0/" + "Night 0 - In front of sth");
                 earBudVoice.PlayOneShot(earBudVoice.clip);
-                //add bool
+                firstInfrontWarning = true;
             }
         }
         else

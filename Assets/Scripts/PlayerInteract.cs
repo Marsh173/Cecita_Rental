@@ -32,6 +32,9 @@ public class PlayerInteract : MonoBehaviour
     private void Start()
     {
         if (message.text != null) message.text = "";
+
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Confined;
     }
 
     private void Update()

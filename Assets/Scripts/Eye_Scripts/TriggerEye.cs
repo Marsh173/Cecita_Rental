@@ -11,7 +11,7 @@ public class TriggerEye : MonoBehaviour
     private void Start()
     {
         eyeIcon.SetActive(false);
-        Cursor.lockState = CursorLockMode.Confined;
+        /*Cursor.lockState = CursorLockMode.Confined;*/
     }
 
     private void Update()

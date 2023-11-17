@@ -2775,6 +2775,7 @@ GameObject:
   - component: {fileID: 716220910}
   - component: {fileID: 716220912}
   - component: {fileID: 716220911}
+  - component: {fileID: 716220913}
   m_Layer: 5
   m_Name: Computer Screen
   m_TagString: Untagged
@@ -2844,6 +2845,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 716220909}
   m_CullTransparentMesh: 1
+--- !u!114 &716220913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 716220909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 621b49034343d4244a9e996c2584687c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &716557029 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 302162671290387369, guid: 5f5430113ff8d4848aa453fdb0b64481, type: 3}
@@ -13674,10 +13687,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Tonight's Rule: \n\n1. Jazz music means saferoom is near\n2. Do not open
-    the lounge door when you hear someone knockinng on the outside.\n3. Ignore whispers
-    and keep walking\n4. Keep your eyes closed when you hear doors opening and closing\n5.
-    Wind blows doors open rapidly. Run if you hear that."
+  m_text: Welcome
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c2468c23bd9cb4375b825f0cf84496e5, type: 2}
   m_sharedMaterial: {fileID: 4435081175374399922, guid: c2468c23bd9cb4375b825f0cf84496e5, type: 2}
@@ -15091,14 +15101,14 @@ RectTransform:
   m_GameObject: {fileID: 2887121248398195337}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.15136, y: 0.33305, z: 1}
   m_Children: []
   m_Father: {fileID: 6561419315137624427}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 93.16211, y: 155.99464}
+  m_AnchoredPosition: {x: -453, y: 177}
   m_SizeDelta: {x: 1274.3243, y: 132.0107}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3391971624305942898
@@ -19352,7 +19362,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &6561419314269198305
 RectTransform:
   m_ObjectHideFlags: 0

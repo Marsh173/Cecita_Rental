@@ -52,10 +52,10 @@ public class Walkers : MonoBehaviour
 
 
 
-        if(walker.transform.position == stop.position)
+        if(walker.transform.position == stop.position || walker.transform.position == patrolPoints[currentPointIndex].position)
         {
             Debug.Log("stopped");
-           
+            walker.SetActive(false);
         }
 
     }

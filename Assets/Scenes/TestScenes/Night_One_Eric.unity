@@ -1339,6 +1339,19 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6163106811937840097, guid: 0af122e4cbeaf4ba19581bfe17e4010b, type: 3}
   m_PrefabInstance: {fileID: 41604908}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &41604912 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 41604908}
+  m_PrefabAsset: {fileID: 0}
+--- !u!222 &41604913
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 41604912}
+  m_CullTransparentMesh: 1
 --- !u!1001 &43977773
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2096,7 +2109,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1786473008633198075, guid: 3faea09d74789b24e83273e5f863ac31, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1786473008633198075, guid: 3faea09d74789b24e83273e5f863ac31, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7275,7 +7288,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 20
+  m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &449835839 stripped
 GameObject:
@@ -7759,7 +7772,7 @@ Transform:
   - {fileID: 1868986308}
   - {fileID: 1180653234}
   m_Father: {fileID: 0}
-  m_RootOrder: 21
+  m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &489686233
 GameObject:
@@ -10741,8 +10754,8 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7799719709715727979, guid: 0af122e4cbeaf4ba19581bfe17e4010b, type: 3}
   m_PrefabInstance: {fileID: 41604908}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
+  m_GameObject: {fileID: 41604912}
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
@@ -10850,11 +10863,6 @@ Transform:
   m_Father: {fileID: 1018737022}
   m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0.36, y: 0, z: 0.077}
---- !u!95 &784501873 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 6101063208340009615, guid: 45ecdf9f71a768f45b9323c79aaa8c99, type: 3}
-  m_PrefabInstance: {fileID: 1254445209}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &787295797
 GameObject:
   m_ObjectHideFlags: 0
@@ -11288,6 +11296,71 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7799719709202134423, guid: 0af122e4cbeaf4ba19581bfe17e4010b, type: 3}
   m_PrefabInstance: {fileID: 41604908}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &844741191
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 844741193}
+  - component: {fileID: 844741192}
+  - component: {fileID: 844741194}
+  m_Layer: 0
+  m_Name: '! AmsMultiSceneSetup'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &844741192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 844741191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 085c2289556c08443b40563cfe8016e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sceneSetupMode: 0
+  _sceneSetup: []
+  _isMainScene: 0
+  _version: 1
+  _thisScenePath: Assets/Scenes/TestScenes/Night_One_Eric.unity
+--- !u!4 &844741193
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 844741191}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &844741194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 844741191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15cc1e8a133b04c4ba5d1c4801149eaa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _version: 2
+  _crossSceneReferences: []
+  _realSceneRootsForPostBuild: []
+  _mergedScenes: []
 --- !u!1001 &848115325
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12453,7 +12526,7 @@ Transform:
   - {fileID: 1946763431}
   - {fileID: 1671626238}
   m_Father: {fileID: 0}
-  m_RootOrder: 23
+  m_RootOrder: 24
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1008411243
 GameObject:
@@ -14467,7 +14540,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 22
+  m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1180653233
 PrefabInstance:
@@ -16623,11 +16696,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e3b626f5aaea5740975126f14b0cbb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myDoor: {fileID: 784501873}
+  myDoorAnimator: {fileID: 0}
   openTrigger: 1
   closeTrigger: 0
-  doorOpen: slow RightOpen
-  doorClose: slow RightClose
+  playedOpen: 0
+  doorOpenEventPath:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  doorCloseEventPath:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!1 &1350702775
 GameObject:
   m_ObjectHideFlags: 0
@@ -21880,7 +21966,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 24
+  m_RootOrder: 25
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1700176259
 GameObject:
@@ -23784,7 +23870,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 254446210889785141, guid: baa45a6adc565eb4d95dd7617b45c679, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 254446210889785141, guid: baa45a6adc565eb4d95dd7617b45c679, type: 3}
       propertyPath: m_LocalPosition.x
@@ -25367,7 +25453,7 @@ MonoBehaviour:
       Data2: 1139339620
       Data3: 2090025403
       Data4: -805338938
-    Path: event:/Monsters/Door Chase/Ambience Tension 3
+    Path: event:/Monsters/Door Chase/Ambience base
   Event: 
   PlayEvent: 3
   StopEvent: 12
@@ -48460,7 +48546,7 @@ Transform:
   - {fileID: 7074337521913899238}
   - {fileID: 7074337522011005761}
   m_Father: {fileID: 0}
-  m_RootOrder: 25
+  m_RootOrder: 26
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &7078018882282858451
 Transform:

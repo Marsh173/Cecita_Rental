@@ -1739,7 +1739,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1786473008633198075, guid: 3faea09d74789b24e83273e5f863ac31, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -123.6
+      value: -109.67
       objectReference: {fileID: 0}
     - target: {fileID: 1786473008633198075, guid: 3faea09d74789b24e83273e5f863ac31, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4343,6 +4343,10 @@ PrefabInstance:
     - target: {fileID: 6561419314005734195, guid: 5cc38f6bd6d0ed34ab086eee9621e3ad, type: 3}
       propertyPath: m_Name
       value: Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 6561419314005734195, guid: 5cc38f6bd6d0ed34ab086eee9621e3ad, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6561419314005734199, guid: 5cc38f6bd6d0ed34ab086eee9621e3ad, type: 3}
       propertyPath: m_Pivot.x
@@ -11082,67 +11086,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 422804440}
   m_Mesh: {fileID: -5546347261141537002, guid: 059bc165bd3a98143b6a0dd000c532cd, type: 3}
---- !u!1 &429283342
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 429283344}
-  - component: {fileID: 429283343}
-  - component: {fileID: 429283345}
-  m_Layer: 0
-  m_Name: DestroyObjects
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &429283343
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 429283342}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 348a4b0a30e76a249acb1ec8aa3443b8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objectsToDisable:
-  - {fileID: 937575702}
-  - {fileID: 1946763428}
-  - {fileID: 1671626235}
---- !u!4 &429283344
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 429283342}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -43.2, y: 1.4499679, z: -2.8}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 981826051}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &429283345
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 429283342}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 11.842833, y: 7.34, z: 16.98}
-  m_Center: {x: 0.10641575, y: 0, z: 0}
 --- !u!1001 &444382789
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11317,12 +11260,12 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1966286927}
+  - {fileID: 1442913174}
   - {fileID: 1137183840}
   - {fileID: 489639363}
   - {fileID: 1172313400}
   - {fileID: 981826051}
   - {fileID: 7074337523365798971}
-  - {fileID: 1442913174}
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -11965,7 +11908,7 @@ Transform:
   - {fileID: 1868986308}
   - {fileID: 1180653234}
   m_Father: {fileID: 448465781}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &489686233
 GameObject:
@@ -17655,9 +17598,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 937575705}
-  - component: {fileID: 937575704}
   - component: {fileID: 937575703}
   - component: {fileID: 937575706}
+  - component: {fileID: 937575704}
   m_Layer: 0
   m_Name: Door Part tension
   m_TagString: Untagged
@@ -17687,28 +17630,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 937575702}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Script: {fileID: 11500000, guid: 46948ba9e0df9e84c9b505983017c4b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CollisionTag: Player
-  EventReference:
+  audioEventPath:
     Guid:
       Data1: -1108847460
       Data2: 1188502341
       Data3: 221961145
       Data4: -134536248
     Path: event:/Monsters/Door Chase/Ambience Tension
-  Event: 
-  PlayEvent: 3
-  StopEvent: 12
-  AllowFadeout: 1
-  TriggerOnce: 0
-  Preload: 0
-  AllowNonRigidbodyDoppler: 0
-  Params: []
   OverrideAttenuation: 0
-  OverrideMinDistance: 1
-  OverrideMaxDistance: 20
+  minDistance: 1
+  maxDistance: 20
 --- !u!4 &937575705
 Transform:
   m_ObjectHideFlags: 0
@@ -17721,7 +17655,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 981826051}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &937575706
 BoxCollider:
@@ -18298,12 +18232,11 @@ Transform:
   m_LocalPosition: {x: -113.52821, y: 0.9284816, z: -16.471375}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 429283344}
   - {fileID: 1946763431}
   - {fileID: 937575705}
   - {fileID: 1671626238}
   m_Father: {fileID: 448465781}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &992627910
 GameObject:
@@ -20658,7 +20591,7 @@ Transform:
   m_LocalScale: {x: 7.2416844, y: 7.3200045, z: 0.87360835}
   m_Children: []
   m_Father: {fileID: 448465781}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!65 &1137183841
 BoxCollider:
@@ -21294,7 +21227,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 448465781}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1180653233
 PrefabInstance:
@@ -27934,7 +27867,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5138415726607479510, guid: 53b7c4abcc3e12b48a32afdbb70f832a, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5138415726607479510, guid: 53b7c4abcc3e12b48a32afdbb70f832a, type: 3}
       propertyPath: m_LocalScale.x
@@ -31144,8 +31077,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1671626238}
-  - component: {fileID: 1671626237}
   - component: {fileID: 1671626236}
+  - component: {fileID: 1671626239}
   m_Layer: 0
   m_Name: Door Part music
   m_TagString: Untagged
@@ -31166,37 +31099,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 10.306392, y: 5.8815227, z: 35.08732}
   m_Center: {x: -3.279315, y: -2.5987914, z: 9.011864}
---- !u!114 &1671626237
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1671626235}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CollisionTag: Player
-  EventReference:
-    Guid:
-      Data1: 1172202635
-      Data2: 1316721035
-      Data3: -1539112802
-      Data4: -629057146
-    Path: event:/Monsters/Door Chase/Music Tension
-  Event: 
-  PlayEvent: 3
-  StopEvent: 12
-  AllowFadeout: 1
-  TriggerOnce: 0
-  Preload: 0
-  AllowNonRigidbodyDoppler: 0
-  Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: 1
-  OverrideMaxDistance: 20
 --- !u!4 &1671626238
 Transform:
   m_ObjectHideFlags: 0
@@ -31209,8 +31111,30 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 981826051}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+--- !u!114 &1671626239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1671626235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46948ba9e0df9e84c9b505983017c4b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioEventPath:
+    Guid:
+      Data1: 1172202635
+      Data2: 1316721035
+      Data3: -1539112802
+      Data4: -629057146
+    Path: event:/Monsters/Door Chase/Music Tension
+  OverrideAttenuation: 0
+  minDistance: 1
+  maxDistance: 20
 --- !u!4 &1673943684 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7807361875161427897, guid: 31b3a2a7aaafe9748a13cd92b4079c32, type: 3}
@@ -36204,8 +36128,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1946763431}
-  - component: {fileID: 1946763430}
   - component: {fileID: 1946763429}
+  - component: {fileID: 1946763430}
   m_Layer: 0
   m_Name: Door Part base
   m_TagString: Untagged
@@ -36235,28 +36159,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 1946763428}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Script: {fileID: 11500000, guid: 46948ba9e0df9e84c9b505983017c4b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CollisionTag: Player
-  EventReference:
+  audioEventPath:
     Guid:
       Data1: 611687921
       Data2: 1139339620
       Data3: 2090025403
       Data4: -805338938
     Path: event:/Monsters/Door Chase/Ambience Tension 3
-  Event: 
-  PlayEvent: 3
-  StopEvent: 12
-  AllowFadeout: 1
-  TriggerOnce: 0
-  Preload: 0
-  AllowNonRigidbodyDoppler: 0
-  Params: []
   OverrideAttenuation: 0
-  OverrideMinDistance: 1
-  OverrideMaxDistance: 20
+  minDistance: 1
+  maxDistance: 20
 --- !u!4 &1946763431
 Transform:
   m_ObjectHideFlags: 0
@@ -36269,7 +36184,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 981826051}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!1 &1947067842
 GameObject:
@@ -67420,7 +67335,7 @@ Transform:
   - {fileID: 7074337521913899238}
   - {fileID: 7074337522011005761}
   m_Father: {fileID: 448465781}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &7078018882282858451
 Transform:

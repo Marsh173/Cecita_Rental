@@ -68,7 +68,7 @@ public class NoSightAllowed : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(CurrentEyeBarAmount);
+        //Debug.Log(CurrentEyeBarAmount);
 
         if (Input.GetKeyDown(KeyCode.F))
         {

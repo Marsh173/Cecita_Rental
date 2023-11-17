@@ -105,6 +105,13 @@ public class PlayerEarBudSequence : MonoBehaviour
                 Time.timeScale = 0;
                 UIPauseTutorial.SetActive(true);
             }
+
+            if(other.CompareTag("InFrontOfMonster"))
+            {
+                earBudVoice.clip = Resources.Load<AudioClip>("Night 0/" + "Night 0 - In front of sth");
+                earBudVoice.PlayOneShot(earBudVoice.clip);
+                //add bool
+            }
         }
         else
         {

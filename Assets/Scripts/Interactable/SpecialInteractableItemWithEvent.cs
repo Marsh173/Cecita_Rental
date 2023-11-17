@@ -75,7 +75,7 @@ public class SpecialInteractableItemWithEvent : InteractableItemWithEvent
             UnityEngine.Cursor.lockState = CursorLockMode.Locked; UnityEngine.Cursor.visible = false;
         }
 
-        if (playerInteract.hasRecorderTurnedOn)
+        if (PlayerInteract.hasRecorderInHand)
         {
             if (interactedAndClicked)
             {

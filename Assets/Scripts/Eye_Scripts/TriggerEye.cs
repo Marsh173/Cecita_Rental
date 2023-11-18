@@ -5,17 +5,35 @@ using UnityEngine;
 public class TriggerEye : MonoBehaviour
 {
     [SerializeField] private GameObject eyeIcon, MonsterZone, DeadEndZone;
-    private bool MonsterZoneHasPlayed, DeadEndZoneHasPlayed = false;
+
+    private AudioSource earBudVoice;
+
+    private bool MonsterZoneHasPlayed, firstInfrontWarning, firstEyeWarning;
     public static bool enteredCantOpen;
 
     private void Start()
     {
         eyeIcon.SetActive(false);
+        MonsterZoneHasPlayed = firstInfrontWarning = firstEyeWarning = false;
+        earBudVoice = GetComponent<AudioSource>();
     }
 
     private void Update()
     {
+         if (Respawn.dead)
+        {
+            eyeIcon.SetActive(false);
+            FirstPersonAIO.instance.cameraInputMethod = FirstPersonAIO.CameraInputMethod.Traditional;
+        }
 
+        //tutorial warning about eye amount
+        if (!firstEyeWarning && NoSightAllowed.CurrentEyeBarAmount <= 25f && eyeIcon.active && InventoryManager.equipmentCollected)
+        {
+            earBudVoice.Stop();
+            earBudVoice.clip = Resources.Load<AudioClip>("Night 0/" + "Night 0 - Close!");
+            earBudVoice.PlayOneShot(earBudVoice.clip);
+            firstEyeWarning = true;
+        }
     }
 
     //check if the mechanic needs to be activated
@@ -57,16 +75,13 @@ public class TriggerEye : MonoBehaviour
                 MonsterZoneHasPlayed = true;
             }
         }
-        //tutorial stuff end
-
-        /*if (other.CompareTag("EnterDeadEnd"))
+        //tutorial warning about white noise
+        if (other.CompareTag("InFrontOfMonster") && !firstInfrontWarning)
         {
-            if (!DeadEndZoneHasPlayed)
-            {
-                DeadEndZone.GetComponent<Animation>().Play();
-                DeadEndZoneHasPlayed = true;
-            }
-        }*/
+            earBudVoice.clip = Resources.Load<AudioClip>("Night 0/" + "Night 0 - In front of sth");
+            earBudVoice.PlayOneShot(earBudVoice.clip);
+            firstInfrontWarning = true;
+        }
 
 
     }

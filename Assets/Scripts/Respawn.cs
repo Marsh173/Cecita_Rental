@@ -37,6 +37,7 @@ public class Respawn : MonoBehaviour
         //instant restart when in tutorial level
         if (dead)
         {
+            restarted = false;
             if (SceneManager.GetActiveScene().name == "TutorialLevel")
             {
                 StartCoroutine(RespawnRoutiine());
@@ -48,8 +49,9 @@ public class Respawn : MonoBehaviour
     }
     IEnumerator RespawnRoutiine()
     {
+        yield return new WaitForSeconds(0.01f);
         dead = false;
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.05f);
         if(checkpoint != null)
         {
             playerPos.SetPositionAndRotation(checkpoint.transform.position, checkpoint.transform.rotation);
@@ -66,5 +68,6 @@ public class Respawn : MonoBehaviour
                 placeholderDeathText.SetActive(true);
             }
         }
+        restarted = true;
     }
 }

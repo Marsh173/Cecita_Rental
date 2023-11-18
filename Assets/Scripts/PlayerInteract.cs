@@ -7,7 +7,7 @@ using UnityEngine.Events;
 public class PlayerInteract : MonoBehaviour
 {
     //Event system
-    public bool hasRecorderTurnedOn = false;
+    public static bool hasRecorderInHand = false;
     public UnityEvent EventTurnOnInteraction;
     public UnityEvent EventTurnOffInteraction;
 
@@ -32,23 +32,26 @@ public class PlayerInteract : MonoBehaviour
     private void Start()
     {
         if (message.text != null) message.text = "";
+
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Confined;
     }
 
     private void Update()
     {
         //Event system to turn camera on/off                                                        -Bryan
-        if (Input.GetKeyUp(KeyCode.R))
+        if (Input.GetKeyUp(KeyCode.R) && InventoryManager.equipmentCollected)
         {
-            if (!hasRecorderTurnedOn)
+            if (!hasRecorderInHand)
             {
                 RunTurnOnEvent();
-                hasRecorderTurnedOn = true;
+                hasRecorderInHand = true;
             }
 
             else
             {
                 RunTurnOffEvent();
-                hasRecorderTurnedOn = false;
+                hasRecorderInHand = false;
             }
         }
         //End of Event system code

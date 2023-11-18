@@ -62,7 +62,8 @@ public class Task : MonoBehaviour
     public virtual IEnumerator OnFinished()
     {
         //ObjectiveManager.instance.ObjectiveList.Remove(this);
-        //this.transform.GetChild(0).GetComponent<Image>().DOFade(1, 0.75f).OnComplete(() => CompleteFinished());
+        this.transform.GetChild(0).gameObject.SetActive(true);
+        this.transform.GetChild(0).GetComponent<Image>().DOFade(1, 0.75f).OnComplete(() => CompleteFinished());
 
         //yield return new WaitForSeconds(dialogueDelay);
 
@@ -84,7 +85,7 @@ public class Task : MonoBehaviour
         /*StartCoroutine(FinishDialogue());
         StartCoroutine(AssignObjective());*/
 
-        Destroy(gameObject);
+        //Destroy(gameObject);
         yield return null;
     }
 
@@ -120,8 +121,8 @@ public class Task : MonoBehaviour
 
     public void CompleteFinished()
     {
-        this.transform.GetChild(0).GetComponent<Image>().DOFade(0, 0.25f);
-        GetComponent<TMP_Text>().DOFade(0, 0.25f);
+        //this.transform.GetChild(0).GetComponent<Image>().DOFade(0, 0.25f);
+        //GetComponent<TMP_Text>().DOFade(0, 0.25f);
 
         /*if (mainObjective == null)
         {

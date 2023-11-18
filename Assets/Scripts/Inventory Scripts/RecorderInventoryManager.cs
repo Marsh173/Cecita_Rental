@@ -9,18 +9,15 @@ public class RecorderInventoryManager : MonoBehaviour
 {
     public static RecorderInventoryManager Instance;
     public List<PlaylistItems> AItems = new List<PlaylistItems>();
-    //public List<NormalItems> NItems = new List<NormalItems>();
     //Audio list
     public AudioSource audioSource;
     public AudioClip[] soundArray;
     public AudioClip sound;
     public int audioIndex = 0;
 
-    public Transform PlaylistItemContent/*, NormalItemContent*/;
-    public GameObject PlaylistItem/*, NormalItem*/;
+    public Transform PlaylistItemContent;
+    public GameObject PlaylistItem;
     public GameObject Inventory;
-
-    public static bool equipmentCollected = false;
 
     private void Awake()
     {
@@ -35,19 +32,13 @@ public class RecorderInventoryManager : MonoBehaviour
         AItems.Add(Item);
     }
 
-/*    public void AddNormal(NormalItems Item)
-    {
-        NItems.Add(Item);
-    }
-*/
-
     private void Update()
     {
 
-        // New code
-        if (Input.GetAxis("Mouse ScrollWheel") != 0f) // backwards
+        // recorder inventory activate
+        if (Input.GetAxis("Mouse ScrollWheel") != 0f && PlayerInteract.hasRecorderInHand)
         {
-            if (Input.GetAxis("Mouse ScrollWheel") < 0f && Inventory.activeSelf)
+            if (Input.GetAxis("Mouse ScrollWheel") < 0f && Inventory.activeSelf) // backwards
             {
                 Inventory.SetActive(false);
                 FirstPersonAIO.instance.enableCameraMovement = true;
@@ -117,16 +108,4 @@ public class RecorderInventoryManager : MonoBehaviour
         }
         */
     }
-
-    /*
-    //detect if earbud and recorder are collected
-    public void FindEquipment()
-    {
-        if (NItems.Find(item => item.name == "ear buds") && NItems.Find(item => item.name == "recorder"))
-        {
-            equipmentCollected = true;
-            Debug.Log("Equiped " + equipmentCollected);
-        }
-    }
-    */
 }

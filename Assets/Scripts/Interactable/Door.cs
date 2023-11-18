@@ -17,23 +17,26 @@ public class Door : InteractableItemWithEvent
     public void ChangeBehavior()
     {
 
-        
-
-
-        if(promptMessage.Contains("Open the Door"))
+        if(promptMessage == "Open the Door")
         {
             promptMessage = "Close the Door";
-            anim.Play(DoorOpenClip);
-            
+            anim.SetBool("Closed", true);
+            anim.SetBool("Opened", false);
+            //anim.Play(DoorOpenClip);
+
             openSound.SetActive(true);
             closeSound.SetActive(false);
 
-
+            Debug.Log("opened" + anim.GetBool("Opened"));
+            Debug.Log("close" + anim.GetBool("Closed"));
         }
-        else if(promptMessage.Contains("Close the Door"))
+        else if(promptMessage == "Close the Door")
         {
             promptMessage = "Open the Door";
-            anim.Play(DoorCloseClip);
+            anim.SetBool("Closed", false);
+            anim.SetBool("Opened", true);
+            //anim.Play(DoorCloseClip);
+
             openSound.SetActive(false);
             closeSound.SetActive(true);
 

@@ -22,8 +22,8 @@ public class NoSightAllowed : MonoBehaviour
     //warning bar
     public float EyeBarDecreaseSpeed, RechargeSpeed;
     public static float CurrentEyeBarAmount;
-    public GameObject ChargeBarUI;
-    public Image RedAura, BarImage;
+    public GameObject EyeBarUI, AlertBarUI;
+    public Image RedAura, EyeBarImage, AlertBarimage;
     private WaitForSeconds rechargeTick = new WaitForSeconds(0.001f);
     private Coroutine rechargeC;
     private void Start()
@@ -40,7 +40,8 @@ public class NoSightAllowed : MonoBehaviour
         anim.SetBool("isBegun", false);
 
         CurrentEyeBarAmount = 100f;
-        BarImage = ChargeBarUI.GetComponent<Image>();
+        EyeBarImage = EyeBarUI.GetComponent<Image>();
+        AlertBarimage = AlertBarUI.GetComponent<Image>();
         wallHitUI.SetActive(false);
     }
     //reset everything when enabled (entered a safe room)
@@ -59,14 +60,17 @@ public class NoSightAllowed : MonoBehaviour
         anim.SetBool("isBegun", false);
 
         CurrentEyeBarAmount = 100f;
-        BarImage.fillAmount = 1f;
+        EyeBarImage.fillAmount = 1f;
+        AlertBarimage.fillAmount = 0f;
         wallHitUI.SetActive(false);
         openedTimes = 0;
     }
 
     private void Update()
-    { 
-        if(Input.GetKeyDown(KeyCode.F))
+    {
+        //Debug.Log(CurrentEyeBarAmount);
+
+        if (Input.GetKeyDown(KeyCode.F))
         {
             EyeAnimation();
             Debug.Log("animation played");
@@ -127,8 +131,7 @@ public class NoSightAllowed : MonoBehaviour
             //decrease when eye open
             if(TimerActive && CurrentEyeBarAmount != 0)
             {
-                CurrentEyeBarAmount -= 100/(countDownTime - openedTimes / 2) * Time.deltaTime;
-                Debug.Log("speed" + 100/(countDownTime - openedTimes / 2) * Time.deltaTime);
+                CurrentEyeBarAmount -= 100/countDownTime * Time.deltaTime;
                 Debug.Log(openedTimes);
 
             }
@@ -139,7 +142,9 @@ public class NoSightAllowed : MonoBehaviour
                 Respawn.dead = true;
             }
         }
-        BarImage.fillAmount = CurrentEyeBarAmount / 100f;
+
+        EyeBarImage.fillAmount = CurrentEyeBarAmount / 100f;
+        AlertBarimage.fillAmount = openedTimes * 0.1f;
         //Debug.Log(countDown);
     }
 
@@ -161,7 +166,10 @@ public class NoSightAllowed : MonoBehaviour
         //open eye animation
         else
         {
-            openedTimes++;
+            if (100 - openedTimes * 10 > 10f)
+            {
+                openedTimes++;
+            }
             eye_UI.image.sprite = Eye_Open;
             anim.SetBool("isBegun", false);
             anim.SetBool("isOpen", true);
@@ -183,14 +191,14 @@ public class NoSightAllowed : MonoBehaviour
     {
         yield return new WaitForSeconds(1.5f);
         Debug.Log("recharge waited");
-        while (CurrentEyeBarAmount < 100)
+        while (CurrentEyeBarAmount < 100 - openedTimes * 10)
         {
             CurrentEyeBarAmount += RechargeSpeed * Time.deltaTime;
             yield return rechargeTick;
         }
 
         rechargeC = null;
-
+        Debug.Log("Supposed CurrentEyeBarAmount" + (100 - openedTimes * 10));
         Debug.Log("recharge finished");
     }
 }

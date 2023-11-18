@@ -2,15 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class PlayerEarBudSequence : MonoBehaviour
 {
     public AudioClip[] audioClips;
     private AudioSource earBudVoice;
-    public GameObject invisibleWall, tutorialMessageObj, inventory, interactiveDoor, eyeicon, UIPauseTutorial;
+    public GameObject invisibleWall, tutorialMessageObj, inventory, interactiveDoor, UIPauseTutorial, taskPlaceholder1, taskPlaceholder2;
     public TMP_Text tutoriaMessage;
 
-    private bool firstAudioPlayed, TabToOpen, FinishInventory, firstWarning;
+    private bool firstAudioPlayed, TabToOpen, FinishInventory;
     private bool DelayedAlready;
 
     [SerializeField] private float delay = 0.0f;
@@ -19,9 +20,12 @@ public class PlayerEarBudSequence : MonoBehaviour
         UIPauseTutorial.SetActive(false);
         interactiveDoor.layer = 0; //set door to default layer
         tutorialMessageObj.SetActive(false);
+        taskPlaceholder2.SetActive(false);
+        taskPlaceholder1.SetActive(true);
         tutoriaMessage = tutorialMessageObj.GetComponent<TMP_Text>();
         earBudVoice = GetComponent<AudioSource>();
-        DelayedAlready = firstAudioPlayed = FinishInventory = TabToOpen = firstWarning = false;
+        DelayedAlready = firstAudioPlayed = FinishInventory = TabToOpen = false;
+
 
         Debug.Log(inventory.activeInHierarchy);
     }
@@ -30,6 +34,7 @@ public class PlayerEarBudSequence : MonoBehaviour
     {
         if (InventoryManager.equipmentCollected && !firstAudioPlayed)
         {
+            taskPlaceholder1.SetActive(false);
             StartCoroutine(AudioSequence());
             delay = 16f;
             firstAudioPlayed = true;
@@ -48,24 +53,15 @@ public class PlayerEarBudSequence : MonoBehaviour
 
             if (!inventory.activeInHierarchy && TabToOpen && !earBudVoice.isPlaying)
             {
-                //Debug.Log("close inventory");
                 FinishInventory = true;
             }
         }
 
-        if(!firstWarning && NoSightAllowed.CurrentEyeBarAmount <= 25f && eyeicon.active && InventoryManager.equipmentCollected)
-        {
-            Debug.Log("warn");
-            Debug.Log(firstWarning);
-            earBudVoice.Stop();
-            earBudVoice.clip = Resources.Load<AudioClip>("Night 0/" + "Night 0 - Close!");
-            earBudVoice.PlayOneShot(earBudVoice.clip);
-            firstWarning = true;
-        }
-
+        //UI tutorial screen
         if(Input.GetKeyDown(KeyCode.F) && Time.timeScale == 0)
         {
             UIPauseTutorial.SetActive(false);
+            taskPlaceholder2.SetActive(true);
             Time.timeScale = 1;
         }
     }
@@ -108,16 +104,6 @@ public class PlayerEarBudSequence : MonoBehaviour
         
         
     }
-   /* private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("EnterMonster") && !invisibleWall)
-        {
-            Debug.Log("exit trigger");
-            earBudVoice.clip = Resources.Load<AudioClip>("Night 0/" + "Night 0 - Follow music");
-            earBudVoice.PlayOneShot(earBudVoice.clip);
-        }
-
-    }*/
    IEnumerator AudioSequence()
     {
         earBudVoice.clip = Resources.Load<AudioClip>("Night 0/" + "Night 0 - Hi");

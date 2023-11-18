@@ -61,10 +61,12 @@ public class InventoryManager : MonoBehaviour
                 FirstPersonAIO.instance.enableCameraMovement = false;
                 FirstPersonAIO.instance.playerCanMove = false;
 
+                
                 //List every item each time the inventory is opened
                 ListItems();
 
                 //show cursor when open inventory 
+                Cursor.lockState = CursorLockMode.Confined;
                 Cursor.visible = true;
             }
         }

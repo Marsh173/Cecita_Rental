@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class Phone : MonoBehaviour
 {
@@ -61,7 +62,7 @@ public class Phone : MonoBehaviour
 
     public void AddNumber(float temp)
     {
-        if (phoneNumber.Length <5 && CanDial)
+        if (phoneNumber.Length <3 && CanDial)
         {
             phoneNumber += temp;
             PhoneNumberText.text = phoneNumber;
@@ -83,6 +84,7 @@ public class Phone : MonoBehaviour
         if (phoneNumber == correctNumber) //PuzzleHandler.hasSolvedClockPuzzle && 
         {
             PhoneNumberText.text = "dialing...";
+            SceneManager.LoadScene("TemporaryMenu");
         }
         //else if(!PuzzleHandler.hasSolvedClockPuzzle && phoneNumber == correctNumber)
         //{

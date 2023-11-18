@@ -20,7 +20,7 @@ public class InteractableItemWithEvent : InteractableItem
 
     public void Update()
     {
-        if (playerInteract.hasRecorderTurnedOn)
+        if (PlayerInteract.hasRecorderInHand)
         {
             if (interacted)
             {

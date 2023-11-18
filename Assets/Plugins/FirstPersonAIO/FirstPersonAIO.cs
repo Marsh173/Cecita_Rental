@@ -270,6 +270,8 @@ public class FirstPersonAIO : MonoBehaviour {
 
         #endregion
 
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Confined;
     }
 
     public void DisableMovement()

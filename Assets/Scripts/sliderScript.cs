@@ -29,7 +29,7 @@ public class sliderScript : MonoBehaviour
 
         if(slider.value >= 100)
         {
-            SceneManager.LoadScene("TutorialLevel");
+            SceneManager.LoadScene("TemporaryMenu");
         }
     }
 }

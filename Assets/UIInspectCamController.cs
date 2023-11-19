@@ -27,7 +27,7 @@ public class UIInspectCamController : MonoBehaviour
 
             if (Input.GetMouseButton(0))
             {
-                rotateV = new Vector3( mousepos.y - mousepostemp.y,  mousepostemp.x-mousepos.x, 0);
+                rotateV = new Vector3(mousepostemp.y - mousepos.y, mousepos.x-mousepostemp.x, 0);
                 selectedObject.transform.Rotate(rotateV.normalized, Space.World);
             }
 

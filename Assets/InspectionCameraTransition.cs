@@ -10,6 +10,7 @@ public class InspectionCameraTransition : MonoBehaviour
     public Transform InspectionCam;
 
     private Transform originalCamPosition;
+    private Vector3 originalPos, originalAngle;
     private bool isInCam;
 
     public GameObject inspectionButton; //for adding transcript overlay
@@ -42,18 +43,26 @@ public class InspectionCameraTransition : MonoBehaviour
         isInCam = false;
         //playercam.transform.position = originalCamPosition.position;
         //playercam.transform.rotation = originalCamPosition.rotation;
-        playercam.transform.DOMove(originalCamPosition.position, 0.5f);
-        playercam.transform.DORotate(originalCamPosition.rotation.eulerAngles, 0.5f).OnComplete(() => EnableMovement());
+        playercam.transform.DOMove(originalPos, 1f);
+        playercam.transform.DORotate(originalAngle, 1f).OnComplete(() => EnableMovement());
         Cursor.visible = false;
         inspectionButton.SetActive(false);
         inspectionWindow.SetActive(false);
         PlayBody.GetComponent<MeshRenderer>().enabled = true;
-        //outline + prompt message hide
+        //outline + prompt message show
+        if (this.GetComponent<Outline>() != null)
+        {
+            this.GetComponent<Outline>().enabled = true;
+        }
+        PlayerInteract.instnace.message.enabled = true;
+        PlayerInteract.instnace.itemIcon.SetActive(true);
     }
 
     public void TransitCamToInspectionPos()
     {
         originalCamPosition = playercam.transform;
+        originalPos = originalCamPosition.position;
+        originalAngle = originalCamPosition.rotation.eulerAngles;
         playercam.transform.DOMove(InspectionCam.position, 1);
         playercam.transform.DORotate(InspectionCam.rotation.eulerAngles, 1);
         FirstPersonAIO.instance.enableCameraMovement = false;
@@ -62,6 +71,13 @@ public class InspectionCameraTransition : MonoBehaviour
         isInCam = true;
         inspectionButton.SetActive(true);
         PlayBody.GetComponent<MeshRenderer>().enabled = false;
+        //outline + prompt message hide
+        if (this.GetComponent<Outline>() != null)
+        {
+            this.GetComponent<Outline>().enabled = false;
+        }
+        PlayerInteract.instnace.message.enabled = false;
+        PlayerInteract.instnace.itemIcon.SetActive(false);
     }
 
     private void EnableMovement()

@@ -10,7 +10,7 @@ public class TaskManager : MonoBehaviour
     public List<Task> ObjectiveList;
     public GameObject ObjectivePrefab;
     public GameObject ObjectivePrefabAnim;
-    public GameObject TaskUI, TaskAnimUI;
+    public GameObject TaskUI, TaskAnimUI, TaskTitleUI;
     public bool UIShown;
 
     private void Awake()
@@ -23,7 +23,7 @@ public class TaskManager : MonoBehaviour
 
     private void Start()
     {
-        //AssignObejctive("Task Parent2");
+        AssignObejctive("Task Parent2");
         UIShown = true;
     }
 
@@ -37,7 +37,13 @@ public class TaskManager : MonoBehaviour
         Task newObjective = Instantiate(ObjectivePrefab, TaskUI.transform).GetComponent<Task>();
         newObjective.GetComponent<TMP_Text>().text = ObjectiveText;
         ObjectiveList.Add(newObjective);
-        StartCoroutine(ObjectiveAnimation(newObjective, ObjectiveText));
+        //StartCoroutine(ObjectiveAnimation(newObjective, ObjectiveText));
+        ChangeTextColor(newObjective.GetComponent<TMP_Text>());
+    }
+
+    void ChangeTextColor(TMP_Text temp)
+    {
+        temp.DOColor(Color.yellow, 0.5f).OnComplete(() => temp.DOColor(Color.white, 0.5f));
     }
 
     IEnumerator ObjectiveAnimation(Task tempObjective, string ObjectiveText)
@@ -76,7 +82,8 @@ public class TaskManager : MonoBehaviour
             }
         }
         ObjectiveList.Add(newObjective);
-        StartCoroutine(ObjectiveAnimation(newObjective, ObjectiveText));
+        ChangeTextColor(newObjective.GetComponent<TMP_Text>());
+        //StartCoroutine(ObjectiveAnimation(newObjective, ObjectiveText));
     }
 
     /*public void AssignObejctive(Objective objective)
@@ -153,13 +160,14 @@ public class TaskManager : MonoBehaviour
     {
         //if (Input.GetKeyDown(KeyCode.A))
         //{
-        //    AssignObejctive("Task Child", ObjectiveList[0]);
+        //    AssignObejctive("Task Child");
         //}
 
-        if (Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.T))
         {
             UIShown = !UIShown;
             TaskUI.SetActive(UIShown);
+            TaskTitleUI.SetActive(UIShown);
         }
     }
 

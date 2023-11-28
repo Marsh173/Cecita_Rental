@@ -24,7 +24,7 @@ public class ElevatorController : MonoBehaviour
             loadedScenes.Add(scene);
 
             // Print or use the scene name
-            Debug.Log("Loaded Scene: " + scene.name);
+            //Debug.Log("Loaded Scene: " + scene.name);
         }
     }
 

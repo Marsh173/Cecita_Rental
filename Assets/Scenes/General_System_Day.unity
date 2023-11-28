@@ -13508,7 +13508,6 @@ GameObject:
   - component: {fileID: 1865719275871389955}
   - component: {fileID: 1836816692229722785}
   - component: {fileID: 4799712791137383678}
-  - component: {fileID: 1784866648638374196}
   - component: {fileID: 7972862131225771686}
   m_Layer: 0
   m_Name: Player Camera
@@ -13542,19 +13541,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1784866648638374196
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1783813161435628999}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attenuationObject: {fileID: 0}
 --- !u!1 &1784866648807934248
 GameObject:
   m_ObjectHideFlags: 0
@@ -13755,7 +13741,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1784319151483798915}
   m_LocalRotation: {x: -0, y: -0.7055892, z: -0, w: -0.70862114}
-  m_LocalPosition: {x: -16.6, y: 1.39, z: -14.96}
+  m_LocalPosition: {x: 1.4, y: 1.39, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1786784224719251287}
@@ -18786,8 +18772,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dab5544115aecd41b3d4f0a6b8ca5a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprites: []
-  frameRate: 4
+  sprites:
+  - {fileID: 21300000, guid: 43848089cdad59a40911194c0d80d7dd, type: 3}
+  - {fileID: 21300000, guid: 5b374bda68cde914a815f50afc4683b6, type: 3}
+  frameRate: 2
   loop: 1
   destroyOnFinish: 0
 --- !u!114 &6256274769258363637

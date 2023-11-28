@@ -6,13 +6,16 @@ using UnityEngine.UI;
 
 public class sliderScript : MonoBehaviour
 {
-    private float pressSeconds = 3f;
+    private float pressSeconds = 2f;
     private Slider slider;
+    public string sceneName;
 
     void Start()
     {
         slider = GetComponent<Slider>();
         slider.value = 0;
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = false;
     }
 
     // Update is called once per frame
@@ -24,12 +27,17 @@ public class sliderScript : MonoBehaviour
         }
         else
         {
-            slider.value -= 100 / 4f * Time.deltaTime;
+            slider.value -= 100 / (pressSeconds+1f) * Time.deltaTime;
         }
 
         if(slider.value >= 100)
         {
-            SceneManager.LoadScene("TemporaryMenu");
+            NextScene();
         }
+    }
+
+    private void NextScene()
+    {
+        SceneManager.LoadScene(sceneName);
     }
 }

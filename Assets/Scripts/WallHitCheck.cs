@@ -48,17 +48,17 @@ public class WallHitCheck : MonoBehaviour
             {
                 Image UI = ForwardWallHitUI.GetComponent<Image>();
                 Color UIColor = ForwardWallHitUI.GetComponent<Image>().color;
-                UIColor.a = Mathf.Lerp(UIColor.a, Mathf.InverseLerp(length, 0, hit.distance), 0.3f);
+                UIColor.a = Mathf.Lerp(UIColor.a, Mathf.InverseLerp(length+2, 0, hit.distance), 1f);
                 Color newColor = new Color(UIColor.r, UIColor.g, UIColor.b, UIColor.a);
                 UI.color = newColor;
-                //Debug.Log(UIColor.a);
+                Debug.Log(UIColor.a);
             }
         }
         else
         {
             Image UI = ForwardWallHitUI.GetComponent<Image>();
             Color UIColor = ForwardWallHitUI.GetComponent<Image>().color;
-            UIColor.a = Mathf.Lerp(UIColor.a, 0, 0.3f);
+            UIColor.a = Mathf.Lerp(UIColor.a, 0, 1f);
             Color newColor = new Color(UIColor.r, UIColor.g, UIColor.b, UIColor.a);
             UI.color = newColor;
             //Debug.Log(UIColor.a);
@@ -76,7 +76,7 @@ public class WallHitCheck : MonoBehaviour
             {
                 Image UI = RightWallHitUI.GetComponent<Image>();
                 Color UIColor = RightWallHitUI.GetComponent<Image>().color;
-                UIColor.a = Mathf.Lerp(UIColor.a, Mathf.InverseLerp(length, 0, hit.distance), 0.3f);
+                UIColor.a = Mathf.Lerp(UIColor.a, Mathf.InverseLerp(length + 2, 0, hit.distance), 0.3f);
                 Color newColor = new Color(UIColor.r, UIColor.g, UIColor.b, UIColor.a);
                 UI.color = newColor;
                 //Debug.Log(UIColor.a);
@@ -104,7 +104,7 @@ public class WallHitCheck : MonoBehaviour
             {
                 Image UI = LeftWallHitUI.GetComponent<Image>();
                 Color UIColor = LeftWallHitUI.GetComponent<Image>().color;
-                UIColor.a = Mathf.Lerp(UIColor.a, Mathf.InverseLerp(length, 0, hit.distance), 0.3f);
+                UIColor.a = Mathf.Lerp(UIColor.a, Mathf.InverseLerp(length + 2, 0, hit.distance), 0.3f);
                 Color newColor = new Color(UIColor.r, UIColor.g, UIColor.b, UIColor.a);
                 UI.color = newColor;
                 //Debug.Log(UIColor.a);

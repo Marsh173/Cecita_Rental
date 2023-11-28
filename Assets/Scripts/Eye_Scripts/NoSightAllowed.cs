@@ -9,7 +9,8 @@ public class NoSightAllowed : MonoBehaviour
 {
     public static NoSightAllowed instance;
     [SerializeField] private Button eye_UI;
-    public Sprite Eye_Open, Eye_Close;
+    [SerializeField] private Image eyeBlinkImage;
+   public Sprite Eye_Open, Eye_Close;
     public GameObject SoundCollectingMessage, itemAdded, FInstruction, wallHitUI;
     public Animator anim;
 
@@ -35,6 +36,7 @@ public class NoSightAllowed : MonoBehaviour
         TimerActive = true;
         eye_UI = this.GetComponent<Button>();
         eye_UI.GetComponent<Image>().sprite = Eye_Open;
+        eyeBlinkImage.color = GetComponent<Image>().color = AdjustColor.eyeBgColor = new Color(0.6f, 0.6f, 0.6f, 1f); ;
         FInstructionText = FInstruction.GetComponent<TMP_Text>();
         countDown = countDownTime = 5f;
         anim.SetBool("isBegun", false);

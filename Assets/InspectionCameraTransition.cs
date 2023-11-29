@@ -6,19 +6,22 @@ using TMPro;
 
 public class InspectionCameraTransition : MonoBehaviour
 {
+    public static InspectionCameraTransition instance;
     private Camera playercam;
     public Transform InspectionCam;
 
     private Transform originalCamPosition;
     private Vector3 originalPos, originalAngle;
-    private bool isInCam;
+    public bool isInCam;
 
     public GameObject inspectionButton; //for adding transcript overlay
     public GameObject inspectionWindow;
     private GameObject PlayBody;
 
+
     private void Start()
     {
+        instance = this;
         playercam = FirstPersonAIO.instance.gameObject.GetComponentInChildren<Camera>();
         originalCamPosition = playercam.transform;
         inspectionButton.SetActive(false);
@@ -29,7 +32,7 @@ public class InspectionCameraTransition : MonoBehaviour
     {
         if (isInCam)
         {
-            if (Input.GetKeyDown(KeyCode.Escape))
+            if (Input.GetMouseButtonDown(1))
             {
                 TransitCamToOriginalPos();
             }
@@ -38,24 +41,14 @@ public class InspectionCameraTransition : MonoBehaviour
 
     public void TransitCamToOriginalPos()
     {
-        Debug.Log(originalCamPosition.position);
-        Debug.Log(originalCamPosition.rotation.eulerAngles);
         isInCam = false;
-        //playercam.transform.position = originalCamPosition.position;
+        //playercam.transform.position = InspectionCam.position;
+        //playercam.transform.rotation = InspectionCam.rotation;
         //playercam.transform.rotation = originalCamPosition.rotation;
+        //StartCoroutine(LerpPosition(playercam.transform, originalPos, 1f));
+        //StartCoroutine(LerpFunction(playercam.transform, originalAngle, 1f));
         playercam.transform.DOMove(originalPos, 1f);
         playercam.transform.DORotate(originalAngle, 1f).OnComplete(() => EnableMovement());
-        Cursor.visible = false;
-        inspectionButton.SetActive(false);
-        inspectionWindow.SetActive(false);
-        PlayBody.GetComponent<MeshRenderer>().enabled = true;
-        //outline + prompt message show
-        if (this.GetComponent<Outline>() != null)
-        {
-            this.GetComponent<Outline>().enabled = true;
-        }
-        PlayerInteract.instnace.message.enabled = true;
-        PlayerInteract.instnace.itemIcon.SetActive(true);
     }
 
     public void TransitCamToInspectionPos()
@@ -63,6 +56,9 @@ public class InspectionCameraTransition : MonoBehaviour
         originalCamPosition = playercam.transform;
         originalPos = originalCamPosition.position;
         originalAngle = originalCamPosition.rotation.eulerAngles;
+        Debug.Log(originalPos + "original pos");
+        Debug.Log(playercam.transform.position + "player pos");
+        Debug.Log(InspectionCam.position + "cam pos");
         playercam.transform.DOMove(InspectionCam.position, 1);
         playercam.transform.DORotate(InspectionCam.rotation.eulerAngles, 1);
         FirstPersonAIO.instance.enableCameraMovement = false;
@@ -84,5 +80,17 @@ public class InspectionCameraTransition : MonoBehaviour
     {
         FirstPersonAIO.instance.enableCameraMovement = true;
         FirstPersonAIO.instance.playerCanMove = true;
+
+        Cursor.visible = false;
+        inspectionButton.SetActive(false);
+        inspectionWindow.SetActive(false);
+        PlayBody.GetComponent<MeshRenderer>().enabled = true;
+        //outline + prompt message show
+        if (this.GetComponent<Outline>() != null)
+        {
+            this.GetComponent<Outline>().enabled = true;
+        }
+        PlayerInteract.instnace.message.enabled = true;
+        PlayerInteract.instnace.itemIcon.SetActive(true);
     }
 }

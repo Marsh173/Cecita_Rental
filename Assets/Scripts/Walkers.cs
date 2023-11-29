@@ -51,13 +51,14 @@ public class Walkers : MonoBehaviour
         }
 
 
-
-        if(walker.transform.position == stop.position || walker.transform.position == patrolPoints[currentPointIndex].position)
+        if(patrolPoints.Length != 0)
         {
-            Debug.Log("stopped");
-            walker.SetActive(false);
+            if (walker.transform.position == stop.position || walker.transform.position == patrolPoints[currentPointIndex].position)
+            {
+                Debug.Log("stopped");
+                walker.SetActive(false);
+            }
         }
-
     }
 
     private void OnTriggerEnter(Collider other)

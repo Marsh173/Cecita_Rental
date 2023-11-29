@@ -51,7 +51,7 @@ public class WallHitCheck : MonoBehaviour
                 UIColor.a = Mathf.Lerp(UIColor.a, Mathf.InverseLerp(length+2, 0, hit.distance), 1f);
                 Color newColor = new Color(UIColor.r, UIColor.g, UIColor.b, UIColor.a);
                 UI.color = newColor;
-                Debug.Log(UIColor.a);
+                //Debug.Log(UIColor.a);
             }
         }
         else

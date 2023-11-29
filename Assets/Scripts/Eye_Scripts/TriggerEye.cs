@@ -8,13 +8,15 @@ public class TriggerEye : MonoBehaviour
 
     private AudioSource earBudVoice;
 
-    private bool MonsterZoneHasPlayed, firstInfrontWarning, firstEyeWarning;
+    private bool MonsterZoneHasPlayed, firstEyeWarning;
+    private float warningTime;
     public static bool enteredCantOpen;
 
     private void Start()
     {
         eyeIcon.SetActive(false);
-        MonsterZoneHasPlayed = firstInfrontWarning = firstEyeWarning = false;
+        MonsterZoneHasPlayed = firstEyeWarning = false;
+        warningTime = 0;
         earBudVoice = GetComponent<AudioSource>();
     }
 
@@ -76,11 +78,11 @@ public class TriggerEye : MonoBehaviour
             }
         }
         //tutorial warning about white noise
-        if (other.CompareTag("InFrontOfMonster") && !firstInfrontWarning)
+        if (other.CompareTag("InFrontOfMonster") && warningTime != 3)
         {
             earBudVoice.clip = Resources.Load<AudioClip>("Night 0/" + "Night 0 - In front of sth");
             earBudVoice.PlayOneShot(earBudVoice.clip);
-            firstInfrontWarning = true;
+            warningTime ++;
         }
 
 

@@ -255,18 +255,18 @@ public class Elevator : InteractableItemWithEvent
         elevatorIsMoving = true;
         yield return new WaitForSeconds(5.0f);
 
+        Debug.Log("Right now the name is: " + activeButtonName);
+
         switch (activeButtonName)
         {
-            case "Lobby":
+            case "lobby":
                 ElevatorController.GotoLobby();
+                
                 break;
 
             case "Third_Floor":
                 ElevatorController.GotoThirdFloor();
                 break;
-
-            
-
             default:
                 break;
         }

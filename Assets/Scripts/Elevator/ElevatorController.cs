@@ -52,8 +52,6 @@ public class ElevatorController : MonoBehaviour
     public static void GotoLobby()
     {
         //check if lobby is the current scene
-        //if it is, do nothing. 
-        //else: unload then load scene.
         bool isSceneLoaded = false;
         foreach (Scene scene in loadedScenes)
         {
@@ -64,6 +62,7 @@ public class ElevatorController : MonoBehaviour
             }
         }
 
+        
         if (!isSceneLoaded)
         {
             foreach (Scene scene in loadedScenes)
@@ -75,10 +74,11 @@ public class ElevatorController : MonoBehaviour
                 }
             }
 
+            
+
             SceneManager.LoadScene("Lobby", LoadSceneMode.Additive);
 
-            //add the lobby scene
-            UpdateList();
+            CoroutineManager.StartStaticCoroutine(UpdateListAfterUnload());
         }
        
     }
@@ -91,7 +91,7 @@ public class ElevatorController : MonoBehaviour
         bool isSceneLoaded = false;
         foreach (Scene scene in loadedScenes)
         {
-            if (scene.name == "Third_Floor" || scene.name == "Protagonist_Room")
+            if (scene.name == "Third_Floor")
             {
                 isSceneLoaded = true;
                 break;
@@ -106,7 +106,7 @@ public class ElevatorController : MonoBehaviour
                 if (scene.name != "General_System_Day" && scene.name != "Elevator")
                 {
                     SceneManager.UnloadSceneAsync(scene);
-                    Debug.Log("Unloaded Scene: " + scene.name);
+                    Debug.Log("Unloaded scene: " + scene.name);
                 }
             }
 
@@ -114,26 +114,28 @@ public class ElevatorController : MonoBehaviour
             SceneManager.LoadScene("Protagonist_Room", LoadSceneMode.Additive);
 
             // Update the list after loading the scenes
-            UpdateList();
+            CoroutineManager.StartStaticCoroutine(UpdateListAfterUnload());
         }
        
     }
 
 
-
-
-    public static void UpdateList()
+    private static IEnumerator UpdateListAfterUnload()
     {
+        // Wait for the next frame
+        yield return null;
+
+        // Clear the loadedScenes list
         loadedScenes.Clear();
 
+        // Add the currently loaded scenes to the list
         int count = SceneManager.sceneCount;
-
         for (int i = 0; i < count; i++)
         {
             Scene scene = SceneManager.GetSceneAt(i);
             loadedScenes.Add(scene);
 
-            Debug.Log("Loaded Scene: " + scene.name);
+            Debug.Log("Update SceneList: " + scene.name);
         }
     }
 

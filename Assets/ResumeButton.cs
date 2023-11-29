@@ -2,15 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class ResumeButton : MonoBehaviour
 {
     public PauseGameController p;
     public GameObject settings_ui;
 
+    public Sprite selected;
+    public Sprite normal;
+
     private void Start()
     {
         p = GameObject.FindObjectOfType<PauseGameController>();
+        changesprite(false);
     }
     public void resume()
     {
@@ -29,6 +34,12 @@ public class ResumeButton : MonoBehaviour
     public void LastCheckPoint()
     {
 
+    }
+
+    public void changesprite(bool select)
+    {
+        Sprite button = select ? selected : normal;
+        GetComponent<Image>().sprite = button;
     }
 
 

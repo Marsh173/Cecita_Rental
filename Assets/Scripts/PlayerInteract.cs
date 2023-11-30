@@ -7,6 +7,7 @@ using UnityEngine.Events;
 public class PlayerInteract : MonoBehaviour
 {
     //Event system
+    public static PlayerInteract instnace;
     public static bool hasRecorderInHand = false;
     public UnityEvent EventTurnOnInteraction;
     public UnityEvent EventTurnOffInteraction;
@@ -31,6 +32,7 @@ public class PlayerInteract : MonoBehaviour
 
     private void Start()
     {
+        instnace = this;
         if (message.text != null) message.text = "";
 
         Cursor.visible = false;

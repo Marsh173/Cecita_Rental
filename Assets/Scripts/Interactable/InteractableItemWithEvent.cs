@@ -48,7 +48,10 @@ public class InteractableItemWithEvent : InteractableItem
 
     protected IEnumerator RunInteractEvents()
     {
-        EventOnInteraction.Invoke();
+        if (!InspectionCameraTransition.instance.isInCam)
+        {
+            EventOnInteraction.Invoke();
+        }
         yield return new WaitForSeconds(interactWaitTime);                                                       //Put this line on top or middle of this section of code in case we want a hold input to complete the recording
     }
 

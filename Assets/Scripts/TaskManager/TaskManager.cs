@@ -10,7 +10,7 @@ public class TaskManager : MonoBehaviour
     public List<Task> ObjectiveList;
     public GameObject ObjectivePrefab;
     public GameObject ObjectivePrefabAnim;
-    public GameObject TaskUI, TaskAnimUI;
+    public GameObject TaskUI, TaskAnimUI, TaskTitleUI;
     public bool UIShown;
 
     private void Awake()
@@ -23,7 +23,7 @@ public class TaskManager : MonoBehaviour
 
     private void Start()
     {
-        //AssignObejctive("Task Parent2");
+        AssignObejctive("Task Parent2");
         UIShown = true;
     }
 
@@ -37,7 +37,13 @@ public class TaskManager : MonoBehaviour
         Task newObjective = Instantiate(ObjectivePrefab, TaskUI.transform).GetComponent<Task>();
         newObjective.GetComponent<TMP_Text>().text = ObjectiveText;
         ObjectiveList.Add(newObjective);
-        StartCoroutine(ObjectiveAnimation(newObjective, ObjectiveText));
+        //StartCoroutine(ObjectiveAnimation(newObjective, ObjectiveText));
+        ChangeTextColor(newObjective.GetComponent<TMP_Text>());
+    }
+
+    void ChangeTextColor(TMP_Text temp)
+    {
+        temp.DOColor(Color.yellow, 0.5f).OnComplete(() => temp.DOColor(Color.white, 0.5f));
     }
 
     IEnumerator ObjectiveAnimation(Task tempObjective, string ObjectiveText)
@@ -61,22 +67,47 @@ public class TaskManager : MonoBehaviour
     }
 
 
-    public void AssignObejctive(string ObjectiveText, Task MainTask)
+    //public void AssignObejctive(string ObjectiveText, Task MainTask)
+    //{
+    //    Task newObjective = Instantiate(ObjectivePrefab, TaskUI.transform).GetComponent<Task>();
+    //    newObjective.GetComponent<TMP_Text>().text = ObjectiveText;
+    //    newObjective.GetComponent<TMP_Text>().fontSize = 30;
+    //    for (int i = 0; i < TaskUI.transform.childCount; i++)
+    //    {
+    //        if (TaskUI.transform.GetChild(i).GetComponent<Task>() == MainTask)
+    //        {
+    //            MainTask.BabyTask++;
+    //            newObjective.transform.SetSiblingIndex(i+ MainTask.BabyTask);
+    //            break;
+    //        }
+    //    }
+    //    ObjectiveList.Add(newObjective);
+    //    ChangeTextColor(newObjective.GetComponent<TMP_Text>());
+    //    //StartCoroutine(ObjectiveAnimation(newObjective, ObjectiveText));
+    //}
+
+
+    public void AssignObejctive(string ObjectiveText, string MainTask)
     {
         Task newObjective = Instantiate(ObjectivePrefab, TaskUI.transform).GetComponent<Task>();
         newObjective.GetComponent<TMP_Text>().text = ObjectiveText;
         newObjective.GetComponent<TMP_Text>().fontSize = 30;
         for (int i = 0; i < TaskUI.transform.childCount; i++)
         {
-            if (TaskUI.transform.GetChild(i).GetComponent<Task>() == MainTask)
+            foreach (Task objective in ObjectiveList)
             {
-                MainTask.BabyTask++;
-                newObjective.transform.SetSiblingIndex(i+ MainTask.BabyTask);
-                break;
+                if (MainTask == objective.gameObject.name || MainTask == objective.gameObject.GetComponent<TMP_Text>().text)
+                {
+
+                    objective.BabyTask++;
+                    newObjective.transform.SetSiblingIndex(i + objective.BabyTask);
+                    break;
+                }
             }
         }
         ObjectiveList.Add(newObjective);
-        StartCoroutine(ObjectiveAnimation(newObjective, ObjectiveText));
+        ChangeTextColor(newObjective.GetComponent<TMP_Text>());
+        //StartCoroutine(ObjectiveAnimation(newObjective, ObjectiveText));
     }
 
     /*public void AssignObejctive(Objective objective)
@@ -153,13 +184,14 @@ public class TaskManager : MonoBehaviour
     {
         //if (Input.GetKeyDown(KeyCode.A))
         //{
-        //    AssignObejctive("Task Child", ObjectiveList[0]);
+        //    AssignObejctive("Task Child");
         //}
 
-        if (Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.T))
         {
             UIShown = !UIShown;
             TaskUI.SetActive(UIShown);
+            TaskTitleUI.SetActive(UIShown);
         }
     }
 

@@ -21,7 +21,9 @@ public class InventoryManager : MonoBehaviour
     public GameObject Inventory;
 
     //Find Specific Item
-    public static bool equipmentCollected = false;
+    public static bool EquipmentCollected = false;
+    public static bool EarbudsCollected = false;
+    public static bool RecorderCollected = false;
     public static bool ThirdFloorElevatorCardCollected = false;
 
     private void Awake()
@@ -71,9 +73,13 @@ public class InventoryManager : MonoBehaviour
             }
         }
 
-        if(!equipmentCollected)
+        if(!RecorderCollected || !EarbudsCollected)
         {
             FindEquipment();
+        }
+        else
+        {
+            EquipmentCollected = true;
         }
 
         if (!ThirdFloorElevatorCardCollected)
@@ -112,7 +118,6 @@ public class InventoryManager : MonoBehaviour
         {
             Destroy(item.gameObject);
         }
-
         foreach (var item in NItems)
         {
             //find the elemets in each item and replace inventory default
@@ -123,16 +128,25 @@ public class InventoryManager : MonoBehaviour
             //display name and image in inventory UI
             itemName.text = item.displayName;
             itemIcon.sprite = item.icon;
+
+            if(itemName.text == "Bluetooth Earbuds" || itemName.text == "Recorder")
+            {
+                Destroy(itemobj);
+            }
         }
     }
 
     //detect if earbud and recorder are collected
     public void FindEquipment()
     {
-        if(NItems.Find(item => item.name == "ear buds") && NItems.Find(item => item.name == "recorder"))
+        if(NItems.Find(item => item.name == "recorder"))
         {
-            equipmentCollected = true;
-            //Debug.Log("Equiped " + equipmentCollected);
+            RecorderCollected = true;
+        }
+
+        if(NItems.Find(item => item.name == "ear buds"))
+        {
+            EarbudsCollected = true;
         }
     }
 

@@ -48,7 +48,7 @@ public class InteractableItemWithEvent : InteractableItem
 
     protected IEnumerator RunInteractEvents()
     {
-        if (!InspectionCameraTransition.instance.isInCam)
+        if (!GetComponent<InspectionCameraTransition>())
         {
             EventOnInteraction.Invoke();
         }

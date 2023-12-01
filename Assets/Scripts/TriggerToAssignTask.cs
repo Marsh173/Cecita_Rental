@@ -9,8 +9,8 @@ public class TriggerToAssignTask : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             TaskManager.instance.CompleteObjetive("Pick up package from the front door");
-            TaskManager.instance.AssignObejctive("Package Lost");
-            TaskManager.instance.AssignObejctive("Find the missing package", TaskManager.instance.ObjectiveList[1]);
+            TaskManager.instance.AssignObjective("Package Lost");
+            TaskManager.instance.AssignObjective("Find the missing package", TaskManager.instance.ObjectiveList[1]);
             Destroy(this.gameObject);
         }
     }

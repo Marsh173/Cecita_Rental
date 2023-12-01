@@ -42,7 +42,7 @@ public class PlayerInteract : MonoBehaviour
     private void Update()
     {
         //Event system to turn camera on/off                                                        -Bryan
-        if (Input.GetKeyUp(KeyCode.R) && InventoryManager.equipmentCollected)
+        if (Input.GetKeyUp(KeyCode.R) && InventoryManager.EquipmentCollected)
         {
             if (!hasRecorderInHand)
             {

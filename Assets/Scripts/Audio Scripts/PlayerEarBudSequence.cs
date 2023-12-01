@@ -8,7 +8,7 @@ public class PlayerEarBudSequence : MonoBehaviour
 {
     public AudioClip[] audioClips;
     private AudioSource earBudVoice;
-    public GameObject invisibleWall, tutorialMessageObj, inventory, interactiveDoor, UIPauseTutorial, taskPlaceholder1, taskPlaceholder2;
+    public GameObject invisibleWall, tutorialMessageObj, inventory, interactiveDoor, UIPauseTutorial, taskPlaceholder2;
     public TMP_Text tutoriaMessage;
 
     private bool firstAudioPlayed, TabToOpen, FinishInventory;
@@ -21,7 +21,6 @@ public class PlayerEarBudSequence : MonoBehaviour
         interactiveDoor.layer = 0; //set door to default layer
         tutorialMessageObj.SetActive(false);
         taskPlaceholder2.SetActive(false);
-        taskPlaceholder1.SetActive(true);
         tutoriaMessage = tutorialMessageObj.GetComponent<TMP_Text>();
         earBudVoice = GetComponent<AudioSource>();
         DelayedAlready = firstAudioPlayed = FinishInventory = TabToOpen = false;
@@ -32,9 +31,9 @@ public class PlayerEarBudSequence : MonoBehaviour
 
     void Update()
     {
-        if (InventoryManager.equipmentCollected && !firstAudioPlayed)
+        if (InventoryManager.EquipmentCollected && !firstAudioPlayed)
         {
-            taskPlaceholder1.SetActive(false);
+            //taskPlaceholder1.SetActive(false);
             StartCoroutine(AudioSequence());
             delay = 16f;
             firstAudioPlayed = true;
@@ -68,7 +67,7 @@ public class PlayerEarBudSequence : MonoBehaviour
     
     private void OnTriggerEnter(Collider other)
     {
-        if(InventoryManager.equipmentCollected)
+        if(InventoryManager.EquipmentCollected)
         {
             if (other.CompareTag("EnterMonster"))
             {

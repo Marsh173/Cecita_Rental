@@ -13,6 +13,7 @@ public class InventoryViewItem : MonoBehaviour
     private void Awake()
     {
         vig = GameObject.FindGameObjectWithTag("ViewItemGraphic");
+        Debug.Log("item clicked");
     }
     public void ViewItem()
     {

@@ -8,10 +8,10 @@ public class TaskManager : MonoBehaviour
 {
     public static TaskManager instance;
     public List<Task> ObjectiveList;
-    public GameObject ObjectivePrefab;
-    public GameObject ObjectivePrefabAnim;
+    public GameObject ObjectivePrefab, ObjectivePrefabAnim;
     public GameObject TaskUI, TaskAnimUI, TaskTitleUI;
     public bool UIShown;
+    public string ObjectiveName;
 
     private void Awake()
     {
@@ -23,22 +23,25 @@ public class TaskManager : MonoBehaviour
 
     private void Start()
     {
-        AssignObejctive("Task Parent2");
+        AssignObjective(ObjectiveName);
         UIShown = true;
     }
 
     public void AssignTask(string tempText)
     {
-        AssignObejctive(tempText);
+        AssignObjective(tempText);
     }
 
-    public void AssignObejctive(string ObjectiveText)
+    public void AssignObjective(string ObjectiveText)
     {
+        /*if(ObjectiveList.Find(item => item.name != ObjectiveText))
+        {*/
         Task newObjective = Instantiate(ObjectivePrefab, TaskUI.transform).GetComponent<Task>();
-        newObjective.GetComponent<TMP_Text>().text = ObjectiveText;
-        ObjectiveList.Add(newObjective);
-        //StartCoroutine(ObjectiveAnimation(newObjective, ObjectiveText));
-        ChangeTextColor(newObjective.GetComponent<TMP_Text>());
+            newObjective.GetComponent<TMP_Text>().text = ObjectiveText;
+            ObjectiveList.Add(newObjective);
+            //StartCoroutine(ObjectiveAnimation(newObjective, ObjectiveText));
+            ChangeTextColor(newObjective.GetComponent<TMP_Text>());
+        //}
     }
 
     void ChangeTextColor(TMP_Text temp)
@@ -67,7 +70,7 @@ public class TaskManager : MonoBehaviour
     }
 
 
-    public void AssignObejctive(string ObjectiveText, Task MainTask)
+    public void AssignObjective(string ObjectiveText, Task MainTask)
     {
         Task newObjective = Instantiate(ObjectivePrefab, TaskUI.transform).GetComponent<Task>();
         newObjective.GetComponent<TMP_Text>().text = ObjectiveText;
@@ -162,6 +165,13 @@ public class TaskManager : MonoBehaviour
         //{
         //    AssignObejctive("Task Child");
         //}
+
+        if(InventoryManager.EquipmentCollected)
+        {
+            CompleteObjetive("- Pick up the equipments");
+            /*AssignObjective("- Follow the music");
+            AssignObjective("- Find the Emergency Service Room");*/
+        }
 
         if (Input.GetKeyDown(KeyCode.T))
         {

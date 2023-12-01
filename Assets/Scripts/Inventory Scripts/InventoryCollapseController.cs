@@ -7,9 +7,32 @@ public class InventoryCollapseController : MonoBehaviour
 {
     [SerializeField] GameObject audio_viewport, monster_viewport;
     [SerializeField] GameObject audio_title, monster_title, monsterspe_title;
+    [SerializeField] GameObject RecorderImage, EarbudsImage;
 
     [SerializeField] RectTransform audio_t, monster_t, monsterspe_t;
 
+    private void Start()
+    {
+        //developer's short cut, remember to comment out
+        InventoryManager.EarbudsCollected = InventoryManager.RecorderCollected = true;
+
+        EarbudsImage.SetActive(false);
+        RecorderImage.SetActive(false);
+    }
+
+    //trigger recorder and earbud display to be true
+    private void Update()
+    {
+        if (!EarbudsImage.active && InventoryManager.EarbudsCollected)
+        {
+            EarbudsImage.SetActive(true);
+        }
+
+        if(!RecorderImage.active && InventoryManager.RecorderCollected)
+        {
+            RecorderImage.SetActive(true);
+        }
+    }
     public void expandViewport(string catagory)
     {
         if(catagory == "Audio")

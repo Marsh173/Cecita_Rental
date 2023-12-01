@@ -32,7 +32,7 @@ public class DelayOpenDoorController : MonoBehaviour
             StartCoroutine(delayOpen());
         }
 
-        if (delayFinish && InventoryManager.equipmentCollected && !hasPlayed)
+        if (delayFinish && InventoryManager.EquipmentCollected && !hasPlayed)
         {
             hasPlayed = true;
             Debug.Log("open");

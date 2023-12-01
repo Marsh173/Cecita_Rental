@@ -67,42 +67,18 @@ public class TaskManager : MonoBehaviour
     }
 
 
-    //public void AssignObejctive(string ObjectiveText, Task MainTask)
-    //{
-    //    Task newObjective = Instantiate(ObjectivePrefab, TaskUI.transform).GetComponent<Task>();
-    //    newObjective.GetComponent<TMP_Text>().text = ObjectiveText;
-    //    newObjective.GetComponent<TMP_Text>().fontSize = 30;
-    //    for (int i = 0; i < TaskUI.transform.childCount; i++)
-    //    {
-    //        if (TaskUI.transform.GetChild(i).GetComponent<Task>() == MainTask)
-    //        {
-    //            MainTask.BabyTask++;
-    //            newObjective.transform.SetSiblingIndex(i+ MainTask.BabyTask);
-    //            break;
-    //        }
-    //    }
-    //    ObjectiveList.Add(newObjective);
-    //    ChangeTextColor(newObjective.GetComponent<TMP_Text>());
-    //    //StartCoroutine(ObjectiveAnimation(newObjective, ObjectiveText));
-    //}
-
-
-    public void AssignObejctive(string ObjectiveText, string MainTask)
+    public void AssignObejctive(string ObjectiveText, Task MainTask)
     {
         Task newObjective = Instantiate(ObjectivePrefab, TaskUI.transform).GetComponent<Task>();
         newObjective.GetComponent<TMP_Text>().text = ObjectiveText;
         newObjective.GetComponent<TMP_Text>().fontSize = 30;
         for (int i = 0; i < TaskUI.transform.childCount; i++)
         {
-            foreach (Task objective in ObjectiveList)
+            if (TaskUI.transform.GetChild(i).GetComponent<Task>() == MainTask)
             {
-                if (MainTask == objective.gameObject.name || MainTask == objective.gameObject.GetComponent<TMP_Text>().text)
-                {
-
-                    objective.BabyTask++;
-                    newObjective.transform.SetSiblingIndex(i + objective.BabyTask);
-                    break;
-                }
+                MainTask.BabyTask++;
+                newObjective.transform.SetSiblingIndex(i+ MainTask.BabyTask);
+                break;
             }
         }
         ObjectiveList.Add(newObjective);

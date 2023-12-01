@@ -56,7 +56,7 @@ public class TaskManager : MonoBehaviour
         yield return null;
         Sequence mySequence = DOTween.Sequence();
         mySequence.Append(newObjective.GetComponent<TMP_Text>().DOColor(new Color(1, 1, 1, 1), 1)).PrependInterval(0.1f).Append(newObjective.transform.DOScale(1f, 0.3f))
-          .Append(newObjective.GetComponent<RectTransform>().DOAnchorPos(new Vector2(811, (-TaskUI.transform.childCount + 1)*50), 1)).OnComplete(()
+          .Append(newObjective.GetComponent<RectTransform>().DOAnchorPos(new Vector2(811, (-TaskUI.transform.childCount + 1) * 50), 1)).OnComplete(()
           => DestoryAndEnable(newObjective.gameObject, tempObjective.gameObject));
     }
 
@@ -77,7 +77,7 @@ public class TaskManager : MonoBehaviour
             if (TaskUI.transform.GetChild(i).GetComponent<Task>() == MainTask)
             {
                 MainTask.BabyTask++;
-                newObjective.transform.SetSiblingIndex(i+ MainTask.BabyTask);
+                newObjective.transform.SetSiblingIndex(i + MainTask.BabyTask);
                 break;
             }
         }

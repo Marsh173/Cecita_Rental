@@ -56,7 +56,7 @@ public class TaskManager : MonoBehaviour
         yield return null;
         Sequence mySequence = DOTween.Sequence();
         mySequence.Append(newObjective.GetComponent<TMP_Text>().DOColor(new Color(1, 1, 1, 1), 1)).PrependInterval(0.1f).Append(newObjective.transform.DOScale(1f, 0.3f))
-          .Append(newObjective.GetComponent<RectTransform>().DOAnchorPos(new Vector2(811, (-TaskUI.transform.childCount + 1)*50), 1)).OnComplete(()
+          .Append(newObjective.GetComponent<RectTransform>().DOAnchorPos(new Vector2(811, (-TaskUI.transform.childCount + 1) * 50), 1)).OnComplete(()
           => DestoryAndEnable(newObjective.gameObject, tempObjective.gameObject));
     }
 
@@ -67,42 +67,18 @@ public class TaskManager : MonoBehaviour
     }
 
 
-    //public void AssignObejctive(string ObjectiveText, Task MainTask)
-    //{
-    //    Task newObjective = Instantiate(ObjectivePrefab, TaskUI.transform).GetComponent<Task>();
-    //    newObjective.GetComponent<TMP_Text>().text = ObjectiveText;
-    //    newObjective.GetComponent<TMP_Text>().fontSize = 30;
-    //    for (int i = 0; i < TaskUI.transform.childCount; i++)
-    //    {
-    //        if (TaskUI.transform.GetChild(i).GetComponent<Task>() == MainTask)
-    //        {
-    //            MainTask.BabyTask++;
-    //            newObjective.transform.SetSiblingIndex(i+ MainTask.BabyTask);
-    //            break;
-    //        }
-    //    }
-    //    ObjectiveList.Add(newObjective);
-    //    ChangeTextColor(newObjective.GetComponent<TMP_Text>());
-    //    //StartCoroutine(ObjectiveAnimation(newObjective, ObjectiveText));
-    //}
-
-
-    public void AssignObejctive(string ObjectiveText, string MainTask)
+    public void AssignObejctive(string ObjectiveText, Task MainTask)
     {
         Task newObjective = Instantiate(ObjectivePrefab, TaskUI.transform).GetComponent<Task>();
         newObjective.GetComponent<TMP_Text>().text = ObjectiveText;
         newObjective.GetComponent<TMP_Text>().fontSize = 30;
         for (int i = 0; i < TaskUI.transform.childCount; i++)
         {
-            foreach (Task objective in ObjectiveList)
+            if (TaskUI.transform.GetChild(i).GetComponent<Task>() == MainTask)
             {
-                if (MainTask == objective.gameObject.name || MainTask == objective.gameObject.GetComponent<TMP_Text>().text)
-                {
-
-                    objective.BabyTask++;
-                    newObjective.transform.SetSiblingIndex(i + objective.BabyTask);
-                    break;
-                }
+                MainTask.BabyTask++;
+                newObjective.transform.SetSiblingIndex(i + MainTask.BabyTask);
+                break;
             }
         }
         ObjectiveList.Add(newObjective);

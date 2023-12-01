@@ -7,23 +7,24 @@ using TMPro;
 
 public class NoSightAllowed : MonoBehaviour
 {
+    //eye blinking
     public static NoSightAllowed instance;
     [SerializeField] private Button eye_UI;
     [SerializeField] private Image eyeBlinkImage;
-   public Sprite Eye_Open, Eye_Close;
+    public Sprite Eye_Open, Eye_Close;
     public GameObject SoundCollectingMessage, itemAdded, FInstruction, wallHitUI;
     public Animator anim;
 
     //timer
-    private float countDown, openedTimes;
-    [SerializeField] private float countDownTime = 5f;
-    private TMP_Text countdownText, FInstructionText;
+    [SerializeField] private float openedTimes, countDownTime = 5f;
+    private TMP_Text FInstructionText;
     bool TimerActive;
 
     //warning bar
     public float EyeBarDecreaseSpeed, RechargeSpeed;
-    public static float CurrentEyeBarAmount;
+    public static float CurrentEyeBarAmount = 100f;
     public GameObject EyeBarUI, AlertBarUI;
+    public Slider slider;
     public Image RedAura, EyeBarImage, AlertBarimage;
     private WaitForSeconds rechargeTick = new WaitForSeconds(0.001f);
     private Coroutine rechargeC;
@@ -33,18 +34,20 @@ public class NoSightAllowed : MonoBehaviour
         Respawn.dead = false;
         instance = this;
 
-        TimerActive = true;
-        eye_UI = this.GetComponent<Button>();
+        eye_UI = GetComponent<Button>();
         eye_UI.GetComponent<Image>().sprite = Eye_Open;
         eyeBlinkImage.color = AdjustColor.eyeBgColor = new Color(0.2f, 0.2f, 0.2f, 1f); ;
         FInstructionText = FInstruction.GetComponent<TMP_Text>();
-        countDown = countDownTime = 5f;
-        anim.SetBool("isBegun", false);
+        EyeBarImage = EyeBarUI.GetComponent<Image>();
+        slider = slider.GetComponent<Slider>();
+        AlertBarimage = AlertBarUI.GetComponent<Image>();
 
         CurrentEyeBarAmount = 100f;
-        EyeBarImage = EyeBarUI.GetComponent<Image>();
-        AlertBarimage = AlertBarUI.GetComponent<Image>();
+        EyeBarImage.fillAmount = slider.value = 1f;
+        AlertBarimage.fillAmount = 0f;
+        openedTimes = 0;
         wallHitUI.SetActive(false);
+        anim.SetBool("isBegun", false);
     }
     //reset everything when enabled (entered a safe room)
     private void OnEnable()
@@ -55,14 +58,13 @@ public class NoSightAllowed : MonoBehaviour
         
         RedAura.color = new Color(RedAura.color.r, RedAura.color.g, RedAura.color.b, 0);
         TimerActive = true;
-        //countdownText.enabled = true;
-        countDown = countDownTime = 5f;
+        countDownTime = 5f;
         eye_UI.image.sprite = Eye_Open;
         FInstructionText.text = "Press F to close your eyes";
         anim.SetBool("isBegun", false);
 
         CurrentEyeBarAmount = 100f;
-        EyeBarImage.fillAmount = 1f;
+        EyeBarImage.fillAmount = slider.value = 1f;
         AlertBarimage.fillAmount = 0f;
         wallHitUI.SetActive(false);
         openedTimes = 0;
@@ -105,7 +107,8 @@ public class NoSightAllowed : MonoBehaviour
             if (TimerActive && CurrentEyeBarAmount != 0)
             {
                 CurrentEyeBarAmount -= 100 / countDownTime * Time.deltaTime;
-                Debug.Log(openedTimes);
+                Debug.Log("openedTimes "+openedTimes);
+                Debug.Log("slider value " + slider.value);
             }
 
             if (CurrentEyeBarAmount <= 0 && FInstructionText.text != "Press F to open your eyes")
@@ -142,7 +145,7 @@ public class NoSightAllowed : MonoBehaviour
             }
         }
 
-        EyeBarImage.fillAmount = CurrentEyeBarAmount / 100f;
+        EyeBarImage.fillAmount = slider.value = CurrentEyeBarAmount / 100f;
         AlertBarimage.fillAmount = openedTimes * 0.1f;
     }
 

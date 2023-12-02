@@ -7,8 +7,9 @@ public class UIInspectCamController : MonoBehaviour
     [SerializeField]private GameObject selectedObject;
     [SerializeField] Vector3 mousepos, rotateV, mousepostemp;
     [SerializeField] Quaternion originalrot;
+    [SerializeField] public int index_obj = 0;
 
-    private void Start()
+    private void Awake()
     {
         selectedObject = GameObject.FindGameObjectWithTag("3DitemInspection");
         if(selectedObject!= null)originalrot = selectedObject.transform.rotation;
@@ -34,6 +35,21 @@ public class UIInspectCamController : MonoBehaviour
             if (Input.GetMouseButtonUp(0))
             {
                 mousepos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0);
+            }
+        }
+    }
+
+    public void changeOBJ()
+    {
+        for (int i = 0; i < selectedObject.transform.childCount; i ++ )
+        {
+            if(i == index_obj)
+            {
+                selectedObject.transform.GetChild(i).gameObject.SetActive(true);
+            }
+            else
+            {
+                selectedObject.transform.GetChild(i).gameObject.SetActive(false);
             }
         }
     }

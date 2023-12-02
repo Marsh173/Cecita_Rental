@@ -22,12 +22,17 @@ public class AudioItemDisplayUI : MonoBehaviour
     }
     private void Update()
     {
-        progress = a.time / a.clip.length;
-        t.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, progress * maxLength);
-        t.anchoredPosition = new Vector3(xpos + progress * maxLength*0.5f, t.anchoredPosition.y,0);
-        var timestamp = Mathf.RoundToInt(a.clip.length * (1 - progress));
-        string min = Mathf.FloorToInt(timestamp/60).ToString();
+        if(a.clip != null && a.isPlaying)
+        {
+            progress = a.time / a.clip.length;
+            t.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, progress * maxLength);
+            t.anchoredPosition = new Vector3(xpos + progress * maxLength * 0.5f, t.anchoredPosition.y, 0);
+            var timestamp = Mathf.RoundToInt(a.clip.length * (1 - progress));
+            string min = Mathf.FloorToInt(timestamp / 60).ToString();
             int sec = timestamp % 60;
-        audiolength.text = min + " : "+ sec.ToString();
+            audiolength.text = min + " : " + sec.ToString();
+
+        }
+       
     }
 }

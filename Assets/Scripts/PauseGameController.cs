@@ -5,6 +5,9 @@ using UnityEngine;
 public class PauseGameController : MonoBehaviour
 {
     public GameObject pauseMenuUI;
+    public GameObject inventory;
+    public GameObject inventory_manager;
+    public bool invent_open;
 
     void Update()
     {
@@ -28,13 +31,30 @@ public class PauseGameController : MonoBehaviour
 
     void PauseGame()
     {
-        Time.timeScale = 0f; // Freeze the game
+        inventory_manager.SetActive(false);
         pauseMenuUI.SetActive(true);
+        if (inventory.activeSelf)
+        {
+            invent_open = true;
+        }
+        else
+        {
+            invent_open = false;
+        }
+        inventory.SetActive(false);
+        Physics.autoSimulation = false;
+
+        Time.timeScale = 0f; // Freeze the game
     }
 
     public void ResumeGame()
     {
-        Time.timeScale = 1f; // Unfreeze the game
+        inventory_manager.SetActive(true);
         pauseMenuUI.SetActive(false);
+        inventory.SetActive(invent_open);
+        
+        Physics.autoSimulation = true;
+
+        Time.timeScale = 1f; // Unfreeze the game
     }
 }

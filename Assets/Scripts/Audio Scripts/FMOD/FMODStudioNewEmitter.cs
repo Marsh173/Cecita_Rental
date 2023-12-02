@@ -183,7 +183,7 @@ namespace FMODUnity
                         Handles.Label(targetScript.transform.position, "SOUND!", labelStyle);
             }
                 }
-        #endif
+#endif
 
 
     }

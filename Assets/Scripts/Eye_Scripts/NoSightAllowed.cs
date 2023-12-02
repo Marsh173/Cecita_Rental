@@ -107,8 +107,8 @@ public class NoSightAllowed : MonoBehaviour
             if (TimerActive && CurrentEyeBarAmount != 0)
             {
                 CurrentEyeBarAmount -= 100 / countDownTime * Time.deltaTime;
-                Debug.Log("openedTimes "+openedTimes);
-                Debug.Log("slider value " + slider.value);
+                //Debug.Log("openedTimes "+openedTimes);
+                //Debug.Log("slider value " + slider.value);
             }
 
             if (CurrentEyeBarAmount <= 0 && FInstructionText.text != "Press F to open your eyes")

@@ -85,7 +85,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2353035904497504041}
-  - component: {fileID: 2890735405182334242}
+  - component: {fileID: 3930435666512660772}
   m_Layer: 0
   m_Name: monster sound
   m_TagString: Untagged
@@ -107,7 +107,7 @@ Transform:
   m_Father: {fileID: 7074337523161778340}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2890735405182334242
+--- !u!114 &3930435666512660772
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -116,28 +116,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 3003794039202407172}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Script: {fileID: 11500000, guid: 9d668c4ac3ef68a4fbb6bdd4c07ed0d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CollisionTag: 
-  EventReference:
+  BeautifulBroadcastEventPath:
     Guid:
-      Data1: -811906022
-      Data2: 1112828830
-      Data3: -401904753
-      Data4: -2139386136
-    Path: event:/Monsters/Walker-HeavyFootsteps
-  Event: 
-  PlayEvent: 11
-  StopEvent: 12
-  AllowFadeout: 1
-  TriggerOnce: 0
-  Preload: 0
-  AllowNonRigidbodyDoppler: 0
-  Params: []
-  OverrideAttenuation: 1
-  OverrideMinDistance: 2
-  OverrideMaxDistance: 25
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  AwfulBroadcastEventPath:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  OverrideAttenuation: 0
+  minDistance: 1
+  maxDistance: 20
 --- !u!1 &7074337521807118303
 GameObject:
   m_ObjectHideFlags: 0

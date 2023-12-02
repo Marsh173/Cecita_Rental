@@ -32,6 +32,8 @@ public class PlayerInteract : MonoBehaviour
 
     private void Start()
     {
+        Time.timeScale = 1;
+
         instnace = this;
         if (message.text != null) message.text = "";
 

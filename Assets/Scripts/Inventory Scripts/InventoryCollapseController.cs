@@ -14,7 +14,7 @@ public class InventoryCollapseController : MonoBehaviour
     private void Start()
     {
         //developer's short cut, remember to comment out
-        InventoryManager.EarbudsCollected = InventoryManager.RecorderCollected = true;
+        //InventoryManager.EarbudsCollected = InventoryManager.RecorderCollected = true;
 
         EarbudsImage.SetActive(false);
         RecorderImage.SetActive(false);

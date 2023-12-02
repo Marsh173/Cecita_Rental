@@ -1064,6 +1064,17 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 128668357}
   m_Mesh: {fileID: 3144688394941810152, guid: 9a3f3f39c236c864dba4c649e8bf9380, type: 3}
+--- !u!114 &129244495 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7064648279070319173, guid: 5cc38f6bd6d0ed34ab086eee9621e3ad, type: 3}
+  m_PrefabInstance: {fileID: 1585978767}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &149182126
 GameObject:
   m_ObjectHideFlags: 0
@@ -2817,7 +2828,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 414, y: -85}
+  m_AnchoredPosition: {x: 414, y: -141}
   m_SizeDelta: {x: 750, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &367108292
@@ -2859,7 +2870,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Find the Emergency Service Room.
+  m_text: Find your way
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -8002,35 +8013,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 5.9878464, y: 1, z: 0.5327092}
   m_Center: {x: -2.4939232, y: 0, z: -0.23364547}
---- !u!114 &1089508903
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1089508900}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05e9b4fa5f9739e48bd5804b40330627, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  BeautifulBroadcastEventPath:
-    Guid:
-      Data1: -811906022
-      Data2: 1112828830
-      Data3: -401904753
-      Data4: -2139386136
-    Path: event:/Monsters/Walker-HeavyFootsteps
-  AwfulBroadcastEventPath:
-    Guid:
-      Data1: 939871151
-      Data2: 1317348166
-      Data3: -565389177
-      Data4: 1041614947
-    Path: event:/Monsters/Walker-HeavyFootsteps_Muffled
-  OverrideAttenuation: 1
-  minDistance: 1
-  maxDistance: 17
 --- !u!1001 &1098908302
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9859,7 +9841,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh41530
+  m_Name: pb_Mesh825732
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -10148,7 +10130,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 414, y: -32}
+  m_AnchoredPosition: {x: 414, y: -88}
   m_SizeDelta: {x: 750, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1378232749
@@ -16841,15 +16823,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 553081369990361407, guid: 5cc38f6bd6d0ed34ab086eee9621e3ad, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 553081369990361407, guid: 5cc38f6bd6d0ed34ab086eee9621e3ad, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 553081369990361407, guid: 5cc38f6bd6d0ed34ab086eee9621e3ad, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 594150327306683860, guid: 5cc38f6bd6d0ed34ab086eee9621e3ad, type: 3}
       propertyPath: m_text
@@ -16929,27 +16911,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1717772544607751347, guid: 5cc38f6bd6d0ed34ab086eee9621e3ad, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1717772544607751347, guid: 5cc38f6bd6d0ed34ab086eee9621e3ad, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1717772544607751347, guid: 5cc38f6bd6d0ed34ab086eee9621e3ad, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 100
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1717772544607751347, guid: 5cc38f6bd6d0ed34ab086eee9621e3ad, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 85
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1717772544607751347, guid: 5cc38f6bd6d0ed34ab086eee9621e3ad, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 50
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1717772544607751347, guid: 5cc38f6bd6d0ed34ab086eee9621e3ad, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -162.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1744803137604506569, guid: 5cc38f6bd6d0ed34ab086eee9621e3ad, type: 3}
       propertyPath: m_Color.a
@@ -16969,7 +16951,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2854637531775463430, guid: 5cc38f6bd6d0ed34ab086eee9621e3ad, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2991302075765816683, guid: 5cc38f6bd6d0ed34ab086eee9621e3ad, type: 3}
       propertyPath: m_AnchorMax.y
@@ -17071,6 +17053,18 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4109363914834991469, guid: 5cc38f6bd6d0ed34ab086eee9621e3ad, type: 3}
+      propertyPath: m_text
+      value: Get to safety
+      objectReference: {fileID: 0}
+    - target: {fileID: 4109363914834991469, guid: 5cc38f6bd6d0ed34ab086eee9621e3ad, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: c2468c23bd9cb4375b825f0cf84496e5, type: 2}
+    - target: {fileID: 4109363914834991469, guid: 5cc38f6bd6d0ed34ab086eee9621e3ad, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 4435081175374399922, guid: c2468c23bd9cb4375b825f0cf84496e5, type: 2}
     - target: {fileID: 4111228529522699878, guid: 5cc38f6bd6d0ed34ab086eee9621e3ad, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -17501,7 +17495,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6561419314668933620, guid: 5cc38f6bd6d0ed34ab086eee9621e3ad, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -18
+      value: 255
       objectReference: {fileID: 0}
     - target: {fileID: 6561419314668933621, guid: 5cc38f6bd6d0ed34ab086eee9621e3ad, type: 3}
       propertyPath: m_IsActive
@@ -17575,6 +17569,14 @@ PrefabInstance:
       propertyPath: wallHitUI
       value: 
       objectReference: {fileID: 1576618913}
+    - target: {fileID: 6690406109904646077, guid: 5cc38f6bd6d0ed34ab086eee9621e3ad, type: 3}
+      propertyPath: EyeBarImage
+      value: 
+      objectReference: {fileID: 1956033770}
+    - target: {fileID: 6690406109904646077, guid: 5cc38f6bd6d0ed34ab086eee9621e3ad, type: 3}
+      propertyPath: AlertBarimage
+      value: 
+      objectReference: {fileID: 129244495}
     - target: {fileID: 6692063160259462815, guid: 5cc38f6bd6d0ed34ab086eee9621e3ad, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -19746,7 +19748,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Get to safety
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -20018,6 +20020,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6561419313488805887, guid: 5cc38f6bd6d0ed34ab086eee9621e3ad, type: 3}
   m_PrefabInstance: {fileID: 1585978767}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1956033770 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1793513061040436080, guid: 5cc38f6bd6d0ed34ab086eee9621e3ad, type: 3}
+  m_PrefabInstance: {fileID: 1585978767}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1970597094
 GameObject:
   m_ObjectHideFlags: 0
@@ -28052,6 +28065,54 @@ PrefabInstance:
     - target: {fileID: 2682201316531828204, guid: 8165256db8ad1ec44929f67b7fe66ca9, type: 3}
       propertyPath: m_Center.z
       value: 0.5114441
+      objectReference: {fileID: 0}
+    - target: {fileID: 3930435666512660772, guid: 8165256db8ad1ec44929f67b7fe66ca9, type: 3}
+      propertyPath: maxDistance
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 3930435666512660772, guid: 8165256db8ad1ec44929f67b7fe66ca9, type: 3}
+      propertyPath: OverrideAttenuation
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3930435666512660772, guid: 8165256db8ad1ec44929f67b7fe66ca9, type: 3}
+      propertyPath: AwfulBroadcastEventPath.Path
+      value: event:/Monsters/Walker-HeavyFootsteps_Muffled
+      objectReference: {fileID: 0}
+    - target: {fileID: 3930435666512660772, guid: 8165256db8ad1ec44929f67b7fe66ca9, type: 3}
+      propertyPath: BeautifulBroadcastEventPath.Path
+      value: event:/Monsters/Walker-HeavyFootsteps
+      objectReference: {fileID: 0}
+    - target: {fileID: 3930435666512660772, guid: 8165256db8ad1ec44929f67b7fe66ca9, type: 3}
+      propertyPath: AwfulBroadcastEventPath.Guid.Data1
+      value: 939871151
+      objectReference: {fileID: 0}
+    - target: {fileID: 3930435666512660772, guid: 8165256db8ad1ec44929f67b7fe66ca9, type: 3}
+      propertyPath: AwfulBroadcastEventPath.Guid.Data2
+      value: 1317348166
+      objectReference: {fileID: 0}
+    - target: {fileID: 3930435666512660772, guid: 8165256db8ad1ec44929f67b7fe66ca9, type: 3}
+      propertyPath: AwfulBroadcastEventPath.Guid.Data3
+      value: -565389177
+      objectReference: {fileID: 0}
+    - target: {fileID: 3930435666512660772, guid: 8165256db8ad1ec44929f67b7fe66ca9, type: 3}
+      propertyPath: AwfulBroadcastEventPath.Guid.Data4
+      value: 1041614947
+      objectReference: {fileID: 0}
+    - target: {fileID: 3930435666512660772, guid: 8165256db8ad1ec44929f67b7fe66ca9, type: 3}
+      propertyPath: BeautifulBroadcastEventPath.Guid.Data1
+      value: -811906022
+      objectReference: {fileID: 0}
+    - target: {fileID: 3930435666512660772, guid: 8165256db8ad1ec44929f67b7fe66ca9, type: 3}
+      propertyPath: BeautifulBroadcastEventPath.Guid.Data2
+      value: 1112828830
+      objectReference: {fileID: 0}
+    - target: {fileID: 3930435666512660772, guid: 8165256db8ad1ec44929f67b7fe66ca9, type: 3}
+      propertyPath: BeautifulBroadcastEventPath.Guid.Data3
+      value: -401904753
+      objectReference: {fileID: 0}
+    - target: {fileID: 3930435666512660772, guid: 8165256db8ad1ec44929f67b7fe66ca9, type: 3}
+      propertyPath: BeautifulBroadcastEventPath.Guid.Data4
+      value: -2139386136
       objectReference: {fileID: 0}
     - target: {fileID: 7074337521807118302, guid: 8165256db8ad1ec44929f67b7fe66ca9, type: 3}
       propertyPath: m_RootOrder

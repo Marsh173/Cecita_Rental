@@ -14,6 +14,10 @@ namespace FMODUnity
 
         public string sceneName;
 
+        private void Start()
+        {
+            Time.timeScale = 1;
+        }
 
         public void ExitButton()
         {

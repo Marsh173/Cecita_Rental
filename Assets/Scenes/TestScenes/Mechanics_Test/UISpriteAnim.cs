@@ -25,6 +25,10 @@ public class UISpriteAnim : MonoBehaviour
         image = GetComponent<Image>();
     }
 
+    private void OnEnable()
+    {
+        spriteIndex = 0;
+    }
     private void Update()
     {
         timer += Time.deltaTime;

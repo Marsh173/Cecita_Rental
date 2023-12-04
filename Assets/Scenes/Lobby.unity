@@ -1400,7 +1400,7 @@ MonoBehaviour:
       showNPCSubtitlesWithResponses: 1
       showPCSubtitlesDuringLine: 1
       allowPCSubtitleReminders: 0
-      skipPCSubtitleAfterResponseMenu: 1
+      skipPCSubtitleAfterResponseMenu: 0
       subtitleCharsPerSecond: 30
       minSubtitleSeconds: 2
       continueButton: 0
@@ -1413,13 +1413,13 @@ MonoBehaviour:
       cameraAngles: {fileID: 0}
       keepCameraPositionAtConversationEnd: 0
       defaultSequence: AudioWait(entrytag); Delay({{end}})
-      defaultPlayerSequence: AudioWait(entrytag)
+      defaultPlayerSequence: Delay({{end}})
       defaultResponseMenuSequence: 
       entrytagFormat: 0
       reportMissingAudioFiles: 0
       disableInternalSequencerCommands: 0
     inputSettings:
-      alwaysForceResponseMenu: 1
+      alwaysForceResponseMenu: 0
       includeInvalidEntries: 0
       responseTimeout: 0
       responseTimeoutAction: 0

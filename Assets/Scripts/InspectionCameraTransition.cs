@@ -49,31 +49,42 @@ public class InspectionCameraTransition : MonoBehaviour
         //StartCoroutine(LerpFunction(playercam.transform, originalAngle, 1f));
         playercam.transform.DOMove(originalPos, 1f);
         playercam.transform.DORotate(originalAngle, 1f).OnComplete(() => EnableMovement());
+
+        gameObject.layer = 7;
     }
 
     public void TransitCamToInspectionPos()
     {
+        Debug.Log("In cam?"+isInCam);
+
         originalCamPosition = playercam.transform;
         originalPos = originalCamPosition.position;
         originalAngle = originalCamPosition.rotation.eulerAngles;
+
         Debug.Log(originalPos + "original pos");
         Debug.Log(playercam.transform.position + "player pos");
         Debug.Log(InspectionCam.position + "cam pos");
+
         playercam.transform.DOMove(InspectionCam.position, 1);
         playercam.transform.DORotate(InspectionCam.rotation.eulerAngles, 1);
+
         FirstPersonAIO.instance.enableCameraMovement = false;
         FirstPersonAIO.instance.playerCanMove = false;
         Cursor.visible = true;
         isInCam = true;
-        inspectionButton.SetActive(true);
+        if(inspectionButton != null)
+        {
+            inspectionButton.SetActive(true);
+        }
         PlayBody.GetComponent<MeshRenderer>().enabled = false;
+
         //outline + prompt message hide
         if (this.GetComponent<Outline>() != null)
         {
             this.GetComponent<Outline>().enabled = false;
         }
-        PlayerInteract.instnace.message.enabled = false;
-        PlayerInteract.instnace.itemIcon.SetActive(false);
+
+        gameObject.layer = 0;
     }
 
     private void EnableMovement()
@@ -82,7 +93,10 @@ public class InspectionCameraTransition : MonoBehaviour
         FirstPersonAIO.instance.playerCanMove = true;
 
         Cursor.visible = false;
-        inspectionButton.SetActive(false);
+        if (inspectionButton != null)
+        {
+            inspectionButton.SetActive(false);
+        }
         inspectionWindow.SetActive(false);
         PlayBody.GetComponent<MeshRenderer>().enabled = true;
         //outline + prompt message show

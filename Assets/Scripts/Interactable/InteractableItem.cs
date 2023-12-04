@@ -18,7 +18,7 @@ public class InteractableItem : Interactable
     // Update is called once per frame
     void Update()
     {
-        //LMB to open up keypad
+        //LMB to open
         if (interacted)
         {
             if (Input.GetMouseButtonDown(0))

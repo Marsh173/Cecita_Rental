@@ -66,9 +66,22 @@ public class PlayerInteract : MonoBehaviour
         RaycastHit hitInfo;
 
 
-        if(Physics.Raycast(ray, out hitInfo, distance, mask))
+        if (Physics.Raycast(ray, out hitInfo, distance))
         {
-            if(hitInfo.collider.GetComponent<Interactable>() != null)
+            //turn off crosshair when hit NPC
+            if (hitInfo.collider.CompareTag("NPC"))
+            {
+                if (crosshair != null && crosshair.activeSelf) crosshair.SetActive(false);
+            }
+        }
+        else
+        {
+            if (crosshair != null && !crosshair.activeSelf) crosshair.SetActive(true);
+        }
+
+        if (Physics.Raycast(ray, out hitInfo, distance, mask))
+        {
+            if (hitInfo.collider.GetComponent<Interactable>() != null)
             {
                 if (lastHitObject == null)                                                                  //Make sure overlapped interactable objects remove outlines as intended
                 {
@@ -95,9 +108,13 @@ public class PlayerInteract : MonoBehaviour
             {
                 if (message.text != null) message.text = "";
 
-                //Turn off interactable item icon                                                   -Bryan's latest
-                itemIcon.SetActive(false);
-                itemIcon = null;
+                if(itemIcon != null)
+                {
+                    //Turn off interactable item icon                                                   -Bryan's latest
+                    itemIcon.SetActive(false);
+                    itemIcon = null;
+                }
+
                 //Turn on crosshair
                 if (crosshair != null && !crosshair.activeSelf) crosshair.SetActive(true);
             }
@@ -112,8 +129,13 @@ public class PlayerInteract : MonoBehaviour
                 itemIcon.SetActive(false);
                 itemIcon = null;
             }
-            //Turn on crosshair
-            if (crosshair != null && !crosshair.activeSelf) crosshair.SetActive(true);
+
+            if (hitInfo.collider != null && !hitInfo.collider.CompareTag("NPC"))
+            {
+                //Turn on crosshair if not hit NPC
+                if (crosshair != null && !crosshair.activeSelf) crosshair.SetActive(true);
+            }
+                
 
             if (lastHitObject != null)
             {

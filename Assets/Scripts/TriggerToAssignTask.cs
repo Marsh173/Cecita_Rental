@@ -4,14 +4,28 @@ using UnityEngine;
 
 public class TriggerToAssignTask : MonoBehaviour
 {
+    [SerializeField] private InitializeTask InitialT;
+    [SerializeField] private TaskManager_Test_Yunfei TM;
+
+    private void Start()
+    {
+        InitialT.settext();
+        TM.AddTask();
+    }
+
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if(other.GetComponent<InitializeTask>() != null)
         {
-            TaskManager.instance.CompleteObjetive("Pick up package from the front door");
-            TaskManager.instance.AssignObjective("Package Lost");
-            TaskManager.instance.AssignObjective("Find the missing package", TaskManager.instance.ObjectiveList[1]);
-            Destroy(this.gameObject);
+            InitialT = other.GetComponent<InitializeTask>();
+        }
+
+        if (other.CompareTag("TriggerForPackage") && CompareTag("Player"))
+        {
+            InitialT.settext();
+            TM.AddTask();
+            TM.TaskDone(0);
+            Destroy(other.gameObject);
         }
     }
 }

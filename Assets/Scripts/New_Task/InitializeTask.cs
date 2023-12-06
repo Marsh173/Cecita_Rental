@@ -7,6 +7,7 @@ public class InitializeTask : MonoBehaviour
     [SerializeField]public string taskTitle;
     [SerializeField] public string task_name;
     [SerializeField] public string sub_task_name;
+    [SerializeField] public int index_of_MainTask;
 
     public TaskManager_Test_Yunfei tm;
     private void Start()
@@ -16,8 +17,8 @@ public class InitializeTask : MonoBehaviour
 
     public void settext()
     {
-        tm.temp_taskTitle = taskTitle;
         tm.temp_task_name = task_name;
         tm.temp_sub_task_name = sub_task_name;
+        tm.temp_attach_to_main = index_of_MainTask;
     }
 }

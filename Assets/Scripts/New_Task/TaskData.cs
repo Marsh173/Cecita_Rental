@@ -14,6 +14,7 @@ public class TaskData :  MonoBehaviour
     
     public List<GameObject> subtask = new List<GameObject>();
     public GameObject subtaskPrefab;
+    public bool started = false; // turn this to true when all sub tasks are added
     public bool isCompleted;
 
     public float y_height;
@@ -21,21 +22,34 @@ public class TaskData :  MonoBehaviour
     //add sub and give them a name
     public void addSub(string subtask_name)
     {
-        var s = Instantiate(subtaskPrefab, gameObject.transform);
-        s.transform.SetParent(gameObject.transform);
+        var s = Instantiate(subtaskPrefab, transform);
+        s.transform.SetParent(transform);
         subtask.Add(s);
         s.GetComponent<Sub_Task>().sub_taskName = subtask_name;
-        s.GetComponent<RectTransform>().anchoredPosition = new Vector3(0,-75,0);
+        var sublistHeight = subtask.Count * y_height;
+        s.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, -  sublistHeight,0);
     }
 
     private void Update()
     {
-        task_title_UI.text = taskTitle;
+        //task_title_UI.text = taskTitle;
         task_name_UI.text = taskName;
+
+        if(started)isCompleted = allSubFinished();
 
         if (isCompleted)
         {
             FinishTask();
+        }
+    }
+
+    public bool allSubFinished()
+    {
+        if(subtask.Count == 0)
+        return true;
+        else
+        {
+            return false;
         }
     }
 
@@ -44,6 +58,10 @@ public class TaskData :  MonoBehaviour
         //finish all sub tasks
 
         //finish main task
+        for (int i = 0; i < subtask.Count; i++)
+        {
+            subtask[i].GetComponent<Sub_Task>().isCompleted = true;
+        }
         Destroy(gameObject);
     }
 

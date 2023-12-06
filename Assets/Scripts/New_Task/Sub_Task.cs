@@ -20,6 +20,6 @@ public class Sub_Task : MonoBehaviour
 
     public void FinishSubTask()
     {
-        Destroy(gameObject);
+        //Destroy(gameObject);
     }
 }

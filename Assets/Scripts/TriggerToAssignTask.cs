@@ -9,8 +9,6 @@ public class TriggerToAssignTask : MonoBehaviour
 
     private void Start()
     {
-        InitialT.settext();
-        TM.AddTask();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -25,6 +23,7 @@ public class TriggerToAssignTask : MonoBehaviour
             InitialT.settext();
             TM.AddTask();
             TM.TaskDone(0);
+            //TM.SetSubTask();
             Destroy(other.gameObject);
         }
     }

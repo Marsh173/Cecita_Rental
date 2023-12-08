@@ -19,6 +19,42 @@ public class TaskManager_Test_Yunfei : MonoBehaviour
 
     public float y_height_task = -25;
 
+    public bool Tasks_visible = true;
+
+    public Animator ani;
+
+    private void Start()
+    {
+        //tasks shows for 5 sec
+        StartCoroutine(showTasks(5));
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            ToggleVisibility();
+        }
+        
+    }
+
+    //showing tasks at the beginning
+    public IEnumerator showTasks(int sec)
+    {
+        ani.SetBool("Open", true);
+        yield return new WaitForSeconds(sec);
+        ani.SetBool("Open", false);
+        Tasks_visible = false;
+    }
+
+    public void ToggleVisibility()
+    {
+        StopAllCoroutines();
+        Tasks_visible = !Tasks_visible;
+        ani.SetBool("Open", Tasks_visible);
+    }
+
+
     // ----------- assign main task - CONTAINS SETTASK ALREADY
     public void AddTask()
     {

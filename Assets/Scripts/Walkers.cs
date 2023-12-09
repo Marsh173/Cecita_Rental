@@ -12,22 +12,35 @@ public class Walkers : MonoBehaviour
     public float speed;
     public Transform stop;
     public GameObject walker;
+    public Vector3 initialPosition;
     bool stopMoving = false;
+
+    public Respawn respawn;
 
 
 
     bool trigger;
     public bool stalker;
 
+    private void Awake()
+    {
+        respawn = FindObjectOfType<Respawn>();
+    }
+
     private void Start()
     {
         walker.SetActive(false);
+        initialPosition = walker.transform.position;
  
     }
 
     private void Update()
     {
-        
+        if (Respawn.dead)
+        {
+            trigger = false;
+            walker.transform.position = initialPosition;
+        }
 
         if (trigger && !stalker)
         {

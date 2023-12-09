@@ -15,7 +15,7 @@ public class TaskManager_Test_Yunfei : MonoBehaviour
     public string temp_sub_task_name;
     public int temp_attach_to_main= 0;
 
-    public GameObject TaskOrigin;
+    public GameObject TaskOrigin, PressT;
 
     public float y_height_task = -25;
 
@@ -25,6 +25,7 @@ public class TaskManager_Test_Yunfei : MonoBehaviour
 
     private void Start()
     {
+        PressT.SetActive(false);
         //tasks shows for 5 sec
         StartCoroutine(showTasks(5));
     }
@@ -44,11 +45,13 @@ public class TaskManager_Test_Yunfei : MonoBehaviour
         ani.SetBool("Open", true);
         yield return new WaitForSeconds(sec);
         ani.SetBool("Open", false);
+        PressT.SetActive(true);
         Tasks_visible = false;
     }
 
     public void ToggleVisibility()
     {
+        PressT.SetActive(false);
         StopAllCoroutines();
         Tasks_visible = !Tasks_visible;
         ani.SetBool("Open", Tasks_visible);

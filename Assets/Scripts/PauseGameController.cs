@@ -33,6 +33,7 @@ public class PauseGameController : MonoBehaviour
     {
         inventory_manager.SetActive(false);
         pauseMenuUI.SetActive(true);
+        FirstPersonAIO.instance.ControllerPause();
         if (inventory.activeSelf)
         {
             invent_open = true;
@@ -51,6 +52,7 @@ public class PauseGameController : MonoBehaviour
     {
         inventory_manager.SetActive(true);
         pauseMenuUI.SetActive(false);
+        FirstPersonAIO.instance.ControllerPause();
         inventory.SetActive(invent_open);
         
         Physics.autoSimulation = true;

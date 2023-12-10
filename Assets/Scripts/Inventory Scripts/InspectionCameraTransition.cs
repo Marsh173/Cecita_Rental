@@ -10,7 +10,10 @@ public class InspectionCameraTransition : MonoBehaviour
     private Camera playercam;
     public Transform InspectionCam;
 
-    private Transform originalCamPosition;
+    public float initialFOV;
+    public float FOVOnInteraction;
+
+    public Transform originalCamPosition;
     private Vector3 originalPos, originalAngle;
     public bool isInCam;
 
@@ -26,6 +29,7 @@ public class InspectionCameraTransition : MonoBehaviour
         originalCamPosition = playercam.transform;
         inspectionButton.SetActive(false);
         PlayBody = FirstPersonAIO.instance.transform.GetChild(1).gameObject;
+        initialFOV = playercam.fieldOfView;
     }
 
     private void Update()
@@ -47,8 +51,10 @@ public class InspectionCameraTransition : MonoBehaviour
         //playercam.transform.rotation = originalCamPosition.rotation;
         //StartCoroutine(LerpPosition(playercam.transform, originalPos, 1f));
         //StartCoroutine(LerpFunction(playercam.transform, originalAngle, 1f));
+        FirstPersonAIO.instance.enableFOVShift = true;
         playercam.transform.DOMove(originalPos, 1f);
         playercam.transform.DORotate(originalAngle, 1f).OnComplete(() => EnableMovement());
+        playercam.fieldOfView = initialFOV;
 
         gameObject.layer = 7;
     }
@@ -65,8 +71,10 @@ public class InspectionCameraTransition : MonoBehaviour
         Debug.Log(playercam.transform.position + "player pos");
         Debug.Log(InspectionCam.position + "cam pos");
 
+        FirstPersonAIO.instance.enableFOVShift = false;
         playercam.transform.DOMove(InspectionCam.position, 1);
         playercam.transform.DORotate(InspectionCam.rotation.eulerAngles, 1);
+        playercam.fieldOfView = FOVOnInteraction;
 
         FirstPersonAIO.instance.enableCameraMovement = false;
         FirstPersonAIO.instance.playerCanMove = false;

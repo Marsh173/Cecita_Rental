@@ -72,7 +72,8 @@ public class FirstPersonAIO : MonoBehaviour {
     #region Variables
 
 
-    public static FirstPersonAIO instance; 
+    public static FirstPersonAIO instance;
+    public bool enableFOVShift = true;
     #region Input Settings
     public bool controllerPauseState = false;
     #endregion
@@ -531,11 +532,11 @@ public class FirstPersonAIO : MonoBehaviour {
         if(advanced.FOVKickAmount>0){
             if(isSprinting && !isCrouching && playerCamera.fieldOfView != (baseCamFOV+(advanced.FOVKickAmount*2)-0.01f)){
                 if(Mathf.Abs(fps_Rigidbody.velocity.x)> 0.5f || Mathf.Abs(fps_Rigidbody.velocity.z)> 0.5f){
-                    playerCamera.fieldOfView = Mathf.SmoothDamp(playerCamera.fieldOfView,baseCamFOV+(advanced.FOVKickAmount*2),ref advanced.fovRef,advanced.changeTime);
+                    if (enableFOVShift) { playerCamera.fieldOfView = Mathf.SmoothDamp(playerCamera.fieldOfView, baseCamFOV + (advanced.FOVKickAmount * 2), ref advanced.fovRef, advanced.changeTime); }
                     }
                 
             }
-            else if(playerCamera.fieldOfView != baseCamFOV){ playerCamera.fieldOfView = Mathf.SmoothDamp(playerCamera.fieldOfView,baseCamFOV,ref advanced.fovRef,advanced.changeTime*0.5f);}
+            else if(playerCamera.fieldOfView != baseCamFOV && enableFOVShift){ playerCamera.fieldOfView = Mathf.SmoothDamp(playerCamera.fieldOfView,baseCamFOV,ref advanced.fovRef,advanced.changeTime*0.5f);}
             
         }
 

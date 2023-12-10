@@ -18,13 +18,6 @@ namespace FMODUnity
             Time.timeScale = 1;
         }
 
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                startMenu = true;
-            }
-        }
 
         public void ExitButton()
         {

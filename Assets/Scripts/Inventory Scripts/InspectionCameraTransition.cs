@@ -10,6 +10,8 @@ public class InspectionCameraTransition : MonoBehaviour
     private Camera playercam;
     public Transform InspectionCam;
 
+    public float initialFOV;
+
     private Transform originalCamPosition;
     private Vector3 originalPos, originalAngle;
     public bool isInCam;
@@ -21,6 +23,7 @@ public class InspectionCameraTransition : MonoBehaviour
 
     private void Start()
     {
+        initialFOV = playercam.fieldOfView;
         instance = this;
         playercam = FirstPersonAIO.instance.gameObject.GetComponentInChildren<Camera>();
         originalCamPosition = playercam.transform;
@@ -49,6 +52,7 @@ public class InspectionCameraTransition : MonoBehaviour
         //StartCoroutine(LerpFunction(playercam.transform, originalAngle, 1f));
         playercam.transform.DOMove(originalPos, 1f);
         playercam.transform.DORotate(originalAngle, 1f).OnComplete(() => EnableMovement());
+        //playercam.fieldOfView = initialFOV;
 
         gameObject.layer = 7;
     }
@@ -67,6 +71,7 @@ public class InspectionCameraTransition : MonoBehaviour
 
         playercam.transform.DOMove(InspectionCam.position, 1);
         playercam.transform.DORotate(InspectionCam.rotation.eulerAngles, 1);
+        //playercam.fieldOfView = 20;
 
         FirstPersonAIO.instance.enableCameraMovement = false;
         FirstPersonAIO.instance.playerCanMove = false;

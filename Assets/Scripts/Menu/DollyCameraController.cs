@@ -194,7 +194,7 @@ public class DollyCameraController : MonoBehaviour
         // Animation for rotating GameObjects
         float elapsedTimeRotation = 0f;
 
-        while (elapsedTimeCamera < cameraDuration || elapsedTimeRotation < QuitRotationDuration)
+        while (elapsedTimeCamera < cameraDuration || elapsedTimeRotation < rotationDuration)
         {
             // Update camera position
             if (elapsedTimeCamera < cameraDuration)
@@ -209,10 +209,10 @@ public class DollyCameraController : MonoBehaviour
             }
 
             // Update object rotation
-            if (elapsedTimeRotation < QuitRotationDuration)
+            if (elapsedTimeRotation < rotationDuration)
             {
-                Debug.Log("happen");
-                float tRotation = Mathf.SmoothStep(0f, 0.55f, elapsedTimeRotation / QuitRotationDuration);
+                
+                float tRotation = Mathf.SmoothStep(0f, 1f, elapsedTimeRotation / QuitRotationDuration);
                 objectToRotate1.transform.rotation = Quaternion.Slerp(objectToRotate1.transform.rotation, startRotationObject1, tRotation);
                 objectToRotate2.transform.rotation = Quaternion.Slerp(objectToRotate2.transform.rotation, startRotationObject2, tRotation);
 
@@ -222,7 +222,7 @@ public class DollyCameraController : MonoBehaviour
             yield return null;
         }
 
-    
+        Debug.Log("happen");
 
     }
 

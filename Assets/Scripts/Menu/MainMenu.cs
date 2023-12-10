@@ -8,15 +8,22 @@ namespace FMODUnity
     public class MainMenu : MonoBehaviour
     {
         public static bool Setting;
-        //public GameObject settingMenu;
         FMOD.ChannelGroup mcg;
         FMOD.Studio.Bus Masterbus;
 
-        public string sceneName;
+        public bool startMenu;
 
         private void Start()
         {
             Time.timeScale = 1;
+        }
+
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                startMenu = true;
+            }
         }
 
         public void ExitButton()
@@ -25,29 +32,13 @@ namespace FMODUnity
             Debug.Log("Game Closed");
         }
 
-        public void LoadScene()
+        public void LoadScene(string sceneName)
         {
             FMODUnity.RuntimeManager.CoreSystem.getMasterChannelGroup(out mcg);
             mcg.stop();
             SceneManager.LoadScene(sceneName);
         }
 
-        //public void BackButton()
-        //{
-        //    SceneManager.LoadScene("Start_Screen");
-        //}
-        /*
-        public void SettingButton()
-        {
-            Setting = true;
-            settingMenu.SetActive(true);
-        }
-
-        public void BackButton()
-        {
-            Setting = false;
-            settingMenu.SetActive(false);
-        }
-        */
+        
     }
 }

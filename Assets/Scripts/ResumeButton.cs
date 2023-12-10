@@ -24,7 +24,7 @@ public class ResumeButton : MonoBehaviour
 
     public void home()
     {
-        SceneManager.LoadScene("TemporaryMenu", LoadSceneMode.Single);
+        SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
     }
     public void settings()
     {

@@ -29,7 +29,7 @@ public class TaskData :  MonoBehaviour
         s.GetComponent<Sub_Task>().sub_taskName = subtask_name;
         var sublistHeight = subtask.Count * y_height;
         s.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, -  sublistHeight,0);
-        s.GetComponent<Sub_Task>().sub_num = ;
+        s.GetComponent<Sub_Task>().sub_num = sub_num;
     }
 
     private void Update()

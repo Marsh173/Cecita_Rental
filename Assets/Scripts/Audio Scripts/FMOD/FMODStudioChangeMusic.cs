@@ -69,12 +69,19 @@ namespace FMODUnity
                 FMOD.Studio.PLAYBACK_STATE fmodPbState;
                 awful_broadcast.getPlaybackState(out fmodPbState);
 
-                if (fmodPbState != FMOD.Studio.PLAYBACK_STATE.PLAYING)
+                FMOD.Studio.PLAYBACK_STATE fmodPbStateSpeaker;
+                beautiful_broadcast.getPlaybackState(out fmodPbStateSpeaker);
+
+                if (fmodPbStateSpeaker == FMOD.Studio.PLAYBACK_STATE.PLAYING)
                 {
-                    beautiful_broadcast.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-                    awful_broadcast.start();
-                    //awful_broadcast.release();
-                    Debug.Log("Play awful sound now...");
+                    if(fmodPbState == FMOD.Studio.PLAYBACK_STATE.PLAYING)
+                    {
+                        beautiful_broadcast.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                        awful_broadcast.start();
+                        //awful_broadcast.release();
+                        Debug.Log("Play awful sound now...");
+                    }
+                    
                 }
 
                 

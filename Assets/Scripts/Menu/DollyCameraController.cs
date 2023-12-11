@@ -41,27 +41,41 @@ public class DollyCameraController : MonoBehaviour
     public GameObject quitMenu;
     public float QuitRotationDuration = 10f;
 
-
+    private bool delayComplete = false;
     private void Start()
     {
         startRotationObject1 = objectToRotate1.transform.rotation;
         startRotationObject2 = objectToRotate2.transform.rotation;
         quitMenu.SetActive(false);
         anykey.SetActive(true);
-
         
+        Cursor.visible = true;
+
+        StartCoroutine(delay());
+
+
     }
 
     void Update()
     {
-        StartCoroutine(WiggleEffect());
 
-        if (Input.anyKeyDown && !isMoving)
+        if (delayComplete)
         {
-            isMoving = true;
-            StartCoroutine(AnimateIntroCam());
+            StartCoroutine(WiggleEffect());
+
+            if (Input.anyKeyDown && !isMoving)
+            {
+                isMoving = true;
+                StartCoroutine(AnimateIntroCam());
+            }
         }
 
+    }
+
+    IEnumerator delay()
+    {
+        yield return new WaitForSeconds(1f);
+        delayComplete = true;
     }
 
     IEnumerator AnimateIntroCam()

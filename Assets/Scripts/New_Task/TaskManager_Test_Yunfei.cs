@@ -26,8 +26,13 @@ public class TaskManager_Test_Yunfei : MonoBehaviour
     private void Start()
     {
         PressT.SetActive(false);
-        //tasks shows for 5 sec
-        StartCoroutine(showTasks(5));
+
+        //show task after cutscene
+        if(CutSceneScript.cutsceneEnd)
+        {
+            //tasks shows for 5 sec
+            StartCoroutine(showTasks(8));
+        }
     }
 
     private void Update()

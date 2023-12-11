@@ -8,7 +8,7 @@ public class sliderScript : MonoBehaviour
 {
     private float pressSeconds = 2f;
     private Slider slider;
-    public string sceneName;
+    //public string sceneName;
 
     void Start()
     {
@@ -38,6 +38,6 @@ public class sliderScript : MonoBehaviour
 
     private void NextScene()
     {
-        SceneManager.LoadScene(sceneName);
+        SceneManager.LoadScene("MainMenu");
     }
 }

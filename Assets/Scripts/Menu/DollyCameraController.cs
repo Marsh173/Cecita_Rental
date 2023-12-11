@@ -48,6 +48,8 @@ public class DollyCameraController : MonoBehaviour
         startRotationObject2 = objectToRotate2.transform.rotation;
         quitMenu.SetActive(false);
         anykey.SetActive(true);
+
+        
     }
 
     void Update()

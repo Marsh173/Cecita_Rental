@@ -11,7 +11,7 @@ public class CutSceneScript : MonoBehaviour
     public AudioSource emailsound;
     public AudioClip emailNote;
     public static bool cutsceneEnd;
-    public GameObject taskList, FirstPerson, startSceneObj, cutSceneCanvas;
+    public GameObject taskList, FirstPerson, startSceneObj, cutSceneCanvas, crosshair;
     public TMP_Text monologue;
 
     void Awake()
@@ -22,6 +22,7 @@ public class CutSceneScript : MonoBehaviour
 
         taskList.SetActive(false);
         FirstPerson.SetActive(false);
+        crosshair.SetActive(false);
 
         cutscene.Play();
         cutscene.stopped += NextStep;
@@ -35,6 +36,7 @@ public class CutSceneScript : MonoBehaviour
         FirstPerson.SetActive(true);
         startSceneObj.SetActive(false);
         cutSceneCanvas.SetActive(false);
+        crosshair.SetActive(true);
         monologue.text = "That's an email from the manager, I better check that out.";
         StartCoroutine(shoMonologue(5));
     }

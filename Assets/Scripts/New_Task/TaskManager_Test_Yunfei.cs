@@ -13,7 +13,9 @@ public class TaskManager_Test_Yunfei : MonoBehaviour
    
     public string temp_task_name;
     public string temp_sub_task_name;
-    public int temp_attach_to_main= 0;
+    public int temp_attach_to_main_num = 0;
+    public int temp_main_num = 0;
+    public int temp_sub_num = 0;
 
     public GameObject TaskOrigin, PressT;
 
@@ -71,6 +73,7 @@ public class TaskManager_Test_Yunfei : MonoBehaviour
         Tasks.Add(t);
         
         t.GetComponent<TaskData>().taskName = temp_task_name;
+        t.GetComponent<TaskData>().task_num = temp_main_num;
 
         ClearTempData();
 
@@ -90,11 +93,9 @@ public class TaskManager_Test_Yunfei : MonoBehaviour
     //must set a main task first before assigning sub tasks!!
     public void SetSubTask()
     {
-        if(Tasks.Count>temp_attach_to_main)
-        {
-            var maintask = Tasks[temp_attach_to_main];
-            maintask.GetComponent<TaskData>().addSub(temp_sub_task_name);
-        }
+        GameObject maintask = getMaintask(temp_attach_to_main_num);
+
+        if(maintask != null)maintask.GetComponent<TaskData>().addSub(temp_sub_task_name, temp_sub_num);
 
         RearrangeTasks();
 
@@ -105,15 +106,19 @@ public class TaskManager_Test_Yunfei : MonoBehaviour
 
     public void TaskDone(int index)
     {
-        Tasks[index].GetComponent<TaskData>().isCompleted = true;
-        Tasks.RemoveAt(index);
+        /*Tasks[index].GetComponent<TaskData>().isCompleted = true;
+        Tasks.RemoveAt(index);*/
+        getMaintask(index).GetComponent<TaskData>().isCompleted = true;
+        Tasks.RemoveAt(Tasks.IndexOf(getMaintask(index)));
         RearrangeTasks();
     }
 
     public void SubTaskDone(int mainT, int subT)
     {
-        Tasks[mainT].GetComponentInChildren<TaskData>().subtask[subT].GetComponent<Sub_Task>().isCompleted = true;
-        Tasks[mainT].GetComponentInChildren<TaskData>().subtask.RemoveAt(subT);
+        GameObject subtask = getSubtask(mainT, subT);
+        subtask.GetComponent<Sub_Task>().isCompleted = true;
+        List<GameObject> sublist = getMaintask(mainT).GetComponent<TaskData>().subtask;
+        sublist.RemoveAt(sublist.IndexOf(subtask));
     }
 
     public void RearrangeTasks()
@@ -141,6 +146,43 @@ public class TaskManager_Test_Yunfei : MonoBehaviour
     {
         temp_sub_task_name = "";
         temp_task_name = "";
-        temp_attach_to_main = -1;
+        temp_attach_to_main_num = 0;
+        temp_main_num = 0;
+        temp_sub_num = 0;
+
+    }
+
+    public GameObject getMaintask(int taskNum)
+    {
+        GameObject task = null;
+        for (int i = 0; i < Tasks.Count; i++)
+        {
+            if(Tasks[i].GetComponent<InitializeTask>().MainTask_num == taskNum)
+            {
+                task =  Tasks[i].gameObject;
+                break;
+            }
+
+        }
+
+        return task;
+    }
+
+    public GameObject getSubtask(int taskNum, int subNum)
+    {
+        GameObject mainTask = getMaintask(taskNum);
+        GameObject subTask = null;
+
+        List<GameObject> list = mainTask.GetComponent<TaskData>().subtask;
+
+        if(mainTask != null)
+        {
+            for (int i = 0; i < list.Count; i ++)
+            {
+                if (list[i].GetComponent<Sub_Task>().sub_num == subNum) subTask = list[i]; 
+            }
+        }
+
+        return subTask;
     }
 }

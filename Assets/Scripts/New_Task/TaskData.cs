@@ -8,6 +8,7 @@ public class TaskData :  MonoBehaviour
 {
     public string taskTitle;
     public string taskName;
+    public int task_num;
 
     public TextMeshProUGUI task_title_UI;
     public TextMeshProUGUI task_name_UI;
@@ -20,7 +21,7 @@ public class TaskData :  MonoBehaviour
     public float y_height;
 
     //add sub and give them a name
-    public void addSub(string subtask_name)
+    public void addSub(string subtask_name, int sub_num)
     {
         var s = Instantiate(subtaskPrefab, transform);
         s.transform.SetParent(transform);
@@ -28,6 +29,7 @@ public class TaskData :  MonoBehaviour
         s.GetComponent<Sub_Task>().sub_taskName = subtask_name;
         var sublistHeight = subtask.Count * y_height;
         s.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, -  sublistHeight,0);
+        s.GetComponent<Sub_Task>().sub_num = ;
     }
 
     private void Update()

@@ -7,6 +7,7 @@ public class Sub_Task : MonoBehaviour
     public TextMeshProUGUI sub_task_text;
     public string sub_taskName;
     public bool isCompleted;
+    public int sub_num;
 
     private void Update()
     {

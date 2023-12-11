@@ -61,7 +61,7 @@ public class DollyCameraController : MonoBehaviour
 
         if (delayComplete)
         {
-            StartCoroutine(WiggleEffect());
+            //StartCoroutine(WiggleEffect());
 
             if (Input.anyKeyDown && !isMoving)
             {

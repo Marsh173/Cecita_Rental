@@ -11,7 +11,6 @@ namespace FMODUnity
         FMOD.ChannelGroup mcg;
         FMOD.Studio.Bus Masterbus;
 
-        public bool startMenu;
 
         private void Start()
         {

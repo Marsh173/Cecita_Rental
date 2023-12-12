@@ -74,7 +74,7 @@ public class DollyCameraController : MonoBehaviour
 
     IEnumerator delay()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
         delayComplete = true;
     }
 

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -9,6 +10,9 @@ public class sliderScript : MonoBehaviour
     private float pressSeconds = 2f;
     private Slider slider;
     //public string sceneName;
+
+    private bool isLoading = false;
+    public UnityEvent onSliderComplete = new UnityEvent();
 
     void Start()
     {
@@ -30,9 +34,12 @@ public class sliderScript : MonoBehaviour
             slider.value -= 100 / (pressSeconds+1f) * Time.deltaTime;
         }
 
-        if(slider.value >= 100)
+        if(slider.value >= 100 && !isLoading)
         {
-            NextScene();
+            isLoading = true;
+            onSliderComplete.Invoke();
+
+            //NextScene();
         }
     }
 

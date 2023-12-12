@@ -8,7 +8,7 @@ public class InventoryViewItem : MonoBehaviour
 {
     //if there's an object, set the view item active and pull the model
     [SerializeField] TextMeshProUGUI iconname;
-    [SerializeField] string icon_Description = "";
+    [SerializeField, TextArea(3, 10)] string icon_Description = "";
     [SerializeField] int index;
     GameObject vig;
 

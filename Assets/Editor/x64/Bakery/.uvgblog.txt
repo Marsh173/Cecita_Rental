@@ -656,3 +656,840 @@ Running halffloat2hdr "C:\Users\ALIENWARE\AppData\Local\Temp\frender/MainMenu_LM
 Running rgba2tga "C:\Users\ALIENWARE\AppData\Local\Temp\frender/MainMenu_LMA4_final_Dir.lz4" "D:/Saprah/Games/Cecita Rentals/Cecita_Rental/Assets/BakeryLightmaps/MainMenu_LMA4_dir.tga" 
 Running halffloat2hdr "C:\Users\ALIENWARE\AppData\Local\Temp\frender/MainMenu_LMA10_final_HDR.lz4" "D:/Saprah/Games/Cecita Rentals/Cecita_Rental/Assets/BakeryLightmaps/MainMenu_LMA10_final.hdr" 1024
 Running rgba2tga "C:\Users\ALIENWARE\AppData\Local\Temp\frender/MainMenu_LMA10_final_Dir.lz4" "D:/Saprah/Games/Cecita Rentals/Cecita_Rental/Assets/BakeryLightmaps/MainMenu_LMA10_dir.tga" 
+Loaded vertex shader: quad.vso
+Loaded pixel shader: skyOutput.pso
+Loaded pixel shader: cookieOutput.pso
+initShaders done
+initScene done
+Done
+Rendering UV GBuffer for Elevator_LM0 51
+RGBA32F...RGBA8...RGBA8_SRGB...RGBA16F...states...
+Rendering UV normal...
+Rendering faceted UV normal...
+Rendering UV pos...
+Rendering smooth UV pos...
+Rendering UV GBuffer for Elevator_LMA1 51
+RGBA32F...RGBA8...RGBA8_SRGB...RGBA16F...states...
+Rendering UV normal...
+Rendering faceted UV normal...
+Rendering UV pos...
+Rendering smooth UV pos...
+Done
+Done
+Running ftraceRTX fixpos12 "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "uvpos_Elevator_LM0.lz4" 2 0 0 0
+Running ftraceRTX fixpos12 "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "uvpos_Elevator_LMA1.lz4" 2 0 1 0
+Running ftraceRTX batchpointlight "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "PointBatch_0_0_0" 4 0 0 batchpointlight_0_0_0.bin
+Running ftraceRTX sky "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "light_1148201031_0" 4 0 0 sky0.bin
+Running ftraceRTX addmul "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Elevator_LM0" 4 0 0 comp_0.bin
+Running ftraceRTX batchpointlight "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "PointBatch_1_0_0" 4 0 1 batchpointlight_1_0_0.bin
+Running ftraceRTX sky "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "light_1148201031_1" 4 0 1 sky0.bin
+Running ftraceRTX addmul "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Elevator_LMA1" 4 0 1 comp_1.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Elevator_LM0_diffuse" 4 16 0 "gi_Elevator_LM00.bin" "Elevator_LM0_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Elevator_LMA1_diffuse" 4 16 1 "gi_Elevator_LMA10.bin" "Elevator_LMA1_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Elevator_LM0_diffuse" 4 16 0 "gi_Elevator_LM01.bin" "Elevator_LM0_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Elevator_LMA1_diffuse" 4 16 1 "gi_Elevator_LMA11.bin" "Elevator_LMA1_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Elevator_LM0_diffuse" 4 16 0 "gi_Elevator_LM02.bin" "Elevator_LM0_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Elevator_LMA1_diffuse" 4 16 1 "gi_Elevator_LMA12.bin" "Elevator_LMA1_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Elevator_LM0_diffuse" 4 16 0 "gi_Elevator_LM03.bin" "Elevator_LM0_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Elevator_LMA1_diffuse" 4 16 1 "gi_Elevator_LMA13.bin" "Elevator_LMA1_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Elevator_LM0_final" 4 16 0 "gi_Elevator_LM04.bin" "Elevator_LM0_lights_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Elevator_LMA1_final" 4 16 1 "gi_Elevator_LMA14.bin" "Elevator_LMA1_lights_HDR.lz4" vbTraceTex.bin
+Running denoiserLegacy c "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Elevator_LM0_final_HDR.lz4" "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Elevator_LM0_final_HDR.lz4" 512 0
+Running seamfixer "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "0" "Elevator_LM0_final_HDR.lz4"
+Running denoiserLegacy c "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Elevator_LMA1_final_HDR.lz4" "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Elevator_LMA1_final_HDR.lz4" 128 0
+Running seamfixer "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "1" "Elevator_LMA1_final_HDR.lz4"
+Running halffloat2hdr "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Elevator_LM0_final_HDR.lz4" "D:/Saprah/Games/Cecita Rentals/Cecita_Rental/Assets/BakeryLightmaps/Elevator_LM0_final.hdr" 1024
+Running halffloat2hdr "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Elevator_LMA1_final_HDR.lz4" "D:/Saprah/Games/Cecita Rentals/Cecita_Rental/Assets/BakeryLightmaps/Elevator_LMA1_final.hdr" 1024
+Loaded vertex shader: quad.vso
+Loaded pixel shader: skyOutput.pso
+Loaded pixel shader: cookieOutput.pso
+initShaders done
+initScene done
+Done
+Rendering UV GBuffer for Elevator_LM0 51
+RGBA32F...RGBA8...RGBA8_SRGB...RGBA16F...states...
+Rendering UV normal...
+Rendering faceted UV normal...
+Rendering UV pos...
+Rendering smooth UV pos...
+Rendering UV GBuffer for Elevator_LMA1 51
+RGBA32F...RGBA8...RGBA8_SRGB...RGBA16F...states...
+Rendering UV normal...
+Rendering faceted UV normal...
+Rendering UV pos...
+Rendering smooth UV pos...
+Done
+Done
+Running ftraceRTX fixpos12 "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "uvpos_Elevator_LM0.lz4" 2 0 0 0
+Running ftraceRTX fixpos12 "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "uvpos_Elevator_LMA1.lz4" 2 0 1 0
+Running ftraceRTX batchpointlight "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "PointBatch_0_0_0" 4 0 0 batchpointlight_0_0_0.bin
+Running ftraceRTX sky "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "light_1966287679_0" 4 0 0 sky0.bin
+Running ftraceRTX addmul "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Elevator_LM0" 4 0 0 comp_0.bin
+Running ftraceRTX batchpointlight "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "PointBatch_1_0_0" 4 0 1 batchpointlight_1_0_0.bin
+Running ftraceRTX sky "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "light_1966287679_1" 4 0 1 sky0.bin
+Running ftraceRTX addmul "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Elevator_LMA1" 4 0 1 comp_1.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Elevator_LM0_diffuse" 4 16 0 "gi_Elevator_LM00.bin" "Elevator_LM0_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Elevator_LMA1_diffuse" 4 16 1 "gi_Elevator_LMA10.bin" "Elevator_LMA1_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Elevator_LM0_diffuse" 4 16 0 "gi_Elevator_LM01.bin" "Elevator_LM0_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Elevator_LMA1_diffuse" 4 16 1 "gi_Elevator_LMA11.bin" "Elevator_LMA1_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Elevator_LM0_diffuse" 4 16 0 "gi_Elevator_LM02.bin" "Elevator_LM0_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Elevator_LMA1_diffuse" 4 16 1 "gi_Elevator_LMA12.bin" "Elevator_LMA1_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Elevator_LM0_diffuse" 4 16 0 "gi_Elevator_LM03.bin" "Elevator_LM0_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Elevator_LMA1_diffuse" 4 16 1 "gi_Elevator_LMA13.bin" "Elevator_LMA1_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Elevator_LM0_final" 4 16 0 "gi_Elevator_LM04.bin" "Elevator_LM0_lights_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Elevator_LMA1_final" 4 16 1 "gi_Elevator_LMA14.bin" "Elevator_LMA1_lights_HDR.lz4" vbTraceTex.bin
+Running denoiserLegacy c "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Elevator_LM0_final_HDR.lz4" "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Elevator_LM0_final_HDR.lz4" 512 0
+Running seamfixer "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "0" "Elevator_LM0_final_HDR.lz4"
+Running denoiserLegacy c "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Elevator_LMA1_final_HDR.lz4" "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Elevator_LMA1_final_HDR.lz4" 128 0
+Running seamfixer "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "1" "Elevator_LMA1_final_HDR.lz4"
+Running halffloat2hdr "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Elevator_LM0_final_HDR.lz4" "D:/Saprah/Games/Cecita Rentals/Cecita_Rental/Assets/BakeryLightmaps/Elevator_LM0_final.hdr" 1024
+Running halffloat2hdr "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Elevator_LMA1_final_HDR.lz4" "D:/Saprah/Games/Cecita Rentals/Cecita_Rental/Assets/BakeryLightmaps/Elevator_LMA1_final.hdr" 1024
+Loaded vertex shader: quad.vso
+Loaded pixel shader: skyOutput.pso
+Loaded pixel shader: cookieOutput.pso
+initShaders done
+initScene done
+Done
+Rendering UV GBuffer for Elevator_LM0 115
+RGBA32F...RGBA8...RGBA8_SRGB...RGBA16F...states...
+Rendering UV normal...
+Rendering faceted UV normal...
+Rendering UV tangent...
+Rendering UV pos...
+Rendering smooth UV pos...
+Rendering UV GBuffer for Elevator_LMA1 115
+RGBA32F...RGBA8...RGBA8_SRGB...RGBA16F...states...
+Rendering UV normal...
+Rendering faceted UV normal...
+Rendering UV tangent...
+Rendering UV pos...
+Rendering smooth UV pos...
+Done
+Done
+Running ftraceRTX fixpos12 "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "uvpos_Elevator_LM0.lz4" 2 0 0 0
+Running ftraceRTX fixpos12 "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "uvpos_Elevator_LMA1.lz4" 2 0 1 0
+Running ftraceRTX batchpointlight "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "PointBatch_0_0_0" 4 0 0 batchpointlight_0_0_0.bin
+Running ftraceRTX skyrnm "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "light_1966287679_0" 900 0 0 sky0.bin
+Running ftraceRTX addmul "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Elevator_LM0" 4 0 0 comp_0.bin
+Running ftraceRTX batchpointlight "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "PointBatch_1_0_0" 4 0 1 batchpointlight_1_0_0.bin
+Running ftraceRTX skyrnm "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "light_1966287679_1" 900 0 1 sky0.bin
+Running ftraceRTX addmul "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Elevator_LMA1" 4 0 1 comp_1.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Elevator_LM0_diffuse" 4 16 0 "gi_Elevator_LM00.bin" "Elevator_LM0_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Elevator_LMA1_diffuse" 4 16 1 "gi_Elevator_LMA10.bin" "Elevator_LMA1_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Elevator_LM0_diffuse" 4 16 0 "gi_Elevator_LM01.bin" "Elevator_LM0_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Elevator_LMA1_diffuse" 4 16 1 "gi_Elevator_LMA11.bin" "Elevator_LMA1_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Elevator_LM0_diffuse" 4 16 0 "gi_Elevator_LM02.bin" "Elevator_LM0_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Elevator_LMA1_diffuse" 4 16 1 "gi_Elevator_LMA12.bin" "Elevator_LMA1_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Elevator_LM0_diffuse" 4 16 0 "gi_Elevator_LM03.bin" "Elevator_LM0_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Elevator_LMA1_diffuse" 4 16 1 "gi_Elevator_LMA13.bin" "Elevator_LMA1_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgirnm "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Elevator_LM0_final" 916 16 0 "gi_Elevator_LM04.bin" "Elevator_LM0_lights_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgirnm "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Elevator_LMA1_final" 916 16 1 "gi_Elevator_LMA14.bin" "Elevator_LMA1_lights_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX add "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Elevator_LM0_final_HDR.lz4" 4 0 0 comp_indirect0.bin
+Running ftraceRTX add "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Elevator_LMA1_final_HDR.lz4" 4 0 1 comp_indirect1.bin
+Running ftraceRTX add "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Elevator_LM0_final_RNM0.lz4" 4 0 0 rnm0comp_0.bin
+Running denoiserLegacy c "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Elevator_LM0_final_RNM0.lz4" "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Elevator_LM0_final_RNM0.lz4" 512 0
+Running ftraceRTX add "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Elevator_LM0_final_RNM1.lz4" 4 0 0 rnm1comp_0.bin
+Running denoiserLegacy c "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Elevator_LM0_final_RNM1.lz4" "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Elevator_LM0_final_RNM1.lz4" 512 0
+Running ftraceRTX add "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Elevator_LM0_final_RNM2.lz4" 4 0 0 rnm2comp_0.bin
+Running denoiserLegacy c "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Elevator_LM0_final_RNM2.lz4" "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Elevator_LM0_final_RNM2.lz4" 512 0
+Running seamfixer "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "0" "Elevator_LM0_final_RNM0.lz4" "Elevator_LM0_final_RNM1.lz4" "Elevator_LM0_final_RNM2.lz4"
+Running ftraceRTX add "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Elevator_LMA1_final_RNM0.lz4" 4 0 1 rnm0comp_1.bin
+Running denoiserLegacy c "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Elevator_LMA1_final_RNM0.lz4" "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Elevator_LMA1_final_RNM0.lz4" 128 0
+Running ftraceRTX add "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Elevator_LMA1_final_RNM1.lz4" 4 0 1 rnm1comp_1.bin
+Running denoiserLegacy c "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Elevator_LMA1_final_RNM1.lz4" "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Elevator_LMA1_final_RNM1.lz4" 128 0
+Running ftraceRTX add "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Elevator_LMA1_final_RNM2.lz4" 4 0 1 rnm2comp_1.bin
+Running denoiserLegacy c "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Elevator_LMA1_final_RNM2.lz4" "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Elevator_LMA1_final_RNM2.lz4" 128 0
+Running seamfixer "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "1" "Elevator_LMA1_final_RNM0.lz4" "Elevator_LMA1_final_RNM1.lz4" "Elevator_LMA1_final_RNM2.lz4"
+Running halffloat2hdr "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Elevator_LM0_final_RNM0.lz4" "D:/Saprah/Games/Cecita Rentals/Cecita_Rental/Assets/BakeryLightmaps/Elevator_LM0_RNM0.hdr" 1024
+Running halffloat2hdr "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Elevator_LM0_final_RNM1.lz4" "D:/Saprah/Games/Cecita Rentals/Cecita_Rental/Assets/BakeryLightmaps/Elevator_LM0_RNM1.hdr" 1024
+Running halffloat2hdr "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Elevator_LM0_final_RNM2.lz4" "D:/Saprah/Games/Cecita Rentals/Cecita_Rental/Assets/BakeryLightmaps/Elevator_LM0_RNM2.hdr" 1024
+Running halffloat2hdr "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Elevator_LMA1_final_RNM0.lz4" "D:/Saprah/Games/Cecita Rentals/Cecita_Rental/Assets/BakeryLightmaps/Elevator_LMA1_RNM0.hdr" 1024
+Running halffloat2hdr "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Elevator_LMA1_final_RNM1.lz4" "D:/Saprah/Games/Cecita Rentals/Cecita_Rental/Assets/BakeryLightmaps/Elevator_LMA1_RNM1.hdr" 1024
+Running halffloat2hdr "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Elevator_LMA1_final_RNM2.lz4" "D:/Saprah/Games/Cecita Rentals/Cecita_Rental/Assets/BakeryLightmaps/Elevator_LMA1_RNM2.hdr" 1024
+Loaded vertex shader: quad.vso
+Loaded pixel shader: skyOutput.pso
+Loaded pixel shader: cookieOutput.pso
+initShaders done
+initScene done
+Done
+Loaded vertex shader: quad.vso
+Loaded pixel shader: skyOutput.pso
+Loaded pixel shader: cookieOutput.pso
+initShaders done
+Rendering UV GBuffer for Elevator_LM0 115
+RGBA32F...RGBA8...RGBA8_SRGB...RGBA16F...states...
+Rendering UV normal...
+Rendering faceted UV normal...
+Rendering UV tangent...
+Rendering UV pos...
+Rendering smooth UV pos...
+Rendering UV GBuffer for Elevator_LMA1 115
+RGBA32F...RGBA8...RGBA8_SRGB...RGBA16F...states...
+Rendering UV normal...
+Rendering faceted UV normal...
+Rendering UV tangent...
+Rendering UV pos...
+Rendering smooth UV pos...
+Done
+Done
+Running ftraceRTX fixpos12 "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "uvpos_Elevator_LM0.lz4" 2 0 0 0
+Running ftraceRTX fixpos12 "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "uvpos_Elevator_LMA1.lz4" 2 0 1 0
+Running ftraceRTX batchpointlightrnm "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "PointBatch_0_0_0" 900 0 0 batchpointlight_0_0_0.bin
+Running ftraceRTX skycubemaprnm "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "light_1966287679_0" 900 0 0 sky0.bin
+Running ftraceRTX addmul "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Elevator_LM0" 4 0 0 comp_0.bin
+Running ftraceRTX batchpointlightrnm "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "PointBatch_1_0_0" 900 0 1 batchpointlight_1_0_0.bin
+Running ftraceRTX skycubemaprnm "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "light_1966287679_1" 900 0 1 sky0.bin
+Running ftraceRTX addmul "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Elevator_LMA1" 4 0 1 comp_1.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Elevator_LM0_diffuse" 4 16 0 "gi_Elevator_LM00.bin" "Elevator_LM0_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Elevator_LMA1_diffuse" 4 16 1 "gi_Elevator_LMA10.bin" "Elevator_LMA1_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Elevator_LM0_diffuse" 4 16 0 "gi_Elevator_LM01.bin" "Elevator_LM0_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Elevator_LMA1_diffuse" 4 16 1 "gi_Elevator_LMA11.bin" "Elevator_LMA1_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Elevator_LM0_diffuse" 4 16 0 "gi_Elevator_LM02.bin" "Elevator_LM0_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Elevator_LMA1_diffuse" 4 16 1 "gi_Elevator_LMA12.bin" "Elevator_LMA1_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Elevator_LM0_diffuse" 4 16 0 "gi_Elevator_LM03.bin" "Elevator_LM0_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Elevator_LMA1_diffuse" 4 16 1 "gi_Elevator_LMA13.bin" "Elevator_LMA1_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgirnm "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Elevator_LM0_final" 900 16 0 "gi_Elevator_LM04.bin" "Elevator_LM0_lights_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgirnm "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Elevator_LMA1_final" 900 16 1 "gi_Elevator_LMA14.bin" "Elevator_LMA1_lights_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX add "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Elevator_LM0_final_RNM0.lz4" 4 0 0 rnm0comp_0.bin
+Running denoiserLegacy c "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Elevator_LM0_final_RNM0.lz4" "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Elevator_LM0_final_RNM0.lz4" 512 0
+Running ftraceRTX add "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Elevator_LM0_final_RNM1.lz4" 4 0 0 rnm1comp_0.bin
+Running denoiserLegacy c "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Elevator_LM0_final_RNM1.lz4" "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Elevator_LM0_final_RNM1.lz4" 512 0
+Running ftraceRTX add "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Elevator_LM0_final_RNM2.lz4" 4 0 0 rnm2comp_0.bin
+Running denoiserLegacy c "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Elevator_LM0_final_RNM2.lz4" "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Elevator_LM0_final_RNM2.lz4" 512 0
+Running seamfixer "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "0" "Elevator_LM0_final_RNM0.lz4" "Elevator_LM0_final_RNM1.lz4" "Elevator_LM0_final_RNM2.lz4"
+Running ftraceRTX add "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Elevator_LMA1_final_RNM0.lz4" 4 0 1 rnm0comp_1.bin
+Running denoiserLegacy c "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Elevator_LMA1_final_RNM0.lz4" "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Elevator_LMA1_final_RNM0.lz4" 128 0
+Running ftraceRTX add "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Elevator_LMA1_final_RNM1.lz4" 4 0 1 rnm1comp_1.bin
+Running denoiserLegacy c "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Elevator_LMA1_final_RNM1.lz4" "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Elevator_LMA1_final_RNM1.lz4" 128 0
+Running ftraceRTX add "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Elevator_LMA1_final_RNM2.lz4" 4 0 1 rnm2comp_1.bin
+Running denoiserLegacy c "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Elevator_LMA1_final_RNM2.lz4" "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Elevator_LMA1_final_RNM2.lz4" 128 0
+Running seamfixer "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "1" "Elevator_LMA1_final_RNM0.lz4" "Elevator_LMA1_final_RNM1.lz4" "Elevator_LMA1_final_RNM2.lz4"
+Running halffloat2hdr "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Elevator_LM0_final_RNM0.lz4" "D:/Saprah/Games/Cecita Rentals/Cecita_Rental/Assets/BakeryLightmaps/Elevator_LM0_RNM0.hdr" 1024
+Running halffloat2hdr "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Elevator_LM0_final_RNM1.lz4" "D:/Saprah/Games/Cecita Rentals/Cecita_Rental/Assets/BakeryLightmaps/Elevator_LM0_RNM1.hdr" 1024
+Running halffloat2hdr "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Elevator_LM0_final_RNM2.lz4" "D:/Saprah/Games/Cecita Rentals/Cecita_Rental/Assets/BakeryLightmaps/Elevator_LM0_RNM2.hdr" 1024
+Running halffloat2hdr "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Elevator_LMA1_final_RNM0.lz4" "D:/Saprah/Games/Cecita Rentals/Cecita_Rental/Assets/BakeryLightmaps/Elevator_LMA1_RNM0.hdr" 1024
+Running halffloat2hdr "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Elevator_LMA1_final_RNM1.lz4" "D:/Saprah/Games/Cecita Rentals/Cecita_Rental/Assets/BakeryLightmaps/Elevator_LMA1_RNM1.hdr" 1024
+Running halffloat2hdr "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Elevator_LMA1_final_RNM2.lz4" "D:/Saprah/Games/Cecita Rentals/Cecita_Rental/Assets/BakeryLightmaps/Elevator_LMA1_RNM2.hdr" 1024
+Loaded vertex shader: quad.vso
+Loaded pixel shader: skyOutput.pso
+Loaded pixel shader: cookieOutput.pso
+initShaders done
+initScene done
+Done
+Loaded vertex shader: quad.vso
+Loaded pixel shader: skyOutput.pso
+Loaded pixel shader: cookieOutput.pso
+initShaders done
+Rendering UV GBuffer for Elevator_LM0 115
+RGBA32F...RGBA8...RGBA8_SRGB...RGBA16F...states...
+Rendering UV normal...
+Rendering faceted UV normal...
+Rendering UV tangent...
+Rendering UV pos...
+Rendering smooth UV pos...
+Rendering UV GBuffer for Elevator_LMA1 115
+RGBA32F...RGBA8...RGBA8_SRGB...RGBA16F...states...
+Rendering UV normal...
+Rendering faceted UV normal...
+Rendering UV tangent...
+Rendering UV pos...
+Rendering smooth UV pos...
+Done
+Done
+Running ftraceRTX fixpos12 "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "uvpos_Elevator_LM0.lz4" 2 0 0 0
+Running ftraceRTX fixpos12 "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "uvpos_Elevator_LMA1.lz4" 2 0 1 0
+Running ftraceRTX batchpointlightrnm "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "PointBatch_0_0_0" 900 0 0 batchpointlight_0_0_0.bin
+Running ftraceRTX skycubemaprnm "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "light_1966287679_0" 900 0 0 sky0.bin
+Running ftraceRTX addmul "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Elevator_LM0" 4 0 0 comp_0.bin
+Running ftraceRTX batchpointlightrnm "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "PointBatch_1_0_0" 900 0 1 batchpointlight_1_0_0.bin
+Running ftraceRTX skycubemaprnm "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "light_1966287679_1" 900 0 1 sky0.bin
+Running ftraceRTX addmul "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Elevator_LMA1" 4 0 1 comp_1.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Elevator_LM0_diffuse" 4 16 0 "gi_Elevator_LM00.bin" "Elevator_LM0_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Elevator_LMA1_diffuse" 4 16 1 "gi_Elevator_LMA10.bin" "Elevator_LMA1_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Elevator_LM0_diffuse" 4 16 0 "gi_Elevator_LM01.bin" "Elevator_LM0_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Elevator_LMA1_diffuse" 4 16 1 "gi_Elevator_LMA11.bin" "Elevator_LMA1_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Elevator_LM0_diffuse" 4 16 0 "gi_Elevator_LM02.bin" "Elevator_LM0_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Elevator_LMA1_diffuse" 4 16 1 "gi_Elevator_LMA12.bin" "Elevator_LMA1_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Elevator_LM0_diffuse" 4 16 0 "gi_Elevator_LM03.bin" "Elevator_LM0_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Elevator_LMA1_diffuse" 4 16 1 "gi_Elevator_LMA13.bin" "Elevator_LMA1_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgirnm "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Elevator_LM0_final" 900 16 0 "gi_Elevator_LM04.bin" "Elevator_LM0_lights_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgirnm "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Elevator_LMA1_final" 900 16 1 "gi_Elevator_LMA14.bin" "Elevator_LMA1_lights_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX add "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Elevator_LM0_final_RNM0.lz4" 4 0 0 rnm0comp_0.bin
+Running denoiserLegacy c "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Elevator_LM0_final_RNM0.lz4" "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Elevator_LM0_final_RNM0.lz4" 512 0
+Running ftraceRTX add "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Elevator_LM0_final_RNM1.lz4" 4 0 0 rnm1comp_0.bin
+Running denoiserLegacy c "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Elevator_LM0_final_RNM1.lz4" "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Elevator_LM0_final_RNM1.lz4" 512 0
+Running ftraceRTX add "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Elevator_LM0_final_RNM2.lz4" 4 0 0 rnm2comp_0.bin
+Running denoiserLegacy c "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Elevator_LM0_final_RNM2.lz4" "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Elevator_LM0_final_RNM2.lz4" 512 0
+Running seamfixer "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "0" "Elevator_LM0_final_RNM0.lz4" "Elevator_LM0_final_RNM1.lz4" "Elevator_LM0_final_RNM2.lz4"
+Running ftraceRTX add "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Elevator_LMA1_final_RNM0.lz4" 4 0 1 rnm0comp_1.bin
+Running denoiserLegacy c "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Elevator_LMA1_final_RNM0.lz4" "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Elevator_LMA1_final_RNM0.lz4" 128 0
+Running ftraceRTX add "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Elevator_LMA1_final_RNM1.lz4" 4 0 1 rnm1comp_1.bin
+Running denoiserLegacy c "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Elevator_LMA1_final_RNM1.lz4" "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Elevator_LMA1_final_RNM1.lz4" 128 0
+Running ftraceRTX add "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Elevator_LMA1_final_RNM2.lz4" 4 0 1 rnm2comp_1.bin
+Running denoiserLegacy c "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Elevator_LMA1_final_RNM2.lz4" "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Elevator_LMA1_final_RNM2.lz4" 128 0
+Running seamfixer "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "1" "Elevator_LMA1_final_RNM0.lz4" "Elevator_LMA1_final_RNM1.lz4" "Elevator_LMA1_final_RNM2.lz4"
+Running halffloat2hdr "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Elevator_LM0_final_RNM0.lz4" "D:/Saprah/Games/Cecita Rentals/Cecita_Rental/Assets/BakeryLightmaps/Elevator_LM0_RNM0.hdr" 1024
+Running halffloat2hdr "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Elevator_LM0_final_RNM1.lz4" "D:/Saprah/Games/Cecita Rentals/Cecita_Rental/Assets/BakeryLightmaps/Elevator_LM0_RNM1.hdr" 1024
+Running halffloat2hdr "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Elevator_LM0_final_RNM2.lz4" "D:/Saprah/Games/Cecita Rentals/Cecita_Rental/Assets/BakeryLightmaps/Elevator_LM0_RNM2.hdr" 1024
+Running halffloat2hdr "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Elevator_LMA1_final_RNM0.lz4" "D:/Saprah/Games/Cecita Rentals/Cecita_Rental/Assets/BakeryLightmaps/Elevator_LMA1_RNM0.hdr" 1024
+Running halffloat2hdr "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Elevator_LMA1_final_RNM1.lz4" "D:/Saprah/Games/Cecita Rentals/Cecita_Rental/Assets/BakeryLightmaps/Elevator_LMA1_RNM1.hdr" 1024
+Running halffloat2hdr "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Elevator_LMA1_final_RNM2.lz4" "D:/Saprah/Games/Cecita Rentals/Cecita_Rental/Assets/BakeryLightmaps/Elevator_LMA1_RNM2.hdr" 1024
+Loaded vertex shader: quad.vso
+Loaded pixel shader: skyOutput.pso
+Loaded pixel shader: cookieOutput.pso
+initShaders done
+initScene done
+Done
+Loaded vertex shader: quad.vso
+Loaded pixel shader: skyOutput.pso
+Loaded pixel shader: cookieOutput.pso
+initShaders done
+Rendering UV GBuffer for Protagonist_Room_LM0 51
+RGBA32F...RGBA8...RGBA8_SRGB...RGBA16F...states...
+Rendering UV normal...
+Rendering faceted UV normal...
+Rendering UV pos...
+Rendering smooth UV pos...
+Done
+Done
+Running ftraceRTX fixpos12 "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "uvpos_Protagonist_Room_LM0.lz4" 2 0 0 0
+Running ftraceRTX batchpointlight "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "PointBatch_0_0_10" 4 0 0 batchpointlight_0_0_10.bin
+Running ftraceRTX skycubemap "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "light_1966287679_0" 4 0 0 sky0.bin
+Running ftraceRTX addmul "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Protagonist_Room_LM0" 4 0 0 comp_0.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Protagonist_Room_LM0_diffuse" 4 16 0 "gi_Protagonist_Room_LM00.bin" "Protagonist_Room_LM0_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Protagonist_Room_LM0_diffuse" 4 16 0 "gi_Protagonist_Room_LM01.bin" "Protagonist_Room_LM0_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Protagonist_Room_LM0_diffuse" 4 16 0 "gi_Protagonist_Room_LM02.bin" "Protagonist_Room_LM0_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Protagonist_Room_LM0_diffuse" 4 16 0 "gi_Protagonist_Room_LM03.bin" "Protagonist_Room_LM0_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Protagonist_Room_LM0_final" 4 16 0 "gi_Protagonist_Room_LM04.bin" "Protagonist_Room_LM0_lights_HDR.lz4" vbTraceTex.bin
+Running denoiserLegacy c "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Protagonist_Room_LM0_final_HDR.lz4" "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Protagonist_Room_LM0_final_HDR.lz4" 2048 0
+Running seamfixer "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "0" "Protagonist_Room_LM0_final_HDR.lz4"
+Running halffloat2hdr "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Protagonist_Room_LM0_final_HDR.lz4" "D:/Saprah/Games/Cecita Rentals/Cecita_Rental/Assets/BakeryLightmaps/Protagonist_Room_LM0_final.hdr" 1024
+Loaded vertex shader: quad.vso
+Loaded pixel shader: skyOutput.pso
+Loaded pixel shader: cookieOutput.pso
+initShaders done
+initScene done
+Num alphas of 2048x2048: 4
+Done
+Loaded vertex shader: quad.vso
+Loaded pixel shader: skyOutput.pso
+Loaded pixel shader: cookieOutput.pso
+initShaders done
+Loaded vertex shader: quad.vso
+Loaded pixel shader: skyOutput.pso
+Loaded pixel shader: cookieOutput.pso
+initShaders done
+Loaded vertex shader: quad.vso
+Loaded pixel shader: skyOutput.pso
+Loaded pixel shader: cookieOutput.pso
+initShaders done
+Rendering UV GBuffer for Protagonist_Room_LM0 51
+RGBA32F...RGBA8...RGBA8_SRGB...RGBA16F...states...
+Rendering UV normal...
+Rendering faceted UV normal...
+Rendering UV pos...
+Rendering smooth UV pos...
+Rendering UV GBuffer for Third_Floor_LMA1 51
+RGBA32F...RGBA8...RGBA8_SRGB...RGBA16F...states...
+Rendering UV normal...
+Rendering faceted UV normal...
+Rendering UV pos...
+Rendering smooth UV pos...
+Rendering UV GBuffer for Third_Floor_LMA2 51
+RGBA32F...RGBA8...RGBA8_SRGB...RGBA16F...states...
+Rendering UV normal...
+Rendering faceted UV normal...
+Rendering UV pos...
+Rendering smooth UV pos...
+Rendering UV GBuffer for Protagonist_Room_LMA3 51
+RGBA32F...RGBA8...RGBA8_SRGB...RGBA16F...states...
+Rendering UV normal...
+Rendering faceted UV normal...
+Rendering UV pos...
+Rendering smooth UV pos...
+Rendering UV GBuffer for Protagonist_Room_LMA4 51
+RGBA32F...RGBA8...RGBA8_SRGB...RGBA16F...states...
+Rendering UV normal...
+Rendering faceted UV normal...
+Rendering UV pos...
+Rendering smooth UV pos...
+Done
+Done
+Running ftraceRTX fixpos12 "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "uvpos_Third_Floor_LMA2.lz4" 2 0 2 0
+Running ftraceRTX fixpos12 "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "uvpos_Protagonist_Room_LM0.lz4" 2 0 0 0
+Running ftraceRTX fixpos12 "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "uvpos_Third_Floor_LMA1.lz4" 2 0 1 0
+Running ftraceRTX fixpos12 "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "uvpos_Protagonist_Room_LMA4.lz4" 2 0 4 0
+Running ftraceRTX fixpos12 "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "uvpos_Protagonist_Room_LMA3.lz4" 2 0 3 0
+Running ftraceRTX batchpointlight "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "PointBatch_2_0_10" 4 0 2 batchpointlight_2_0_10.bin
+Running ftraceRTX skycubemap "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "light_1307862087_2" 4 0 2 sky0.bin
+Running ftraceRTX skycubemap "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "light_-388328901_2" 4 0 2 sky1.bin
+Running ftraceRTX skycubemap "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "light_1966287679_2" 4 0 2 sky2.bin
+Running ftraceRTX addmul "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Third_Floor_LMA2" 4 0 2 comp_2.bin
+Running ftraceRTX batchpointlight "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "PointBatch_0_0_10" 4 0 0 batchpointlight_0_0_10.bin
+Running ftraceRTX skycubemap "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "light_1307862087_0" 4 0 0 sky0.bin
+Running ftraceRTX skycubemap "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "light_-388328901_0" 4 0 0 sky1.bin
+Running ftraceRTX skycubemap "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "light_1966287679_0" 4 0 0 sky2.bin
+Running ftraceRTX addmul "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Protagonist_Room_LM0" 4 0 0 comp_0.bin
+Running ftraceRTX batchpointlight "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "PointBatch_1_0_10" 4 0 1 batchpointlight_1_0_10.bin
+Running ftraceRTX skycubemap "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "light_1307862087_1" 4 0 1 sky0.bin
+Running ftraceRTX skycubemap "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "light_-388328901_1" 4 0 1 sky1.bin
+Running ftraceRTX skycubemap "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "light_1966287679_1" 4 0 1 sky2.bin
+Running ftraceRTX addmul "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Third_Floor_LMA1" 4 0 1 comp_1.bin
+Running ftraceRTX batchpointlight "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "PointBatch_4_0_10" 4 0 4 batchpointlight_4_0_10.bin
+Running ftraceRTX skycubemap "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "light_1307862087_4" 4 0 4 sky0.bin
+Running ftraceRTX skycubemap "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "light_-388328901_4" 4 0 4 sky1.bin
+Running ftraceRTX skycubemap "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "light_1966287679_4" 4 0 4 sky2.bin
+Running ftraceRTX addmul "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Protagonist_Room_LMA4" 4 0 4 comp_4.bin
+Running ftraceRTX batchpointlight "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "PointBatch_3_0_10" 4 0 3 batchpointlight_3_0_10.bin
+Running ftraceRTX skycubemap "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "light_1307862087_3" 4 0 3 sky0.bin
+Running ftraceRTX skycubemap "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "light_-388328901_3" 4 0 3 sky1.bin
+Running ftraceRTX skycubemap "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "light_1966287679_3" 4 0 3 sky2.bin
+Running ftraceRTX addmul "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Protagonist_Room_LMA3" 4 0 3 comp_3.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Third_Floor_LMA2_diffuse" 4 16 2 "gi_Third_Floor_LMA20.bin" "Third_Floor_LMA2_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Protagonist_Room_LM0_diffuse" 4 16 0 "gi_Protagonist_Room_LM00.bin" "Protagonist_Room_LM0_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Third_Floor_LMA1_diffuse" 4 16 1 "gi_Third_Floor_LMA10.bin" "Third_Floor_LMA1_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Protagonist_Room_LMA4_diffuse" 4 16 4 "gi_Protagonist_Room_LMA40.bin" "Protagonist_Room_LMA4_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Protagonist_Room_LMA3_diffuse" 4 16 3 "gi_Protagonist_Room_LMA30.bin" "Protagonist_Room_LMA3_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Third_Floor_LMA2_diffuse" 4 16 2 "gi_Third_Floor_LMA21.bin" "Third_Floor_LMA2_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Protagonist_Room_LM0_diffuse" 4 16 0 "gi_Protagonist_Room_LM01.bin" "Protagonist_Room_LM0_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Third_Floor_LMA1_diffuse" 4 16 1 "gi_Third_Floor_LMA11.bin" "Third_Floor_LMA1_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Protagonist_Room_LMA4_diffuse" 4 16 4 "gi_Protagonist_Room_LMA41.bin" "Protagonist_Room_LMA4_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Protagonist_Room_LMA3_diffuse" 4 16 3 "gi_Protagonist_Room_LMA31.bin" "Protagonist_Room_LMA3_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Third_Floor_LMA2_diffuse" 4 16 2 "gi_Third_Floor_LMA22.bin" "Third_Floor_LMA2_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Protagonist_Room_LM0_diffuse" 4 16 0 "gi_Protagonist_Room_LM02.bin" "Protagonist_Room_LM0_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Third_Floor_LMA1_diffuse" 4 16 1 "gi_Third_Floor_LMA12.bin" "Third_Floor_LMA1_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Protagonist_Room_LMA4_diffuse" 4 16 4 "gi_Protagonist_Room_LMA42.bin" "Protagonist_Room_LMA4_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Protagonist_Room_LMA3_diffuse" 4 16 3 "gi_Protagonist_Room_LMA32.bin" "Protagonist_Room_LMA3_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Third_Floor_LMA2_diffuse" 4 16 2 "gi_Third_Floor_LMA23.bin" "Third_Floor_LMA2_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Protagonist_Room_LM0_diffuse" 4 16 0 "gi_Protagonist_Room_LM03.bin" "Protagonist_Room_LM0_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Third_Floor_LMA1_diffuse" 4 16 1 "gi_Third_Floor_LMA13.bin" "Third_Floor_LMA1_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Protagonist_Room_LMA4_diffuse" 4 16 4 "gi_Protagonist_Room_LMA43.bin" "Protagonist_Room_LMA4_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Protagonist_Room_LMA3_diffuse" 4 16 3 "gi_Protagonist_Room_LMA33.bin" "Protagonist_Room_LMA3_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Third_Floor_LMA2_final" 4 16 2 "gi_Third_Floor_LMA24.bin" "Third_Floor_LMA2_lights_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Protagonist_Room_LM0_final" 4 16 0 "gi_Protagonist_Room_LM04.bin" "Protagonist_Room_LM0_lights_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Third_Floor_LMA1_final" 4 16 1 "gi_Third_Floor_LMA14.bin" "Third_Floor_LMA1_lights_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Protagonist_Room_LMA4_final" 4 16 4 "gi_Protagonist_Room_LMA44.bin" "Protagonist_Room_LMA4_lights_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Protagonist_Room_LMA3_final" 4 16 3 "gi_Protagonist_Room_LMA34.bin" "Protagonist_Room_LMA3_lights_HDR.lz4" vbTraceTex.bin
+Running denoiserLegacy c "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Third_Floor_LMA2_final_HDR.lz4" "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Third_Floor_LMA2_final_HDR.lz4" 1024 0
+Running seamfixer "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "2" "Third_Floor_LMA2_final_HDR.lz4"
+Running denoiserLegacy c "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Protagonist_Room_LM0_final_HDR.lz4" "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Protagonist_Room_LM0_final_HDR.lz4" 2048 0
+Running seamfixer "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "0" "Protagonist_Room_LM0_final_HDR.lz4"
+Running denoiserLegacy c "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Third_Floor_LMA1_final_HDR.lz4" "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Third_Floor_LMA1_final_HDR.lz4" 2048 0
+Running seamfixer "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "1" "Third_Floor_LMA1_final_HDR.lz4"
+Running denoiserLegacy c "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Protagonist_Room_LMA4_final_HDR.lz4" "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Protagonist_Room_LMA4_final_HDR.lz4" 512 0
+Running seamfixer "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "4" "Protagonist_Room_LMA4_final_HDR.lz4"
+Running denoiserLegacy c "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Protagonist_Room_LMA3_final_HDR.lz4" "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Protagonist_Room_LMA3_final_HDR.lz4" 1024 0
+Running seamfixer "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "3" "Protagonist_Room_LMA3_final_HDR.lz4"
+Running halffloat2hdr "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Third_Floor_LMA2_final_HDR.lz4" "D:/Saprah/Games/Cecita Rentals/Cecita_Rental/Assets/BakeryLightmaps/Third_Floor_LMA2_final.hdr" 1024
+Running halffloat2hdr "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Protagonist_Room_LM0_final_HDR.lz4" "D:/Saprah/Games/Cecita Rentals/Cecita_Rental/Assets/BakeryLightmaps/Protagonist_Room_LM0_final.hdr" 1024
+Running halffloat2hdr "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Third_Floor_LMA1_final_HDR.lz4" "D:/Saprah/Games/Cecita Rentals/Cecita_Rental/Assets/BakeryLightmaps/Third_Floor_LMA1_final.hdr" 1024
+Running halffloat2hdr "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Protagonist_Room_LMA4_final_HDR.lz4" "D:/Saprah/Games/Cecita Rentals/Cecita_Rental/Assets/BakeryLightmaps/Protagonist_Room_LMA4_final.hdr" 1024
+Running halffloat2hdr "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Protagonist_Room_LMA3_final_HDR.lz4" "D:/Saprah/Games/Cecita Rentals/Cecita_Rental/Assets/BakeryLightmaps/Protagonist_Room_LMA3_final.hdr" 1024
+Loaded vertex shader: quad.vso
+Loaded pixel shader: skyOutput.pso
+Loaded pixel shader: cookieOutput.pso
+initShaders done
+initScene done
+Num alphas of 2048x2048: 4
+Done
+Loaded vertex shader: quad.vso
+Loaded pixel shader: skyOutput.pso
+Loaded pixel shader: cookieOutput.pso
+initShaders done
+Loaded vertex shader: quad.vso
+Loaded pixel shader: skyOutput.pso
+Loaded pixel shader: cookieOutput.pso
+initShaders done
+Loaded vertex shader: quad.vso
+Loaded pixel shader: skyOutput.pso
+Loaded pixel shader: cookieOutput.pso
+initShaders done
+Rendering UV GBuffer for Protagonist_Room_LM0 51
+RGBA32F...RGBA8...RGBA8_SRGB...RGBA16F...states...
+Rendering UV normal...
+Rendering faceted UV normal...
+Rendering UV pos...
+Rendering smooth UV pos...
+Rendering UV GBuffer for Third_Floor_LMA1 51
+RGBA32F...RGBA8...RGBA8_SRGB...RGBA16F...states...
+Rendering UV normal...
+Rendering faceted UV normal...
+Rendering UV pos...
+Rendering smooth UV pos...
+Rendering UV GBuffer for Third_Floor_LMA2 51
+RGBA32F...RGBA8...RGBA8_SRGB...RGBA16F...states...
+Rendering UV normal...
+Rendering faceted UV normal...
+Rendering UV pos...
+Rendering smooth UV pos...
+Rendering UV GBuffer for Protagonist_Room_LMA3 51
+RGBA32F...RGBA8...RGBA8_SRGB...RGBA16F...states...
+Rendering UV normal...
+Rendering faceted UV normal...
+Rendering UV pos...
+Rendering smooth UV pos...
+Rendering UV GBuffer for Protagonist_Room_LMA4 51
+RGBA32F...RGBA8...RGBA8_SRGB...RGBA16F...states...
+Rendering UV normal...
+Rendering faceted UV normal...
+Rendering UV pos...
+Rendering smooth UV pos...
+Done
+Done
+Running ftraceRTX fixpos12 "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "uvpos_Third_Floor_LMA2.lz4" 2 0 2 0
+Running ftraceRTX fixpos12 "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "uvpos_Third_Floor_LMA1.lz4" 2 0 1 0
+Running ftraceRTX fixpos12 "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "uvpos_Protagonist_Room_LM0.lz4" 2 0 0 0
+Running ftraceRTX fixpos12 "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "uvpos_Protagonist_Room_LMA4.lz4" 2 0 4 0
+Running ftraceRTX fixpos12 "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "uvpos_Protagonist_Room_LMA3.lz4" 2 0 3 0
+Running ftraceRTX batchpointlight "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "PointBatch_2_0_10" 68 0 2 batchpointlight_2_0_10.bin
+Running ftraceRTX skycubemapdir "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "light_1762911563_2" 68 0 2 sky0.bin
+Running ftraceRTX skycubemapdir "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "light_-79288215_2" 68 0 2 sky1.bin
+Running ftraceRTX skycubemapdir "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "light_1966287679_2" 68 0 2 sky2.bin
+Running ftraceRTX addmul "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Third_Floor_LMA2" 4 0 2 comp_2.bin
+Running ftraceRTX diradd "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Third_Floor_LMA2_lights_Dir.lz4" 64 0 2 dircomp_2.bin
+Running ftraceRTX batchpointlight "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "PointBatch_1_0_10" 68 0 1 batchpointlight_1_0_10.bin
+Running ftraceRTX skycubemapdir "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "light_1762911563_1" 68 0 1 sky0.bin
+Running ftraceRTX skycubemapdir "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "light_-79288215_1" 68 0 1 sky1.bin
+Running ftraceRTX skycubemapdir "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "light_1966287679_1" 68 0 1 sky2.bin
+Running ftraceRTX addmul "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Third_Floor_LMA1" 4 0 1 comp_1.bin
+Running ftraceRTX diradd "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Third_Floor_LMA1_lights_Dir.lz4" 64 0 1 dircomp_1.bin
+Running ftraceRTX batchpointlight "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "PointBatch_0_0_10" 68 0 0 batchpointlight_0_0_10.bin
+Running ftraceRTX skycubemapdir "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "light_1762911563_0" 68 0 0 sky0.bin
+Running ftraceRTX skycubemapdir "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "light_-79288215_0" 68 0 0 sky1.bin
+Running ftraceRTX skycubemapdir "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "light_1966287679_0" 68 0 0 sky2.bin
+Running ftraceRTX addmul "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Protagonist_Room_LM0" 4 0 0 comp_0.bin
+Running ftraceRTX diradd "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Protagonist_Room_LM0_lights_Dir.lz4" 64 0 0 dircomp_0.bin
+Running ftraceRTX batchpointlight "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "PointBatch_4_0_10" 68 0 4 batchpointlight_4_0_10.bin
+Running ftraceRTX skycubemapdir "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "light_1762911563_4" 68 0 4 sky0.bin
+Running ftraceRTX skycubemapdir "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "light_-79288215_4" 68 0 4 sky1.bin
+Running ftraceRTX skycubemapdir "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "light_1966287679_4" 68 0 4 sky2.bin
+Running ftraceRTX addmul "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Protagonist_Room_LMA4" 4 0 4 comp_4.bin
+Running ftraceRTX diradd "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Protagonist_Room_LMA4_lights_Dir.lz4" 64 0 4 dircomp_4.bin
+Running ftraceRTX batchpointlight "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "PointBatch_3_0_10" 68 0 3 batchpointlight_3_0_10.bin
+Running ftraceRTX skycubemapdir "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "light_1762911563_3" 68 0 3 sky0.bin
+Running ftraceRTX skycubemapdir "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "light_-79288215_3" 68 0 3 sky1.bin
+Running ftraceRTX skycubemapdir "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "light_1966287679_3" 68 0 3 sky2.bin
+Running ftraceRTX addmul "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Protagonist_Room_LMA3" 4 0 3 comp_3.bin
+Running ftraceRTX diradd "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Protagonist_Room_LMA3_lights_Dir.lz4" 64 0 3 dircomp_3.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Third_Floor_LMA2_diffuse" 4 16 2 "gi_Third_Floor_LMA20.bin" "Third_Floor_LMA2_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Third_Floor_LMA1_diffuse" 4 16 1 "gi_Third_Floor_LMA10.bin" "Third_Floor_LMA1_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Protagonist_Room_LM0_diffuse" 4 16 0 "gi_Protagonist_Room_LM00.bin" "Protagonist_Room_LM0_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Protagonist_Room_LMA4_diffuse" 4 16 4 "gi_Protagonist_Room_LMA40.bin" "Protagonist_Room_LMA4_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Protagonist_Room_LMA3_diffuse" 4 16 3 "gi_Protagonist_Room_LMA30.bin" "Protagonist_Room_LMA3_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Third_Floor_LMA2_diffuse" 4 16 2 "gi_Third_Floor_LMA21.bin" "Third_Floor_LMA2_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Third_Floor_LMA1_diffuse" 4 16 1 "gi_Third_Floor_LMA11.bin" "Third_Floor_LMA1_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Protagonist_Room_LM0_diffuse" 4 16 0 "gi_Protagonist_Room_LM01.bin" "Protagonist_Room_LM0_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Protagonist_Room_LMA4_diffuse" 4 16 4 "gi_Protagonist_Room_LMA41.bin" "Protagonist_Room_LMA4_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Protagonist_Room_LMA3_diffuse" 4 16 3 "gi_Protagonist_Room_LMA31.bin" "Protagonist_Room_LMA3_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Third_Floor_LMA2_diffuse" 4 16 2 "gi_Third_Floor_LMA22.bin" "Third_Floor_LMA2_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Third_Floor_LMA1_diffuse" 4 16 1 "gi_Third_Floor_LMA12.bin" "Third_Floor_LMA1_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Protagonist_Room_LM0_diffuse" 4 16 0 "gi_Protagonist_Room_LM02.bin" "Protagonist_Room_LM0_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Protagonist_Room_LMA4_diffuse" 4 16 4 "gi_Protagonist_Room_LMA42.bin" "Protagonist_Room_LMA4_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Protagonist_Room_LMA3_diffuse" 4 16 3 "gi_Protagonist_Room_LMA32.bin" "Protagonist_Room_LMA3_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Third_Floor_LMA2_diffuse" 4 16 2 "gi_Third_Floor_LMA23.bin" "Third_Floor_LMA2_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Third_Floor_LMA1_diffuse" 4 16 1 "gi_Third_Floor_LMA13.bin" "Third_Floor_LMA1_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Protagonist_Room_LM0_diffuse" 4 16 0 "gi_Protagonist_Room_LM03.bin" "Protagonist_Room_LM0_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Protagonist_Room_LMA4_diffuse" 4 16 4 "gi_Protagonist_Room_LMA43.bin" "Protagonist_Room_LMA4_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Protagonist_Room_LMA3_diffuse" 4 16 3 "gi_Protagonist_Room_LMA33.bin" "Protagonist_Room_LMA3_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgidir "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Third_Floor_LMA2_final" 68 16 2 "gi_Third_Floor_LMA24.bin" "Third_Floor_LMA2_lights_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgidir "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Third_Floor_LMA1_final" 68 16 1 "gi_Third_Floor_LMA14.bin" "Third_Floor_LMA1_lights_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgidir "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Protagonist_Room_LM0_final" 68 16 0 "gi_Protagonist_Room_LM04.bin" "Protagonist_Room_LM0_lights_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgidir "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Protagonist_Room_LMA4_final" 68 16 4 "gi_Protagonist_Room_LMA44.bin" "Protagonist_Room_LMA4_lights_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgidir "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Protagonist_Room_LMA3_final" 68 16 3 "gi_Protagonist_Room_LMA34.bin" "Protagonist_Room_LMA3_lights_HDR.lz4" vbTraceTex.bin
+Running denoiserLegacy D "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Third_Floor_LMA2_final_Dir.lz4" "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Third_Floor_LMA2_final_Dir.lz4" 1024 0
+Running denoiserLegacy c "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Third_Floor_LMA2_final_HDR.lz4" "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Third_Floor_LMA2_final_HDR.lz4" 1024 0
+Running seamfixer "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "2" "Third_Floor_LMA2_final_HDR.lz4" "Third_Floor_LMA2_final_Dir.lz4
+Running denoiserLegacy D "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Third_Floor_LMA1_final_Dir.lz4" "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Third_Floor_LMA1_final_Dir.lz4" 2048 0
+Running denoiserLegacy c "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Third_Floor_LMA1_final_HDR.lz4" "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Third_Floor_LMA1_final_HDR.lz4" 2048 0
+Running seamfixer "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "1" "Third_Floor_LMA1_final_HDR.lz4" "Third_Floor_LMA1_final_Dir.lz4
+Running denoiserLegacy D "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Protagonist_Room_LM0_final_Dir.lz4" "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Protagonist_Room_LM0_final_Dir.lz4" 2048 0
+Running denoiserLegacy c "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Protagonist_Room_LM0_final_HDR.lz4" "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Protagonist_Room_LM0_final_HDR.lz4" 2048 0
+Running seamfixer "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "0" "Protagonist_Room_LM0_final_HDR.lz4" "Protagonist_Room_LM0_final_Dir.lz4
+Running denoiserLegacy D "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Protagonist_Room_LMA4_final_Dir.lz4" "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Protagonist_Room_LMA4_final_Dir.lz4" 512 0
+Running denoiserLegacy c "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Protagonist_Room_LMA4_final_HDR.lz4" "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Protagonist_Room_LMA4_final_HDR.lz4" 512 0
+Running seamfixer "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "4" "Protagonist_Room_LMA4_final_HDR.lz4" "Protagonist_Room_LMA4_final_Dir.lz4
+Running denoiserLegacy D "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Protagonist_Room_LMA3_final_Dir.lz4" "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Protagonist_Room_LMA3_final_Dir.lz4" 1024 0
+Running denoiserLegacy c "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Protagonist_Room_LMA3_final_HDR.lz4" "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Protagonist_Room_LMA3_final_HDR.lz4" 1024 0
+Running seamfixer "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "3" "Protagonist_Room_LMA3_final_HDR.lz4" "Protagonist_Room_LMA3_final_Dir.lz4
+Running halffloat2hdr "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Third_Floor_LMA2_final_HDR.lz4" "D:/Saprah/Games/Cecita Rentals/Cecita_Rental/Assets/BakeryLightmaps/Third_Floor_LMA2_final.hdr" 1024
+Running rgba2tga "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Third_Floor_LMA2_final_Dir.lz4" "D:/Saprah/Games/Cecita Rentals/Cecita_Rental/Assets/BakeryLightmaps/Third_Floor_LMA2_dir.tga" 
+Running halffloat2hdr "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Third_Floor_LMA1_final_HDR.lz4" "D:/Saprah/Games/Cecita Rentals/Cecita_Rental/Assets/BakeryLightmaps/Third_Floor_LMA1_final.hdr" 1024
+Running rgba2tga "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Third_Floor_LMA1_final_Dir.lz4" "D:/Saprah/Games/Cecita Rentals/Cecita_Rental/Assets/BakeryLightmaps/Third_Floor_LMA1_dir.tga" 
+Running halffloat2hdr "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Protagonist_Room_LM0_final_HDR.lz4" "D:/Saprah/Games/Cecita Rentals/Cecita_Rental/Assets/BakeryLightmaps/Protagonist_Room_LM0_final.hdr" 1024
+Running rgba2tga "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Protagonist_Room_LM0_final_Dir.lz4" "D:/Saprah/Games/Cecita Rentals/Cecita_Rental/Assets/BakeryLightmaps/Protagonist_Room_LM0_dir.tga" 
+Running halffloat2hdr "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Protagonist_Room_LMA4_final_HDR.lz4" "D:/Saprah/Games/Cecita Rentals/Cecita_Rental/Assets/BakeryLightmaps/Protagonist_Room_LMA4_final.hdr" 1024
+Running rgba2tga "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Protagonist_Room_LMA4_final_Dir.lz4" "D:/Saprah/Games/Cecita Rentals/Cecita_Rental/Assets/BakeryLightmaps/Protagonist_Room_LMA4_dir.tga" 
+Running halffloat2hdr "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Protagonist_Room_LMA3_final_HDR.lz4" "D:/Saprah/Games/Cecita Rentals/Cecita_Rental/Assets/BakeryLightmaps/Protagonist_Room_LMA3_final.hdr" 1024
+Running rgba2tga "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Protagonist_Room_LMA3_final_Dir.lz4" "D:/Saprah/Games/Cecita Rentals/Cecita_Rental/Assets/BakeryLightmaps/Protagonist_Room_LMA3_dir.tga" 
+Loaded vertex shader: quad.vso
+Loaded pixel shader: skyOutput.pso
+Loaded pixel shader: cookieOutput.pso
+initShaders done
+initScene done
+Num alphas of 2048x2048: 4
+Done
+Loaded vertex shader: quad.vso
+Loaded pixel shader: skyOutput.pso
+Loaded pixel shader: cookieOutput.pso
+initShaders done
+Loaded vertex shader: quad.vso
+Loaded pixel shader: skyOutput.pso
+Loaded pixel shader: cookieOutput.pso
+initShaders done
+Loaded vertex shader: quad.vso
+Loaded pixel shader: skyOutput.pso
+Loaded pixel shader: cookieOutput.pso
+initShaders done
+Rendering UV GBuffer for Protagonist_Room_LM0 51
+RGBA32F...RGBA8...RGBA8_SRGB...RGBA16F...states...
+Rendering UV normal...
+Rendering faceted UV normal...
+Rendering UV pos...
+Rendering smooth UV pos...
+Rendering UV GBuffer for Third_Floor_LMA1 51
+RGBA32F...RGBA8...RGBA8_SRGB...RGBA16F...states...
+Rendering UV normal...
+Rendering faceted UV normal...
+Rendering UV pos...
+Rendering smooth UV pos...
+Rendering UV GBuffer for Third_Floor_LMA2 51
+RGBA32F...RGBA8...RGBA8_SRGB...RGBA16F...states...
+Rendering UV normal...
+Rendering faceted UV normal...
+Rendering UV pos...
+Rendering smooth UV pos...
+Rendering UV GBuffer for Protagonist_Room_LMA3 51
+RGBA32F...RGBA8...RGBA8_SRGB...RGBA16F...states...
+Rendering UV normal...
+Rendering faceted UV normal...
+Rendering UV pos...
+Rendering smooth UV pos...
+Rendering UV GBuffer for Protagonist_Room_LMA4 51
+RGBA32F...RGBA8...RGBA8_SRGB...RGBA16F...states...
+Rendering UV normal...
+Rendering faceted UV normal...
+Rendering UV pos...
+Rendering smooth UV pos...
+Done
+Done
+Running ftraceRTX fixpos12 "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "uvpos_Third_Floor_LMA2.lz4" 2 0 2 0
+Running ftraceRTX fixpos12 "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "uvpos_Third_Floor_LMA1.lz4" 2 0 1 0
+Running ftraceRTX fixpos12 "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "uvpos_Protagonist_Room_LM0.lz4" 2 0 0 0
+Running ftraceRTX fixpos12 "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "uvpos_Protagonist_Room_LMA4.lz4" 2 0 4 0
+Running ftraceRTX fixpos12 "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "uvpos_Protagonist_Room_LMA3.lz4" 2 0 3 0
+Running ftraceRTX batchpointlight "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "PointBatch_2_0_10" 68 0 2 batchpointlight_2_0_10.bin
+Running ftraceRTX skycubemapdir "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "light_1762911563_2" 68 0 2 sky0.bin
+Running ftraceRTX skycubemapdir "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "light_-79288215_2" 68 0 2 sky1.bin
+Running ftraceRTX skycubemapdir "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "light_1966287679_2" 68 0 2 sky2.bin
+Running ftraceRTX addmul "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Third_Floor_LMA2" 4 0 2 comp_2.bin
+Running ftraceRTX diradd "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Third_Floor_LMA2_lights_Dir.lz4" 64 0 2 dircomp_2.bin
+Running ftraceRTX batchpointlight "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "PointBatch_1_0_10" 68 0 1 batchpointlight_1_0_10.bin
+Running ftraceRTX skycubemapdir "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "light_1762911563_1" 68 0 1 sky0.bin
+Running ftraceRTX skycubemapdir "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "light_-79288215_1" 68 0 1 sky1.bin
+Running ftraceRTX skycubemapdir "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "light_1966287679_1" 68 0 1 sky2.bin
+Running ftraceRTX addmul "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Third_Floor_LMA1" 4 0 1 comp_1.bin
+Running ftraceRTX diradd "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Third_Floor_LMA1_lights_Dir.lz4" 64 0 1 dircomp_1.bin
+Running ftraceRTX batchpointlight "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "PointBatch_0_0_10" 68 0 0 batchpointlight_0_0_10.bin
+Running ftraceRTX skycubemapdir "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "light_1762911563_0" 68 0 0 sky0.bin
+Running ftraceRTX skycubemapdir "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "light_-79288215_0" 68 0 0 sky1.bin
+Running ftraceRTX skycubemapdir "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "light_1966287679_0" 68 0 0 sky2.bin
+Running ftraceRTX addmul "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Protagonist_Room_LM0" 4 0 0 comp_0.bin
+Running ftraceRTX diradd "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Protagonist_Room_LM0_lights_Dir.lz4" 64 0 0 dircomp_0.bin
+Running ftraceRTX batchpointlight "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "PointBatch_4_0_10" 68 0 4 batchpointlight_4_0_10.bin
+Running ftraceRTX skycubemapdir "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "light_1762911563_4" 68 0 4 sky0.bin
+Running ftraceRTX skycubemapdir "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "light_-79288215_4" 68 0 4 sky1.bin
+Running ftraceRTX skycubemapdir "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "light_1966287679_4" 68 0 4 sky2.bin
+Running ftraceRTX addmul "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Protagonist_Room_LMA4" 4 0 4 comp_4.bin
+Running ftraceRTX diradd "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Protagonist_Room_LMA4_lights_Dir.lz4" 64 0 4 dircomp_4.bin
+Running ftraceRTX batchpointlight "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "PointBatch_3_0_10" 68 0 3 batchpointlight_3_0_10.bin
+Running ftraceRTX skycubemapdir "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "light_1762911563_3" 68 0 3 sky0.bin
+Running ftraceRTX skycubemapdir "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "light_-79288215_3" 68 0 3 sky1.bin
+Running ftraceRTX skycubemapdir "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "light_1966287679_3" 68 0 3 sky2.bin
+Running ftraceRTX addmul "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Protagonist_Room_LMA3" 4 0 3 comp_3.bin
+Running ftraceRTX diradd "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Protagonist_Room_LMA3_lights_Dir.lz4" 64 0 3 dircomp_3.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Third_Floor_LMA2_diffuse" 4 16 2 "gi_Third_Floor_LMA20.bin" "Third_Floor_LMA2_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Third_Floor_LMA1_diffuse" 4 16 1 "gi_Third_Floor_LMA10.bin" "Third_Floor_LMA1_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Protagonist_Room_LM0_diffuse" 4 16 0 "gi_Protagonist_Room_LM00.bin" "Protagonist_Room_LM0_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Protagonist_Room_LMA4_diffuse" 4 16 4 "gi_Protagonist_Room_LMA40.bin" "Protagonist_Room_LMA4_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Protagonist_Room_LMA3_diffuse" 4 16 3 "gi_Protagonist_Room_LMA30.bin" "Protagonist_Room_LMA3_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Third_Floor_LMA2_diffuse" 4 16 2 "gi_Third_Floor_LMA21.bin" "Third_Floor_LMA2_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Third_Floor_LMA1_diffuse" 4 16 1 "gi_Third_Floor_LMA11.bin" "Third_Floor_LMA1_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Protagonist_Room_LM0_diffuse" 4 16 0 "gi_Protagonist_Room_LM01.bin" "Protagonist_Room_LM0_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Protagonist_Room_LMA4_diffuse" 4 16 4 "gi_Protagonist_Room_LMA41.bin" "Protagonist_Room_LMA4_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Protagonist_Room_LMA3_diffuse" 4 16 3 "gi_Protagonist_Room_LMA31.bin" "Protagonist_Room_LMA3_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Third_Floor_LMA2_diffuse" 4 16 2 "gi_Third_Floor_LMA22.bin" "Third_Floor_LMA2_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Third_Floor_LMA1_diffuse" 4 16 1 "gi_Third_Floor_LMA12.bin" "Third_Floor_LMA1_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Protagonist_Room_LM0_diffuse" 4 16 0 "gi_Protagonist_Room_LM02.bin" "Protagonist_Room_LM0_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Protagonist_Room_LMA4_diffuse" 4 16 4 "gi_Protagonist_Room_LMA42.bin" "Protagonist_Room_LMA4_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Protagonist_Room_LMA3_diffuse" 4 16 3 "gi_Protagonist_Room_LMA32.bin" "Protagonist_Room_LMA3_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Third_Floor_LMA2_diffuse" 4 16 2 "gi_Third_Floor_LMA23.bin" "Third_Floor_LMA2_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Third_Floor_LMA1_diffuse" 4 16 1 "gi_Third_Floor_LMA13.bin" "Third_Floor_LMA1_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Protagonist_Room_LM0_diffuse" 4 16 0 "gi_Protagonist_Room_LM03.bin" "Protagonist_Room_LM0_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Protagonist_Room_LMA4_diffuse" 4 16 4 "gi_Protagonist_Room_LMA43.bin" "Protagonist_Room_LMA4_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Protagonist_Room_LMA3_diffuse" 4 16 3 "gi_Protagonist_Room_LMA33.bin" "Protagonist_Room_LMA3_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgidir "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Third_Floor_LMA2_final" 68 16 2 "gi_Third_Floor_LMA24.bin" "Third_Floor_LMA2_lights_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgidir "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Third_Floor_LMA1_final" 68 16 1 "gi_Third_Floor_LMA14.bin" "Third_Floor_LMA1_lights_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgidir "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Protagonist_Room_LM0_final" 68 16 0 "gi_Protagonist_Room_LM04.bin" "Protagonist_Room_LM0_lights_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgidir "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Protagonist_Room_LMA4_final" 68 16 4 "gi_Protagonist_Room_LMA44.bin" "Protagonist_Room_LMA4_lights_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgidir "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Protagonist_Room_LMA3_final" 68 16 3 "gi_Protagonist_Room_LMA34.bin" "Protagonist_Room_LMA3_lights_HDR.lz4" vbTraceTex.bin
+Running denoiserLegacy D "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Third_Floor_LMA2_final_Dir.lz4" "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Third_Floor_LMA2_final_Dir.lz4" 1024 0
+Running denoiserLegacy c "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Third_Floor_LMA2_final_HDR.lz4" "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Third_Floor_LMA2_final_HDR.lz4" 1024 0
+Running seamfixer "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "2" "Third_Floor_LMA2_final_HDR.lz4" "Third_Floor_LMA2_final_Dir.lz4
+Running denoiserLegacy D "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Third_Floor_LMA1_final_Dir.lz4" "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Third_Floor_LMA1_final_Dir.lz4" 2048 0
+Running denoiserLegacy c "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Third_Floor_LMA1_final_HDR.lz4" "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Third_Floor_LMA1_final_HDR.lz4" 2048 0
+Running seamfixer "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "1" "Third_Floor_LMA1_final_HDR.lz4" "Third_Floor_LMA1_final_Dir.lz4
+Running denoiserLegacy D "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Protagonist_Room_LM0_final_Dir.lz4" "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Protagonist_Room_LM0_final_Dir.lz4" 2048 0
+Running denoiserLegacy c "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Protagonist_Room_LM0_final_HDR.lz4" "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Protagonist_Room_LM0_final_HDR.lz4" 2048 0
+Running seamfixer "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "0" "Protagonist_Room_LM0_final_HDR.lz4" "Protagonist_Room_LM0_final_Dir.lz4
+Running denoiserLegacy D "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Protagonist_Room_LMA4_final_Dir.lz4" "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Protagonist_Room_LMA4_final_Dir.lz4" 512 0
+Running denoiserLegacy c "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Protagonist_Room_LMA4_final_HDR.lz4" "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Protagonist_Room_LMA4_final_HDR.lz4" 512 0
+Running seamfixer "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "4" "Protagonist_Room_LMA4_final_HDR.lz4" "Protagonist_Room_LMA4_final_Dir.lz4
+Running denoiserLegacy D "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Protagonist_Room_LMA3_final_Dir.lz4" "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Protagonist_Room_LMA3_final_Dir.lz4" 1024 0
+Running denoiserLegacy c "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Protagonist_Room_LMA3_final_HDR.lz4" "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Protagonist_Room_LMA3_final_HDR.lz4" 1024 0
+Running seamfixer "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "3" "Protagonist_Room_LMA3_final_HDR.lz4" "Protagonist_Room_LMA3_final_Dir.lz4
+Running halffloat2hdr "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Third_Floor_LMA2_final_HDR.lz4" "D:/Saprah/Games/Cecita Rentals/Cecita_Rental/Assets/BakeryLightmaps/Third_Floor_LMA2_final.hdr" 1024
+Running rgba2tga "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Third_Floor_LMA2_final_Dir.lz4" "D:/Saprah/Games/Cecita Rentals/Cecita_Rental/Assets/BakeryLightmaps/Third_Floor_LMA2_dir.tga" 
+Running halffloat2hdr "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Third_Floor_LMA1_final_HDR.lz4" "D:/Saprah/Games/Cecita Rentals/Cecita_Rental/Assets/BakeryLightmaps/Third_Floor_LMA1_final.hdr" 1024
+Running rgba2tga "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Third_Floor_LMA1_final_Dir.lz4" "D:/Saprah/Games/Cecita Rentals/Cecita_Rental/Assets/BakeryLightmaps/Third_Floor_LMA1_dir.tga" 
+Running halffloat2hdr "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Protagonist_Room_LM0_final_HDR.lz4" "D:/Saprah/Games/Cecita Rentals/Cecita_Rental/Assets/BakeryLightmaps/Protagonist_Room_LM0_final.hdr" 1024
+Running rgba2tga "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Protagonist_Room_LM0_final_Dir.lz4" "D:/Saprah/Games/Cecita Rentals/Cecita_Rental/Assets/BakeryLightmaps/Protagonist_Room_LM0_dir.tga" 
+Running halffloat2hdr "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Protagonist_Room_LMA4_final_HDR.lz4" "D:/Saprah/Games/Cecita Rentals/Cecita_Rental/Assets/BakeryLightmaps/Protagonist_Room_LMA4_final.hdr" 1024
+Running rgba2tga "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Protagonist_Room_LMA4_final_Dir.lz4" "D:/Saprah/Games/Cecita Rentals/Cecita_Rental/Assets/BakeryLightmaps/Protagonist_Room_LMA4_dir.tga" 
+Running halffloat2hdr "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Protagonist_Room_LMA3_final_HDR.lz4" "D:/Saprah/Games/Cecita Rentals/Cecita_Rental/Assets/BakeryLightmaps/Protagonist_Room_LMA3_final.hdr" 1024
+Running rgba2tga "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Protagonist_Room_LMA3_final_Dir.lz4" "D:/Saprah/Games/Cecita Rentals/Cecita_Rental/Assets/BakeryLightmaps/Protagonist_Room_LMA3_dir.tga" 
+Loaded vertex shader: quad.vso
+Loaded pixel shader: skyOutput.pso
+Loaded pixel shader: cookieOutput.pso
+initShaders done
+initScene done
+Num alphas of 2048x2048: 4
+Done
+Loaded vertex shader: quad.vso
+Loaded pixel shader: skyOutput.pso
+Loaded pixel shader: cookieOutput.pso
+initShaders done
+Loaded vertex shader: quad.vso
+Loaded pixel shader: skyOutput.pso
+Loaded pixel shader: cookieOutput.pso
+initShaders done
+Loaded vertex shader: quad.vso
+Loaded pixel shader: skyOutput.pso
+Loaded pixel shader: cookieOutput.pso
+initShaders done
+Rendering UV GBuffer for Protagonist_Room_LM0 51
+RGBA32F...RGBA8...RGBA8_SRGB...RGBA16F...states...
+Rendering UV normal...
+Rendering faceted UV normal...
+Rendering UV pos...
+Rendering smooth UV pos...
+Rendering UV GBuffer for Third_Floor_LMA1 51
+RGBA32F...RGBA8...RGBA8_SRGB...RGBA16F...states...
+Rendering UV normal...
+Rendering faceted UV normal...
+Rendering UV pos...
+Rendering smooth UV pos...
+Rendering UV GBuffer for Third_Floor_LMA2 51
+RGBA32F...RGBA8...RGBA8_SRGB...RGBA16F...states...
+Rendering UV normal...
+Rendering faceted UV normal...
+Rendering UV pos...
+Rendering smooth UV pos...
+Rendering UV GBuffer for Protagonist_Room_LMA3 51
+RGBA32F...RGBA8...RGBA8_SRGB...RGBA16F...states...
+Rendering UV normal...
+Rendering faceted UV normal...
+Rendering UV pos...
+Rendering smooth UV pos...
+Rendering UV GBuffer for Protagonist_Room_LMA4 51
+RGBA32F...RGBA8...RGBA8_SRGB...RGBA16F...states...
+Rendering UV normal...
+Rendering faceted UV normal...
+Rendering UV pos...
+Rendering smooth UV pos...
+Done
+Done
+Running ftraceRTX fixpos12 "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "uvpos_Third_Floor_LMA2.lz4" 2 0 2 0
+Running ftraceRTX fixpos12 "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "uvpos_Third_Floor_LMA1.lz4" 2 0 1 0
+Running ftraceRTX fixpos12 "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "uvpos_Protagonist_Room_LM0.lz4" 2 0 0 0
+Running ftraceRTX fixpos12 "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "uvpos_Protagonist_Room_LMA4.lz4" 2 0 4 0
+Running ftraceRTX fixpos12 "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "uvpos_Protagonist_Room_LMA3.lz4" 2 0 3 0
+Running ftraceRTX batchpointlight "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "PointBatch_2_0_19" 68 0 2 batchpointlight_2_0_19.bin
+Running ftraceRTX skycubemapdir "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "light_1762911563_2" 68 0 2 sky0.bin
+Running ftraceRTX skycubemapdir "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "light_-79288215_2" 68 0 2 sky1.bin
+Running ftraceRTX skycubemapdir "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "light_1966287679_2" 68 0 2 sky2.bin
+Running ftraceRTX addmul "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Third_Floor_LMA2" 4 0 2 comp_2.bin
+Running ftraceRTX diradd "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Third_Floor_LMA2_lights_Dir.lz4" 64 0 2 dircomp_2.bin
+Running ftraceRTX batchpointlight "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "PointBatch_1_0_19" 68 0 1 batchpointlight_1_0_19.bin
+Running ftraceRTX skycubemapdir "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "light_1762911563_1" 68 0 1 sky0.bin
+Running ftraceRTX skycubemapdir "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "light_-79288215_1" 68 0 1 sky1.bin
+Running ftraceRTX skycubemapdir "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "light_1966287679_1" 68 0 1 sky2.bin
+Running ftraceRTX addmul "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Third_Floor_LMA1" 4 0 1 comp_1.bin
+Running ftraceRTX diradd "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Third_Floor_LMA1_lights_Dir.lz4" 64 0 1 dircomp_1.bin
+Running ftraceRTX batchpointlight "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "PointBatch_0_0_19" 68 0 0 batchpointlight_0_0_19.bin
+Running ftraceRTX skycubemapdir "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "light_1762911563_0" 68 0 0 sky0.bin
+Running ftraceRTX skycubemapdir "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "light_-79288215_0" 68 0 0 sky1.bin
+Running ftraceRTX skycubemapdir "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "light_1966287679_0" 68 0 0 sky2.bin
+Running ftraceRTX addmul "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Protagonist_Room_LM0" 4 0 0 comp_0.bin
+Running ftraceRTX diradd "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Protagonist_Room_LM0_lights_Dir.lz4" 64 0 0 dircomp_0.bin
+Running ftraceRTX batchpointlight "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "PointBatch_4_0_19" 68 0 4 batchpointlight_4_0_19.bin
+Running ftraceRTX skycubemapdir "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "light_1762911563_4" 68 0 4 sky0.bin
+Running ftraceRTX skycubemapdir "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "light_-79288215_4" 68 0 4 sky1.bin
+Running ftraceRTX skycubemapdir "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "light_1966287679_4" 68 0 4 sky2.bin
+Running ftraceRTX addmul "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Protagonist_Room_LMA4" 4 0 4 comp_4.bin
+Running ftraceRTX diradd "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Protagonist_Room_LMA4_lights_Dir.lz4" 64 0 4 dircomp_4.bin
+Running ftraceRTX batchpointlight "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "PointBatch_3_0_19" 68 0 3 batchpointlight_3_0_19.bin
+Running ftraceRTX skycubemapdir "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "light_1762911563_3" 68 0 3 sky0.bin
+Running ftraceRTX skycubemapdir "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "light_-79288215_3" 68 0 3 sky1.bin
+Running ftraceRTX skycubemapdir "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "light_1966287679_3" 68 0 3 sky2.bin
+Running ftraceRTX addmul "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Protagonist_Room_LMA3" 4 0 3 comp_3.bin
+Running ftraceRTX diradd "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Protagonist_Room_LMA3_lights_Dir.lz4" 64 0 3 dircomp_3.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Third_Floor_LMA2_diffuse" 4 16 2 "gi_Third_Floor_LMA20.bin" "Third_Floor_LMA2_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Third_Floor_LMA1_diffuse" 4 16 1 "gi_Third_Floor_LMA10.bin" "Third_Floor_LMA1_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Protagonist_Room_LM0_diffuse" 4 16 0 "gi_Protagonist_Room_LM00.bin" "Protagonist_Room_LM0_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Protagonist_Room_LMA4_diffuse" 4 16 4 "gi_Protagonist_Room_LMA40.bin" "Protagonist_Room_LMA4_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Protagonist_Room_LMA3_diffuse" 4 16 3 "gi_Protagonist_Room_LMA30.bin" "Protagonist_Room_LMA3_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Third_Floor_LMA2_diffuse" 4 16 2 "gi_Third_Floor_LMA21.bin" "Third_Floor_LMA2_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Third_Floor_LMA1_diffuse" 4 16 1 "gi_Third_Floor_LMA11.bin" "Third_Floor_LMA1_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Protagonist_Room_LM0_diffuse" 4 16 0 "gi_Protagonist_Room_LM01.bin" "Protagonist_Room_LM0_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Protagonist_Room_LMA4_diffuse" 4 16 4 "gi_Protagonist_Room_LMA41.bin" "Protagonist_Room_LMA4_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Protagonist_Room_LMA3_diffuse" 4 16 3 "gi_Protagonist_Room_LMA31.bin" "Protagonist_Room_LMA3_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Third_Floor_LMA2_diffuse" 4 16 2 "gi_Third_Floor_LMA22.bin" "Third_Floor_LMA2_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Third_Floor_LMA1_diffuse" 4 16 1 "gi_Third_Floor_LMA12.bin" "Third_Floor_LMA1_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Protagonist_Room_LM0_diffuse" 4 16 0 "gi_Protagonist_Room_LM02.bin" "Protagonist_Room_LM0_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Protagonist_Room_LMA4_diffuse" 4 16 4 "gi_Protagonist_Room_LMA42.bin" "Protagonist_Room_LMA4_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Protagonist_Room_LMA3_diffuse" 4 16 3 "gi_Protagonist_Room_LMA32.bin" "Protagonist_Room_LMA3_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Third_Floor_LMA2_diffuse" 4 16 2 "gi_Third_Floor_LMA23.bin" "Third_Floor_LMA2_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Third_Floor_LMA1_diffuse" 4 16 1 "gi_Third_Floor_LMA13.bin" "Third_Floor_LMA1_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Protagonist_Room_LM0_diffuse" 4 16 0 "gi_Protagonist_Room_LM03.bin" "Protagonist_Room_LM0_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Protagonist_Room_LMA4_diffuse" 4 16 4 "gi_Protagonist_Room_LMA43.bin" "Protagonist_Room_LMA4_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgi "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Protagonist_Room_LMA3_diffuse" 4 16 3 "gi_Protagonist_Room_LMA33.bin" "Protagonist_Room_LMA3_diffuse0_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgidir "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Third_Floor_LMA2_final" 68 16 2 "gi_Third_Floor_LMA24.bin" "Third_Floor_LMA2_lights_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgidir "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Third_Floor_LMA1_final" 68 16 1 "gi_Third_Floor_LMA14.bin" "Third_Floor_LMA1_lights_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgidir "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Protagonist_Room_LM0_final" 68 16 0 "gi_Protagonist_Room_LM04.bin" "Protagonist_Room_LM0_lights_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgidir "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Protagonist_Room_LMA4_final" 68 16 4 "gi_Protagonist_Room_LMA44.bin" "Protagonist_Room_LMA4_lights_HDR.lz4" vbTraceTex.bin
+Running ftraceRTX texgidir "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "Protagonist_Room_LMA3_final" 68 16 3 "gi_Protagonist_Room_LMA34.bin" "Protagonist_Room_LMA3_lights_HDR.lz4" vbTraceTex.bin
+Running denoiserLegacy D "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Third_Floor_LMA2_final_Dir.lz4" "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Third_Floor_LMA2_final_Dir.lz4" 1024 0
+Running denoiserLegacy c "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Third_Floor_LMA2_final_HDR.lz4" "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Third_Floor_LMA2_final_HDR.lz4" 1024 0
+Running seamfixer "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "2" "Third_Floor_LMA2_final_HDR.lz4" "Third_Floor_LMA2_final_Dir.lz4
+Running denoiserLegacy D "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Third_Floor_LMA1_final_Dir.lz4" "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Third_Floor_LMA1_final_Dir.lz4" 2048 0
+Running denoiserLegacy c "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Third_Floor_LMA1_final_HDR.lz4" "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Third_Floor_LMA1_final_HDR.lz4" 2048 0
+Running seamfixer "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "1" "Third_Floor_LMA1_final_HDR.lz4" "Third_Floor_LMA1_final_Dir.lz4
+Running denoiserLegacy D "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Protagonist_Room_LM0_final_Dir.lz4" "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Protagonist_Room_LM0_final_Dir.lz4" 2048 0
+Running denoiserLegacy c "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Protagonist_Room_LM0_final_HDR.lz4" "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Protagonist_Room_LM0_final_HDR.lz4" 2048 0
+Running seamfixer "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "0" "Protagonist_Room_LM0_final_HDR.lz4" "Protagonist_Room_LM0_final_Dir.lz4
+Running denoiserLegacy D "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Protagonist_Room_LMA4_final_Dir.lz4" "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Protagonist_Room_LMA4_final_Dir.lz4" 512 0
+Running denoiserLegacy c "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Protagonist_Room_LMA4_final_HDR.lz4" "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Protagonist_Room_LMA4_final_HDR.lz4" 512 0
+Running seamfixer "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "4" "Protagonist_Room_LMA4_final_HDR.lz4" "Protagonist_Room_LMA4_final_Dir.lz4
+Running denoiserLegacy D "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Protagonist_Room_LMA3_final_Dir.lz4" "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Protagonist_Room_LMA3_final_Dir.lz4" 1024 0
+Running denoiserLegacy c "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Protagonist_Room_LMA3_final_HDR.lz4" "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Protagonist_Room_LMA3_final_HDR.lz4" 1024 0
+Running seamfixer "C:\Users\ALIENWARE\AppData\Local\Temp\frender" "3" "Protagonist_Room_LMA3_final_HDR.lz4" "Protagonist_Room_LMA3_final_Dir.lz4
+Running halffloat2hdr "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Third_Floor_LMA2_final_HDR.lz4" "D:/Saprah/Games/Cecita Rentals/Cecita_Rental/Assets/BakeryLightmaps/Third_Floor_LMA2_final.hdr" 1024
+Running rgba2tga "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Third_Floor_LMA2_final_Dir.lz4" "D:/Saprah/Games/Cecita Rentals/Cecita_Rental/Assets/BakeryLightmaps/Third_Floor_LMA2_dir.tga" 
+Running halffloat2hdr "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Third_Floor_LMA1_final_HDR.lz4" "D:/Saprah/Games/Cecita Rentals/Cecita_Rental/Assets/BakeryLightmaps/Third_Floor_LMA1_final.hdr" 1024
+Running rgba2tga "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Third_Floor_LMA1_final_Dir.lz4" "D:/Saprah/Games/Cecita Rentals/Cecita_Rental/Assets/BakeryLightmaps/Third_Floor_LMA1_dir.tga" 
+Running halffloat2hdr "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Protagonist_Room_LM0_final_HDR.lz4" "D:/Saprah/Games/Cecita Rentals/Cecita_Rental/Assets/BakeryLightmaps/Protagonist_Room_LM0_final.hdr" 1024
+Running rgba2tga "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Protagonist_Room_LM0_final_Dir.lz4" "D:/Saprah/Games/Cecita Rentals/Cecita_Rental/Assets/BakeryLightmaps/Protagonist_Room_LM0_dir.tga" 
+Running halffloat2hdr "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Protagonist_Room_LMA4_final_HDR.lz4" "D:/Saprah/Games/Cecita Rentals/Cecita_Rental/Assets/BakeryLightmaps/Protagonist_Room_LMA4_final.hdr" 1024
+Running rgba2tga "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Protagonist_Room_LMA4_final_Dir.lz4" "D:/Saprah/Games/Cecita Rentals/Cecita_Rental/Assets/BakeryLightmaps/Protagonist_Room_LMA4_dir.tga" 
+Running halffloat2hdr "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Protagonist_Room_LMA3_final_HDR.lz4" "D:/Saprah/Games/Cecita Rentals/Cecita_Rental/Assets/BakeryLightmaps/Protagonist_Room_LMA3_final.hdr" 1024
+Running rgba2tga "C:\Users\ALIENWARE\AppData\Local\Temp\frender/Protagonist_Room_LMA3_final_Dir.lz4" "D:/Saprah/Games/Cecita Rentals/Cecita_Rental/Assets/BakeryLightmaps/Protagonist_Room_LMA3_dir.tga" 

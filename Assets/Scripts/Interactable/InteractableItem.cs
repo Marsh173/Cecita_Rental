@@ -11,8 +11,8 @@ public class InteractableItem : Interactable
 
     public Renderer materialRenderer;
     public Color originalColor;
-    public Color blinkColor = Color.red;
-    [Range(0,1)] public float blinkFadeRate = 1;
+    public Color blinkColor = Color.black;
+    [Range(0, 1)] public float blinkFadeRate = 1;
     public float blinkCoolDownTimer = 100;
     private float blinkCoolDownTimerOriginal;
     public float blinkDuration = 2f;
@@ -33,7 +33,7 @@ public class InteractableItem : Interactable
     void Update()
     {
 
-        RunBlinkLogic();
+        //RunBlinkLogic();
 
         //LMB to open
         if (interacted)

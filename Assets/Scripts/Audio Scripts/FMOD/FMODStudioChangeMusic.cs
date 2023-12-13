@@ -1,3 +1,4 @@
+
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -74,7 +75,7 @@ namespace FMODUnity
 
                 if (fmodPbStateSpeaker == FMOD.Studio.PLAYBACK_STATE.PLAYING)
                 {
-                    if(fmodPbState == FMOD.Studio.PLAYBACK_STATE.PLAYING)
+                    if(fmodPbState != FMOD.Studio.PLAYBACK_STATE.PLAYING)
                     {
                         beautiful_broadcast.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
                         awful_broadcast.start();

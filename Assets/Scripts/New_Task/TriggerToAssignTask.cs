@@ -6,6 +6,7 @@ public class TriggerToAssignTask : MonoBehaviour
 {
     [SerializeField] private InitializeTask InitialT;
     [SerializeField] private TaskManager_Test_Yunfei TM;
+    private TaskData TD;
 
     private void Start()
     {
@@ -22,8 +23,9 @@ public class TriggerToAssignTask : MonoBehaviour
         {
             InitialT.settext();
             TM.AddTask();
-            TM.TaskDone(0);
-            //TM.SetSubTask();
+            TD.addSub("Ask the front desk about your package", 1);
+            TM.SetSubTask();
+            TM.TaskDone(1);
             Destroy(other.gameObject);
         }
     }

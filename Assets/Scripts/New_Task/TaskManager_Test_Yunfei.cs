@@ -157,7 +157,7 @@ public class TaskManager_Test_Yunfei : MonoBehaviour
         GameObject task = null;
         for (int i = 0; i < Tasks.Count; i++)
         {
-            if(Tasks[i].GetComponent<InitializeTask>().MainTask_num == taskNum)
+            if(Tasks[i].GetComponent<TaskData>().task_num == taskNum)
             {
                 task =  Tasks[i].gameObject;
                 break;

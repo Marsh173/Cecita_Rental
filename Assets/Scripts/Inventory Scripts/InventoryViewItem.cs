@@ -25,8 +25,8 @@ public class InventoryViewItem : MonoBehaviour
             vig.transform.GetChild(0).gameObject.SetActive(true);
             vig.GetComponentInChildren<UIInspectCamController>().index_obj = index;
             vig.GetComponentInChildren<UIInspectCamController>().changeOBJ();
-            vig.transform.GetChild(0).GetChild(2).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = iconname.text;
-            vig.transform.GetChild(0).GetChild(2).GetChild(1).gameObject.GetComponent<TextMeshProUGUI>().text = icon_Description;
+            vig.transform.GetChild(0).GetChild(3).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = iconname.text;
+            vig.transform.GetChild(0).GetChild(3).GetChild(1).gameObject.GetComponent<TextMeshProUGUI>().text = icon_Description;
         }
     }
 }

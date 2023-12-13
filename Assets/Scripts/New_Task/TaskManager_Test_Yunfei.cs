@@ -115,6 +115,8 @@ public class TaskManager_Test_Yunfei : MonoBehaviour
         if (task != null)
         {
             task.GetComponent<TaskData>().isCompleted = true;
+
+            //add task done animation and open task window
             Tasks.RemoveAt(Tasks.IndexOf(task));
             RearrangeTasks();
         }

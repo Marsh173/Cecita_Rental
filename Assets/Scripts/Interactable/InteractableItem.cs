@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class InteractableItem : Interactable
 {
@@ -13,6 +14,7 @@ public class InteractableItem : Interactable
     public Color originalColor;
     public Color blinkColor = Color.red;
     public float blinkSpeed = 1;
+    public TMP_Text monologue;
 
     private void Start()
     {

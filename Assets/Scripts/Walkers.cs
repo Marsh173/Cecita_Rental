@@ -83,7 +83,12 @@ public class Walkers : MonoBehaviour
            
             walker.SetActive(true);
 
-            
+        }
+
+        if (other.CompareTag("Monster Destroyer"))
+        {
+            stopMoving = true;
+            walker.SetActive(false);
 
         }
 

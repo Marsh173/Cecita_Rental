@@ -12,20 +12,29 @@ public class InteractableItem : Interactable
     public Renderer materialRenderer;
     public Color originalColor;
     public Color blinkColor = Color.red;
-    public float blinkSpeed = 1;
+    [Range(0,1)] public float blinkFadeRate = 1;
+    public float blinkCoolDownTimer = 100;
+    private float blinkCoolDownTimerOriginal;
+    public float blinkDuration = 2f;
+    private bool hasStartedBlink = false;
+    private bool hasEndedBlink = false;
+    Coroutine coroutineReference;
 
     private void Start()
     {
         interacted = false;
         materialRenderer = GetComponent<Renderer>();
+        materialRenderer.material.color = originalColor;
+        blinkCoolDownTimerOriginal = blinkCoolDownTimer;
     }
 
 
     // Update is called once per frame
     void Update()
     {
-        materialRenderer.material.color = Color.Lerp(originalColor, blinkColor, Mathf.PingPong(Time.time, blinkSpeed));
-        Debug.Log("rendering");
+
+        RunBlinkLogic();
+
         //LMB to open
         if (interacted)
         {
@@ -34,6 +43,35 @@ public class InteractableItem : Interactable
                 PickupMe();
                 interacted = false;
             }
+        }
+    }
+
+    protected IEnumerator Blink()
+    {
+        hasStartedBlink = true;
+        hasEndedBlink = false;
+        yield return new WaitForSeconds(blinkDuration);
+        hasStartedBlink = false;
+        hasEndedBlink = true;
+    }
+
+    private void RunBlinkLogic()
+    {
+        blinkCoolDownTimer--;
+        if (blinkCoolDownTimer < 0)
+        {
+            coroutineReference = StartCoroutine(Blink());
+            blinkCoolDownTimer = blinkCoolDownTimerOriginal;
+        }
+
+        if (hasStartedBlink)
+        {
+            materialRenderer.material.color = Color.Lerp(materialRenderer.material.color, blinkColor, blinkFadeRate);
+        }
+
+        if (hasEndedBlink)
+        {
+            materialRenderer.material.color = Color.Lerp(materialRenderer.material.color, originalColor, blinkFadeRate);
         }
     }
 

@@ -93,6 +93,7 @@ public class TaskManager_Test_Yunfei : MonoBehaviour
     //must set a main task first before assigning sub tasks!!
     public void SetSubTask()
     {
+        
         GameObject maintask = getMaintask(temp_attach_to_main_num);
 
         if(maintask != null)maintask.GetComponent<TaskData>().addSub(temp_sub_task_name, temp_sub_num);
@@ -108,9 +109,16 @@ public class TaskManager_Test_Yunfei : MonoBehaviour
     {
         /*Tasks[index].GetComponent<TaskData>().isCompleted = true;
         Tasks.RemoveAt(index);*/
-        getMaintask(index).GetComponent<TaskData>().isCompleted = true;
-        Tasks.RemoveAt(Tasks.IndexOf(getMaintask(index)));
-        RearrangeTasks();
+      
+        GameObject task = getMaintask(index);
+
+        if (task != null)
+        {
+            task.GetComponent<TaskData>().isCompleted = true;
+            Tasks.RemoveAt(Tasks.IndexOf(task));
+            RearrangeTasks();
+        }
+        
     }
 
     public void SubTaskDone(int mainT, int subT)
@@ -138,7 +146,7 @@ public class TaskManager_Test_Yunfei : MonoBehaviour
                 }
             }
             var t_p = t.GetComponent<RectTransform>().anchoredPosition;
-            t.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, 0 - y_shift , 0);
+            t.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, 70 - y_shift , 0);
         }
     }
 
@@ -157,7 +165,7 @@ public class TaskManager_Test_Yunfei : MonoBehaviour
         GameObject task = null;
         for (int i = 0; i < Tasks.Count; i++)
         {
-            if(Tasks[i].GetComponent<InitializeTask>().MainTask_num == taskNum)
+            if(Tasks[i].GetComponent<TaskData>().task_num == taskNum)
             {
                 task =  Tasks[i].gameObject;
                 break;
@@ -170,6 +178,7 @@ public class TaskManager_Test_Yunfei : MonoBehaviour
 
     public GameObject getSubtask(int taskNum, int subNum)
     {
+
         GameObject mainTask = getMaintask(taskNum);
         GameObject subTask = null;
 

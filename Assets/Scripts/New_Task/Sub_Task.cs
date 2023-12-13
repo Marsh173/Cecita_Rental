@@ -11,7 +11,7 @@ public class Sub_Task : MonoBehaviour
 
     private void Update()
     {
-        sub_task_text.text = sub_taskName;
+        if(sub_task_text!= null)sub_task_text.text = sub_taskName;
 
         if (isCompleted)
         {
@@ -21,6 +21,7 @@ public class Sub_Task : MonoBehaviour
 
     public void FinishSubTask()
     {
-        //Destroy(gameObject);
+        Debug.Log("Finish Sub Task" + sub_taskName);
+        Destroy(gameObject);
     }
 }

@@ -123,11 +123,11 @@ public class TaskManager_Test_Yunfei : MonoBehaviour
         
     }
 
-    public void SubTaskDone(int mainT, int subT)
+    public void SubTaskDone(int subnum)
     {
-        GameObject subtask = getSubtask(mainT, subT);
+        GameObject subtask = getSubtask(temp_attach_to_main_num, subnum);
         subtask.GetComponent<Sub_Task>().isCompleted = true;
-        List<GameObject> sublist = getMaintask(mainT).GetComponent<TaskData>().subtask;
+        List<GameObject> sublist = getMaintask(temp_attach_to_main_num).GetComponent<TaskData>().subtask;
         sublist.RemoveAt(sublist.IndexOf(subtask));
     }
 
@@ -195,5 +195,10 @@ public class TaskManager_Test_Yunfei : MonoBehaviour
         }
 
         return subTask;
+    }
+
+    public void preSubtaskDoneSetup(int maintask)
+    {
+        temp_attach_to_main_num = maintask;
     }
 }

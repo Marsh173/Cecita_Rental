@@ -9,15 +9,23 @@ public class InteractableItem : Interactable
     public NormalItems NItem;
     public PlaylistItems AItem;
 
+    public Renderer materialRenderer;
+    public Color originalColor;
+    public Color blinkColor = Color.red;
+    public float blinkSpeed = 1;
+
     private void Start()
     {
         interacted = false;
+        materialRenderer = GetComponent<Renderer>();
     }
 
 
     // Update is called once per frame
     void Update()
     {
+        materialRenderer.material.color = Color.Lerp(originalColor, blinkColor, Mathf.PingPong(Time.time, blinkSpeed));
+        Debug.Log("rendering");
         //LMB to open
         if (interacted)
         {

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Elevator : InteractableItemWithEvent
 {
@@ -9,6 +10,7 @@ public class Elevator : InteractableItemWithEvent
     public GameObject insideDoor;
     public Transform openDoorPos;
     public Transform closeDoorPos;
+    public TMP_Text monologue;
 
     //button
     private Animator anim;
@@ -42,7 +44,7 @@ public class Elevator : InteractableItemWithEvent
         else
         {
             //animated text, tells player you don't have an elevator card. 
-            promptMessage = "Do you have the elevator card?";
+            monologue.text = "I need to pick up my elevator card first.";
         }
     }
 

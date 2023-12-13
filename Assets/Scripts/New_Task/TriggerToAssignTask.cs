@@ -23,10 +23,18 @@ public class TriggerToAssignTask : MonoBehaviour
         {
             InitialT.settext();
             TM.AddTask();
-            InitialT.settext();
-            TM.SetSubTask();
+            
             TM.TaskDone(1);
             Destroy(other.gameObject);
+
+            StartCoroutine(addsub());
         }
+    }
+
+    IEnumerator addsub()
+    {
+        yield return new WaitForSeconds(0.1f);
+        InitialT.settext();
+        TM.SetSubTask();
     }
 }

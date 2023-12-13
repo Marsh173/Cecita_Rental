@@ -37,7 +37,7 @@ public class TaskData :  MonoBehaviour
         //task_title_UI.text = taskTitle;
         task_name_UI.text = taskName;
 
-        if(started)isCompleted = allSubFinished();
+        //if(started)isCompleted = allSubFinished();
 
         if (isCompleted)
         {
@@ -60,10 +60,15 @@ public class TaskData :  MonoBehaviour
         //finish all sub tasks
 
         //finish main task
-        for (int i = 0; i < subtask.Count; i++)
+        if(subtask.Count != 0)
         {
-            subtask[i].GetComponent<Sub_Task>().isCompleted = true;
+            for (int i = 0; i < subtask.Count; i++)
+            {
+                subtask[i].GetComponent<Sub_Task>().isCompleted = true;
+            }
         }
+        
+
         Destroy(gameObject);
     }
 

@@ -30,16 +30,14 @@ public class CutSceneScript : MonoBehaviour
         crosshair.SetActive(false);
         dialoguemanager.SetActive(false);
 
-        if(this.name == "startScene")
-        {
-            startcutscene.Play();
-            startcutscene.stopped += NextsStep;
-        }
-        else
-        {
-            startcutscene.Stop();
-            gameObject.SetActive(false);
-        }
+        cutsceneEnd = enteredEndSequen = false;
+        talkedtoNPC = false;
+        startcutscene = startSceneObj.GetComponent<PlayableDirector>();
+        endscnene = endscneneObj.GetComponent<PlayableDirector>();
+        emailsound = GetComponent<AudioSource>();
+
+        startcutscene.Play();
+        startcutscene.stopped += NextsStep;
     }
     private void Update()
     {
@@ -52,6 +50,7 @@ public class CutSceneScript : MonoBehaviour
     }
     private void NextsStep(PlayableDirector obj)
     {
+        Debug.Log("start scene ended");
         cutsceneEnd = true;
         emailsound.PlayOneShot(emailNote);
         taskList.SetActive(true);

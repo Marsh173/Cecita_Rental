@@ -59,7 +59,7 @@ public class TriggerToAssignTask : MonoBehaviour
 
     public void TempTalktoFrontDeskDone()
     {
-        TM.SubTaskDone(2, 1);
         CutSceneScript.talkedtoNPC = true;
+        //TM.SubTaskDone(2, 1);
     }
 }

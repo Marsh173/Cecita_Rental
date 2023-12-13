@@ -33,7 +33,7 @@ public class LoadingScreen : MonoBehaviour
 
     public void LoadSceneWithLoadingScreen(string sceneName)
     {
-        Debug.Log("TEST");
+        //Debug.Log("TEST");
         int sceneId = GetSceneBuildIndex(sceneName);
 
         SetRandomLoadingText();

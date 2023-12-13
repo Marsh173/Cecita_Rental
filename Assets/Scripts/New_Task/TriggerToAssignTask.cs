@@ -23,7 +23,7 @@ public class TriggerToAssignTask : MonoBehaviour
         {
             InitialT.settext();
             TM.AddTask();
-            TD.addSub("Ask the front desk about your package", 1);
+            InitialT.settext();
             TM.SetSubTask();
             TM.TaskDone(1);
             Destroy(other.gameObject);

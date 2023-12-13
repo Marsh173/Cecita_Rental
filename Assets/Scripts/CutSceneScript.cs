@@ -2,34 +2,55 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
-using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class CutSceneScript : MonoBehaviour
 {
-    private PlayableDirector cutscene;
+    private PlayableDirector startcutscene, endscnene;
     public AudioSource emailsound;
     public AudioClip emailNote;
     public static bool cutsceneEnd;
-    public GameObject taskList, FirstPerson, startSceneObj, cutSceneCanvas, crosshair, dialoguemanager;
+    public GameObject taskList, FirstPerson, startSceneObj, cutSceneCanvas, crosshair, dialoguemanager, endscneneObj;
     public TMP_Text monologue;
+    public static bool talkedtoNPC, enteredEndSequen;
 
+    private void Start()
+    {
+        cutsceneEnd = enteredEndSequen = false;
+        talkedtoNPC = false;
+        startcutscene = startSceneObj.GetComponent<PlayableDirector>();
+        endscnene = endscneneObj.GetComponent<PlayableDirector>();
+        emailsound = GetComponent<AudioSource>();
+    }
     void Awake()
     {
-        cutsceneEnd = false;
-        cutscene = GetComponent<PlayableDirector>();
-        emailsound = GetComponent<AudioSource>();
-
         taskList.SetActive(false);
         FirstPerson.SetActive(false);
         crosshair.SetActive(false);
         dialoguemanager.SetActive(false);
 
-        cutscene.Play();
-        cutscene.stopped += NextStep;
+        if(this.name == "startScene")
+        {
+            startcutscene.Play();
+            startcutscene.stopped += NextsStep;
+        }
+        else
+        {
+            startcutscene.Stop();
+            gameObject.SetActive(false);
+        }
     }
-
-    private void NextStep(PlayableDirector obj)
+    private void Update()
+    {
+        if (enteredEndSequen)
+        {
+            endscneneObj.SetActive(true);
+            endscnene.Play();
+            endscnene.stopped += NexteStep;
+        }
+    }
+    private void NextsStep(PlayableDirector obj)
     {
         cutsceneEnd = true;
         emailsound.PlayOneShot(emailNote);
@@ -42,7 +63,13 @@ public class CutSceneScript : MonoBehaviour
         monologue.text = "That's an email from the manager, I better check my laptop.";
         StartCoroutine(shoMonologue(5));
     }
-    public IEnumerator shoMonologue(int sec)
+
+    private void NexteStep(PlayableDirector obj)
+    {
+        endscneneObj.SetActive(false);
+        SceneManager.LoadScene("Night_One");
+    }
+        public IEnumerator shoMonologue(int sec)
     {
         yield return new WaitForSeconds(sec);
         monologue.text = "";

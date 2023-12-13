@@ -26,7 +26,6 @@ public class TriggerToAssignTask : MonoBehaviour
         {
             InitialT.settext();
             TM.AddTask();
-            
             TM.TaskDone(1);
             Destroy(other.gameObject);
 
@@ -53,13 +52,14 @@ public class TriggerToAssignTask : MonoBehaviour
 
     public void TempSubtaskDone()
     {
-        TM.SubTaskDone(2, 2);
-        TM.SubTaskDone(2, 1);
+        /*TM.SubTaskDone(2, 2);
+        TM.SubTaskDone(2, 1);*/
         monologue.text = "Maybe I should just wait for the package theif when the time comes...";
     }
 
     public void TempTalktoFrontDeskDone()
     {
         TM.SubTaskDone(2, 1);
+        CutSceneScript.talkedtoNPC = true;
     }
 }

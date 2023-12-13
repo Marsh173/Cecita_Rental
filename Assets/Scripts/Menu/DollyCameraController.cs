@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using Cinemachine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class DollyCameraController : MonoBehaviour
 {
@@ -37,18 +38,17 @@ public class DollyCameraController : MonoBehaviour
     public float BackCameraDuration = 5f; // Time it takes to reach the end of the path
 
     [Header("Quit Game")]
-    public GameObject anykey;
-    public GameObject quitMenu;
+    public Image fadeImage;
     public float QuitRotationDuration = 10f;
+    public float fadeDuration = 1.0f;
 
     private bool delayComplete = false;
     private void Start()
     {
         startRotationObject1 = objectToRotate1.transform.rotation;
         startRotationObject2 = objectToRotate2.transform.rotation;
-        quitMenu.SetActive(false);
-        anykey.SetActive(true);
-        
+
+        fadeImage.enabled = false;
         Cursor.visible = true;
 
         StartCoroutine(delay());
@@ -197,11 +197,10 @@ public class DollyCameraController : MonoBehaviour
     }
 
 
+
     IEnumerator AnimateQuitGame()
     {
-        //show confirmation popup window
-        quitMenu.SetActive(true);
-        anykey.SetActive(false);
+        
 
         // Animation for the Cinemachine Virtual Camera
         float elapsedTimeCamera = 0f;
@@ -210,7 +209,10 @@ public class DollyCameraController : MonoBehaviour
         // Animation for rotating GameObjects
         float elapsedTimeRotation = 0f;
 
-        while (elapsedTimeCamera < cameraDuration || elapsedTimeRotation < rotationDuration)
+        fadeImage.enabled = true;
+        float timer = 0f;
+
+        while (elapsedTimeCamera < cameraDuration || elapsedTimeRotation < rotationDuration || timer < fadeDuration)
         {
             // Update camera position
             if (elapsedTimeCamera < cameraDuration)
@@ -227,7 +229,6 @@ public class DollyCameraController : MonoBehaviour
             // Update object rotation
             if (elapsedTimeRotation < rotationDuration)
             {
-                
                 float tRotation = Mathf.SmoothStep(0f, 1f, elapsedTimeRotation / QuitRotationDuration);
                 objectToRotate1.transform.rotation = Quaternion.Slerp(objectToRotate1.transform.rotation, startRotationObject1, tRotation);
                 objectToRotate2.transform.rotation = Quaternion.Slerp(objectToRotate2.transform.rotation, startRotationObject2, tRotation);
@@ -235,16 +236,28 @@ public class DollyCameraController : MonoBehaviour
                 elapsedTimeRotation += Time.deltaTime;
             }
 
+            //fade image
+            float alpha = EaseInOutQuad(timer, 0f, 1f, fadeDuration);
+            fadeImage.color = new Color(0f, 0f, 0f, alpha);
+            timer += Time.deltaTime;
+
+
             yield return null;
         }
 
-        Debug.Log("happen");
+
+        Application.Quit();
+        Debug.Log("Game Closed");
 
     }
 
-    public void reEnter()
+
+    float EaseInOutQuad(float t, float b, float c, float d)
     {
-        StartCoroutine(AnimateIntroCam());
+        t /= d / 2f;
+        if (t < 1f) return c / 2f * t * t + b;
+        t--;
+        return -c / 2f * (t * (t - 2f) - 1f) + b;
     }
 
 

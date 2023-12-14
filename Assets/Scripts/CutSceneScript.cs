@@ -17,6 +17,9 @@ public class CutSceneScript : MonoBehaviour
 
     private void Start()
     {
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = false;
+
         cutsceneEnd = enteredEndSequen = false;
         talkedtoNPC = false;
         startcutscene = startSceneObj.GetComponent<PlayableDirector>();

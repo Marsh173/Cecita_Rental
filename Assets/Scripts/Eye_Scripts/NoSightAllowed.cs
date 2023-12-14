@@ -36,7 +36,7 @@ public class NoSightAllowed : MonoBehaviour
 
         eye_UI = GetComponent<Button>();
         eye_UI.GetComponent<Image>().sprite = Eye_Open;
-        eyeBlinkImage.color = AdjustColor.eyeBgColor = new Color(0.2f, 0.2f, 0.2f, 1f); ;
+        eyeBlinkImage.color = AdjustColor.eyeBgColor /*= new Color(0.2f, 0.2f, 0.2f, 1f)*/;
         FInstructionText = FInstruction.GetComponent<TMP_Text>();
         EyeBarImage = EyeBarUI.GetComponent<Image>();
         slider = slider.GetComponent<Slider>();

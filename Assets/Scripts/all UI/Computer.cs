@@ -23,4 +23,10 @@ public class Computer : MonoBehaviour
             Cursor.visible = false;
         }
     }
+
+    public void CurosrUnvisible()
+    {
+        Cursor.visible = false;
+    }
+
 }

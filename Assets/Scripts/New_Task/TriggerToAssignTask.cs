@@ -52,14 +52,11 @@ public class TriggerToAssignTask : MonoBehaviour
 
     public void TempSubtaskDone()
     {
-        /*TM.SubTaskDone(2, 2);
-        TM.SubTaskDone(2, 1);*/
         monologue.text = "Maybe I should just wait for the package theif when the time comes...";
     }
 
     public void TempTalktoFrontDeskDone()
     {
         CutSceneScript.talkedtoNPC = true;
-        //TM.SubTaskDone(2, 1);
     }
 }

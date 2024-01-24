@@ -24,7 +24,9 @@ public class ftPointLightInspector : UnityEditor.Editor
     SerializedProperty ftraceLightBitmask;
     SerializedProperty ftraceLightBakeToIndirect;
     SerializedProperty ftraceLightRealisticFalloff;
+    SerializedProperty ftraceLightLegacySampling;
     SerializedProperty ftraceLightShadowmask;
+    SerializedProperty ftraceLightShadowmaskFalloff;
     SerializedProperty ftraceLightIndirectIntensity;
     SerializedProperty ftraceLightFalloffMinRadius;
     SerializedProperty ftraceLightInnerAngle;
@@ -63,7 +65,9 @@ public class ftPointLightInspector : UnityEditor.Editor
         ftraceLightBitmask = obj.FindProperty("bitmask");
         ftraceLightBakeToIndirect = obj.FindProperty("bakeToIndirect");
         ftraceLightRealisticFalloff = obj.FindProperty("realisticFalloff");
+        ftraceLightLegacySampling = obj.FindProperty("legacySampling");
         ftraceLightShadowmask = obj.FindProperty("shadowmask");
+        ftraceLightShadowmaskFalloff = obj.FindProperty("shadowmaskFalloff");
         ftraceLightFalloffMinRadius = obj.FindProperty("falloffMinRadius");
         ftraceShadowmaskGroupID = obj.FindProperty("shadowmaskGroupID");
         ftraceDirectionMode = obj.FindProperty("directionMode");
@@ -121,9 +125,22 @@ public class ftPointLightInspector : UnityEditor.Editor
         else
         {
             lightInt = light.intensity;
-            lightR = light.color.linear.r;
-            lightG = light.color.linear.g;
-            lightB = light.color.linear.b;
+            lightR = light.color.r;
+            lightG = light.color.g;
+            lightB = light.color.b;
+
+            if (GraphicsSettings.lightsUseColorTemperature)
+            {
+#if UNITY_2019_3_OR_NEWER
+                if (light.useColorTemperature)
+#endif
+                {
+                    var temp = Mathf.CorrelatedColorTemperatureToRGB(light.colorTemperature).gamma;
+                    lightR *= temp.r;
+                    lightG *= temp.g;
+                    lightB *= temp.b;
+                }
+            }
         }
     }
 
@@ -217,6 +234,17 @@ public class ftPointLightInspector : UnityEditor.Editor
                 return false;
             }
         }
+
+        SerializedProperty hdrpLightRadius = so.FindProperty("m_ShapeRadius");
+        if (hdrpLightRadius != null)
+        {
+            if (hdrpLightRadius.floatValue != 0)
+            {
+                why = "light radius is not 0.";
+                return false;
+            }
+        }
+
 
         return true;
     }
@@ -324,6 +352,12 @@ public class ftPointLightInspector : UnityEditor.Editor
         if (hdrpLightInnerAngle == null) return;
         hdrpLightInnerAngle.floatValue = ftraceLightInnerAngle.floatValue;
 
+        SerializedProperty hdrpLightRadius = so.FindProperty("m_ShapeRadius");
+        if (hdrpLightRadius != null)
+        {
+            hdrpLightRadius.floatValue = 0;
+        }
+
         so.ApplyModifiedProperties();
     }
 
@@ -373,6 +407,7 @@ public class ftPointLightInspector : UnityEditor.Editor
 
             EditorGUILayout.PropertyField(ftraceLightCutoff, new GUIContent("Range", "Lighting distance limit. When 'Physical falloff' is on, for maximum corectness set to a very high value. Using smaller values is useful for faster render times and to match real-time lights. Bakery uses Skyforge falloff to maintain balance between correct inverse-squared attenuation and practical limits (https://habr.com/company/mailru/blog/248873/)"));
             EditorGUILayout.PropertyField(ftraceLightSamples, new GUIContent("Samples", "The amount of sample points generated on the surface of this light. Point light shadows are traced towards points on a sphere (with radius = shadowSpread) around the light. "));
+            EditorGUILayout.PropertyField(ftraceLightLegacySampling, new GUIContent("Legacy sampling", "Use Bakery's original more biased shadow sampling strategy. Produces noise-free shadows, but wide penumbras can exhibit banding. If disabled, an unbiased, but noisier technique is used."));
             EditorGUILayout.PropertyField(ftraceLightProj, new GUIContent("Projection mask", "Determines additional light masking mode."));
 
             switch(ftraceLightProj.enumValueIndex)
@@ -424,7 +459,14 @@ public class ftPointLightInspector : UnityEditor.Editor
                 ftDirectLightInspector.BakeWhat contrib;
                 if (ftraceLightShadowmask.boolValue)
                 {
-                    contrib = ftDirectLightInspector.BakeWhat.IndirectAndShadowmask;
+                    if (ftraceLightBakeToIndirect.boolValue)
+                    {
+                        contrib = ftDirectLightInspector.BakeWhat.DirectIndirectShadowmask;
+                    }
+                    else
+                    {
+                        contrib = ftDirectLightInspector.BakeWhat.IndirectAndShadowmask;
+                    }
                 }
                 else if (ftraceLightBakeToIndirect.boolValue)
                 {
@@ -442,7 +484,7 @@ public class ftPointLightInspector : UnityEditor.Editor
                 }
                 else if (rmode == (int)ftRenderLightmap.RenderMode.Shadowmask)
                 {
-                    contrib = (ftDirectLightInspector.BakeWhat)EditorGUILayout.EnumPopup("Baked contribution", contrib);
+                    contrib = (ftDirectLightInspector.BakeWhat)EditorGUILayout.Popup("Baked contribution", (int)contrib, ftDirectLightInspector.directContributionOptions);
                 }
 
                 if (prevContrib != contrib)
@@ -457,6 +499,11 @@ public class ftPointLightInspector : UnityEditor.Editor
                         ftraceLightShadowmask.boolValue = true;
                         ftraceLightBakeToIndirect.boolValue = false;
                     }
+                    else if (contrib == ftDirectLightInspector.BakeWhat.DirectIndirectShadowmask)
+                    {
+                        ftraceLightShadowmask.boolValue = true;
+                        ftraceLightBakeToIndirect.boolValue = true;
+                    }
                     else
                     {
                         ftraceLightShadowmask.boolValue = false;
@@ -470,6 +517,7 @@ public class ftPointLightInspector : UnityEditor.Editor
             if (ftraceLightShadowmask.boolValue)
             {
                 EditorGUILayout.PropertyField(ftraceShadowmaskGroupID, new GUIContent("Shadowmask Group ID", "If set to 0, each shadowmasked light will have a separate mask. Lights sharing any other positive value will share the same mask. This is useful to avoid 4 channel limit in cases where light bounds overlap, but the overlapping part is occluded in both anyway."));
+                EditorGUILayout.PropertyField(ftraceLightShadowmaskFalloff, new GUIContent("Shadowmask with falloff", "Only useful for custom lighting. Bakes complete light attenuation (except distance) into the shadowmask."));
             }
 
             serializedObject.ApplyModifiedProperties();
@@ -607,9 +655,9 @@ public class ftPointLightInspector : UnityEditor.Editor
             if (isHDRP) fintensity *= Mathf.PI;
             if (PlayerSettings.colorSpace == ColorSpace.Linear)
             {
-                fr = clr.linear.r;// * fintensity;
-                fg = clr.linear.g;// * fintensity;
-                fb = clr.linear.b;// * fintensity;
+                fr = clr.r;// * fintensity;
+                fg = clr.g;// * fintensity;
+                fb = clr.b;// * fintensity;
             }
             else
             {
@@ -658,8 +706,11 @@ public class ftPointLightInspector : UnityEditor.Editor
 
         if (shadowmaskNoDynamicLight)
         {
-            EditorGUILayout.Space();
-            EditorGUILayout.LabelField("Warning: shadowmask needs enabled real-time light to work");
+            if (!(ftraceLightShadowmask.boolValue && ftraceLightBakeToIndirect.boolValue)) // not applicable to direct/indirect/shadowmask mode
+            {
+                EditorGUILayout.Space();
+                EditorGUILayout.LabelField("Warning: shadowmask needs enabled real-time light to work");
+            }
         }
 
         if (showWarningCant)
@@ -684,23 +735,11 @@ public class ftPointLightInspector : UnityEditor.Editor
                     var so = new SerializedObject(selectedLight);
                     InitSerializedProperties(so);
 
-                    if (PlayerSettings.colorSpace != ColorSpace.Linear)
-                    {
-                        ftraceLightColor.colorValue = light.color;
-                        ftraceLightIntensity.floatValue = light.intensity;
-                    }
-                    else if (!GraphicsSettings.lightsUseLinearIntensity)
-                    {
-                        float lightR, lightG, lightB, lightInt;
-                        GetLinearLightParameters(light, out lightR, out lightG, out lightB, out lightInt);
-                        ftraceLightColor.colorValue = new Color(lightR, lightG, lightB);
-                        ftraceLightIntensity.floatValue = lightInt;
-                    }
-                    else
-                    {
-                        ftraceLightColor.colorValue = light.color;
-                        ftraceLightIntensity.floatValue = light.intensity;
-                    }
+                    float lightR, lightG, lightB, lightInt;
+                    GetLinearLightParameters(light, out lightR, out lightG, out lightB, out lightInt);
+                    ftraceLightColor.colorValue = new Color(lightR, lightG, lightB);
+                    ftraceLightIntensity.floatValue = lightInt;
+
                     ftraceLightCutoff.floatValue = light.range;
                     ftraceLightAngle.floatValue = light.spotAngle;
 

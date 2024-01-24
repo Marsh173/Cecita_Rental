@@ -19,10 +19,11 @@ public class ftLMGroupSelectorInspector : UnityEditor.Editor
     string newName = null;
     int newRes = 512;
     int newMask = 1;
+    bool newAutoRes = false;
     BakeryLightmapGroup.ftLMGroupMode newMode = BakeryLightmapGroup.ftLMGroupMode.PackAtlas;
     BakeryLightmapGroup.RenderDirMode newDirMode = BakeryLightmapGroup.RenderDirMode.Auto;
 
-    static string[] selStrings = new string[] {"0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16",
+    public static string[] selStrings = new string[] {"0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16",
                                                 "17","18","19","20","21","22","23","24","25","26","27","28","29","30"};//,"31"};
 
     void OnEnable()
@@ -101,12 +102,21 @@ public class ftLMGroupSelectorInspector : UnityEditor.Editor
                     modeString += "RNM";
                 } else if (group.renderDirMode == BakeryLightmapGroup.RenderDirMode.SH) {
                     modeString += "SH";
+                } else if (group.renderDirMode == BakeryLightmapGroup.RenderDirMode.MonoSH) {
+                    modeString += "MonoSH";
                 }
                 EditorGUILayout.LabelField(modeString);
 
                 if (group.mode != BakeryLightmapGroup.ftLMGroupMode.Vertex)
                 {
-                    EditorGUILayout.LabelField("Resolution: " + (ftraceOverride.boolValue ? (ftraceResolution.intValue + " (atlas: " + group.resolution + ")") : (group.resolution)+""));
+                    if (group.autoResolution)
+                    {
+                        EditorGUILayout.LabelField("Resolution: " + (ftraceOverride.boolValue ? (ftraceResolution.intValue + " (atlas: auto)") : "auto"));
+                    }
+                    else
+                    {
+                        EditorGUILayout.LabelField("Resolution: " + (ftraceOverride.boolValue ? (ftraceResolution.intValue + " (atlas: " + group.resolution + ")") : (group.resolution)+""));
+                    }
                 }
 
                 if (group.mode == BakeryLightmapGroup.ftLMGroupMode.PackAtlas)
@@ -129,7 +139,15 @@ public class ftLMGroupSelectorInspector : UnityEditor.Editor
                 newMode = (BakeryLightmapGroup.ftLMGroupMode)EditorGUILayout.EnumPopup(newMode);
                 if (newMode != BakeryLightmapGroup.ftLMGroupMode.Vertex)
                 {
-                    newRes = (int)Mathf.ClosestPowerOfTwo(EditorGUILayout.IntSlider("Resolution", newRes, 1, 8192));
+                    if (!newAutoRes)
+                    {
+                        newRes = (int)Mathf.ClosestPowerOfTwo(EditorGUILayout.IntSlider("Resolution", newRes, 1, 8192));
+                    }
+                    EditorGUILayout.BeginHorizontal();
+                    EditorGUILayout.PrefixLabel(new GUIContent("Auto resolution", "Use Texels Per Unit to determine closest power-of-two resolution."));
+                    GUILayout.FlexibleSpace();
+                    newAutoRes = EditorGUILayout.Toggle("              ", newAutoRes);
+                    EditorGUILayout.EndHorizontal();
                 }
                 EditorGUILayout.PrefixLabel("Directional mode");
                 newDirMode = (BakeryLightmapGroup.RenderDirMode)EditorGUILayout.EnumPopup(newDirMode);
@@ -141,6 +159,7 @@ public class ftLMGroupSelectorInspector : UnityEditor.Editor
                     newGroup.bitmask = newMask;
                     newGroup.mode = newMode;
                     newGroup.renderDirMode = newDirMode;
+                    newGroup.autoResolution = newAutoRes;
 
                     string fname;
                     var activeScene = SceneManager.GetActiveScene();

@@ -8,6 +8,8 @@
 #define OPTIMIZEDAREA2 // efficient weighted sampling
 #define LAUNCH_VIA_DLL
 
+//#define DEBUGMESHDATA
+
 using UnityEngine;
 using UnityEditor;
 using System.IO;
@@ -134,7 +136,8 @@ public class ftBuildLights
         f.Write(SAMPLES);
         f.Write(obj.hemispherical);
 
-        f.Write("sky" + obj.UID + ".dds");
+        var texName = obj.cubemap != null ? GetTempTexName(obj.cubemap, "sky") : "sky.dds";
+        f.Write(texName);
 
         f.Close();
 
@@ -155,9 +158,8 @@ public class ftBuildLights
             var up = tform.up;
             var fw = tform.forward;
 
-            var texName = "sky" + obj.UID + ".dds";
-
             bool isDoubleLDR = false;
+            bool isRGBM = false;
 
             // Find out texture encoding
             // Even if pixel format is the same, different encoding rules (dLDR, RGBM) can be used
@@ -178,6 +180,7 @@ public class ftBuildLights
                     int usage = (int)texUtil_GetUsage.Invoke(null, new object[]{obj.cubemap});
                     isDoubleLDR = usage == 1 // BakedLightmapDoubleLDR
                                || usage == 7;// DoubleLDR
+                    isRGBM = usage == 5;     // RGBMEncoded
                 }
             }
 
@@ -200,7 +203,8 @@ public class ftBuildLights
                         fw.z,
                         folder + "/" + texName,
                         isLinear,
-                        isDoubleLDR
+                        isDoubleLDR,
+                        isRGBM
                         );
                     GL.IssuePluginEvent(3); // convert cubemap to small lat/lon DDS
                 }
@@ -229,7 +233,8 @@ public class ftBuildLights
                         obj.transform.forward.z,
                         folder + "/" + texName,
                         isLinear,
-                        isDoubleLDR
+                        isDoubleLDR,
+                        isRGBM
                         );
                     GL.IssuePluginEvent(3); // convert cubemap to small lat/lon DDS
                 }
@@ -490,6 +495,7 @@ public class ftBuildLights
             downsampleTex.ReadPixels(new Rect(0,0,downsampleRes,downsampleRes), 0, 0, false);
             downsampleTex.Apply();
             var bytes = downsampleTex.GetRawTextureData();
+            RenderTexture.active = null;
             Object.DestroyImmediate(downsampleTex);
             downsampleRT.Release();
             pixels = new float[bytes.Length / 4];
@@ -610,8 +616,8 @@ public class ftBuildLights
 #endif
 
 
-        f.Write(obj.samples2);
-        f.Write(SAMPLES);
+        f.Write(obj.shadowmask ? 0 : obj.samples2);
+        f.Write(obj.shadowmaskFalloff ? -SAMPLES : SAMPLES);
         Vector3 trinormal;
         for(int sample=0; sample<SAMPLES; sample++)
         {
@@ -629,6 +635,19 @@ public class ftBuildLights
             var rndA = Random.value;
             var rndB = Random.value;
             var rndC = Random.value;
+
+#if DEBUGMESHDATA
+            if ((tri*3+2) >= indices.Length)
+            {
+                Debug.LogError("tri*3+2 >= indices.Length for " + obj.name);
+                return 0.0f;
+            }
+            else if (indices[tri*3+2] >= verts.Length)
+            {
+                Debug.LogError("indices[tri*3+2] >= verts.Length for " + obj.name);
+                return 0.0f;
+            }
+#endif
 
             var A = verts[indices[tri*3]];
             var B = verts[indices[tri*3+1]];
@@ -865,7 +884,11 @@ public class ftBuildLights
 
     static bool SavePointLightTexture(UnityEngine.Object tex, string folder, string texName, bool isCookie, bool isCubemap, bool isIES)
     {
-        if (File.Exists(folder + "/" + texName)) return true;
+        if (File.Exists(folder + "/" + texName))
+        {
+            if (ftRenderLightmap.clientMode) ftClient.serverFileList.Add(texName);
+            return true;
+        }
 
         if (isCookie)
         {
@@ -893,17 +916,18 @@ public class ftBuildLights
             {
                 ftBuildGraphics.InitShaders();
                 ftBuildGraphics.SaveSky((tex as Cubemap).GetNativeTexturePtr(),
-                    1,
-                    0,
-                    0,
-                    0,
-                    1,
-                    0,
                     0,
                     0,
                     1,
+                    0,
+                    1,
+                    0,
+                    1,
+                    0,
+                    0,
                     folder + "/" + texName,
                     true,
+                    false,
                     false
                     );
                 GL.IssuePluginEvent(3); // convert cubemap
@@ -1063,6 +1087,9 @@ public class ftBuildLights
             {
                 samples = System.Math.Max(samples / sampleDiv, 1);
             }
+
+            if (obj.shadowmaskFalloff) samples = -samples;
+
             flights.Write(samples);
         }
 

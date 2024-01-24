@@ -14,6 +14,7 @@
 			CGPROGRAM
 			#pragma vertex vert
 			#pragma fragment frag
+            #pragma exclude_renderers gles gles3
 
 			#include "UnityCG.cginc"
 

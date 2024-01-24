@@ -157,7 +157,9 @@ public class ftUVGBufferGen
     {
         alphaEnabled = true;
         rtAlpha = new RenderTexture(size, size, 0, RenderTextureFormat.ARGB32, RenderTextureReadWrite.Linear);
+        rtAlpha.name = "BakeryRTAlpha";
         texAlpha = new Texture2D(size, size, TextureFormat.RGBA32, false, true);
+        texAlpha.name = "BakeryTexAlpha";
         Graphics.SetRenderTarget(rtAlpha);
         GL.Clear(true, true, new Color(0,0,0,0));
     }
@@ -206,7 +208,7 @@ public class ftUVGBufferGen
             }
         }
 
-        var scaleOffsetFlipped = new Vector4(scaleOffset.x, -scaleOffset.y, scaleOffset.z, 1.0f - scaleOffset.w);
+        //var scaleOffsetFlipped = new Vector4(scaleOffset.x, -scaleOffset.y, scaleOffset.z, 1.0f - scaleOffset.w);
 
         //UpdateMatrix(worldMatrix);
 
@@ -270,7 +272,7 @@ public class ftUVGBufferGen
                             }
                         }
                     }
-                    Shader.SetGlobalVector("unity_LightmapST", (isHDRP) ? scaleOffsetFlipped : scaleOffset);
+                    Shader.SetGlobalVector("unity_LightmapST", scaleOffset);//(isHDRP) ? scaleOffsetFlipped : scaleOffset);
                     Shader.SetGlobalVector("unity_MetaFragmentControl", pass == PASS_ALBEDO ? metaControlAlbedo : metaControlEmission);
 
                     if (metaPass >= 0)
@@ -432,7 +434,7 @@ public class ftUVGBufferGen
                         else
                         {
                             // TODO: use in HDRP as well
-                            var srcVec = (isHDRP) ? scaleOffsetFlipped : scaleOffset;
+                            var srcVec = scaleOffset;//(isHDRP) ? scaleOffsetFlipped : scaleOffset;
                             var vec = new Vector4(srcVec.x, srcVec.y, srcVec.z + uvOffset[j*2] * texelSize, srcVec.w + uvOffset[j*2+1] * texelSize);
                             Shader.SetGlobalVector("unity_LightmapST", vec);
                             if (bakeryPass >= 0)
@@ -503,6 +505,7 @@ public class ftUVGBufferGen
             texAlpha.Apply();
             Graphics.SetRenderTarget(null);
             rtAlpha.Release();
+            rtAlpha = null;
         }
     }
 

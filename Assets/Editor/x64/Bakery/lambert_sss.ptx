@@ -28,6 +28,7 @@
 .global .align 4 .u32 LMID;
 .global .align 4 .f32 lightRadius;
 .global .align 4 .b8 lightColor[12];
+.global .align 4 .u32 SSSInputTex;
 .global .align 4 .b8 _ZN21rti_internal_typeinfo7pixelIDE[8] = {82, 97, 121, 0, 8, 0, 0, 0};
 .global .align 4 .b8 _ZN21rti_internal_typeinfo10resolutionE[8] = {82, 97, 121, 0, 8, 0, 0, 0};
 .global .align 4 .b8 _ZN21rti_internal_typeinfo6normalE[8] = {82, 97, 121, 0, 12, 0, 0, 0};
@@ -43,6 +44,7 @@
 .global .align 4 .b8 _ZN21rti_internal_typeinfo4LMIDE[8] = {82, 97, 121, 0, 4, 0, 0, 0};
 .global .align 4 .b8 _ZN21rti_internal_typeinfo11lightRadiusE[8] = {82, 97, 121, 0, 4, 0, 0, 0};
 .global .align 4 .b8 _ZN21rti_internal_typeinfo10lightColorE[8] = {82, 97, 121, 0, 12, 0, 0, 0};
+.global .align 4 .b8 _ZN21rti_internal_typeinfo11SSSInputTexE[8] = {82, 97, 121, 0, 4, 0, 0, 0};
 .global .align 8 .u64 _ZN21rti_internal_register20reg_bitness_detectorE;
 .global .align 8 .u64 _ZN21rti_internal_register24reg_exception_64_detail0E;
 .global .align 8 .u64 _ZN21rti_internal_register24reg_exception_64_detail1E;
@@ -82,6 +84,7 @@
 .global .align 4 .b8 _ZN21rti_internal_typename4LMIDE[4] = {105, 110, 116, 0};
 .global .align 8 .b8 _ZN21rti_internal_typename11lightRadiusE[6] = {102, 108, 111, 97, 116, 0};
 .global .align 8 .b8 _ZN21rti_internal_typename10lightColorE[7] = {102, 108, 111, 97, 116, 51, 0};
+.global .align 4 .b8 _ZN21rti_internal_typename11SSSInputTexE[4] = {105, 110, 116, 0};
 .global .align 4 .u32 _ZN21rti_internal_typeenum7pixelIDE = 4919;
 .global .align 4 .u32 _ZN21rti_internal_typeenum10resolutionE = 4919;
 .global .align 4 .u32 _ZN21rti_internal_typeenum6normalE = 4919;
@@ -97,6 +100,7 @@
 .global .align 4 .u32 _ZN21rti_internal_typeenum4LMIDE = 4919;
 .global .align 4 .u32 _ZN21rti_internal_typeenum11lightRadiusE = 4919;
 .global .align 4 .u32 _ZN21rti_internal_typeenum10lightColorE = 4919;
+.global .align 4 .u32 _ZN21rti_internal_typeenum11SSSInputTexE = 4919;
 .global .align 16 .b8 _ZN21rti_internal_semantic7pixelIDE[14] = {114, 116, 76, 97, 117, 110, 99, 104, 73, 110, 100, 101, 120, 0};
 .global .align 16 .b8 _ZN21rti_internal_semantic10resolutionE[12] = {114, 116, 76, 97, 117, 110, 99, 104, 68, 105, 109, 0};
 .global .align 16 .b8 _ZN21rti_internal_semantic6normalE[17] = {97, 116, 116, 114, 105, 98, 117, 116, 101, 32, 110, 111, 114, 109, 97, 108, 0};
@@ -112,6 +116,7 @@
 .global .align 1 .b8 _ZN21rti_internal_semantic4LMIDE[1];
 .global .align 1 .b8 _ZN21rti_internal_semantic11lightRadiusE[1];
 .global .align 1 .b8 _ZN21rti_internal_semantic10lightColorE[1];
+.global .align 1 .b8 _ZN21rti_internal_semantic11SSSInputTexE[1];
 .global .align 1 .b8 _ZN23rti_internal_annotation7pixelIDE[1];
 .global .align 1 .b8 _ZN23rti_internal_annotation10resolutionE[1];
 .global .align 1 .b8 _ZN23rti_internal_annotation6normalE[1];
@@ -127,16 +132,16 @@
 .global .align 1 .b8 _ZN23rti_internal_annotation4LMIDE[1];
 .global .align 1 .b8 _ZN23rti_internal_annotation11lightRadiusE[1];
 .global .align 1 .b8 _ZN23rti_internal_annotation10lightColorE[1];
+.global .align 1 .b8 _ZN23rti_internal_annotation11SSSInputTexE[1];
 
 .visible .entry _Z6oxMainv(
 
 )
 {
 	.reg .pred 	%p<5>;
-	.reg .b16 	%rs<8>;
-	.reg .f32 	%f<50>;
-	.reg .b32 	%r<12>;
-	.reg .b64 	%rd<8>;
+	.reg .b16 	%rs<4>;
+	.reg .f32 	%f<48>;
+	.reg .b32 	%r<10>;
 
 
 	ld.global.f32 	%f2, [normal];
@@ -153,11 +158,11 @@
 	bra.uni 	BB0_1;
 
 BB0_3:
-	ld.global.f32 	%f48, [t];
-	neg.f32 	%f49, %f48;
-	st.global.f32 	[payload], %f49;
-	st.global.f32 	[payload+4], %f49;
-	st.global.f32 	[payload+8], %f49;
+	ld.global.f32 	%f46, [t];
+	neg.f32 	%f47, %f46;
+	st.global.f32 	[payload], %f47;
+	st.global.f32 	[payload+4], %f47;
+	st.global.f32 	[payload+8], %f47;
 	bra.uni 	BB0_4;
 
 BB0_1:
@@ -168,71 +173,62 @@ BB0_1:
 	setp.ne.s32	%p2, %r1, %r2;
 	@%p2 bra 	BB0_4;
 
-	cvt.rzi.s32.f32	%r5, %f1;
-	cvt.rn.f32.s32	%f15, %r5;
-	sub.f32 	%f16, %f1, %f15;
-	ld.global.v2.u32 	{%r6, %r7}, [resolution];
-	cvt.rn.f32.u32	%f17, %r6;
-	mul.f32 	%f18, %f16, %f17;
-	cvt.rzi.u32.f32	%r10, %f18;
-	cvt.rn.f32.u32	%f19, %r7;
-	ld.global.f32 	%f20, [texCoords+4];
-	mul.f32 	%f21, %f20, %f19;
-	cvt.rzi.u32.f32	%r11, %f21;
-	cvt.u64.u32	%rd3, %r10;
-	cvt.u64.u32	%rd4, %r11;
-	mov.u64 	%rd7, lightmapDirect;
-	cvta.global.u64 	%rd2, %rd7;
-	mov.u32 	%r3, 2;
-	mov.u32 	%r4, 8;
-	mov.u64 	%rd6, 0;
+	cvt.rzi.s32.f32	%r9, %f1;
+	cvt.rn.f32.s32	%f19, %r9;
+	sub.f32 	%f12, %f1, %f19;
+	ld.global.f32 	%f13, [texCoords+4];
+	ld.global.u32 	%r7, [SSSInputTex];
+	mov.u32 	%r8, 2;
+	mov.f32 	%f15, 0f00000000;
 	// inline asm
-	call (%rd1), _rt_buffer_get_64, (%rd2, %r3, %r4, %rd3, %rd4, %rd6, %rd6);
+	call (%r3, %r4, %r5, %r6), _rt_texture_get_u_id, (%r7, %r8, %f12, %f13, %f15, %f15);
 	// inline asm
-	ld.v4.u16 	{%rs4, %rs5, %rs6, %rs7}, [%rd1];
+	cvt.u16.u32	%rs1, %r3;
 	// inline asm
-	{  cvt.f32.f16 %f12, %rs4;}
+	{  cvt.f32.f16 %f16, %rs1;}
 
 	// inline asm
+	cvt.u16.u32	%rs2, %r4;
 	// inline asm
-	{  cvt.f32.f16 %f13, %rs5;}
+	{  cvt.f32.f16 %f17, %rs2;}
 
 	// inline asm
+	cvt.u16.u32	%rs3, %r5;
 	// inline asm
-	{  cvt.f32.f16 %f14, %rs6;}
+	{  cvt.f32.f16 %f18, %rs3;}
 
 	// inline asm
-	ld.global.f32 	%f22, [t];
-	ld.global.f32 	%f23, [lightRadius];
-	mul.f32 	%f24, %f23, %f22;
-	neg.f32 	%f25, %f24;
-	mul.f32 	%f26, %f24, 0fBFB8AA3B;
-	cvt.rzi.f32.f32	%f27, %f26;
-	mov.f32 	%f28, 0fBF317200;
-	fma.rn.f32 	%f29, %f27, %f28, %f25;
-	mov.f32 	%f30, 0fB5BFBE8E;
-	fma.rn.f32 	%f31, %f27, %f30, %f29;
-	mul.f32 	%f32, %f31, 0f3FB8AA3B;
-	ex2.approx.ftz.f32 	%f33, %f32;
-	add.f32 	%f34, %f27, 0f00000000;
-	ex2.approx.f32 	%f35, %f34;
-	mul.f32 	%f36, %f33, %f35;
-	setp.gt.f32	%p3, %f24, 0f42D20000;
-	selp.f32	%f37, 0f00000000, %f36, %p3;
-	setp.lt.f32	%p4, %f24, 0fC2D20000;
-	selp.f32	%f38, 0f7F800000, %f37, %p4;
-	mul.f32 	%f39, %f12, %f38;
-	mul.f32 	%f40, %f13, %f38;
-	mul.f32 	%f41, %f14, %f38;
-	ld.global.f32 	%f42, [lightColor];
-	mul.f32 	%f43, %f42, %f39;
-	ld.global.f32 	%f44, [lightColor+4];
-	mul.f32 	%f45, %f44, %f40;
-	ld.global.f32 	%f46, [lightColor+8];
-	mul.f32 	%f47, %f46, %f41;
-	st.global.f32 	[payload], %f43;
-	st.global.f32 	[payload+4], %f45;
-	st.global.f32 	[payload+8], %f47;
+	ld.global.f32 	%f20, [t];
+	ld.global.f32 	%f21, [lightRadius];
+	mul.f32 	%f22, %f21, %f20;
+	neg.f32 	%f23, %f22;
+	mul.f32 	%f24, %f22, 0fBFB8AA3B;
+	cvt.rzi.f32.f32	%f25, %f24;
+	mov.f32 	%f26, 0fBF317200;
+	fma.rn.f32 	%f27, %f25, %f26, %f23;
+	mov.f32 	%f28, 0fB5BFBE8E;
+	fma.rn.f32 	%f29, %f25, %f28, %f27;
+	mul.f32 	%f30, %f29, 0f3FB8AA3B;
+	ex2.approx.ftz.f32 	%f31, %f30;
+	add.f32 	%f32, %f25, 0f00000000;
+	ex2.approx.f32 	%f33, %f32;
+	mul.f32 	%f34, %f31, %f33;
+	setp.gt.f32	%p3, %f22, 0f42D20000;
+	selp.f32	%f35, 0f00000000, %f34, %p3;
+	setp.lt.f32	%p4, %f22, 0fC2D20000;
+	selp.f32	%f36, 0f7F800000, %f35, %p4;
+	mul.f32 	%f37, %f16, %f36;
+	mul.f32 	%f38, %f17, %f36;
+	mul.f32 	%f39, %f18, %f36;
+	ld.global.f32 	%f40, [lightColor];
+	mul.f32 	%f41, %f40, %f37;
+	ld.global.f32 	%f42, [lightColor+4];
+	mul.f32 	%f43, %f42, %f38;
+	ld.global.f32 	%f44, [lightColor+8];
+	mul.f32 	%f45, %f44, %f39;
+	st.global.f32 	[payload], %f41;
+	st.global.f32 	[payload+4], %f43;
+	st.global.f32 	[payload+8], %f45;
 
 BB0_4:
 	ret;

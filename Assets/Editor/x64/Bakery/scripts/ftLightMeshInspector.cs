@@ -20,7 +20,9 @@ public class ftLightMeshInspector : UnityEditor.Editor
     SerializedProperty ftraceLightSamples2;
     SerializedProperty ftraceLightBitmask;
     SerializedProperty ftraceLightSelfShadow;
+    SerializedProperty ftraceLightShadowmask;
     SerializedProperty ftraceLightBakeToIndirect;
+    SerializedProperty ftraceLightShadowmaskFalloff;
 
     static string ftLightShaderName = "Bakery/Light";
 
@@ -42,7 +44,9 @@ public class ftLightMeshInspector : UnityEditor.Editor
         ftraceLightSamples2 = obj.FindProperty("samples2");
         ftraceLightBitmask = obj.FindProperty("bitmask");
         ftraceLightSelfShadow = obj.FindProperty("selfShadow");
+        ftraceLightShadowmask = obj.FindProperty("shadowmask");
         ftraceLightBakeToIndirect = obj.FindProperty("bakeToIndirect");
+        ftraceLightShadowmaskFalloff = obj.FindProperty("shadowmaskFalloff");
     }
 
     void OnEnable()
@@ -96,9 +100,22 @@ public class ftLightMeshInspector : UnityEditor.Editor
         else
         {
             lightInt = light.intensity;
-            lightR = light.color.linear.r;
-            lightG = light.color.linear.g;
-            lightB = light.color.linear.b;
+            lightR = light.color.r;
+            lightG = light.color.g;
+            lightB = light.color.b;
+
+            if (GraphicsSettings.lightsUseColorTemperature)
+            {
+#if UNITY_2019_3_OR_NEWER
+                if (light.useColorTemperature)
+#endif
+                {
+                    var temp = Mathf.CorrelatedColorTemperatureToRGB(light.colorTemperature).gamma;
+                    lightR *= temp.r;
+                    lightG *= temp.g;
+                    lightB *= temp.b;
+                }
+            }
         }
     }
 
@@ -220,7 +237,18 @@ public class ftLightMeshInspector : UnityEditor.Editor
             if (rmode != (int)ftRenderLightmap.RenderMode.FullLighting)
             {
                 ftDirectLightInspector.BakeWhat contrib;
-                if (ftraceLightBakeToIndirect.boolValue)
+                if (ftraceLightShadowmask.boolValue)
+                {
+                    if (ftraceLightBakeToIndirect.boolValue)
+                    {
+                        contrib = ftDirectLightInspector.BakeWhat.DirectIndirectShadowmask;
+                    }
+                    else
+                    {
+                        contrib = ftDirectLightInspector.BakeWhat.IndirectAndShadowmask;
+                    }
+                }
+                else if (ftraceLightBakeToIndirect.boolValue)
                 {
                     contrib = ftDirectLightInspector.BakeWhat.DirectAndIndirect;
                 }
@@ -230,22 +258,43 @@ public class ftLightMeshInspector : UnityEditor.Editor
                 }
                 var prevContrib = contrib;
 
-                contrib = (ftDirectLightInspector.BakeWhat)EditorGUILayout.Popup("Baked contribution", (int)contrib, ftSkyLightInspector.directContributionOptions);
+                if (rmode == (int)ftRenderLightmap.RenderMode.Indirect)
+                {
+                    contrib = (ftDirectLightInspector.BakeWhat)EditorGUILayout.Popup("Baked contribution", (int)contrib, ftDirectLightInspector.directContributionIndirectOptions);
+                }
+                else if (rmode == (int)ftRenderLightmap.RenderMode.Shadowmask)
+                {
+                    contrib = (ftDirectLightInspector.BakeWhat)EditorGUILayout.Popup("Baked contribution", (int)contrib, ftDirectLightInspector.directContributionOptions);
+                }
 
                 if (prevContrib != contrib)
                 {
                     if (contrib == ftDirectLightInspector.BakeWhat.IndirectOnly)
                     {
+                        ftraceLightShadowmask.boolValue = false;
                         ftraceLightBakeToIndirect.boolValue = false;
+                    }
+                    else if (contrib == ftDirectLightInspector.BakeWhat.IndirectAndShadowmask)
+                    {
+                        ftraceLightShadowmask.boolValue = true;
+                        ftraceLightBakeToIndirect.boolValue = false;
+                    }
+                    else if (contrib == ftDirectLightInspector.BakeWhat.DirectIndirectShadowmask)
+                    {
+                        ftraceLightShadowmask.boolValue = true;
+                        ftraceLightBakeToIndirect.boolValue = true;
                     }
                     else
                     {
+                        ftraceLightShadowmask.boolValue = false;
                         ftraceLightBakeToIndirect.boolValue = true;
                     }
                 }
             }
 
             EditorGUILayout.PropertyField(ftraceLightIndirectIntensity, new GUIContent("Indirect intensity", "Non-physical GI multiplier for this light"));
+
+            EditorGUILayout.PropertyField(ftraceLightShadowmaskFalloff, new GUIContent("Shadowmask with falloff", "Only useful for custom lighting. Bakes complete light attenuation into the shadowmask."));
 
             serializedObject.ApplyModifiedProperties();
         }
@@ -298,9 +347,9 @@ public class ftLightMeshInspector : UnityEditor.Editor
                 float fr, fg, fb;
                 if (PlayerSettings.colorSpace == ColorSpace.Linear)
                 {
-                    fr = clr.linear.r;// * fintensity;
-                    fg = clr.linear.g;// * fintensity;
-                    fb = clr.linear.b;// * fintensity;
+                    fr = clr.r;// * fintensity;
+                    fg = clr.g;// * fintensity;
+                    fb = clr.b;// * fintensity;
                 }
                 else
                 {
@@ -490,23 +539,11 @@ public class ftLightMeshInspector : UnityEditor.Editor
 
                         if (areaLight != null)
                         {
-                            if (PlayerSettings.colorSpace != ColorSpace.Linear)
-                            {
-                                ftraceLightColor.colorValue = areaLight.color;
-                                ftraceLightIntensity.floatValue = areaLight.intensity;
-                            }
-                            else if (!GraphicsSettings.lightsUseLinearIntensity)
-                            {
-                                float lightR, lightG, lightB, lightInt;
-                                GetLinearLightParameters(areaLight, out lightR, out lightG, out lightB, out lightInt);
-                                ftraceLightColor.colorValue = new Color(lightR, lightG, lightB);
-                                ftraceLightIntensity.floatValue = lightInt;
-                            }
-                            else
-                            {
-                                ftraceLightColor.colorValue = areaLight.color;
-                                ftraceLightIntensity.floatValue = areaLight.intensity;
-                            }
+                            float lightR, lightG, lightB, lightInt;
+                            GetLinearLightParameters(areaLight, out lightR, out lightG, out lightB, out lightInt);
+                            ftraceLightColor.colorValue = new Color(lightR, lightG, lightB);
+                            ftraceLightIntensity.floatValue = lightInt;
+
                             ftraceLightCutoff.floatValue = areaLight.range * 1.5f;
                             ftraceLightSelfShadow.boolValue = false;
                             ftraceLightIndirectIntensity.floatValue = areaLight.bounceIntensity;

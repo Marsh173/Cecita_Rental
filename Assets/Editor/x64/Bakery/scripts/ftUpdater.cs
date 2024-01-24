@@ -33,6 +33,8 @@ public class ftUpdater : EditorWindow
     string lastVer = "";
     bool init = false;
 
+    bool anythingDownloaded = false;
+
 	[MenuItem ("Bakery/Utilities/Check for patches", false, 1000)]
 	public static void Check()
     {
@@ -132,6 +134,7 @@ public class ftUpdater : EditorWindow
 
         dw = DownloadItem(url);
         while(dw.MoveNext()) yield return null;
+        anythingDownloaded = true;
 
         File.WriteAllText(curItem + "-dver.txt", lastVer); // downloaded
     }
@@ -151,6 +154,8 @@ public class ftUpdater : EditorWindow
             DebugLogError("No invoices set");
             yield break;
         }
+
+        anythingDownloaded = false;
 
         if (downloadLM)
         {
@@ -176,64 +181,76 @@ public class ftUpdater : EditorWindow
             if (isError) yield break;
         }
 
-        var cachePath = Directory.GetCurrentDirectory() + "/BakeryPatchCache";
-        if (!Directory.Exists(cachePath)) Directory.CreateDirectory(cachePath);
-
-        var runtimePath = cachePath + "/Runtime";
-        if (!Directory.Exists(runtimePath)) Directory.CreateDirectory(runtimePath);
-
-        var editorPath =  cachePath + "/Editor";
-        if (!Directory.Exists(editorPath)) Directory.CreateDirectory(editorPath);
-
-        if (downloadLM)
+        if (!anythingDownloaded)
         {
-            // Extract runtime files
-            int err = ExtractZIP("bakery-csharp.zip", 1, "Bakery", runtimePath);
-            if (err != 0)
+            if (EditorUtility.DisplayDialog("Bakery", "There are no new patches. Re-apply previous patch?", "Yes", "No"))
             {
-                DebugLogError("ExtractZIP: " + err);
-                yield break;
+                anythingDownloaded = true;
             }
-
-            // Extract editor files
-            err = ExtractZIP("bakery-csharp.zip", 3, "Bakery", editorPath);
-            if (err != 0)
-            {
-                DebugLogError("ExtractZIP: " + err);
-                yield break;
-            }
-
-            Debug.Log("Extracted bakery-csharp");
-
-            // Extract binaries
-            err = ExtractZIP("bakery-compiled.zip", 1, "", editorPath);
-            if (err != 0)
-            {
-                DebugLogError("ExtractZIP: " + err);
-                yield break;
-            }
-
-            Debug.Log("Extracted bakery-compiled");
         }
 
-        if (downloadRT)
+        if (anythingDownloaded)
         {
-            // Extract RTPreview files
-            int err = ExtractZIP("bakery-rtpreview-csharp.zip", 1, "", editorPath);
-            if (err != 0)
+            var cachePath = Directory.GetCurrentDirectory() + "/BakeryPatchCache";
+            if (!Directory.Exists(cachePath)) Directory.CreateDirectory(cachePath);
+
+            var runtimePath = cachePath + "/Runtime";
+            if (!Directory.Exists(runtimePath)) Directory.CreateDirectory(runtimePath);
+
+            var editorPath =  cachePath + "/Editor";
+            if (!Directory.Exists(editorPath)) Directory.CreateDirectory(editorPath);
+
+            if (downloadLM)
             {
-                DebugLogError("ExtractZIP: " + err);
-                yield break;
+                // Extract runtime files
+                int err = ExtractZIP("bakery-csharp.zip", 1, "Bakery", runtimePath);
+                if (err != 0)
+                {
+                    DebugLogError("ExtractZIP: " + err);
+                    yield break;
+                }
+
+                // Extract editor files
+                err = ExtractZIP("bakery-csharp.zip", 3, "Bakery", editorPath);
+                if (err != 0)
+                {
+                    DebugLogError("ExtractZIP: " + err);
+                    yield break;
+                }
+
+                Debug.Log("Extracted bakery-csharp");
+
+                // Extract binaries
+                err = ExtractZIP("bakery-compiled.zip", 1, "", editorPath);
+                if (err != 0)
+                {
+                    DebugLogError("ExtractZIP: " + err);
+                    yield break;
+                }
+
+                Debug.Log("Extracted bakery-compiled");
             }
 
-            Debug.Log("Extracted bakery-rtpreview-csharp");
+            if (downloadRT)
+            {
+                // Extract RTPreview files
+                int err = ExtractZIP("bakery-rtpreview-csharp.zip", 1, "", editorPath);
+                if (err != 0)
+                {
+                    DebugLogError("ExtractZIP: " + err);
+                    yield break;
+                }
+
+                Debug.Log("Extracted bakery-rtpreview-csharp");
+            }
         }
 
         Debug.Log("Done");
 
         progressFunc = null;
         Repaint();
-        EditorUtility.DisplayDialog("Bakery", "Restart Editor to apply the patch", "OK");
+
+        if (anythingDownloaded) EditorUtility.DisplayDialog("Bakery", "Restart Editor to apply the patch", "OK");
     }
 
     void CheckUpdate()
@@ -261,7 +278,7 @@ public class ftUpdater : EditorWindow
         GUI.Label(new Rect(5, y, 130, 18), "Lightmapper invoice:");
         var prev = inLM;
         inLM = EditorGUI.TextField(new Rect(140, y, 170, 18), inLM);
-        if (inLM != prev && (inLM.Length == 14 || inLM.Length == 0))
+        if (inLM != prev && (inLM.Length == 14 || inLM.Length == 0 || inLM.Length == 20)) // 14 is invoice, 20 is HB code
         {
             PlayerPrefs.SetString("BakeryInvLM", inLM);
         }

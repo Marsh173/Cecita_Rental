@@ -356,6 +356,19 @@ public class BakerySectorInspector : Editor
         //var semiTransparent = new Color(1, 1, 1, 0.2f);
         Handles.color = solid;
 
+        bool cull = false;
+        Plane[] frustum = null;
+        var curView = SceneView.currentDrawingSceneView;
+        if (curView != null)
+        {
+            var cam = curView.camera;
+            if (cam != null)
+            {
+                cull = true;
+                frustum = GeometryUtility.CalculateFrustumPlanes(cam);
+            }
+        }
+
         if (Tools.current != lastTool && Tools.current != Tool.None)
         {
             lastTool = Tools.current;
@@ -373,8 +386,6 @@ public class BakerySectorInspector : Editor
             Handles.matrix = Matrix4x4.TRS(vol.tforms[i].position, vol.tforms[i].rotation, Vector3.one);
             boundsHandle.size = vol.tforms[i].localScale;
 
-            Handles.Label(Vector3.zero, "" + i, LabelStyle);
-
             if (!vol.previewEnabled)
             {
                 EditorGUI.BeginChangeCheck();
@@ -386,6 +397,16 @@ public class BakerySectorInspector : Editor
                     vol.tforms[i].position = Handles.matrix.MultiplyPoint(boundsHandle.center);
                 }
             }
+
+            if (cull)
+            {
+                if(!GeometryUtility.TestPlanesAABB(frustum, new Bounds(vol.tforms[i].position, Vector3.one)))
+                {
+                    continue;
+                }
+            }
+            Handles.Label(Vector3.zero, "" + i, LabelStyle);
+
 
             //Handles.color = semiTransparent;
             //Handles.DrawWireCube(boundsHandle.center, boundsHandle.size + Vector3.one * vol.nearDistance);
@@ -433,6 +454,14 @@ public class BakerySectorInspector : Editor
             if (vol.cpoints[i] == null) continue;
 
             Handles.zTest = UnityEngine.Rendering.CompareFunction.Less;
+
+            if (cull)
+            {
+                if(!GeometryUtility.TestPlanesAABB(frustum, new Bounds(vol.cpoints[i].position, Vector3.one)))
+                {
+                    continue;
+                }
+            }
 
             try
             {

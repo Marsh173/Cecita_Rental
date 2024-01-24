@@ -80,12 +80,20 @@ float4 ftBicubicSampleShadow3( Texture2D tex, SamplerState ftShadowSampler, floa
     return r;
 }
 
+#if UNITY_VERSION >= 201740
+    SamplerState bakery_trilinear_clamp_sampler2;
+#endif
+
 float4 ftBicubicSampleShadow( Texture2D tex, float2 uv )
 {
-    #if defined(LIGHTMAP_ON)
-    SamplerState samplerMask = samplerunity_Lightmap;
+    #if UNITY_VERSION >= 201740
+        SamplerState samplerMask = bakery_trilinear_clamp_sampler2;
     #else
-    SamplerState samplerMask = samplerunity_ShadowMask;
+        #if defined(LIGHTMAP_ON)
+        SamplerState samplerMask = samplerunity_Lightmap;
+        #else
+        SamplerState samplerMask = samplerunity_ShadowMask;
+        #endif
     #endif
 
     return ftBicubicSampleShadow3(tex, samplerMask, uv);

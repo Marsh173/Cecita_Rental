@@ -13,26 +13,27 @@ public class ftClient
     public const byte SERVERTASK_FTRACE = 1;
     public const byte SERVERTASK_FTRACERTX = 2;
     public const byte SERVERTASK_COMBINEMASKS = 3;
+    public const byte SERVERTASK_COMBINESH = 4;
 
-    public const byte SERVERTASK_DENOISE5 = 4;
-    public const byte SERVERTASK_DENOISE6 = 5;
-    public const byte SERVERTASK_DENOISE7 = 6;
-    public const byte SERVERTASK_DENOISEOIDN = 7;
+    public const byte SERVERTASK_DENOISE5 = 5;
+    public const byte SERVERTASK_DENOISE6 = 6;
+    public const byte SERVERTASK_DENOISE7 = 7;
+    public const byte SERVERTASK_DENOISEOIDN = 8;
 
-    public const byte SERVERTASK_HF2HDR = 8;
-    public const byte SERVERTASK_RGBA2TGA = 9;
-    public const byte SERVERTASK_SEAMFIX = 10;
+    public const byte SERVERTASK_HF2HDR = 9;
+    public const byte SERVERTASK_RGBA2TGA = 10;
+    public const byte SERVERTASK_SEAMFIX = 11;
 
-    public const byte SERVERTASK_LMREBAKE = 11;
-    public const byte SERVERTASK_LMREBAKESIMPLE = 12;
-    public const byte SERVERTASK_LODGEN = 13;
-    public const byte SERVERTASK_LODGENINIT = 14;
-    public const byte SERVERTASK_GIPARAMS = 15;
-    public const byte SERVERTASK_RECEIVEFILE = 16;
-    public const byte SERVERTASK_REPORTSTATUS = 17;
-    public const byte SERVERTASK_SETSCENENAME = 18;
-    public const byte SERVERTASK_GETDATA = 19;
-    public const byte SERVERTASK_GETDATAREADY = 20;
+    public const byte SERVERTASK_LMREBAKE = 12;
+    public const byte SERVERTASK_LMREBAKESIMPLE = 13;
+    public const byte SERVERTASK_LODGEN = 14;
+    public const byte SERVERTASK_LODGENINIT = 15;
+    public const byte SERVERTASK_GIPARAMS = 16;
+    public const byte SERVERTASK_RECEIVEFILE = 17;
+    public const byte SERVERTASK_REPORTSTATUS = 18;
+    public const byte SERVERTASK_SETSCENENAME = 19;
+    public const byte SERVERTASK_GETDATA = 20;
+    public const byte SERVERTASK_GETDATAREADY = 21;
 
     public const byte SERVERERROR_IDLE = 0;
     public const byte SERVERERROR_COPY = 1;
@@ -80,6 +81,7 @@ public class ftClient
         {"ftrace", SERVERTASK_FTRACE},
         {"ftraceRTX", SERVERTASK_FTRACERTX},
         {"combineMasks", SERVERTASK_COMBINEMASKS},
+        {"combineSH", SERVERTASK_COMBINESH},
 
         {"denoiserLegacy", SERVERTASK_DENOISE5},
         {"denoiser", SERVERTASK_DENOISE6},
@@ -100,7 +102,7 @@ public class ftClient
     public static IEnumerator UpdateConnection()//WaitForMessages()
     {
         var ipAdd = System.Net.IPAddress.Parse(serverAddress);
-        var remoteEP = new IPEndPoint(ipAdd, 27777);
+        var remoteEP = new IPEndPoint(ipAdd, serverPort);
         var request = new byte[1];
         request[0] = SERVERTASK_REPORTSTATUS;
         var requestGet = new byte[5];
@@ -460,11 +462,37 @@ public class ftClient
         Socket soc = null;
         var ipAdd = System.Net.IPAddress.Parse(serverAddress);
         var remoteEP = new IPEndPoint(ipAdd, serverPort);
+        bool connectionInProgress;
 
         for(int i=0; i<serverFileList.Count; i++)
         {
             var fsoc = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            fsoc.Connect(remoteEP);
+            connectionInProgress = true;
+            while(connectionInProgress)
+            {
+                try
+                {
+                    connectionInProgress = false;
+                    fsoc.Connect(remoteEP);
+                }
+                catch(SocketException s)
+                {
+                    if (s.ErrorCode == 10035) // WSAEWOULDBLOCK
+                    {
+                        connectionInProgress = true;
+                    }
+                    else if (s.ErrorCode == 10061) //  WSAECONNREFUSED
+                    {
+                        connectionInProgress = true;
+                        System.Threading.Thread.Sleep(1000); // apparently we're sending more than the server can chew - wait a bit
+                    }
+                    else
+                    {
+                        Debug.LogError("Socket error");
+                        throw s;
+                    }
+                }
+            }
             if (!fsoc.Poll(0, SelectMode.SelectWrite)) return false;
 
             var sceneFile = File.ReadAllBytes(ftRenderLightmap.scenePath + "/" + serverFileList[i]);
@@ -478,7 +506,33 @@ public class ftClient
             for(int j=0; j<serverFileList[i].Length; j++) buff[6+j] = (byte)serverFileList[i][j];
             System.Buffer.BlockCopy(sceneFile, 0, buff, headerSize, sceneFile.Length);
 
-            fsoc.Send(buff);
+            connectionInProgress = true;
+            while(connectionInProgress)
+            {
+                try
+                {
+                    connectionInProgress = false;
+                    fsoc.Send(buff);
+                }
+                catch(SocketException s)
+                {
+                    if (s.ErrorCode == 10035) // WSAEWOULDBLOCK
+                    {
+                        connectionInProgress = true;
+                    }
+                    else if (s.ErrorCode == 10061) //  WSAECONNREFUSED
+                    {
+                        connectionInProgress = true;
+                        System.Threading.Thread.Sleep(1000); // apparently we're sending more than the server can chew - wait a bit
+                    }
+                    else
+                    {
+                        Debug.LogError("Socket error (2)");
+                        throw s;
+                    }
+                }
+            }
+
             fsoc.Close();
         }
 

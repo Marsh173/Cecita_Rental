@@ -292,6 +292,10 @@ public class ftSkyLightInspector : UnityEditor.Editor
 
             if (GUILayout.Button("Match scene skybox to this light"))
             {
+                if (skyMat != null)
+                {
+                    Undo.RecordObject(skyMat, "Change skybox");
+                }
                 var tform = (target as BakerySkyLight).transform;
                 var angles = tform.eulerAngles;
                 if (angles.x !=0 || angles.z !=0)
@@ -348,6 +352,7 @@ public class ftSkyLightInspector : UnityEditor.Editor
 
                 RenderSettings.skybox = skyMat;
                 EditorUtility.SetDirty(skyMat);
+                EditorSceneManager.MarkAllScenesDirty();
             }
 
             EditorGUILayout.Space();

@@ -59,6 +59,7 @@
         [Toggle(BAKERY_SH)] _BAKERY_SH ("Enable SH", Float) = 0
         [Toggle(BAKERY_SHNONLINEAR)] _BAKERY_SHNONLINEAR ("SH non-linear mode", Float) = 1
         [Toggle(BAKERY_RNM)] _BAKERY_RNM ("Enable RNM", Float) = 0
+        [Toggle(BAKERY_MONOSH)] _BAKERY_MONOSH ("Enable MonoSH", Float) = 0
         [Toggle(BAKERY_LMSPEC)] _BAKERY_LMSPEC ("Enable Lightmap Specular", Float) = 0
         [Toggle(BAKERY_BICUBIC)] _BAKERY_BICUBIC ("Enable Bicubic Filter", Float) = 0
         [Toggle(BAKERY_PROBESHNONLINEAR)] _BAKERY_PROBESHNONLINEAR ("Use non-linear SH for light probes", Float) = 0
@@ -108,13 +109,13 @@
             #pragma shader_feature BAKERY_VERTEXLMSH
             #pragma shader_feature BAKERY_VERTEXLMMASK
             #pragma shader_feature BAKERY_SH
+            #pragma shader_feature BAKERY_MONOSH
             #pragma shader_feature BAKERY_SHNONLINEAR
             #pragma shader_feature BAKERY_RNM
             #pragma shader_feature BAKERY_LMSPEC
             #pragma shader_feature BAKERY_BICUBIC
             #pragma shader_feature BAKERY_PROBESHNONLINEAR
             #pragma shader_feature BAKERY_VOLUME
-            #pragma shader_feature BAKERY_COMPRESSED_VOLUME
             #pragma shader_feature BAKERY_VOLROTATION
 
             #pragma multi_compile_fwdbase
@@ -122,6 +123,7 @@
             #pragma multi_compile_instancing
             // Uncomment the following line to enable dithering LOD crossfade. Note: there are more in the file to uncomment for other passes.
             //#pragma multi_compile _ LOD_FADE_CROSSFADE
+            #pragma multi_compile _ BAKERY_COMPRESSED_VOLUME
 
             #pragma vertex bakeryVertForwardBase
             #pragma fragment bakeryFragForwardBase
@@ -227,19 +229,20 @@
             #pragma shader_feature BAKERY_VERTEXLMSH
             #pragma shader_feature BAKERY_VERTEXLMMASK
             #pragma shader_feature BAKERY_SH
+            #pragma shader_feature BAKERY_MONOSH
             #pragma shader_feature BAKERY_SHNONLINEAR
             #pragma shader_feature BAKERY_RNM
             #pragma shader_feature BAKERY_LMSPEC
             #pragma shader_feature BAKERY_BICUBIC
             #pragma shader_feature BAKERY_PROBESHNONLINEAR
             #pragma shader_feature BAKERY_VOLUME
-            #pragma shader_feature BAKERY_COMPRESSED_VOLUME
             #pragma shader_feature BAKERY_VOLROTATION
 
             #pragma multi_compile_prepassfinal
             #pragma multi_compile_instancing
             // Uncomment the following line to enable dithering LOD crossfade. Note: there are more in the file to uncomment for other passes.
             //#pragma multi_compile _ LOD_FADE_CROSSFADE
+            #pragma multi_compile _ BAKERY_COMPRESSED_VOLUME
 
             #pragma vertex bakeryVertDeferred
             #pragma fragment bakeryFragDeferred
@@ -307,6 +310,7 @@
             //#pragma shader_feature BAKERY_VERTEXLMSH
             //#pragma shader_feature BAKERY_VERTEXLMMASK
             //#pragma shader_feature BAKERY_SH
+            //#pragma shader_feature BAKERY_MONOSH
             //#pragma shader_feature BAKERY_SHNONLINEAR
             //#pragma shader_feature BAKERY_RNM
             //#pragma shader_feature BAKERY_LMSPEC

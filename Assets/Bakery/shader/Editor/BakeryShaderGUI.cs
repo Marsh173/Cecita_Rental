@@ -73,6 +73,7 @@ namespace UnityEditor
             public static GUIContent vertexLMMaskLabel = new GUIContent("Enable VertexLM Shadowmask", "Enables per-vertex shadowmasks.");
             public static GUIContent rnmLabel = new GUIContent("Allow RNM Lightmaps", "Allows this material to use RNM lightmaps, if present.");
             public static GUIContent shLabel = new GUIContent("Allow SH Lightmaps", "Allows this material to use SH lightmaps, if present.");
+            public static GUIContent monoshLabel = new GUIContent("Enable MonoSH", "Makes this material treat directional maps as MonoSH.");
             public static GUIContent shnLabel = new GUIContent("Non-linear SH", "This option can enhance contrast (closer to ground truth), but it makes the shader a bit slower.");
             public static GUIContent specLabel = new GUIContent("Enable Lightmap Specular", "Enables baked specular for all directional modes.");
             public static GUIContent bicubicLabel = new GUIContent("Force Bicubic Filter", "Enables bicubic filtering for all lightmaps (color/shadowmask/direction/etc) used in the material.");
@@ -118,6 +119,7 @@ namespace UnityEditor
         MaterialProperty enableVertexLMSH = null;
         MaterialProperty enableVertexLMmask = null;
         MaterialProperty enableSH = null;
+        MaterialProperty enableMonoSH = null;
         MaterialProperty enableSHN = null;
         MaterialProperty enableRNM = null;
         MaterialProperty enableSpec = null;
@@ -181,6 +183,7 @@ namespace UnityEditor
             enableVertexLMSH = FindProperty("_BAKERY_VERTEXLMSH", props);
             enableVertexLMmask = FindProperty("_BAKERY_VERTEXLMMASK", props);
             enableSH = FindProperty("_BAKERY_SH", props);
+            enableMonoSH = FindProperty("_BAKERY_MONOSH", props);
             enableSHN = FindProperty("_BAKERY_SHNONLINEAR", props);
             enableRNM = FindProperty("_BAKERY_RNM", props);
             enableSpec = FindProperty("_BAKERY_LMSPEC", props);
@@ -284,7 +287,8 @@ namespace UnityEditor
                 }
                 m_MaterialEditor.ShaderProperty(enableRNM, Styles.rnmLabel);
                 m_MaterialEditor.ShaderProperty(enableSH, Styles.shLabel);
-                if (enableSH.floatValue > 0 || enableVertexLMSH.floatValue > 0)
+                m_MaterialEditor.ShaderProperty(enableMonoSH, Styles.monoshLabel);
+                if (enableSH.floatValue > 0 || enableMonoSH.floatValue > 0 || enableVertexLMSH.floatValue > 0)
                     m_MaterialEditor.ShaderProperty(enableSHN, Styles.shnLabel);
                 m_MaterialEditor.ShaderProperty(enableSpec, Styles.specLabel);
                 m_MaterialEditor.ShaderProperty(enableBicubic, Styles.bicubicLabel);

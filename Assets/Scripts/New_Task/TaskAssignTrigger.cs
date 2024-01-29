@@ -17,11 +17,20 @@ public class TaskAssignTrigger : MonoBehaviour
     [SerializeField] private bool finishmaintask = false;
     [SerializeField] private bool finishsubtask = false;
 
+    [SerializeField] private bool destroy_after_trigger = false;
+    [SerializeField] private bool disable_after_trigger = false;
+
     private TaskManager_Test_Yunfei tm;
 
     private void Start()
     {
         tm = GameObject.FindGameObjectWithTag("TaskManager").GetComponent<TaskManager_Test_Yunfei>();
+        if (assign == AssignTask_By.add_when_awake)
+        {
+            Set_Tasks();
+            if (destroy_after_trigger) Destroy(gameObject);
+            if (disable_after_trigger) this.enabled = false;
+        }
     }
 
     public void settext()
@@ -37,15 +46,28 @@ public class TaskAssignTrigger : MonoBehaviour
     {
         trigger,
         button,
-        dialogue
+        dialogue,
+        add_when_awake
         }
 
     public void Set_Tasks()
     {
-        if(addmaintask) tm.AddTask_Script(task_name, MainTask_num);
-        if(addsubtask) tm.SetSubTask_Script(sub_task_name, MainTask_num);
-        if (finishmaintask) tm.TaskDone_ByName(task_name);
+        if (addmaintask) tm.AddTask_Script(task_name, MainTask_num);
+        if (addsubtask) tm.SetSubTask_Script(sub_task_name, MainTask_num);
+        if (finishmaintask) 
+        {
+            //tm.TaskDone(MainTask_num);
+            tm.TaskDone_ByName(task_name);
+        }
+        
+        
         if (finishsubtask) tm.SubTaskDone_Script(SubTask_num, MainTask_num);
+
+        if (addmaintask || addsubtask|| finishmaintask || finishsubtask)
+        {
+            if (destroy_after_trigger) Destroy(gameObject);
+            if (disable_after_trigger) this.enabled = false;
+        }
 
     }
 

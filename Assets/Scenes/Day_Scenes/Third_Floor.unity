@@ -1498,7 +1498,7 @@ MonoBehaviour:
   bakedScaleOffsetTerrain: []
   assetList: []
   uvOverlapAssetList: 
-  idremap: 000000000100000002000000
+  idremap: 2d0000002e0000002f000000
   usesRealtimeGI: 0
   emptyDirectionTex: {fileID: 0}
   anyVolumes: 0
@@ -15801,7 +15801,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh114936
+  m_Name: pb_Mesh82254
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -15971,6 +15971,7 @@ GameObject:
   - component: {fileID: 345861141}
   - component: {fileID: 345861142}
   - component: {fileID: 345861140}
+  - component: {fileID: 345861143}
   m_Layer: 0
   m_Name: Trigger Lost Package
   m_TagString: TriggerForPackage
@@ -15985,7 +15986,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 345861139}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 218added9d755964f9cba352c1b716f3, type: 3}
   m_Name: 
@@ -16015,7 +16016,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 345861139}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0b3add184428043d5adf20000cef4647, type: 3}
   m_Name: 
@@ -16024,6 +16025,29 @@ MonoBehaviour:
   TM: {fileID: 0}
   monologue: {fileID: 0}
   checkedEmail: 0
+--- !u!114 &345861143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 345861139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17196a51ba72cea4ea4346c84d1d493f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  assign: 0
+  task_name: Lost Package
+  sub_task_name: Ask the front desk about your missing package
+  MainTask_num: 1
+  SubTask_num: 0
+  CollisionTag: 
+  addmaintask: 1
+  addsubtask: 1
+  finishmaintask: 0
+  finishsubtask: 0
+  destroy_after_trigger: 0
 --- !u!4 &345861144
 Transform:
   m_ObjectHideFlags: 0
@@ -23038,7 +23062,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh114304
+  m_Name: pb_Mesh81622
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -34661,7 +34685,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh115106
+  m_Name: pb_Mesh82422
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -40703,6 +40727,7 @@ GameObject:
   - component: {fileID: 1013056172}
   - component: {fileID: 1013056173}
   - component: {fileID: 1013056174}
+  - component: {fileID: 1013056175}
   m_Layer: 0
   m_Name: Trigger reminder to check email
   m_TagString: Untagged
@@ -40744,7 +40769,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1013056171}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0b3add184428043d5adf20000cef4647, type: 3}
   m_Name: 
@@ -40753,6 +40778,29 @@ MonoBehaviour:
   TM: {fileID: 0}
   monologue: {fileID: 0}
   checkedEmail: 0
+--- !u!114 &1013056175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1013056171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17196a51ba72cea4ea4346c84d1d493f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  assign: 2
+  task_name: Check your Email
+  sub_task_name: 
+  MainTask_num: 0
+  SubTask_num: 0
+  CollisionTag: 
+  addmaintask: 1
+  addsubtask: 0
+  finishmaintask: 0
+  finishsubtask: 0
+  destroy_after_trigger: 0
 --- !u!1 &1021503728
 GameObject:
   m_ObjectHideFlags: 0
@@ -50797,7 +50845,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh115864
+  m_Name: pb_Mesh83182
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -59818,7 +59866,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh114490
+  m_Name: pb_Mesh81808
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -59982,7 +60030,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh113214
+  m_Name: pb_Mesh80534
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -61967,7 +62015,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh115884
+  m_Name: pb_Mesh83202
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -66181,7 +66229,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh116192
+  m_Name: pb_Mesh83512
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2

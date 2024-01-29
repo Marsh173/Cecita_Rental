@@ -21,6 +21,7 @@ public struct BakeryLightmapGroupPlain
     public bool flipNormal;
     public string parentName;
     public int sceneLodLevel;
+    public bool autoResolution;
 };
 
 [CreateAssetMenu(menuName = "Bakery lightmap group")]
@@ -30,7 +31,7 @@ public class BakeryLightmapGroup : ScriptableObject
     {
         OriginalUV = 0,
         PackAtlas = 1,
-        Vertex = 2
+        Vertex = 2,
     };
 
     public enum RenderMode
@@ -51,6 +52,7 @@ public class BakeryLightmapGroup : ScriptableObject
         RNM = 3,
         SH = 4,
         ProbeSH = 5,
+        MonoSH = 6,
         Auto = 1000
     };
 
@@ -88,7 +90,13 @@ public class BakeryLightmapGroup : ScriptableObject
     public int sceneLodLevel = -1;
 
     [SerializeField]
+    public bool autoResolution = false;
+
+    [SerializeField]
     public string sceneName;
+
+    [SerializeField]
+    public int tag = -1;
 
     [SerializeField]
     public bool containsTerrains;
@@ -173,6 +181,7 @@ public class BakeryLightmapGroup : ScriptableObject
         str.flipNormal = flipNormal;
         str.parentName = parentName;
         str.sceneLodLevel = sceneLodLevel;
+        str.autoResolution = autoResolution;
         return str;
     }
 }

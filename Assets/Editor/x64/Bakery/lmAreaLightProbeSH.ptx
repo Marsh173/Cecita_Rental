@@ -36,6 +36,7 @@
 .global .align 4 .f32 lightPointSize;
 .global .align 4 .b8 lightColor[12];
 .global .align 1 .b8 rnd_seeds[1];
+.global .align 1 .b8 rnd_seeds2[1];
 .global .align 4 .u32 samples;
 .global .align 4 .b8 _ZN21rti_internal_typeinfo7pixelIDE[8] = {82, 97, 121, 0, 8, 0, 0, 0};
 .global .align 4 .b8 _ZN21rti_internal_typeinfo10resolutionE[8] = {82, 97, 121, 0, 8, 0, 0, 0};
@@ -136,32 +137,34 @@
 	.reg .b64 	%SP;
 	.reg .b64 	%SPL;
 	.reg .pred 	%p<149>;
-	.reg .b16 	%rs<152>;
+	.reg .b16 	%rs<153>;
 	.reg .f32 	%f<988>;
-	.reg .b32 	%r<411>;
-	.reg .b64 	%rd<298>;
+	.reg .b32 	%r<413>;
+	.reg .b64 	%rd<308>;
 
 
-	mov.u64 	%rd297, __local_depot0;
-	cvta.local.u64 	%SP, %rd297;
-	ld.global.u32 	%r1, [samples];
-	shl.b32 	%r2, %r1, 1;
-	ld.global.v2.u32 	{%r100, %r101}, [pixelID];
-	cvt.u64.u32	%rd21, %r100;
-	cvt.u64.u32	%rd22, %r101;
-	mov.u64 	%rd25, uvnormal;
-	cvta.global.u64 	%rd20, %rd25;
-	mov.u32 	%r98, 2;
-	mov.u32 	%r99, 4;
-	mov.u64 	%rd24, 0;
+	mov.u64 	%rd307, __local_depot0;
+	cvta.local.u64 	%SP, %rd307;
+	ld.global.u32 	%r1, [lightMeshBufferSize];
+	abs.s32 	%r2, %r1;
+	ld.global.u32 	%r3, [samples];
+	shl.b32 	%r4, %r3, 1;
+	ld.global.v2.u32 	{%r103, %r104}, [pixelID];
+	cvt.u64.u32	%rd22, %r103;
+	cvt.u64.u32	%rd23, %r104;
+	mov.u64 	%rd26, uvnormal;
+	cvta.global.u64 	%rd21, %rd26;
+	mov.u32 	%r101, 2;
+	mov.u32 	%r102, 4;
+	mov.u64 	%rd25, 0;
 	// inline asm
-	call (%rd19), _rt_buffer_get_64, (%rd20, %r98, %r99, %rd21, %rd22, %rd24, %rd24);
+	call (%rd20), _rt_buffer_get_64, (%rd21, %r101, %r102, %rd22, %rd23, %rd25, %rd25);
 	// inline asm
-	ld.u32 	%r3, [%rd19];
-	shr.u32 	%r104, %r3, 16;
-	cvt.u16.u32	%rs1, %r104;
+	ld.u32 	%r5, [%rd20];
+	shr.u32 	%r107, %r5, 16;
+	cvt.u16.u32	%rs1, %r107;
 	and.b16  	%rs7, %rs1, 255;
-	cvt.u16.u32	%rs8, %r3;
+	cvt.u16.u32	%rs8, %r5;
 	or.b16  	%rs9, %rs8, %rs7;
 	setp.eq.s16	%p7, %rs9, 0;
 	mov.f32 	%f916, 0f00000000;
@@ -169,7 +172,7 @@
 	mov.f32 	%f918, %f916;
 	@%p7 bra 	BB0_2;
 
-	ld.u8 	%rs10, [%rd19+1];
+	ld.u8 	%rs10, [%rd20+1];
 	and.b16  	%rs12, %rs8, 255;
 	cvt.rn.f32.u16	%f217, %rs12;
 	div.rn.f32 	%f218, %f217, 0f437F0000;
@@ -190,121 +193,121 @@
 	mul.f32 	%f918, %f225, %f230;
 
 BB0_2:
-	ld.global.v2.u32 	{%r105, %r106}, [pixelID];
-	ld.global.v2.u32 	{%r108, %r109}, [tileInfo];
-	add.s32 	%r4, %r105, %r108;
-	add.s32 	%r5, %r106, %r109;
+	ld.global.v2.u32 	{%r108, %r109}, [pixelID];
+	ld.global.v2.u32 	{%r111, %r112}, [tileInfo];
+	add.s32 	%r6, %r108, %r111;
+	add.s32 	%r7, %r109, %r112;
 	setp.eq.f32	%p8, %f917, 0f00000000;
 	setp.eq.f32	%p9, %f916, 0f00000000;
 	and.pred  	%p10, %p9, %p8;
 	setp.eq.f32	%p11, %f918, 0f00000000;
 	and.pred  	%p12, %p10, %p11;
-	@%p12 bra 	BB0_139;
+	@%p12 bra 	BB0_140;
 	bra.uni 	BB0_3;
 
-BB0_139:
-	ld.global.u32 	%r410, [imageEnabled];
-	and.b32  	%r334, %r410, 1;
-	setp.eq.b32	%p140, %r334, 1;
-	@!%p140 bra 	BB0_141;
-	bra.uni 	BB0_140;
-
 BB0_140:
-	cvt.u64.u32	%rd179, %r4;
-	cvt.u64.u32	%rd180, %r5;
-	mov.u64 	%rd183, image;
-	cvta.global.u64 	%rd178, %rd183;
-	// inline asm
-	call (%rd177), _rt_buffer_get_64, (%rd178, %r98, %r99, %rd179, %rd180, %rd24, %rd24);
-	// inline asm
-	mov.u16 	%rs84, 0;
-	st.v4.u8 	[%rd177], {%rs84, %rs84, %rs84, %rs84};
-	ld.global.u32 	%r410, [imageEnabled];
+	ld.global.u32 	%r412, [imageEnabled];
+	and.b32  	%r337, %r412, 1;
+	setp.eq.b32	%p140, %r337, 1;
+	@!%p140 bra 	BB0_142;
+	bra.uni 	BB0_141;
 
 BB0_141:
-	and.b32  	%r337, %r410, 8;
-	setp.eq.s32	%p141, %r337, 0;
-	@%p141 bra 	BB0_143;
-
-	cvt.u64.u32	%rd187, %r5;
-	cvt.u64.u32	%rd186, %r4;
-	mov.u64 	%rd190, image_Mask;
-	cvta.global.u64 	%rd185, %rd190;
+	cvt.u64.u32	%rd189, %r6;
+	cvt.u64.u32	%rd190, %r7;
+	mov.u64 	%rd193, image;
+	cvta.global.u64 	%rd188, %rd193;
 	// inline asm
-	call (%rd184), _rt_buffer_get_64, (%rd185, %r98, %r98, %rd186, %rd187, %rd24, %rd24);
+	call (%rd187), _rt_buffer_get_64, (%rd188, %r101, %r102, %rd189, %rd190, %rd25, %rd25);
+	// inline asm
+	mov.u16 	%rs85, 0;
+	st.v4.u8 	[%rd187], {%rs85, %rs85, %rs85, %rs85};
+	ld.global.u32 	%r412, [imageEnabled];
+
+BB0_142:
+	and.b32  	%r340, %r412, 8;
+	setp.eq.s32	%p141, %r340, 0;
+	@%p141 bra 	BB0_144;
+
+	cvt.u64.u32	%rd197, %r7;
+	cvt.u64.u32	%rd196, %r6;
+	mov.u64 	%rd200, image_Mask;
+	cvta.global.u64 	%rd195, %rd200;
+	// inline asm
+	call (%rd194), _rt_buffer_get_64, (%rd195, %r101, %r101, %rd196, %rd197, %rd25, %rd25);
 	// inline asm
 	mov.f32 	%f873, 0f00000000;
-	cvt.rzi.u32.f32	%r340, %f873;
-	cvt.u16.u32	%rs85, %r340;
-	mov.u16 	%rs86, 0;
-	st.v2.u8 	[%rd184], {%rs85, %rs86};
-	ld.global.u32 	%r410, [imageEnabled];
+	cvt.rzi.u32.f32	%r343, %f873;
+	cvt.u16.u32	%rs86, %r343;
+	mov.u16 	%rs87, 0;
+	st.v2.u8 	[%rd194], {%rs86, %rs87};
+	ld.global.u32 	%r412, [imageEnabled];
 
-BB0_143:
-	cvt.u64.u32	%rd17, %r4;
-	cvt.u64.u32	%rd18, %r5;
-	and.b32  	%r341, %r410, 4;
-	setp.eq.s32	%p142, %r341, 0;
-	@%p142 bra 	BB0_147;
+BB0_144:
+	cvt.u64.u32	%rd18, %r6;
+	cvt.u64.u32	%rd19, %r7;
+	and.b32  	%r344, %r412, 4;
+	setp.eq.s32	%p142, %r344, 0;
+	@%p142 bra 	BB0_148;
 
-	ld.global.u32 	%r342, [additive];
-	setp.eq.s32	%p143, %r342, 0;
-	@%p143 bra 	BB0_146;
+	ld.global.u32 	%r345, [additive];
+	setp.eq.s32	%p143, %r345, 0;
+	@%p143 bra 	BB0_147;
 
-	mov.u64 	%rd203, image_HDR;
-	cvta.global.u64 	%rd192, %rd203;
-	mov.u32 	%r346, 8;
+	mov.u64 	%rd213, image_HDR;
+	cvta.global.u64 	%rd202, %rd213;
+	mov.u32 	%r349, 8;
 	// inline asm
-	call (%rd191), _rt_buffer_get_64, (%rd192, %r98, %r346, %rd17, %rd18, %rd24, %rd24);
+	call (%rd201), _rt_buffer_get_64, (%rd202, %r101, %r349, %rd18, %rd19, %rd25, %rd25);
 	// inline asm
-	ld.v4.u16 	{%rs93, %rs94, %rs95, %rs96}, [%rd191];
+	ld.v4.u16 	{%rs94, %rs95, %rs96, %rs97}, [%rd201];
 	// inline asm
-	{  cvt.f32.f16 %f874, %rs93;}
-
-	// inline asm
-	// inline asm
-	{  cvt.f32.f16 %f875, %rs94;}
+	{  cvt.f32.f16 %f874, %rs94;}
 
 	// inline asm
 	// inline asm
-	{  cvt.f32.f16 %f876, %rs95;}
+	{  cvt.f32.f16 %f875, %rs95;}
 
 	// inline asm
 	// inline asm
-	call (%rd197), _rt_buffer_get_64, (%rd192, %r98, %r346, %rd17, %rd18, %rd24, %rd24);
+	{  cvt.f32.f16 %f876, %rs96;}
+
+	// inline asm
+	// inline asm
+	call (%rd207), _rt_buffer_get_64, (%rd202, %r101, %r349, %rd18, %rd19, %rd25, %rd25);
 	// inline asm
 	add.f32 	%f877, %f874, 0f00000000;
 	add.f32 	%f878, %f875, 0f00000000;
 	add.f32 	%f879, %f876, 0f00000000;
 	// inline asm
-	{  cvt.rn.f16.f32 %rs92, %f879;}
+	{  cvt.rn.f16.f32 %rs93, %f879;}
 
 	// inline asm
 	// inline asm
-	{  cvt.rn.f16.f32 %rs91, %f878;}
+	{  cvt.rn.f16.f32 %rs92, %f878;}
 
 	// inline asm
 	// inline asm
-	{  cvt.rn.f16.f32 %rs90, %f877;}
+	{  cvt.rn.f16.f32 %rs91, %f877;}
 
 	// inline asm
-	mov.u16 	%rs97, 0;
-	st.v4.u16 	[%rd197], {%rs90, %rs91, %rs92, %rs97};
-	bra.uni 	BB0_147;
+	mov.u16 	%rs98, 0;
+	st.v4.u16 	[%rd207], {%rs91, %rs92, %rs93, %rs98};
+	bra.uni 	BB0_148;
 
 BB0_3:
-	ld.global.v2.u32 	{%r118, %r119}, [pixelID];
-	cvt.u64.u32	%rd28, %r118;
-	cvt.u64.u32	%rd29, %r119;
-	mov.u64 	%rd38, uvpos;
-	cvta.global.u64 	%rd27, %rd38;
-	mov.u32 	%r114, 12;
+	ld.global.v2.u32 	{%r121, %r122}, [pixelID];
+	cvt.u64.u32	%rd29, %r121;
+	cvt.u64.u32	%rd30, %r122;
+	mov.u64 	%rd39, uvpos;
+	cvta.global.u64 	%rd28, %rd39;
+	mov.u32 	%r117, 12;
 	// inline asm
-	call (%rd26), _rt_buffer_get_64, (%rd27, %r98, %r114, %rd28, %rd29, %rd24, %rd24);
+	call (%rd27), _rt_buffer_get_64, (%rd28, %r101, %r117, %rd29, %rd30, %rd25, %rd25);
 	// inline asm
-	ld.f32 	%f9, [%rd26+8];
-	ld.f32 	%f8, [%rd26+4];
-	ld.f32 	%f7, [%rd26];
+	ld.f32 	%f9, [%rd27+8];
+	ld.f32 	%f8, [%rd27+4];
+	ld.f32 	%f7, [%rd27];
 	mul.f32 	%f237, %f7, 0f3456BF95;
 	mul.f32 	%f238, %f8, 0f3456BF95;
 	mul.f32 	%f239, %f9, 0f3456BF95;
@@ -324,378 +327,386 @@ BB0_3:
 	fma.rn.f32 	%f10, %f916, %f250, %f7;
 	fma.rn.f32 	%f11, %f917, %f251, %f8;
 	fma.rn.f32 	%f12, %f918, %f252, %f9;
-	ld.global.v2.u32 	{%r122, %r123}, [pixelID];
-	cvt.u64.u32	%rd34, %r122;
-	cvt.u64.u32	%rd35, %r123;
-	mov.u64 	%rd39, rnd_seeds;
-	cvta.global.u64 	%rd33, %rd39;
+	ld.global.v2.u32 	{%r125, %r126}, [pixelID];
+	cvt.u64.u32	%rd35, %r125;
+	cvt.u64.u32	%rd36, %r126;
+	mov.u64 	%rd40, rnd_seeds;
+	cvta.global.u64 	%rd34, %rd40;
 	// inline asm
-	call (%rd32), _rt_buffer_get_64, (%rd33, %r98, %r99, %rd34, %rd35, %rd24, %rd24);
+	call (%rd33), _rt_buffer_get_64, (%rd34, %r101, %r102, %rd35, %rd36, %rd25, %rd25);
 	// inline asm
-	ld.u32 	%r126, [%rd32];
-	mad.lo.s32 	%r6, %r126, 1664525, 1013904223;
-	ld.global.u32 	%r127, [lightMeshBufferSize];
-	setp.eq.s32	%p14, %r127, 0;
+	ld.u32 	%r388, [%rd33];
 	mov.pred 	%p13, 0;
-	mov.f32 	%f18, 0f00000000;
-	mov.u32 	%r382, 0;
+	mov.f32 	%f17, 0f00000000;
+	mov.u32 	%r384, 0;
+	setp.lt.s32	%p14, %r2, 1;
 	@%p14 bra 	BB0_4;
 
 	ld.global.f32 	%f13, [lightPointSize];
 	mul.f32 	%f14, %f10, 0f3456BF95;
 	mul.f32 	%f15, %f11, 0f3456BF95;
 	mul.f32 	%f16, %f12, 0f3456BF95;
-	and.b32  	%r129, %r6, 16777215;
-	cvt.rn.f32.u32	%f259, %r129;
-	mul.f32 	%f260, %f259, 0fB3800000;
-	fma.rn.f32 	%f17, %f260, 0f3F333333, 0f3F800000;
-	mov.f32 	%f18, 0f00000000;
-	mov.u32 	%r382, 0;
-	abs.f32 	%f382, %f15;
-	abs.f32 	%f383, %f14;
-	max.f32 	%f384, %f383, %f382;
-	abs.f32 	%f385, %f16;
-	max.f32 	%f386, %f384, %f385;
-	mov.f32 	%f19, %f18;
-	mov.f32 	%f20, %f18;
-	mov.f32 	%f21, %f18;
-	mov.f32 	%f22, %f18;
-	mov.f32 	%f23, %f18;
+	mov.f32 	%f17, 0f00000000;
+	mov.u32 	%r384, 0;
+	abs.f32 	%f381, %f15;
+	abs.f32 	%f382, %f14;
+	max.f32 	%f383, %f382, %f381;
+	abs.f32 	%f384, %f16;
+	max.f32 	%f385, %f383, %f384;
+	mov.f32 	%f18, %f17;
+	mov.f32 	%f19, %f17;
+	mov.f32 	%f20, %f17;
+	mov.f32 	%f21, %f17;
+	mov.f32 	%f22, %f17;
 
 BB0_6:
-	shl.b32 	%r132, %r382, 1;
-	cvt.s64.s32	%rd42, %r132;
-	mov.u64 	%rd46, lightMeshBuffer;
-	cvta.global.u64 	%rd41, %rd46;
+	shl.b32 	%r10, %r384, 1;
+	cvt.s64.s32	%rd43, %r10;
+	mov.u64 	%rd53, lightMeshBuffer;
+	cvta.global.u64 	%rd42, %rd53;
 	mov.u32 	%r130, 1;
 	// inline asm
-	call (%rd40), _rt_buffer_get_64, (%rd41, %r130, %r114, %rd42, %rd24, %rd24, %rd24);
+	call (%rd41), _rt_buffer_get_64, (%rd42, %r130, %r117, %rd43, %rd25, %rd25, %rd25);
 	// inline asm
-	ld.f32 	%f261, [%rd40];
-	sub.f32 	%f262, %f261, %f7;
-	ld.f32 	%f263, [%rd40+4];
-	sub.f32 	%f264, %f263, %f8;
-	ld.f32 	%f265, [%rd40+8];
-	sub.f32 	%f266, %f265, %f9;
-	mul.f32 	%f267, %f264, %f264;
-	fma.rn.f32 	%f268, %f262, %f262, %f267;
-	fma.rn.f32 	%f269, %f266, %f266, %f268;
-	sqrt.rn.f32 	%f24, %f269;
-	rcp.rn.f32 	%f270, %f24;
-	mul.f32 	%f25, %f262, %f270;
-	mul.f32 	%f26, %f264, %f270;
-	mul.f32 	%f27, %f266, %f270;
-	mul.f32 	%f271, %f24, %f24;
-	mul.f32 	%f272, %f271, 0f40C90FDB;
-	div.rn.f32 	%f273, %f13, %f272;
-	add.f32 	%f28, %f273, %f273;
-	setp.gt.f32	%p16, %f28, %f17;
-	setp.ne.s32	%p17, %r1, 0;
-	and.pred  	%p18, %p17, %p16;
+	ld.f32 	%f259, [%rd41];
+	sub.f32 	%f260, %f259, %f7;
+	ld.f32 	%f261, [%rd41+4];
+	sub.f32 	%f262, %f261, %f8;
+	ld.f32 	%f263, [%rd41+8];
+	sub.f32 	%f264, %f263, %f9;
+	mul.f32 	%f265, %f262, %f262;
+	fma.rn.f32 	%f266, %f260, %f260, %f265;
+	fma.rn.f32 	%f267, %f264, %f264, %f266;
+	sqrt.rn.f32 	%f23, %f267;
+	rcp.rn.f32 	%f268, %f23;
+	mul.f32 	%f24, %f260, %f268;
+	mul.f32 	%f25, %f262, %f268;
+	mul.f32 	%f26, %f264, %f268;
+	mul.f32 	%f269, %f23, %f23;
+	div.rn.f32 	%f27, %f13, %f269;
+	ld.global.v2.u32 	{%r134, %r135}, [pixelID];
+	cvt.u64.u32	%rd54, %r135;
+	cvt.u64.u32	%rd55, %r134;
+	and.b64  	%rd49, %rd55, 255;
+	and.b64  	%rd50, %rd54, 255;
+	mov.u64 	%rd56, rnd_seeds2;
+	cvta.global.u64 	%rd48, %rd56;
+	mov.u32 	%r133, 3;
+	// inline asm
+	call (%rd47), _rt_buffer_get_64, (%rd48, %r101, %r133, %rd49, %rd50, %rd25, %rd25);
+	// inline asm
+	setp.eq.s32	%p15, %r3, 0;
+	@%p15 bra 	BB0_8;
+
+	ld.u8 	%rs14, [%rd47];
+	cvt.rn.f32.u16	%f270, %rs14;
+	div.rn.f32 	%f271, %f270, 0fC37F0000;
+	fma.rn.f32 	%f272, %f271, 0f3F333333, 0f3F800000;
+	setp.gt.f32	%p17, %f27, %f272;
 	mov.pred 	%p148, -1;
-	@%p18 bra 	BB0_22;
+	@%p17 bra 	BB0_23;
 
-	ld.global.f32 	%f276, [lightInvCutoff];
-	mul.f32 	%f29, %f24, %f276;
-	mov.f32 	%f280, 0f40800000;
-	abs.f32 	%f31, %f29;
-	setp.lt.f32	%p19, %f31, 0f00800000;
-	mul.f32 	%f282, %f31, 0f4B800000;
-	selp.f32	%f283, 0fC3170000, 0fC2FE0000, %p19;
-	selp.f32	%f284, %f282, %f31, %p19;
-	mov.b32 	 %r133, %f284;
-	and.b32  	%r134, %r133, 8388607;
-	or.b32  	%r135, %r134, 1065353216;
-	mov.b32 	 %f285, %r135;
-	shr.u32 	%r136, %r133, 23;
-	cvt.rn.f32.u32	%f286, %r136;
-	add.f32 	%f287, %f283, %f286;
-	setp.gt.f32	%p20, %f285, 0f3FB504F3;
-	mul.f32 	%f288, %f285, 0f3F000000;
-	add.f32 	%f289, %f287, 0f3F800000;
-	selp.f32	%f290, %f288, %f285, %p20;
-	selp.f32	%f291, %f289, %f287, %p20;
-	add.f32 	%f292, %f290, 0fBF800000;
-	add.f32 	%f275, %f290, 0f3F800000;
+BB0_8:
+	ld.global.f32 	%f275, [lightInvCutoff];
+	mul.f32 	%f28, %f23, %f275;
+	mov.f32 	%f279, 0f40800000;
+	abs.f32 	%f30, %f28;
+	setp.lt.f32	%p18, %f30, 0f00800000;
+	mul.f32 	%f281, %f30, 0f4B800000;
+	selp.f32	%f282, 0fC3170000, 0fC2FE0000, %p18;
+	selp.f32	%f283, %f281, %f30, %p18;
+	mov.b32 	 %r138, %f283;
+	and.b32  	%r139, %r138, 8388607;
+	or.b32  	%r140, %r139, 1065353216;
+	mov.b32 	 %f284, %r140;
+	shr.u32 	%r141, %r138, 23;
+	cvt.rn.f32.u32	%f285, %r141;
+	add.f32 	%f286, %f282, %f285;
+	setp.gt.f32	%p19, %f284, 0f3FB504F3;
+	mul.f32 	%f287, %f284, 0f3F000000;
+	add.f32 	%f288, %f286, 0f3F800000;
+	selp.f32	%f289, %f287, %f284, %p19;
+	selp.f32	%f290, %f288, %f286, %p19;
+	add.f32 	%f291, %f289, 0fBF800000;
+	add.f32 	%f274, %f289, 0f3F800000;
 	// inline asm
-	rcp.approx.ftz.f32 %f274,%f275;
+	rcp.approx.ftz.f32 %f273,%f274;
 	// inline asm
-	add.f32 	%f293, %f292, %f292;
-	mul.f32 	%f294, %f274, %f293;
-	mul.f32 	%f295, %f294, %f294;
-	mov.f32 	%f296, 0f3C4CAF63;
-	mov.f32 	%f297, 0f3B18F0FE;
-	fma.rn.f32 	%f298, %f297, %f295, %f296;
-	mov.f32 	%f299, 0f3DAAAABD;
-	fma.rn.f32 	%f300, %f298, %f295, %f299;
-	mul.rn.f32 	%f301, %f300, %f295;
-	mul.rn.f32 	%f302, %f301, %f294;
-	sub.f32 	%f303, %f292, %f294;
-	neg.f32 	%f304, %f294;
-	add.f32 	%f305, %f303, %f303;
-	fma.rn.f32 	%f306, %f304, %f292, %f305;
-	mul.rn.f32 	%f307, %f274, %f306;
-	add.f32 	%f308, %f302, %f294;
-	sub.f32 	%f309, %f294, %f308;
-	add.f32 	%f310, %f302, %f309;
+	add.f32 	%f292, %f291, %f291;
+	mul.f32 	%f293, %f273, %f292;
+	mul.f32 	%f294, %f293, %f293;
+	mov.f32 	%f295, 0f3C4CAF63;
+	mov.f32 	%f296, 0f3B18F0FE;
+	fma.rn.f32 	%f297, %f296, %f294, %f295;
+	mov.f32 	%f298, 0f3DAAAABD;
+	fma.rn.f32 	%f299, %f297, %f294, %f298;
+	mul.rn.f32 	%f300, %f299, %f294;
+	mul.rn.f32 	%f301, %f300, %f293;
+	sub.f32 	%f302, %f291, %f293;
+	neg.f32 	%f303, %f293;
+	add.f32 	%f304, %f302, %f302;
+	fma.rn.f32 	%f305, %f303, %f291, %f304;
+	mul.rn.f32 	%f306, %f273, %f305;
+	add.f32 	%f307, %f301, %f293;
+	sub.f32 	%f308, %f293, %f307;
+	add.f32 	%f309, %f301, %f308;
+	add.f32 	%f310, %f306, %f309;
 	add.f32 	%f311, %f307, %f310;
-	add.f32 	%f312, %f308, %f311;
-	sub.f32 	%f313, %f308, %f312;
-	add.f32 	%f314, %f311, %f313;
-	mov.f32 	%f315, 0f3F317200;
-	mul.rn.f32 	%f316, %f291, %f315;
-	mov.f32 	%f317, 0f35BFBE8E;
-	mul.rn.f32 	%f318, %f291, %f317;
-	add.f32 	%f319, %f316, %f312;
-	sub.f32 	%f320, %f316, %f319;
-	add.f32 	%f321, %f312, %f320;
-	add.f32 	%f322, %f314, %f321;
+	sub.f32 	%f312, %f307, %f311;
+	add.f32 	%f313, %f310, %f312;
+	mov.f32 	%f314, 0f3F317200;
+	mul.rn.f32 	%f315, %f290, %f314;
+	mov.f32 	%f316, 0f35BFBE8E;
+	mul.rn.f32 	%f317, %f290, %f316;
+	add.f32 	%f318, %f315, %f311;
+	sub.f32 	%f319, %f315, %f318;
+	add.f32 	%f320, %f311, %f319;
+	add.f32 	%f321, %f313, %f320;
+	add.f32 	%f322, %f317, %f321;
 	add.f32 	%f323, %f318, %f322;
-	add.f32 	%f324, %f319, %f323;
-	sub.f32 	%f325, %f319, %f324;
-	add.f32 	%f326, %f323, %f325;
-	mul.rn.f32 	%f327, %f280, %f324;
-	neg.f32 	%f328, %f327;
-	fma.rn.f32 	%f329, %f280, %f324, %f328;
-	fma.rn.f32 	%f330, %f280, %f326, %f329;
-	mov.f32 	%f331, 0f00000000;
-	fma.rn.f32 	%f332, %f331, %f324, %f330;
-	add.rn.f32 	%f333, %f327, %f332;
-	neg.f32 	%f334, %f333;
-	add.rn.f32 	%f335, %f327, %f334;
-	add.rn.f32 	%f336, %f335, %f332;
-	mov.b32 	 %r137, %f333;
-	setp.eq.s32	%p21, %r137, 1118925336;
-	add.s32 	%r138, %r137, -1;
-	mov.b32 	 %f337, %r138;
-	add.f32 	%f338, %f336, 0f37000000;
-	selp.f32	%f339, %f337, %f333, %p21;
-	selp.f32	%f32, %f338, %f336, %p21;
-	mul.f32 	%f340, %f339, 0f3FB8AA3B;
-	cvt.rzi.f32.f32	%f341, %f340;
-	mov.f32 	%f342, 0fBF317200;
-	fma.rn.f32 	%f343, %f341, %f342, %f339;
-	mov.f32 	%f344, 0fB5BFBE8E;
-	fma.rn.f32 	%f345, %f341, %f344, %f343;
-	mul.f32 	%f346, %f345, 0f3FB8AA3B;
-	ex2.approx.ftz.f32 	%f347, %f346;
-	add.f32 	%f348, %f341, 0f00000000;
-	ex2.approx.f32 	%f349, %f348;
-	mul.f32 	%f350, %f347, %f349;
-	setp.lt.f32	%p22, %f339, 0fC2D20000;
-	selp.f32	%f351, 0f00000000, %f350, %p22;
-	setp.gt.f32	%p23, %f339, 0f42D20000;
-	selp.f32	%f925, 0f7F800000, %f351, %p23;
-	setp.eq.f32	%p24, %f925, 0f7F800000;
-	@%p24 bra 	BB0_9;
+	sub.f32 	%f324, %f318, %f323;
+	add.f32 	%f325, %f322, %f324;
+	mul.rn.f32 	%f326, %f279, %f323;
+	neg.f32 	%f327, %f326;
+	fma.rn.f32 	%f328, %f279, %f323, %f327;
+	fma.rn.f32 	%f329, %f279, %f325, %f328;
+	mov.f32 	%f330, 0f00000000;
+	fma.rn.f32 	%f331, %f330, %f323, %f329;
+	add.rn.f32 	%f332, %f326, %f331;
+	neg.f32 	%f333, %f332;
+	add.rn.f32 	%f334, %f326, %f333;
+	add.rn.f32 	%f335, %f334, %f331;
+	mov.b32 	 %r142, %f332;
+	setp.eq.s32	%p20, %r142, 1118925336;
+	add.s32 	%r143, %r142, -1;
+	mov.b32 	 %f336, %r143;
+	add.f32 	%f337, %f335, 0f37000000;
+	selp.f32	%f338, %f336, %f332, %p20;
+	selp.f32	%f31, %f337, %f335, %p20;
+	mul.f32 	%f339, %f338, 0f3FB8AA3B;
+	cvt.rzi.f32.f32	%f340, %f339;
+	mov.f32 	%f341, 0fBF317200;
+	fma.rn.f32 	%f342, %f340, %f341, %f338;
+	mov.f32 	%f343, 0fB5BFBE8E;
+	fma.rn.f32 	%f344, %f340, %f343, %f342;
+	mul.f32 	%f345, %f344, 0f3FB8AA3B;
+	ex2.approx.ftz.f32 	%f346, %f345;
+	add.f32 	%f347, %f340, 0f00000000;
+	ex2.approx.f32 	%f348, %f347;
+	mul.f32 	%f349, %f346, %f348;
+	setp.lt.f32	%p21, %f338, 0fC2D20000;
+	selp.f32	%f350, 0f00000000, %f349, %p21;
+	setp.gt.f32	%p22, %f338, 0f42D20000;
+	selp.f32	%f925, 0f7F800000, %f350, %p22;
+	setp.eq.f32	%p23, %f925, 0f7F800000;
+	@%p23 bra 	BB0_10;
 
-	fma.rn.f32 	%f925, %f925, %f32, %f925;
+	fma.rn.f32 	%f925, %f925, %f31, %f925;
 
-BB0_9:
+BB0_10:
 	mov.f32 	%f914, 0f40000000;
 	cvt.rzi.f32.f32	%f913, %f914;
 	add.f32 	%f912, %f913, %f913;
 	mov.f32 	%f911, 0f40800000;
 	sub.f32 	%f910, %f911, %f912;
 	abs.f32 	%f909, %f910;
-	setp.lt.f32	%p25, %f29, 0f00000000;
-	setp.eq.f32	%p26, %f909, 0f3F800000;
-	and.pred  	%p1, %p25, %p26;
-	mov.b32 	 %r139, %f925;
-	xor.b32  	%r140, %r139, -2147483648;
-	mov.b32 	 %f352, %r140;
-	selp.f32	%f927, %f352, %f925, %p1;
-	setp.eq.f32	%p27, %f29, 0f00000000;
-	@%p27 bra 	BB0_12;
-	bra.uni 	BB0_10;
-
-BB0_12:
-	add.f32 	%f355, %f29, %f29;
-	selp.f32	%f927, %f355, 0f00000000, %p26;
-	bra.uni 	BB0_13;
-
-BB0_10:
-	setp.geu.f32	%p28, %f29, 0f00000000;
-	@%p28 bra 	BB0_13;
-
-	mov.f32 	%f915, 0f40800000;
-	cvt.rzi.f32.f32	%f354, %f915;
-	setp.neu.f32	%p29, %f354, 0f40800000;
-	selp.f32	%f927, 0f7FFFFFFF, %f927, %p29;
+	setp.lt.f32	%p24, %f28, 0f00000000;
+	setp.eq.f32	%p25, %f909, 0f3F800000;
+	and.pred  	%p1, %p24, %p25;
+	mov.b32 	 %r144, %f925;
+	xor.b32  	%r145, %r144, -2147483648;
+	mov.b32 	 %f351, %r145;
+	selp.f32	%f927, %f351, %f925, %p1;
+	setp.eq.f32	%p26, %f28, 0f00000000;
+	@%p26 bra 	BB0_13;
+	bra.uni 	BB0_11;
 
 BB0_13:
-	add.f32 	%f356, %f31, 0f40800000;
-	mov.b32 	 %r141, %f356;
-	setp.lt.s32	%p31, %r141, 2139095040;
+	add.f32 	%f354, %f28, %f28;
+	selp.f32	%f927, %f354, 0f00000000, %p25;
+	bra.uni 	BB0_14;
+
+BB0_11:
+	setp.geu.f32	%p27, %f28, 0f00000000;
+	@%p27 bra 	BB0_14;
+
+	mov.f32 	%f915, 0f40800000;
+	cvt.rzi.f32.f32	%f353, %f915;
+	setp.neu.f32	%p28, %f353, 0f40800000;
+	selp.f32	%f927, 0f7FFFFFFF, %f927, %p28;
+
+BB0_14:
+	add.f32 	%f355, %f30, 0f40800000;
+	mov.b32 	 %r146, %f355;
+	setp.lt.s32	%p30, %r146, 2139095040;
+	@%p30 bra 	BB0_19;
+
+	setp.gtu.f32	%p31, %f30, 0f7F800000;
 	@%p31 bra 	BB0_18;
+	bra.uni 	BB0_16;
 
-	setp.gtu.f32	%p32, %f31, 0f7F800000;
-	@%p32 bra 	BB0_17;
-	bra.uni 	BB0_15;
+BB0_18:
+	add.f32 	%f927, %f28, 0f40800000;
+	bra.uni 	BB0_19;
 
-BB0_17:
-	add.f32 	%f927, %f29, 0f40800000;
-	bra.uni 	BB0_18;
-
-BB0_15:
-	setp.neu.f32	%p33, %f31, 0f7F800000;
-	@%p33 bra 	BB0_18;
+BB0_16:
+	setp.neu.f32	%p32, %f30, 0f7F800000;
+	@%p32 bra 	BB0_19;
 
 	selp.f32	%f927, 0fFF800000, 0f7F800000, %p1;
 
-BB0_18:
-	mov.u32 	%r378, 1;
-	mov.u64 	%rd292, lightMeshBuffer;
-	cvta.global.u64 	%rd291, %rd292;
-	shl.b32 	%r377, %r382, 1;
-	mov.f32 	%f357, 0f3F800000;
-	sub.f32 	%f358, %f357, %f927;
-	setp.eq.f32	%p34, %f29, 0f3F800000;
-	selp.f32	%f359, 0f00000000, %f358, %p34;
-	cvt.sat.f32.f32	%f360, %f359;
-	mul.f32 	%f361, %f28, %f360;
-	add.s32 	%r145, %r377, 1;
-	cvt.s64.s32	%rd49, %r145;
+BB0_19:
+	mov.u32 	%r381, 1;
+	mov.u64 	%rd302, lightMeshBuffer;
+	cvta.global.u64 	%rd301, %rd302;
+	shl.b32 	%r380, %r384, 1;
+	mov.f32 	%f356, 0f3F800000;
+	sub.f32 	%f357, %f356, %f927;
+	setp.eq.f32	%p33, %f28, 0f3F800000;
+	selp.f32	%f358, 0f00000000, %f357, %p33;
+	cvt.sat.f32.f32	%f359, %f358;
+	mul.f32 	%f360, %f27, %f359;
+	add.s32 	%r149, %r380, 1;
+	cvt.s64.s32	%rd59, %r149;
 	// inline asm
-	call (%rd47), _rt_buffer_get_64, (%rd291, %r378, %r114, %rd49, %rd24, %rd24, %rd24);
+	call (%rd57), _rt_buffer_get_64, (%rd301, %r381, %r117, %rd59, %rd25, %rd25, %rd25);
 	// inline asm
-	ld.f32 	%f362, [%rd47];
-	mul.f32 	%f363, %f25, %f362;
-	ld.f32 	%f364, [%rd47+4];
-	mul.f32 	%f365, %f26, %f364;
-	neg.f32 	%f366, %f365;
-	sub.f32 	%f367, %f366, %f363;
-	ld.f32 	%f368, [%rd47+8];
-	mul.f32 	%f369, %f27, %f368;
-	sub.f32 	%f370, %f367, %f369;
-	cvt.sat.f32.f32	%f371, %f370;
-	mul.f32 	%f43, %f361, %f371;
-	mul.f32 	%f372, %f917, %f26;
-	fma.rn.f32 	%f373, %f916, %f25, %f372;
-	fma.rn.f32 	%f44, %f918, %f27, %f373;
-	setp.leu.f32	%p35, %f43, 0f3727C5AC;
-	@%p35 bra 	BB0_20;
+	ld.f32 	%f361, [%rd57];
+	mul.f32 	%f362, %f24, %f361;
+	ld.f32 	%f363, [%rd57+4];
+	mul.f32 	%f364, %f25, %f363;
+	neg.f32 	%f365, %f364;
+	sub.f32 	%f366, %f365, %f362;
+	ld.f32 	%f367, [%rd57+8];
+	mul.f32 	%f368, %f26, %f367;
+	sub.f32 	%f369, %f366, %f368;
+	cvt.sat.f32.f32	%f370, %f369;
+	mul.f32 	%f42, %f360, %f370;
+	mul.f32 	%f371, %f917, %f25;
+	fma.rn.f32 	%f372, %f916, %f24, %f371;
+	fma.rn.f32 	%f43, %f918, %f26, %f372;
+	setp.leu.f32	%p34, %f42, 0f3727C5AC;
+	@%p34 bra 	BB0_21;
 
-	mov.u32 	%r380, 1;
-	add.u64 	%rd54, %SP, 4;
-	cvta.to.local.u64 	%rd55, %rd54;
-	max.f32 	%f380, %f386, %f249;
-	sub.f32 	%f381, %f24, %f380;
-	mov.u32 	%r149, 1065353216;
-	st.local.u32 	[%rd55], %r149;
-	ld.global.u32 	%r146, [root];
+	mov.u32 	%r382, 1;
+	add.u64 	%rd64, %SP, 4;
+	cvta.to.local.u64 	%rd65, %rd64;
+	max.f32 	%f379, %f385, %f249;
+	sub.f32 	%f380, %f23, %f379;
+	mov.u32 	%r153, 1065353216;
+	st.local.u32 	[%rd65], %r153;
+	ld.global.u32 	%r150, [root];
 	// inline asm
-	call _rt_trace_64, (%r146, %f10, %f11, %f12, %f25, %f26, %f27, %r380, %f380, %f381, %rd54, %r99);
+	call _rt_trace_64, (%r150, %f10, %f11, %f12, %f24, %f25, %f26, %r382, %f379, %f380, %rd64, %r102);
 	// inline asm
-	ld.local.f32 	%f388, [%rd55];
-	mul.f32 	%f389, %f43, %f388;
-	cvt.sat.f32.f32	%f390, %f44;
-	fma.rn.f32 	%f23, %f390, %f389, %f23;
-	fma.rn.f32 	%f21, %f25, %f389, %f21;
-	fma.rn.f32 	%f20, %f26, %f389, %f20;
-	fma.rn.f32 	%f19, %f27, %f389, %f19;
-	add.f32 	%f22, %f22, %f389;
-	add.f32 	%f18, %f18, %f388;
-
-BB0_20:
-	ld.global.u32 	%r150, [lightMeshBufferSize];
-	add.s32 	%r382, %r382, 1;
-	setp.lt.u32	%p37, %r382, %r150;
-	@%p37 bra 	BB0_6;
-	bra.uni 	BB0_21;
-
-BB0_4:
-	mov.f32 	%f19, %f18;
-	mov.f32 	%f20, %f18;
-	mov.f32 	%f21, %f18;
-	mov.f32 	%f22, %f18;
-	mov.f32 	%f23, %f18;
+	ld.local.f32 	%f387, [%rd65];
+	mul.f32 	%f388, %f42, 0f3EA2F983;
+	mul.f32 	%f389, %f388, %f387;
+	cvt.sat.f32.f32	%f390, %f43;
+	fma.rn.f32 	%f22, %f390, %f389, %f22;
+	fma.rn.f32 	%f20, %f24, %f389, %f20;
+	fma.rn.f32 	%f19, %f25, %f389, %f19;
+	fma.rn.f32 	%f18, %f26, %f389, %f18;
+	add.f32 	%f21, %f21, %f389;
+	add.f32 	%f17, %f17, %f387;
 
 BB0_21:
-	mov.pred 	%p148, %p13;
+	add.s32 	%r384, %r384, 1;
+	setp.lt.s32	%p36, %r384, %r2;
+	@%p36 bra 	BB0_6;
+	bra.uni 	BB0_22;
+
+BB0_4:
+	mov.f32 	%f18, %f17;
+	mov.f32 	%f19, %f17;
+	mov.f32 	%f20, %f17;
+	mov.f32 	%f21, %f17;
+	mov.f32 	%f22, %f17;
 
 BB0_22:
-	cvt.rn.f32.s32	%f391, %r382;
-	mov.f32 	%f392, 0f3F800000;
-	max.f32 	%f393, %f391, %f392;
-	div.rn.f32 	%f970, %f23, %f393;
-	div.rn.f32 	%f975, %f18, %f393;
-	div.rn.f32 	%f971, %f22, %f393;
-	div.rn.f32 	%f972, %f21, %f393;
-	div.rn.f32 	%f973, %f20, %f393;
-	div.rn.f32 	%f974, %f19, %f393;
-	@!%p148 bra 	BB0_75;
-	bra.uni 	BB0_23;
+	mov.pred 	%p148, %p13;
 
 BB0_23:
+	cvt.rn.f32.s32	%f391, %r384;
+	mov.f32 	%f392, 0f3F800000;
+	max.f32 	%f393, %f391, %f392;
+	div.rn.f32 	%f970, %f22, %f393;
+	div.rn.f32 	%f975, %f17, %f393;
+	div.rn.f32 	%f971, %f21, %f393;
+	div.rn.f32 	%f972, %f20, %f393;
+	div.rn.f32 	%f973, %f19, %f393;
+	div.rn.f32 	%f974, %f18, %f393;
+	@!%p148 bra 	BB0_76;
+	bra.uni 	BB0_24;
+
+BB0_24:
 	mov.f32 	%f946, 0f00000000;
-	setp.lt.s32	%p38, %r1, 1;
+	setp.lt.s32	%p37, %r3, 1;
 	mov.f32 	%f947, %f946;
 	mov.f32 	%f948, %f946;
 	mov.f32 	%f949, %f946;
 	mov.f32 	%f950, %f946;
 	mov.f32 	%f951, %f946;
-	@%p38 bra 	BB0_74;
+	@%p37 bra 	BB0_75;
 
-	mad.lo.s32 	%r386, %r126, 1664525, 1013904223;
-	cvt.rn.f32.s32	%f406, %r2;
-	rcp.rn.f32 	%f69, %f406;
-	add.u64 	%rd56, %SP, 8;
-	cvta.to.local.u64 	%rd2, %rd56;
-	mul.f32 	%f70, %f10, 0f3456BF95;
-	mul.f32 	%f71, %f11, 0f3456BF95;
-	mul.f32 	%f72, %f12, 0f3456BF95;
-	add.u64 	%rd57, %SP, 0;
-	cvta.to.local.u64 	%rd3, %rd57;
+	cvt.rn.f32.s32	%f406, %r4;
+	rcp.rn.f32 	%f68, %f406;
+	add.u64 	%rd66, %SP, 8;
+	cvta.to.local.u64 	%rd3, %rd66;
+	mul.f32 	%f69, %f10, 0f3456BF95;
+	mul.f32 	%f70, %f11, 0f3456BF95;
+	mul.f32 	%f71, %f12, 0f3456BF95;
+	add.u64 	%rd67, %SP, 0;
+	cvta.to.local.u64 	%rd4, %rd67;
 	mov.f32 	%f946, 0f00000000;
-	mov.u32 	%r151, 0;
-	abs.f32 	%f407, %f71;
-	abs.f32 	%f408, %f70;
+	mov.u32 	%r154, 0;
+	abs.f32 	%f407, %f70;
+	abs.f32 	%f408, %f69;
 	max.f32 	%f409, %f408, %f407;
-	abs.f32 	%f410, %f72;
+	abs.f32 	%f410, %f71;
 	max.f32 	%f411, %f409, %f410;
-	mov.u32 	%r383, %r151;
+	mov.u32 	%r385, %r154;
 	mov.f32 	%f947, %f946;
 	mov.f32 	%f948, %f946;
 	mov.f32 	%f949, %f946;
 	mov.f32 	%f950, %f946;
 	mov.f32 	%f951, %f946;
-
-BB0_25:
-	cvt.rn.f32.s32	%f79, %r383;
-	max.f32 	%f80, %f411, %f249;
-	mov.u32 	%r385, %r151;
 
 BB0_26:
-	mad.lo.s32 	%r153, %r386, 1664525, 1013904223;
-	and.b32  	%r154, %r153, 16777215;
-	cvt.rn.f32.u32	%f413, %r154;
-	fma.rn.f32 	%f414, %f413, 0f33800000, %f79;
-	mul.f32 	%f415, %f69, %f414;
-	mad.lo.s32 	%r386, %r153, 1664525, 1013904223;
-	and.b32  	%r155, %r386, 16777215;
-	cvt.rn.f32.u32	%f416, %r155;
-	cvt.rn.f32.s32	%f417, %r385;
+	cvt.rn.f32.s32	%f78, %r385;
+	max.f32 	%f79, %f411, %f249;
+	mov.u32 	%r387, %r154;
+
+BB0_27:
+	mad.lo.s32 	%r156, %r388, 1664525, 1013904223;
+	and.b32  	%r157, %r156, 16777215;
+	cvt.rn.f32.u32	%f413, %r157;
+	fma.rn.f32 	%f414, %f413, 0f33800000, %f78;
+	mul.f32 	%f415, %f68, %f414;
+	mad.lo.s32 	%r388, %r156, 1664525, 1013904223;
+	and.b32  	%r158, %r388, 16777215;
+	cvt.rn.f32.u32	%f416, %r158;
+	cvt.rn.f32.s32	%f417, %r387;
 	fma.rn.f32 	%f418, %f416, 0f33800000, %f417;
-	mul.f32 	%f419, %f69, %f418;
-	fma.rn.f32 	%f87, %f415, 0fC0000000, 0f3F800000;
-	mul.f32 	%f420, %f87, %f87;
+	mul.f32 	%f419, %f68, %f418;
+	fma.rn.f32 	%f86, %f415, 0fC0000000, 0f3F800000;
+	mul.f32 	%f420, %f86, %f86;
 	sub.f32 	%f422, %f392, %f420;
 	mov.f32 	%f423, 0f00000000;
 	max.f32 	%f424, %f423, %f422;
-	sqrt.rn.f32 	%f88, %f424;
+	sqrt.rn.f32 	%f87, %f424;
 	mul.f32 	%f958, %f419, 0f40C90FDB;
-	abs.f32 	%f90, %f958;
-	setp.neu.f32	%p39, %f90, 0f7F800000;
+	abs.f32 	%f89, %f958;
+	setp.neu.f32	%p38, %f89, 0f7F800000;
 	mov.f32 	%f952, %f958;
-	@%p39 bra 	BB0_28;
+	@%p38 bra 	BB0_29;
 
 	mul.rn.f32 	%f952, %f958, %f423;
 
-BB0_28:
+BB0_29:
 	mul.f32 	%f426, %f952, 0f3F22F983;
-	cvt.rni.s32.f32	%r396, %f426;
-	cvt.rn.f32.s32	%f427, %r396;
+	cvt.rni.s32.f32	%r398, %f426;
+	cvt.rn.f32.s32	%f427, %r398;
 	neg.f32 	%f428, %f427;
 	mov.f32 	%f429, 0f3FC90FDA;
 	fma.rn.f32 	%f430, %f428, %f429, %f952;
@@ -704,378 +715,378 @@ BB0_28:
 	mov.f32 	%f433, 0f27C234C5;
 	fma.rn.f32 	%f953, %f428, %f433, %f432;
 	abs.f32 	%f434, %f952;
-	setp.leu.f32	%p40, %f434, 0f47CE4780;
-	@%p40 bra 	BB0_39;
+	setp.leu.f32	%p39, %f434, 0f47CE4780;
+	@%p39 bra 	BB0_40;
 
-	mov.b32 	 %r16, %f952;
-	shr.u32 	%r17, %r16, 23;
-	shl.b32 	%r158, %r16, 8;
-	or.b32  	%r18, %r158, -2147483648;
-	mov.u32 	%r388, 0;
-	mov.u64 	%rd293, __cudart_i2opi_f;
-	mov.u32 	%r387, -6;
-	mov.u64 	%rd294, %rd2;
+	mov.b32 	 %r19, %f952;
+	shr.u32 	%r20, %r19, 23;
+	shl.b32 	%r161, %r19, 8;
+	or.b32  	%r21, %r161, -2147483648;
+	mov.u32 	%r390, 0;
+	mov.u64 	%rd303, __cudart_i2opi_f;
+	mov.u32 	%r389, -6;
+	mov.u64 	%rd304, %rd3;
 
-BB0_30:
+BB0_31:
 	.pragma "nounroll";
-	ld.const.u32 	%r161, [%rd293];
+	ld.const.u32 	%r164, [%rd303];
 	// inline asm
 	{
-	mad.lo.cc.u32   %r159, %r161, %r18, %r388;
-	madc.hi.u32     %r388, %r161, %r18,  0;
+	mad.lo.cc.u32   %r162, %r164, %r21, %r390;
+	madc.hi.u32     %r390, %r164, %r21,  0;
 	}
 	// inline asm
-	st.local.u32 	[%rd294], %r159;
-	add.s64 	%rd294, %rd294, 4;
-	add.s64 	%rd293, %rd293, 4;
-	add.s32 	%r387, %r387, 1;
-	setp.ne.s32	%p41, %r387, 0;
-	@%p41 bra 	BB0_30;
+	st.local.u32 	[%rd304], %r162;
+	add.s64 	%rd304, %rd304, 4;
+	add.s64 	%rd303, %rd303, 4;
+	add.s32 	%r389, %r389, 1;
+	setp.ne.s32	%p40, %r389, 0;
+	@%p40 bra 	BB0_31;
 
-	and.b32  	%r164, %r17, 255;
-	add.s32 	%r165, %r164, -128;
-	shr.u32 	%r166, %r165, 5;
-	and.b32  	%r23, %r16, -2147483648;
-	st.local.u32 	[%rd2+24], %r388;
-	mov.u32 	%r167, 6;
-	sub.s32 	%r168, %r167, %r166;
-	mul.wide.s32 	%rd59, %r168, 4;
-	add.s64 	%rd8, %rd2, %rd59;
-	ld.local.u32 	%r389, [%rd8];
-	ld.local.u32 	%r390, [%rd8+-4];
-	and.b32  	%r26, %r17, 31;
-	setp.eq.s32	%p42, %r26, 0;
-	@%p42 bra 	BB0_33;
+	and.b32  	%r167, %r20, 255;
+	add.s32 	%r168, %r167, -128;
+	shr.u32 	%r169, %r168, 5;
+	and.b32  	%r26, %r19, -2147483648;
+	st.local.u32 	[%rd3+24], %r390;
+	mov.u32 	%r170, 6;
+	sub.s32 	%r171, %r170, %r169;
+	mul.wide.s32 	%rd69, %r171, 4;
+	add.s64 	%rd9, %rd3, %rd69;
+	ld.local.u32 	%r391, [%rd9];
+	ld.local.u32 	%r392, [%rd9+-4];
+	and.b32  	%r29, %r20, 31;
+	setp.eq.s32	%p41, %r29, 0;
+	@%p41 bra 	BB0_34;
 
-	mov.u32 	%r169, 32;
-	sub.s32 	%r170, %r169, %r26;
-	shr.u32 	%r171, %r390, %r170;
-	shl.b32 	%r172, %r389, %r26;
-	add.s32 	%r389, %r171, %r172;
-	ld.local.u32 	%r173, [%rd8+-8];
-	shr.u32 	%r174, %r173, %r170;
-	shl.b32 	%r175, %r390, %r26;
-	add.s32 	%r390, %r174, %r175;
-
-BB0_33:
-	shr.u32 	%r176, %r390, 30;
-	shl.b32 	%r177, %r389, 2;
-	add.s32 	%r391, %r176, %r177;
-	shl.b32 	%r32, %r390, 2;
-	shr.u32 	%r178, %r391, 31;
-	shr.u32 	%r179, %r389, 30;
-	add.s32 	%r33, %r178, %r179;
-	setp.eq.s32	%p43, %r178, 0;
-	@%p43 bra 	BB0_34;
-	bra.uni 	BB0_35;
+	mov.u32 	%r172, 32;
+	sub.s32 	%r173, %r172, %r29;
+	shr.u32 	%r174, %r392, %r173;
+	shl.b32 	%r175, %r391, %r29;
+	add.s32 	%r391, %r174, %r175;
+	ld.local.u32 	%r176, [%rd9+-8];
+	shr.u32 	%r177, %r176, %r173;
+	shl.b32 	%r178, %r392, %r29;
+	add.s32 	%r392, %r177, %r178;
 
 BB0_34:
-	mov.u32 	%r392, %r23;
-	mov.u32 	%r393, %r32;
+	shr.u32 	%r179, %r392, 30;
+	shl.b32 	%r180, %r391, 2;
+	add.s32 	%r393, %r179, %r180;
+	shl.b32 	%r35, %r392, 2;
+	shr.u32 	%r181, %r393, 31;
+	shr.u32 	%r182, %r391, 30;
+	add.s32 	%r36, %r181, %r182;
+	setp.eq.s32	%p42, %r181, 0;
+	@%p42 bra 	BB0_35;
 	bra.uni 	BB0_36;
 
 BB0_35:
-	not.b32 	%r180, %r391;
-	neg.s32 	%r393, %r32;
-	setp.eq.s32	%p44, %r32, 0;
-	selp.u32	%r181, 1, 0, %p44;
-	add.s32 	%r391, %r181, %r180;
-	xor.b32  	%r392, %r23, -2147483648;
+	mov.u32 	%r394, %r26;
+	mov.u32 	%r395, %r35;
+	bra.uni 	BB0_37;
 
 BB0_36:
-	clz.b32 	%r395, %r391;
-	setp.eq.s32	%p45, %r395, 0;
-	shl.b32 	%r182, %r391, %r395;
-	mov.u32 	%r183, 32;
-	sub.s32 	%r184, %r183, %r395;
-	shr.u32 	%r185, %r393, %r184;
-	add.s32 	%r186, %r185, %r182;
-	selp.b32	%r41, %r391, %r186, %p45;
-	mov.u32 	%r187, -921707870;
-	mul.hi.u32 	%r394, %r41, %r187;
-	setp.eq.s32	%p46, %r23, 0;
-	neg.s32 	%r188, %r33;
-	selp.b32	%r396, %r33, %r188, %p46;
-	setp.lt.s32	%p47, %r394, 1;
-	@%p47 bra 	BB0_38;
+	not.b32 	%r183, %r393;
+	neg.s32 	%r395, %r35;
+	setp.eq.s32	%p43, %r35, 0;
+	selp.u32	%r184, 1, 0, %p43;
+	add.s32 	%r393, %r184, %r183;
+	xor.b32  	%r394, %r26, -2147483648;
 
-	mul.lo.s32 	%r189, %r41, -921707870;
-	shr.u32 	%r190, %r189, 31;
-	shl.b32 	%r191, %r394, 1;
-	add.s32 	%r394, %r190, %r191;
-	add.s32 	%r395, %r395, 1;
+BB0_37:
+	clz.b32 	%r397, %r393;
+	setp.eq.s32	%p44, %r397, 0;
+	shl.b32 	%r185, %r393, %r397;
+	mov.u32 	%r186, 32;
+	sub.s32 	%r187, %r186, %r397;
+	shr.u32 	%r188, %r395, %r187;
+	add.s32 	%r189, %r188, %r185;
+	selp.b32	%r44, %r393, %r189, %p44;
+	mov.u32 	%r190, -921707870;
+	mul.hi.u32 	%r396, %r44, %r190;
+	setp.eq.s32	%p45, %r26, 0;
+	neg.s32 	%r191, %r36;
+	selp.b32	%r398, %r36, %r191, %p45;
+	setp.lt.s32	%p46, %r396, 1;
+	@%p46 bra 	BB0_39;
 
-BB0_38:
-	mov.u32 	%r192, 126;
-	sub.s32 	%r193, %r192, %r395;
-	shl.b32 	%r194, %r193, 23;
-	add.s32 	%r195, %r394, 1;
-	shr.u32 	%r196, %r195, 7;
-	add.s32 	%r197, %r196, 1;
-	shr.u32 	%r198, %r197, 1;
-	add.s32 	%r199, %r198, %r194;
-	or.b32  	%r200, %r199, %r392;
-	mov.b32 	 %f953, %r200;
+	mul.lo.s32 	%r192, %r44, -921707870;
+	shr.u32 	%r193, %r192, 31;
+	shl.b32 	%r194, %r396, 1;
+	add.s32 	%r396, %r193, %r194;
+	add.s32 	%r397, %r397, 1;
 
 BB0_39:
-	mul.rn.f32 	%f96, %f953, %f953;
-	add.s32 	%r49, %r396, 1;
-	and.b32  	%r50, %r49, 1;
-	setp.eq.s32	%p48, %r50, 0;
-	@%p48 bra 	BB0_41;
-	bra.uni 	BB0_40;
-
-BB0_41:
-	mov.f32 	%f437, 0f3C08839E;
-	mov.f32 	%f438, 0fB94CA1F9;
-	fma.rn.f32 	%f954, %f438, %f96, %f437;
-	bra.uni 	BB0_42;
+	mov.u32 	%r195, 126;
+	sub.s32 	%r196, %r195, %r397;
+	shl.b32 	%r197, %r196, 23;
+	add.s32 	%r198, %r396, 1;
+	shr.u32 	%r199, %r198, 7;
+	add.s32 	%r200, %r199, 1;
+	shr.u32 	%r201, %r200, 1;
+	add.s32 	%r202, %r201, %r197;
+	or.b32  	%r203, %r202, %r394;
+	mov.b32 	 %f953, %r203;
 
 BB0_40:
-	mov.f32 	%f435, 0fBAB6061A;
-	mov.f32 	%f436, 0f37CCF5CE;
-	fma.rn.f32 	%f954, %f436, %f96, %f435;
+	mul.rn.f32 	%f95, %f953, %f953;
+	add.s32 	%r52, %r398, 1;
+	and.b32  	%r53, %r52, 1;
+	setp.eq.s32	%p47, %r53, 0;
+	@%p47 bra 	BB0_42;
+	bra.uni 	BB0_41;
 
 BB0_42:
-	@%p48 bra 	BB0_44;
+	mov.f32 	%f437, 0f3C08839E;
+	mov.f32 	%f438, 0fB94CA1F9;
+	fma.rn.f32 	%f954, %f438, %f95, %f437;
 	bra.uni 	BB0_43;
 
-BB0_44:
-	mov.f32 	%f442, 0fBE2AAAA3;
-	fma.rn.f32 	%f443, %f954, %f96, %f442;
-	fma.rn.f32 	%f955, %f443, %f96, %f423;
-	bra.uni 	BB0_45;
+BB0_41:
+	mov.f32 	%f435, 0fBAB6061A;
+	mov.f32 	%f436, 0f37CCF5CE;
+	fma.rn.f32 	%f954, %f436, %f95, %f435;
 
 BB0_43:
-	mov.f32 	%f439, 0f3D2AAAA5;
-	fma.rn.f32 	%f440, %f954, %f96, %f439;
-	mov.f32 	%f441, 0fBF000000;
-	fma.rn.f32 	%f955, %f440, %f96, %f441;
+	@%p47 bra 	BB0_45;
+	bra.uni 	BB0_44;
 
 BB0_45:
+	mov.f32 	%f442, 0fBE2AAAA3;
+	fma.rn.f32 	%f443, %f954, %f95, %f442;
+	fma.rn.f32 	%f955, %f443, %f95, %f423;
+	bra.uni 	BB0_46;
+
+BB0_44:
+	mov.f32 	%f439, 0f3D2AAAA5;
+	fma.rn.f32 	%f440, %f954, %f95, %f439;
+	mov.f32 	%f441, 0fBF000000;
+	fma.rn.f32 	%f955, %f440, %f95, %f441;
+
+BB0_46:
 	fma.rn.f32 	%f956, %f955, %f953, %f953;
-	@%p48 bra 	BB0_47;
+	@%p47 bra 	BB0_48;
 
-	fma.rn.f32 	%f956, %f955, %f96, %f392;
+	fma.rn.f32 	%f956, %f955, %f95, %f392;
 
-BB0_47:
-	and.b32  	%r201, %r49, 2;
-	setp.eq.s32	%p51, %r201, 0;
-	@%p51 bra 	BB0_49;
+BB0_48:
+	and.b32  	%r204, %r52, 2;
+	setp.eq.s32	%p50, %r204, 0;
+	@%p50 bra 	BB0_50;
 
 	mov.f32 	%f447, 0fBF800000;
 	fma.rn.f32 	%f956, %f956, %f447, %f423;
 
-BB0_49:
-	@%p39 bra 	BB0_51;
+BB0_50:
+	@%p38 bra 	BB0_52;
 
 	mul.rn.f32 	%f958, %f958, %f423;
 
-BB0_51:
+BB0_52:
 	mul.f32 	%f449, %f958, 0f3F22F983;
-	cvt.rni.s32.f32	%r406, %f449;
-	cvt.rn.f32.s32	%f450, %r406;
+	cvt.rni.s32.f32	%r408, %f449;
+	cvt.rn.f32.s32	%f450, %r408;
 	neg.f32 	%f451, %f450;
 	fma.rn.f32 	%f453, %f451, %f429, %f958;
 	fma.rn.f32 	%f455, %f451, %f431, %f453;
 	fma.rn.f32 	%f959, %f451, %f433, %f455;
 	abs.f32 	%f457, %f958;
-	setp.leu.f32	%p53, %f457, 0f47CE4780;
-	@%p53 bra 	BB0_62;
+	setp.leu.f32	%p52, %f457, 0f47CE4780;
+	@%p52 bra 	BB0_63;
 
-	mov.b32 	 %r52, %f958;
-	shr.u32 	%r53, %r52, 23;
-	shl.b32 	%r204, %r52, 8;
-	or.b32  	%r54, %r204, -2147483648;
-	mov.u32 	%r398, 0;
-	mov.u64 	%rd295, __cudart_i2opi_f;
-	mov.u32 	%r397, -6;
-	mov.u64 	%rd296, %rd2;
+	mov.b32 	 %r55, %f958;
+	shr.u32 	%r56, %r55, 23;
+	shl.b32 	%r207, %r55, 8;
+	or.b32  	%r57, %r207, -2147483648;
+	mov.u32 	%r400, 0;
+	mov.u64 	%rd305, __cudart_i2opi_f;
+	mov.u32 	%r399, -6;
+	mov.u64 	%rd306, %rd3;
 
-BB0_53:
+BB0_54:
 	.pragma "nounroll";
-	ld.const.u32 	%r207, [%rd295];
+	ld.const.u32 	%r210, [%rd305];
 	// inline asm
 	{
-	mad.lo.cc.u32   %r205, %r207, %r54, %r398;
-	madc.hi.u32     %r398, %r207, %r54,  0;
+	mad.lo.cc.u32   %r208, %r210, %r57, %r400;
+	madc.hi.u32     %r400, %r210, %r57,  0;
 	}
 	// inline asm
-	st.local.u32 	[%rd296], %r205;
-	add.s64 	%rd296, %rd296, 4;
-	add.s64 	%rd295, %rd295, 4;
-	add.s32 	%r397, %r397, 1;
-	setp.ne.s32	%p54, %r397, 0;
-	@%p54 bra 	BB0_53;
+	st.local.u32 	[%rd306], %r208;
+	add.s64 	%rd306, %rd306, 4;
+	add.s64 	%rd305, %rd305, 4;
+	add.s32 	%r399, %r399, 1;
+	setp.ne.s32	%p53, %r399, 0;
+	@%p53 bra 	BB0_54;
 
-	and.b32  	%r210, %r53, 255;
-	add.s32 	%r211, %r210, -128;
-	shr.u32 	%r212, %r211, 5;
-	and.b32  	%r59, %r52, -2147483648;
-	st.local.u32 	[%rd2+24], %r398;
-	mov.u32 	%r213, 6;
-	sub.s32 	%r214, %r213, %r212;
-	mul.wide.s32 	%rd61, %r214, 4;
-	add.s64 	%rd13, %rd2, %rd61;
-	ld.local.u32 	%r399, [%rd13];
-	ld.local.u32 	%r400, [%rd13+-4];
-	and.b32  	%r62, %r53, 31;
-	setp.eq.s32	%p55, %r62, 0;
-	@%p55 bra 	BB0_56;
+	and.b32  	%r213, %r56, 255;
+	add.s32 	%r214, %r213, -128;
+	shr.u32 	%r215, %r214, 5;
+	and.b32  	%r62, %r55, -2147483648;
+	st.local.u32 	[%rd3+24], %r400;
+	mov.u32 	%r216, 6;
+	sub.s32 	%r217, %r216, %r215;
+	mul.wide.s32 	%rd71, %r217, 4;
+	add.s64 	%rd14, %rd3, %rd71;
+	ld.local.u32 	%r401, [%rd14];
+	ld.local.u32 	%r402, [%rd14+-4];
+	and.b32  	%r65, %r56, 31;
+	setp.eq.s32	%p54, %r65, 0;
+	@%p54 bra 	BB0_57;
 
-	mov.u32 	%r215, 32;
-	sub.s32 	%r216, %r215, %r62;
-	shr.u32 	%r217, %r400, %r216;
-	shl.b32 	%r218, %r399, %r62;
-	add.s32 	%r399, %r217, %r218;
-	ld.local.u32 	%r219, [%rd13+-8];
-	shr.u32 	%r220, %r219, %r216;
-	shl.b32 	%r221, %r400, %r62;
-	add.s32 	%r400, %r220, %r221;
-
-BB0_56:
-	shr.u32 	%r222, %r400, 30;
-	shl.b32 	%r223, %r399, 2;
-	add.s32 	%r401, %r222, %r223;
-	shl.b32 	%r68, %r400, 2;
-	shr.u32 	%r224, %r401, 31;
-	shr.u32 	%r225, %r399, 30;
-	add.s32 	%r69, %r224, %r225;
-	setp.eq.s32	%p56, %r224, 0;
-	@%p56 bra 	BB0_57;
-	bra.uni 	BB0_58;
+	mov.u32 	%r218, 32;
+	sub.s32 	%r219, %r218, %r65;
+	shr.u32 	%r220, %r402, %r219;
+	shl.b32 	%r221, %r401, %r65;
+	add.s32 	%r401, %r220, %r221;
+	ld.local.u32 	%r222, [%rd14+-8];
+	shr.u32 	%r223, %r222, %r219;
+	shl.b32 	%r224, %r402, %r65;
+	add.s32 	%r402, %r223, %r224;
 
 BB0_57:
-	mov.u32 	%r402, %r59;
-	mov.u32 	%r403, %r68;
+	shr.u32 	%r225, %r402, 30;
+	shl.b32 	%r226, %r401, 2;
+	add.s32 	%r403, %r225, %r226;
+	shl.b32 	%r71, %r402, 2;
+	shr.u32 	%r227, %r403, 31;
+	shr.u32 	%r228, %r401, 30;
+	add.s32 	%r72, %r227, %r228;
+	setp.eq.s32	%p55, %r227, 0;
+	@%p55 bra 	BB0_58;
 	bra.uni 	BB0_59;
 
 BB0_58:
-	not.b32 	%r226, %r401;
-	neg.s32 	%r403, %r68;
-	setp.eq.s32	%p57, %r68, 0;
-	selp.u32	%r227, 1, 0, %p57;
-	add.s32 	%r401, %r227, %r226;
-	xor.b32  	%r402, %r59, -2147483648;
+	mov.u32 	%r404, %r62;
+	mov.u32 	%r405, %r71;
+	bra.uni 	BB0_60;
 
 BB0_59:
-	clz.b32 	%r405, %r401;
-	setp.eq.s32	%p58, %r405, 0;
-	shl.b32 	%r228, %r401, %r405;
-	mov.u32 	%r229, 32;
-	sub.s32 	%r230, %r229, %r405;
-	shr.u32 	%r231, %r403, %r230;
-	add.s32 	%r232, %r231, %r228;
-	selp.b32	%r77, %r401, %r232, %p58;
-	mov.u32 	%r233, -921707870;
-	mul.hi.u32 	%r404, %r77, %r233;
-	setp.eq.s32	%p59, %r59, 0;
-	neg.s32 	%r234, %r69;
-	selp.b32	%r406, %r69, %r234, %p59;
-	setp.lt.s32	%p60, %r404, 1;
-	@%p60 bra 	BB0_61;
+	not.b32 	%r229, %r403;
+	neg.s32 	%r405, %r71;
+	setp.eq.s32	%p56, %r71, 0;
+	selp.u32	%r230, 1, 0, %p56;
+	add.s32 	%r403, %r230, %r229;
+	xor.b32  	%r404, %r62, -2147483648;
 
-	mul.lo.s32 	%r235, %r77, -921707870;
-	shr.u32 	%r236, %r235, 31;
-	shl.b32 	%r237, %r404, 1;
-	add.s32 	%r404, %r236, %r237;
-	add.s32 	%r405, %r405, 1;
+BB0_60:
+	clz.b32 	%r407, %r403;
+	setp.eq.s32	%p57, %r407, 0;
+	shl.b32 	%r231, %r403, %r407;
+	mov.u32 	%r232, 32;
+	sub.s32 	%r233, %r232, %r407;
+	shr.u32 	%r234, %r405, %r233;
+	add.s32 	%r235, %r234, %r231;
+	selp.b32	%r80, %r403, %r235, %p57;
+	mov.u32 	%r236, -921707870;
+	mul.hi.u32 	%r406, %r80, %r236;
+	setp.eq.s32	%p58, %r62, 0;
+	neg.s32 	%r237, %r72;
+	selp.b32	%r408, %r72, %r237, %p58;
+	setp.lt.s32	%p59, %r406, 1;
+	@%p59 bra 	BB0_62;
 
-BB0_61:
-	mov.u32 	%r238, 126;
-	sub.s32 	%r239, %r238, %r405;
-	shl.b32 	%r240, %r239, 23;
-	add.s32 	%r241, %r404, 1;
-	shr.u32 	%r242, %r241, 7;
-	add.s32 	%r243, %r242, 1;
-	shr.u32 	%r244, %r243, 1;
-	add.s32 	%r245, %r244, %r240;
-	or.b32  	%r246, %r245, %r402;
-	mov.b32 	 %f959, %r246;
+	mul.lo.s32 	%r238, %r80, -921707870;
+	shr.u32 	%r239, %r238, 31;
+	shl.b32 	%r240, %r406, 1;
+	add.s32 	%r406, %r239, %r240;
+	add.s32 	%r407, %r407, 1;
 
 BB0_62:
-	mul.rn.f32 	%f113, %f959, %f959;
-	and.b32  	%r85, %r406, 1;
-	setp.eq.s32	%p61, %r85, 0;
-	@%p61 bra 	BB0_64;
-	bra.uni 	BB0_63;
-
-BB0_64:
-	mov.f32 	%f460, 0f3C08839E;
-	mov.f32 	%f461, 0fB94CA1F9;
-	fma.rn.f32 	%f960, %f461, %f113, %f460;
-	bra.uni 	BB0_65;
+	mov.u32 	%r241, 126;
+	sub.s32 	%r242, %r241, %r407;
+	shl.b32 	%r243, %r242, 23;
+	add.s32 	%r244, %r406, 1;
+	shr.u32 	%r245, %r244, 7;
+	add.s32 	%r246, %r245, 1;
+	shr.u32 	%r247, %r246, 1;
+	add.s32 	%r248, %r247, %r243;
+	or.b32  	%r249, %r248, %r404;
+	mov.b32 	 %f959, %r249;
 
 BB0_63:
-	mov.f32 	%f458, 0fBAB6061A;
-	mov.f32 	%f459, 0f37CCF5CE;
-	fma.rn.f32 	%f960, %f459, %f113, %f458;
+	mul.rn.f32 	%f112, %f959, %f959;
+	and.b32  	%r88, %r408, 1;
+	setp.eq.s32	%p60, %r88, 0;
+	@%p60 bra 	BB0_65;
+	bra.uni 	BB0_64;
 
 BB0_65:
-	@%p61 bra 	BB0_67;
+	mov.f32 	%f460, 0f3C08839E;
+	mov.f32 	%f461, 0fB94CA1F9;
+	fma.rn.f32 	%f960, %f461, %f112, %f460;
 	bra.uni 	BB0_66;
 
-BB0_67:
-	mov.f32 	%f465, 0fBE2AAAA3;
-	fma.rn.f32 	%f466, %f960, %f113, %f465;
-	fma.rn.f32 	%f961, %f466, %f113, %f423;
-	bra.uni 	BB0_68;
+BB0_64:
+	mov.f32 	%f458, 0fBAB6061A;
+	mov.f32 	%f459, 0f37CCF5CE;
+	fma.rn.f32 	%f960, %f459, %f112, %f458;
 
 BB0_66:
-	mov.f32 	%f462, 0f3D2AAAA5;
-	fma.rn.f32 	%f463, %f960, %f113, %f462;
-	mov.f32 	%f464, 0fBF000000;
-	fma.rn.f32 	%f961, %f463, %f113, %f464;
+	@%p60 bra 	BB0_68;
+	bra.uni 	BB0_67;
 
 BB0_68:
+	mov.f32 	%f465, 0fBE2AAAA3;
+	fma.rn.f32 	%f466, %f960, %f112, %f465;
+	fma.rn.f32 	%f961, %f466, %f112, %f423;
+	bra.uni 	BB0_69;
+
+BB0_67:
+	mov.f32 	%f462, 0f3D2AAAA5;
+	fma.rn.f32 	%f463, %f960, %f112, %f462;
+	mov.f32 	%f464, 0fBF000000;
+	fma.rn.f32 	%f961, %f463, %f112, %f464;
+
+BB0_69:
 	fma.rn.f32 	%f962, %f961, %f959, %f959;
-	@%p61 bra 	BB0_70;
+	@%p60 bra 	BB0_71;
 
-	fma.rn.f32 	%f962, %f961, %f113, %f392;
+	fma.rn.f32 	%f962, %f961, %f112, %f392;
 
-BB0_70:
-	and.b32  	%r247, %r406, 2;
-	setp.eq.s32	%p64, %r247, 0;
-	@%p64 bra 	BB0_72;
+BB0_71:
+	and.b32  	%r250, %r408, 2;
+	setp.eq.s32	%p63, %r250, 0;
+	@%p63 bra 	BB0_73;
 
 	mov.f32 	%f470, 0fBF800000;
 	fma.rn.f32 	%f962, %f962, %f470, %f423;
 
-BB0_72:
-	mul.f32 	%f474, %f88, %f956;
-	mov.u32 	%r249, 0;
-	st.local.u32 	[%rd3], %r249;
-	ld.global.u32 	%r248, [root];
-	mul.f32 	%f475, %f88, %f962;
+BB0_73:
+	mul.f32 	%f474, %f87, %f956;
+	mov.u32 	%r252, 0;
+	st.local.u32 	[%rd4], %r252;
+	ld.global.u32 	%r251, [root];
+	mul.f32 	%f475, %f87, %f962;
 	mov.f32 	%f478, 0f6C4ECB8F;
 	// inline asm
-	call _rt_trace_64, (%r248, %f10, %f11, %f12, %f474, %f475, %f87, %r249, %f80, %f478, %rd57, %r99);
+	call _rt_trace_64, (%r251, %f10, %f11, %f12, %f474, %f475, %f86, %r252, %f79, %f478, %rd67, %r102);
 	// inline asm
-	ld.local.f32 	%f479, [%rd3];
-	setp.lt.f32	%p65, %f479, 0f00000000;
-	selp.f32	%f480, 0f00000000, %f479, %p65;
-	selp.f32	%f481, 0f00000000, 0f3F800000, %p65;
+	ld.local.f32 	%f479, [%rd4];
+	setp.lt.f32	%p64, %f479, 0f00000000;
+	selp.f32	%f480, 0f00000000, %f479, %p64;
+	selp.f32	%f481, 0f00000000, 0f3F800000, %p64;
 	add.f32 	%f946, %f946, %f481;
 	fma.rn.f32 	%f949, %f474, %f480, %f949;
 	fma.rn.f32 	%f948, %f475, %f480, %f948;
-	fma.rn.f32 	%f947, %f87, %f480, %f947;
+	fma.rn.f32 	%f947, %f86, %f480, %f947;
 	add.f32 	%f950, %f950, %f480;
 	mul.f32 	%f482, %f917, %f475;
 	fma.rn.f32 	%f483, %f916, %f474, %f482;
-	fma.rn.f32 	%f484, %f918, %f87, %f483;
+	fma.rn.f32 	%f484, %f918, %f86, %f483;
 	cvt.sat.f32.f32	%f485, %f484;
 	fma.rn.f32 	%f951, %f480, %f485, %f951;
+	add.s32 	%r387, %r387, 1;
+	setp.lt.s32	%p65, %r387, %r4;
+	@%p65 bra 	BB0_27;
+
 	add.s32 	%r385, %r385, 1;
-	setp.lt.s32	%p66, %r385, %r2;
+	setp.lt.s32	%p66, %r385, %r4;
 	@%p66 bra 	BB0_26;
 
-	add.s32 	%r383, %r383, 1;
-	setp.lt.s32	%p67, %r383, %r2;
-	@%p67 bra 	BB0_25;
-
-BB0_74:
-	mul.lo.s32 	%r251, %r2, %r2;
-	cvt.rn.f32.s32	%f486, %r251;
+BB0_75:
+	mul.lo.s32 	%r254, %r4, %r4;
+	cvt.rn.f32.s32	%f486, %r254;
 	div.rn.f32 	%f487, %f951, %f486;
 	div.rn.f32 	%f975, %f946, %f486;
 	div.rn.f32 	%f971, %f950, %f486;
@@ -1084,34 +1095,36 @@ BB0_74:
 	div.rn.f32 	%f974, %f947, %f486;
 	add.f32 	%f970, %f487, %f487;
 
-BB0_75:
-	ld.global.u32 	%r408, [imageEnabled];
-	and.b32  	%r252, %r408, 8;
-	setp.eq.s32	%p68, %r252, 0;
-	@%p68 bra 	BB0_88;
+BB0_76:
+	setp.gt.s32	%p67, %r1, -1;
+	selp.f32	%f148, %f975, %f970, %p67;
+	ld.global.u32 	%r410, [imageEnabled];
+	and.b32  	%r255, %r410, 8;
+	setp.eq.s32	%p68, %r255, 0;
+	@%p68 bra 	BB0_89;
 
-	cvt.u64.u32	%rd65, %r4;
-	cvt.u64.u32	%rd66, %r5;
-	mov.u64 	%rd69, image_Mask;
-	cvta.global.u64 	%rd64, %rd69;
+	cvt.u64.u32	%rd75, %r6;
+	cvt.u64.u32	%rd76, %r7;
+	mov.u64 	%rd79, image_Mask;
+	cvta.global.u64 	%rd74, %rd79;
 	// inline asm
-	call (%rd63), _rt_buffer_get_64, (%rd64, %r98, %r98, %rd65, %rd66, %rd24, %rd24);
+	call (%rd73), _rt_buffer_get_64, (%rd74, %r101, %r101, %rd75, %rd76, %rd25, %rd25);
 	// inline asm
 	mov.f32 	%f490, 0f3E68BA2E;
 	cvt.rzi.f32.f32	%f491, %f490;
 	fma.rn.f32 	%f492, %f491, 0fC0000000, 0f3EE8BA2E;
 	abs.f32 	%f149, %f492;
-	abs.f32 	%f150, %f975;
+	abs.f32 	%f150, %f148;
 	setp.lt.f32	%p69, %f150, 0f00800000;
 	mul.f32 	%f493, %f150, 0f4B800000;
 	selp.f32	%f494, 0fC3170000, 0fC2FE0000, %p69;
 	selp.f32	%f495, %f493, %f150, %p69;
-	mov.b32 	 %r255, %f495;
-	and.b32  	%r256, %r255, 8388607;
-	or.b32  	%r257, %r256, 1065353216;
-	mov.b32 	 %f496, %r257;
-	shr.u32 	%r258, %r255, 23;
-	cvt.rn.f32.u32	%f497, %r258;
+	mov.b32 	 %r258, %f495;
+	and.b32  	%r259, %r258, 8388607;
+	or.b32  	%r260, %r259, 1065353216;
+	mov.b32 	 %f496, %r260;
+	shr.u32 	%r261, %r258, 23;
+	cvt.rn.f32.u32	%f497, %r261;
 	add.f32 	%f498, %f494, %f497;
 	setp.gt.f32	%p70, %f496, 0f3FB504F3;
 	mul.f32 	%f499, %f496, 0f3F000000;
@@ -1168,10 +1181,10 @@ BB0_75:
 	neg.f32 	%f546, %f545;
 	add.rn.f32 	%f547, %f539, %f546;
 	add.rn.f32 	%f548, %f547, %f544;
-	mov.b32 	 %r259, %f545;
-	setp.eq.s32	%p71, %r259, 1118925336;
-	add.s32 	%r260, %r259, -1;
-	mov.b32 	 %f549, %r260;
+	mov.b32 	 %r262, %f545;
+	setp.eq.s32	%p71, %r262, 1118925336;
+	add.s32 	%r263, %r262, -1;
+	mov.b32 	 %f549, %r263;
 	add.f32 	%f550, %f548, 0f37000000;
 	selp.f32	%f551, %f549, %f545, %p71;
 	selp.f32	%f151, %f550, %f548, %p71;
@@ -1191,338 +1204,338 @@ BB0_75:
 	setp.gt.f32	%p73, %f551, 0f42D20000;
 	selp.f32	%f976, 0f7F800000, %f563, %p73;
 	setp.eq.f32	%p74, %f976, 0f7F800000;
-	@%p74 bra 	BB0_78;
+	@%p74 bra 	BB0_79;
 
 	fma.rn.f32 	%f976, %f976, %f151, %f976;
 
-BB0_78:
-	setp.lt.f32	%p75, %f975, 0f00000000;
+BB0_79:
+	setp.lt.f32	%p75, %f148, 0f00000000;
 	setp.eq.f32	%p76, %f149, 0f3F800000;
 	and.pred  	%p3, %p75, %p76;
-	mov.b32 	 %r261, %f976;
-	xor.b32  	%r262, %r261, -2147483648;
-	mov.b32 	 %f564, %r262;
+	mov.b32 	 %r264, %f976;
+	xor.b32  	%r265, %r264, -2147483648;
+	mov.b32 	 %f564, %r265;
 	selp.f32	%f978, %f564, %f976, %p3;
-	setp.eq.f32	%p77, %f975, 0f00000000;
-	@%p77 bra 	BB0_81;
-	bra.uni 	BB0_79;
+	setp.eq.f32	%p77, %f148, 0f00000000;
+	@%p77 bra 	BB0_82;
+	bra.uni 	BB0_80;
 
-BB0_81:
-	add.f32 	%f567, %f975, %f975;
+BB0_82:
+	add.f32 	%f567, %f148, %f148;
 	selp.f32	%f978, %f567, 0f00000000, %p76;
-	bra.uni 	BB0_82;
+	bra.uni 	BB0_83;
 
-BB0_146:
-	mov.u64 	%rd210, image_HDR;
-	cvta.global.u64 	%rd205, %rd210;
-	mov.u32 	%r348, 8;
+BB0_147:
+	mov.u64 	%rd220, image_HDR;
+	cvta.global.u64 	%rd215, %rd220;
+	mov.u32 	%r351, 8;
 	// inline asm
-	call (%rd204), _rt_buffer_get_64, (%rd205, %r98, %r348, %rd17, %rd18, %rd24, %rd24);
+	call (%rd214), _rt_buffer_get_64, (%rd215, %r101, %r351, %rd18, %rd19, %rd25, %rd25);
 	// inline asm
 	mov.f32 	%f880, 0f00000000;
 	// inline asm
-	{  cvt.rn.f16.f32 %rs98, %f880;}
+	{  cvt.rn.f16.f32 %rs99, %f880;}
 
 	// inline asm
-	mov.u16 	%rs99, 0;
-	st.v4.u16 	[%rd204], {%rs98, %rs98, %rs98, %rs99};
+	mov.u16 	%rs100, 0;
+	st.v4.u16 	[%rd214], {%rs99, %rs99, %rs99, %rs100};
 
-BB0_147:
-	ld.global.u32 	%r349, [additive];
-	setp.eq.s32	%p144, %r349, 0;
-	@%p144 bra 	BB0_149;
+BB0_148:
+	ld.global.u32 	%r352, [additive];
+	setp.eq.s32	%p144, %r352, 0;
+	@%p144 bra 	BB0_150;
 
-	mov.u64 	%rd223, image_RNM0;
-	cvta.global.u64 	%rd212, %rd223;
-	mov.u32 	%r353, 8;
+	mov.u64 	%rd233, image_RNM0;
+	cvta.global.u64 	%rd222, %rd233;
+	mov.u32 	%r356, 8;
 	// inline asm
-	call (%rd211), _rt_buffer_get_64, (%rd212, %r98, %r353, %rd17, %rd18, %rd24, %rd24);
+	call (%rd221), _rt_buffer_get_64, (%rd222, %r101, %r356, %rd18, %rd19, %rd25, %rd25);
 	// inline asm
-	ld.v4.u16 	{%rs106, %rs107, %rs108, %rs109}, [%rd211];
+	ld.v4.u16 	{%rs107, %rs108, %rs109, %rs110}, [%rd221];
 	// inline asm
-	{  cvt.f32.f16 %f881, %rs106;}
-
-	// inline asm
-	// inline asm
-	{  cvt.f32.f16 %f882, %rs107;}
+	{  cvt.f32.f16 %f881, %rs107;}
 
 	// inline asm
 	// inline asm
-	{  cvt.f32.f16 %f883, %rs108;}
+	{  cvt.f32.f16 %f882, %rs108;}
 
 	// inline asm
 	// inline asm
-	call (%rd217), _rt_buffer_get_64, (%rd212, %r98, %r353, %rd17, %rd18, %rd24, %rd24);
+	{  cvt.f32.f16 %f883, %rs109;}
+
+	// inline asm
+	// inline asm
+	call (%rd227), _rt_buffer_get_64, (%rd222, %r101, %r356, %rd18, %rd19, %rd25, %rd25);
 	// inline asm
 	add.f32 	%f884, %f881, 0f00000000;
 	add.f32 	%f885, %f882, 0f00000000;
 	add.f32 	%f886, %f883, 0f00000000;
 	// inline asm
-	{  cvt.rn.f16.f32 %rs105, %f886;}
+	{  cvt.rn.f16.f32 %rs106, %f886;}
 
 	// inline asm
 	// inline asm
-	{  cvt.rn.f16.f32 %rs104, %f885;}
+	{  cvt.rn.f16.f32 %rs105, %f885;}
 
 	// inline asm
 	// inline asm
-	{  cvt.rn.f16.f32 %rs103, %f884;}
+	{  cvt.rn.f16.f32 %rs104, %f884;}
 
 	// inline asm
-	mov.u16 	%rs110, 0;
-	st.v4.u16 	[%rd217], {%rs103, %rs104, %rs105, %rs110};
-	bra.uni 	BB0_150;
+	mov.u16 	%rs111, 0;
+	st.v4.u16 	[%rd227], {%rs104, %rs105, %rs106, %rs111};
+	bra.uni 	BB0_151;
 
-BB0_149:
-	mov.u64 	%rd230, image_RNM0;
-	cvta.global.u64 	%rd225, %rd230;
-	mov.u32 	%r355, 8;
+BB0_150:
+	mov.u64 	%rd240, image_RNM0;
+	cvta.global.u64 	%rd235, %rd240;
+	mov.u32 	%r358, 8;
 	// inline asm
-	call (%rd224), _rt_buffer_get_64, (%rd225, %r98, %r355, %rd17, %rd18, %rd24, %rd24);
+	call (%rd234), _rt_buffer_get_64, (%rd235, %r101, %r358, %rd18, %rd19, %rd25, %rd25);
 	// inline asm
 	mov.f32 	%f887, 0f00000000;
 	// inline asm
-	{  cvt.rn.f16.f32 %rs111, %f887;}
+	{  cvt.rn.f16.f32 %rs112, %f887;}
 
 	// inline asm
-	mov.u16 	%rs112, 0;
-	st.v4.u16 	[%rd224], {%rs111, %rs111, %rs111, %rs112};
+	mov.u16 	%rs113, 0;
+	st.v4.u16 	[%rd234], {%rs112, %rs112, %rs112, %rs113};
 
-BB0_150:
-	ld.global.u32 	%r356, [additive];
-	setp.eq.s32	%p145, %r356, 0;
-	@%p145 bra 	BB0_152;
+BB0_151:
+	ld.global.u32 	%r359, [additive];
+	setp.eq.s32	%p145, %r359, 0;
+	@%p145 bra 	BB0_153;
 
-	mov.u64 	%rd243, image_RNM1;
-	cvta.global.u64 	%rd232, %rd243;
-	mov.u32 	%r360, 8;
+	mov.u64 	%rd253, image_RNM1;
+	cvta.global.u64 	%rd242, %rd253;
+	mov.u32 	%r363, 8;
 	// inline asm
-	call (%rd231), _rt_buffer_get_64, (%rd232, %r98, %r360, %rd17, %rd18, %rd24, %rd24);
+	call (%rd241), _rt_buffer_get_64, (%rd242, %r101, %r363, %rd18, %rd19, %rd25, %rd25);
 	// inline asm
-	ld.v4.u16 	{%rs119, %rs120, %rs121, %rs122}, [%rd231];
+	ld.v4.u16 	{%rs120, %rs121, %rs122, %rs123}, [%rd241];
 	// inline asm
-	{  cvt.f32.f16 %f888, %rs119;}
-
-	// inline asm
-	// inline asm
-	{  cvt.f32.f16 %f889, %rs120;}
+	{  cvt.f32.f16 %f888, %rs120;}
 
 	// inline asm
 	// inline asm
-	{  cvt.f32.f16 %f890, %rs121;}
+	{  cvt.f32.f16 %f889, %rs121;}
 
 	// inline asm
 	// inline asm
-	call (%rd237), _rt_buffer_get_64, (%rd232, %r98, %r360, %rd17, %rd18, %rd24, %rd24);
+	{  cvt.f32.f16 %f890, %rs122;}
+
+	// inline asm
+	// inline asm
+	call (%rd247), _rt_buffer_get_64, (%rd242, %r101, %r363, %rd18, %rd19, %rd25, %rd25);
 	// inline asm
 	add.f32 	%f891, %f888, 0f00000000;
 	add.f32 	%f892, %f889, 0f00000000;
 	add.f32 	%f893, %f890, 0f00000000;
 	// inline asm
-	{  cvt.rn.f16.f32 %rs118, %f893;}
+	{  cvt.rn.f16.f32 %rs119, %f893;}
 
 	// inline asm
 	// inline asm
-	{  cvt.rn.f16.f32 %rs117, %f892;}
+	{  cvt.rn.f16.f32 %rs118, %f892;}
 
 	// inline asm
 	// inline asm
-	{  cvt.rn.f16.f32 %rs116, %f891;}
+	{  cvt.rn.f16.f32 %rs117, %f891;}
 
 	// inline asm
-	mov.u16 	%rs123, 0;
-	st.v4.u16 	[%rd237], {%rs116, %rs117, %rs118, %rs123};
-	bra.uni 	BB0_153;
+	mov.u16 	%rs124, 0;
+	st.v4.u16 	[%rd247], {%rs117, %rs118, %rs119, %rs124};
+	bra.uni 	BB0_154;
 
-BB0_152:
-	mov.u64 	%rd250, image_RNM1;
-	cvta.global.u64 	%rd245, %rd250;
-	mov.u32 	%r362, 8;
+BB0_153:
+	mov.u64 	%rd260, image_RNM1;
+	cvta.global.u64 	%rd255, %rd260;
+	mov.u32 	%r365, 8;
 	// inline asm
-	call (%rd244), _rt_buffer_get_64, (%rd245, %r98, %r362, %rd17, %rd18, %rd24, %rd24);
+	call (%rd254), _rt_buffer_get_64, (%rd255, %r101, %r365, %rd18, %rd19, %rd25, %rd25);
 	// inline asm
 	mov.f32 	%f894, 0f00000000;
 	// inline asm
-	{  cvt.rn.f16.f32 %rs124, %f894;}
+	{  cvt.rn.f16.f32 %rs125, %f894;}
 
 	// inline asm
-	mov.u16 	%rs125, 0;
-	st.v4.u16 	[%rd244], {%rs124, %rs124, %rs124, %rs125};
+	mov.u16 	%rs126, 0;
+	st.v4.u16 	[%rd254], {%rs125, %rs125, %rs125, %rs126};
 
-BB0_153:
-	ld.global.u32 	%r363, [additive];
-	setp.eq.s32	%p146, %r363, 0;
-	@%p146 bra 	BB0_155;
+BB0_154:
+	ld.global.u32 	%r366, [additive];
+	setp.eq.s32	%p146, %r366, 0;
+	@%p146 bra 	BB0_156;
 
-	mov.u64 	%rd263, image_RNM2;
-	cvta.global.u64 	%rd252, %rd263;
-	mov.u32 	%r367, 8;
+	mov.u64 	%rd273, image_RNM2;
+	cvta.global.u64 	%rd262, %rd273;
+	mov.u32 	%r370, 8;
 	// inline asm
-	call (%rd251), _rt_buffer_get_64, (%rd252, %r98, %r367, %rd17, %rd18, %rd24, %rd24);
+	call (%rd261), _rt_buffer_get_64, (%rd262, %r101, %r370, %rd18, %rd19, %rd25, %rd25);
 	// inline asm
-	ld.v4.u16 	{%rs132, %rs133, %rs134, %rs135}, [%rd251];
+	ld.v4.u16 	{%rs133, %rs134, %rs135, %rs136}, [%rd261];
 	// inline asm
-	{  cvt.f32.f16 %f895, %rs132;}
-
-	// inline asm
-	// inline asm
-	{  cvt.f32.f16 %f896, %rs133;}
+	{  cvt.f32.f16 %f895, %rs133;}
 
 	// inline asm
 	// inline asm
-	{  cvt.f32.f16 %f897, %rs134;}
+	{  cvt.f32.f16 %f896, %rs134;}
 
 	// inline asm
 	// inline asm
-	call (%rd257), _rt_buffer_get_64, (%rd252, %r98, %r367, %rd17, %rd18, %rd24, %rd24);
+	{  cvt.f32.f16 %f897, %rs135;}
+
+	// inline asm
+	// inline asm
+	call (%rd267), _rt_buffer_get_64, (%rd262, %r101, %r370, %rd18, %rd19, %rd25, %rd25);
 	// inline asm
 	add.f32 	%f898, %f895, 0f00000000;
 	add.f32 	%f899, %f896, 0f00000000;
 	add.f32 	%f900, %f897, 0f00000000;
 	// inline asm
-	{  cvt.rn.f16.f32 %rs131, %f900;}
+	{  cvt.rn.f16.f32 %rs132, %f900;}
 
 	// inline asm
 	// inline asm
-	{  cvt.rn.f16.f32 %rs130, %f899;}
+	{  cvt.rn.f16.f32 %rs131, %f899;}
 
 	// inline asm
 	// inline asm
-	{  cvt.rn.f16.f32 %rs129, %f898;}
+	{  cvt.rn.f16.f32 %rs130, %f898;}
 
 	// inline asm
-	mov.u16 	%rs136, 0;
-	st.v4.u16 	[%rd257], {%rs129, %rs130, %rs131, %rs136};
-	bra.uni 	BB0_156;
+	mov.u16 	%rs137, 0;
+	st.v4.u16 	[%rd267], {%rs130, %rs131, %rs132, %rs137};
+	bra.uni 	BB0_157;
 
-BB0_155:
-	mov.u64 	%rd270, image_RNM2;
-	cvta.global.u64 	%rd265, %rd270;
-	mov.u32 	%r369, 8;
+BB0_156:
+	mov.u64 	%rd280, image_RNM2;
+	cvta.global.u64 	%rd275, %rd280;
+	mov.u32 	%r372, 8;
 	// inline asm
-	call (%rd264), _rt_buffer_get_64, (%rd265, %r98, %r369, %rd17, %rd18, %rd24, %rd24);
+	call (%rd274), _rt_buffer_get_64, (%rd275, %r101, %r372, %rd18, %rd19, %rd25, %rd25);
 	// inline asm
 	mov.f32 	%f901, 0f00000000;
 	// inline asm
-	{  cvt.rn.f16.f32 %rs137, %f901;}
+	{  cvt.rn.f16.f32 %rs138, %f901;}
 
 	// inline asm
-	mov.u16 	%rs138, 0;
-	st.v4.u16 	[%rd264], {%rs137, %rs137, %rs137, %rs138};
+	mov.u16 	%rs139, 0;
+	st.v4.u16 	[%rd274], {%rs138, %rs138, %rs138, %rs139};
 
-BB0_156:
-	ld.global.u32 	%r370, [additive];
-	setp.eq.s32	%p147, %r370, 0;
-	@%p147 bra 	BB0_158;
+BB0_157:
+	ld.global.u32 	%r373, [additive];
+	setp.eq.s32	%p147, %r373, 0;
+	@%p147 bra 	BB0_159;
 
-	mov.u64 	%rd283, image_RNM3;
-	cvta.global.u64 	%rd272, %rd283;
-	mov.u32 	%r374, 8;
+	mov.u64 	%rd293, image_RNM3;
+	cvta.global.u64 	%rd282, %rd293;
+	mov.u32 	%r377, 8;
 	// inline asm
-	call (%rd271), _rt_buffer_get_64, (%rd272, %r98, %r374, %rd17, %rd18, %rd24, %rd24);
+	call (%rd281), _rt_buffer_get_64, (%rd282, %r101, %r377, %rd18, %rd19, %rd25, %rd25);
 	// inline asm
-	ld.v4.u16 	{%rs145, %rs146, %rs147, %rs148}, [%rd271];
+	ld.v4.u16 	{%rs146, %rs147, %rs148, %rs149}, [%rd281];
 	// inline asm
-	{  cvt.f32.f16 %f902, %rs145;}
-
-	// inline asm
-	// inline asm
-	{  cvt.f32.f16 %f903, %rs146;}
+	{  cvt.f32.f16 %f902, %rs146;}
 
 	// inline asm
 	// inline asm
-	{  cvt.f32.f16 %f904, %rs147;}
+	{  cvt.f32.f16 %f903, %rs147;}
 
 	// inline asm
 	// inline asm
-	call (%rd277), _rt_buffer_get_64, (%rd272, %r98, %r374, %rd17, %rd18, %rd24, %rd24);
+	{  cvt.f32.f16 %f904, %rs148;}
+
+	// inline asm
+	// inline asm
+	call (%rd287), _rt_buffer_get_64, (%rd282, %r101, %r377, %rd18, %rd19, %rd25, %rd25);
 	// inline asm
 	add.f32 	%f905, %f902, 0f00000000;
 	add.f32 	%f906, %f903, 0f00000000;
 	add.f32 	%f907, %f904, 0f00000000;
 	// inline asm
-	{  cvt.rn.f16.f32 %rs144, %f907;}
+	{  cvt.rn.f16.f32 %rs145, %f907;}
 
 	// inline asm
 	// inline asm
-	{  cvt.rn.f16.f32 %rs143, %f906;}
+	{  cvt.rn.f16.f32 %rs144, %f906;}
 
 	// inline asm
 	// inline asm
-	{  cvt.rn.f16.f32 %rs142, %f905;}
+	{  cvt.rn.f16.f32 %rs143, %f905;}
 
 	// inline asm
-	mov.u16 	%rs149, 0;
-	st.v4.u16 	[%rd277], {%rs142, %rs143, %rs144, %rs149};
-	bra.uni 	BB0_159;
+	mov.u16 	%rs150, 0;
+	st.v4.u16 	[%rd287], {%rs143, %rs144, %rs145, %rs150};
+	bra.uni 	BB0_160;
 
-BB0_158:
-	mov.u64 	%rd290, image_RNM3;
-	cvta.global.u64 	%rd285, %rd290;
-	mov.u32 	%r376, 8;
+BB0_159:
+	mov.u64 	%rd300, image_RNM3;
+	cvta.global.u64 	%rd295, %rd300;
+	mov.u32 	%r379, 8;
 	// inline asm
-	call (%rd284), _rt_buffer_get_64, (%rd285, %r98, %r376, %rd17, %rd18, %rd24, %rd24);
+	call (%rd294), _rt_buffer_get_64, (%rd295, %r101, %r379, %rd18, %rd19, %rd25, %rd25);
 	// inline asm
 	mov.f32 	%f908, 0f00000000;
 	// inline asm
-	{  cvt.rn.f16.f32 %rs150, %f908;}
+	{  cvt.rn.f16.f32 %rs151, %f908;}
 
 	// inline asm
-	mov.u16 	%rs151, 0;
-	st.v4.u16 	[%rd284], {%rs150, %rs150, %rs150, %rs151};
-	bra.uni 	BB0_159;
+	mov.u16 	%rs152, 0;
+	st.v4.u16 	[%rd294], {%rs151, %rs151, %rs151, %rs152};
+	bra.uni 	BB0_160;
 
-BB0_79:
-	setp.geu.f32	%p78, %f975, 0f00000000;
-	@%p78 bra 	BB0_82;
+BB0_80:
+	setp.geu.f32	%p78, %f148, 0f00000000;
+	@%p78 bra 	BB0_83;
 
 	cvt.rzi.f32.f32	%f566, %f538;
 	setp.neu.f32	%p79, %f566, 0f3EE8BA2E;
 	selp.f32	%f978, 0f7FFFFFFF, %f978, %p79;
 
-BB0_82:
+BB0_83:
 	add.f32 	%f568, %f150, 0f3EE8BA2E;
-	mov.b32 	 %r263, %f568;
-	setp.lt.s32	%p81, %r263, 2139095040;
-	@%p81 bra 	BB0_87;
+	mov.b32 	 %r266, %f568;
+	setp.lt.s32	%p81, %r266, 2139095040;
+	@%p81 bra 	BB0_88;
 
 	setp.gtu.f32	%p82, %f150, 0f7F800000;
-	@%p82 bra 	BB0_86;
-	bra.uni 	BB0_84;
+	@%p82 bra 	BB0_87;
+	bra.uni 	BB0_85;
 
-BB0_86:
-	add.f32 	%f978, %f975, 0f3EE8BA2E;
-	bra.uni 	BB0_87;
+BB0_87:
+	add.f32 	%f978, %f148, 0f3EE8BA2E;
+	bra.uni 	BB0_88;
 
-BB0_84:
+BB0_85:
 	setp.neu.f32	%p83, %f150, 0f7F800000;
-	@%p83 bra 	BB0_87;
+	@%p83 bra 	BB0_88;
 
 	selp.f32	%f978, 0fFF800000, 0f7F800000, %p3;
 
-BB0_87:
-	mul.f32 	%f569, %f978, 0f437F0000;
-	setp.eq.f32	%p84, %f975, 0f3F800000;
-	selp.f32	%f570, 0f437F0000, %f569, %p84;
-	cvt.rzi.u32.f32	%r264, %f570;
-	cvt.u16.u32	%rs14, %r264;
-	mov.u16 	%rs15, 255;
-	st.v2.u8 	[%rd63], {%rs14, %rs15};
-	ld.global.u32 	%r408, [imageEnabled];
-
 BB0_88:
+	mul.f32 	%f569, %f978, 0f437F0000;
+	setp.eq.f32	%p84, %f148, 0f3F800000;
+	selp.f32	%f570, 0f437F0000, %f569, %p84;
+	cvt.rzi.u32.f32	%r267, %f570;
+	cvt.u16.u32	%rs15, %r267;
+	mov.u16 	%rs16, 255;
+	st.v2.u8 	[%rd73], {%rs15, %rs16};
+	ld.global.u32 	%r410, [imageEnabled];
+
+BB0_89:
 	ld.global.f32 	%f571, [lightColor];
 	mul.f32 	%f162, %f970, %f571;
 	ld.global.f32 	%f572, [lightColor+4];
 	mul.f32 	%f163, %f970, %f572;
 	ld.global.f32 	%f573, [lightColor+8];
 	mul.f32 	%f164, %f970, %f573;
-	and.b32  	%r265, %r408, 1;
-	setp.eq.b32	%p85, %r265, 1;
-	@!%p85 bra 	BB0_123;
-	bra.uni 	BB0_89;
+	and.b32  	%r268, %r410, 1;
+	setp.eq.b32	%p85, %r268, 1;
+	@!%p85 bra 	BB0_124;
+	bra.uni 	BB0_90;
 
-BB0_89:
+BB0_90:
 	mov.f32 	%f576, 0f3E666666;
 	cvt.rzi.f32.f32	%f577, %f576;
 	fma.rn.f32 	%f578, %f577, 0fC0000000, 0f3EE66666;
@@ -1532,12 +1545,12 @@ BB0_89:
 	mul.f32 	%f579, %f166, 0f4B800000;
 	selp.f32	%f580, 0fC3170000, 0fC2FE0000, %p86;
 	selp.f32	%f581, %f579, %f166, %p86;
-	mov.b32 	 %r266, %f581;
-	and.b32  	%r267, %r266, 8388607;
-	or.b32  	%r268, %r267, 1065353216;
-	mov.b32 	 %f582, %r268;
-	shr.u32 	%r269, %r266, 23;
-	cvt.rn.f32.u32	%f583, %r269;
+	mov.b32 	 %r269, %f581;
+	and.b32  	%r270, %r269, 8388607;
+	or.b32  	%r271, %r270, 1065353216;
+	mov.b32 	 %f582, %r271;
+	shr.u32 	%r272, %r269, 23;
+	cvt.rn.f32.u32	%f583, %r272;
 	add.f32 	%f584, %f580, %f583;
 	setp.gt.f32	%p87, %f582, 0f3FB504F3;
 	mul.f32 	%f585, %f582, 0f3F000000;
@@ -1594,10 +1607,10 @@ BB0_89:
 	neg.f32 	%f632, %f631;
 	add.rn.f32 	%f633, %f625, %f632;
 	add.rn.f32 	%f634, %f633, %f630;
-	mov.b32 	 %r270, %f631;
-	setp.eq.s32	%p88, %r270, 1118925336;
-	add.s32 	%r271, %r270, -1;
-	mov.b32 	 %f635, %r271;
+	mov.b32 	 %r273, %f631;
+	setp.eq.s32	%p88, %r273, 1118925336;
+	add.s32 	%r274, %r273, -1;
+	mov.b32 	 %f635, %r274;
 	add.f32 	%f636, %f634, 0f37000000;
 	selp.f32	%f637, %f635, %f631, %p88;
 	selp.f32	%f167, %f636, %f634, %p88;
@@ -1617,56 +1630,56 @@ BB0_89:
 	setp.gt.f32	%p90, %f637, 0f42D20000;
 	selp.f32	%f979, 0f7F800000, %f649, %p90;
 	setp.eq.f32	%p91, %f979, 0f7F800000;
-	@%p91 bra 	BB0_91;
+	@%p91 bra 	BB0_92;
 
 	fma.rn.f32 	%f979, %f979, %f167, %f979;
 
-BB0_91:
+BB0_92:
 	setp.lt.f32	%p92, %f162, 0f00000000;
 	setp.eq.f32	%p93, %f165, 0f3F800000;
 	and.pred  	%p4, %p92, %p93;
-	mov.b32 	 %r272, %f979;
-	xor.b32  	%r273, %r272, -2147483648;
-	mov.b32 	 %f650, %r273;
+	mov.b32 	 %r275, %f979;
+	xor.b32  	%r276, %r275, -2147483648;
+	mov.b32 	 %f650, %r276;
 	selp.f32	%f981, %f650, %f979, %p4;
 	setp.eq.f32	%p94, %f162, 0f00000000;
-	@%p94 bra 	BB0_94;
-	bra.uni 	BB0_92;
+	@%p94 bra 	BB0_95;
+	bra.uni 	BB0_93;
 
-BB0_94:
+BB0_95:
 	add.f32 	%f653, %f162, %f162;
 	selp.f32	%f981, %f653, 0f00000000, %p93;
-	bra.uni 	BB0_95;
+	bra.uni 	BB0_96;
 
-BB0_92:
+BB0_93:
 	setp.geu.f32	%p95, %f162, 0f00000000;
-	@%p95 bra 	BB0_95;
+	@%p95 bra 	BB0_96;
 
 	cvt.rzi.f32.f32	%f652, %f624;
 	setp.neu.f32	%p96, %f652, 0f3EE66666;
 	selp.f32	%f981, 0f7FFFFFFF, %f981, %p96;
 
-BB0_95:
+BB0_96:
 	add.f32 	%f654, %f166, 0f3EE66666;
-	mov.b32 	 %r274, %f654;
-	setp.lt.s32	%p98, %r274, 2139095040;
-	@%p98 bra 	BB0_100;
+	mov.b32 	 %r277, %f654;
+	setp.lt.s32	%p98, %r277, 2139095040;
+	@%p98 bra 	BB0_101;
 
 	setp.gtu.f32	%p99, %f166, 0f7F800000;
-	@%p99 bra 	BB0_99;
-	bra.uni 	BB0_97;
+	@%p99 bra 	BB0_100;
+	bra.uni 	BB0_98;
 
-BB0_99:
+BB0_100:
 	add.f32 	%f981, %f162, 0f3EE66666;
-	bra.uni 	BB0_100;
+	bra.uni 	BB0_101;
 
-BB0_97:
+BB0_98:
 	setp.neu.f32	%p100, %f166, 0f7F800000;
-	@%p100 bra 	BB0_100;
+	@%p100 bra 	BB0_101;
 
 	selp.f32	%f981, 0fFF800000, 0f7F800000, %p4;
 
-BB0_100:
+BB0_101:
 	setp.eq.f32	%p101, %f162, 0f3F800000;
 	selp.f32	%f178, 0f3F800000, %f981, %p101;
 	abs.f32 	%f179, %f163;
@@ -1674,12 +1687,12 @@ BB0_100:
 	mul.f32 	%f657, %f179, 0f4B800000;
 	selp.f32	%f658, 0fC3170000, 0fC2FE0000, %p102;
 	selp.f32	%f659, %f657, %f179, %p102;
-	mov.b32 	 %r275, %f659;
-	and.b32  	%r276, %r275, 8388607;
-	or.b32  	%r277, %r276, 1065353216;
-	mov.b32 	 %f660, %r277;
-	shr.u32 	%r278, %r275, 23;
-	cvt.rn.f32.u32	%f661, %r278;
+	mov.b32 	 %r278, %f659;
+	and.b32  	%r279, %r278, 8388607;
+	or.b32  	%r280, %r279, 1065353216;
+	mov.b32 	 %f660, %r280;
+	shr.u32 	%r281, %r278, 23;
+	cvt.rn.f32.u32	%f661, %r281;
 	add.f32 	%f662, %f658, %f661;
 	setp.gt.f32	%p103, %f660, 0f3FB504F3;
 	mul.f32 	%f663, %f660, 0f3F000000;
@@ -1729,10 +1742,10 @@ BB0_100:
 	neg.f32 	%f710, %f709;
 	add.rn.f32 	%f711, %f703, %f710;
 	add.rn.f32 	%f712, %f711, %f708;
-	mov.b32 	 %r279, %f709;
-	setp.eq.s32	%p104, %r279, 1118925336;
-	add.s32 	%r280, %r279, -1;
-	mov.b32 	 %f713, %r280;
+	mov.b32 	 %r282, %f709;
+	setp.eq.s32	%p104, %r282, 1118925336;
+	add.s32 	%r283, %r282, -1;
+	mov.b32 	 %f713, %r283;
 	add.f32 	%f714, %f712, 0f37000000;
 	selp.f32	%f715, %f713, %f709, %p104;
 	selp.f32	%f180, %f714, %f712, %p104;
@@ -1750,55 +1763,55 @@ BB0_100:
 	setp.gt.f32	%p106, %f715, 0f42D20000;
 	selp.f32	%f982, 0f7F800000, %f727, %p106;
 	setp.eq.f32	%p107, %f982, 0f7F800000;
-	@%p107 bra 	BB0_102;
+	@%p107 bra 	BB0_103;
 
 	fma.rn.f32 	%f982, %f982, %f180, %f982;
 
-BB0_102:
+BB0_103:
 	setp.lt.f32	%p108, %f163, 0f00000000;
 	and.pred  	%p5, %p108, %p93;
-	mov.b32 	 %r281, %f982;
-	xor.b32  	%r282, %r281, -2147483648;
-	mov.b32 	 %f728, %r282;
+	mov.b32 	 %r284, %f982;
+	xor.b32  	%r285, %r284, -2147483648;
+	mov.b32 	 %f728, %r285;
 	selp.f32	%f984, %f728, %f982, %p5;
 	setp.eq.f32	%p110, %f163, 0f00000000;
-	@%p110 bra 	BB0_105;
-	bra.uni 	BB0_103;
+	@%p110 bra 	BB0_106;
+	bra.uni 	BB0_104;
 
-BB0_105:
+BB0_106:
 	add.f32 	%f731, %f163, %f163;
 	selp.f32	%f984, %f731, 0f00000000, %p93;
-	bra.uni 	BB0_106;
+	bra.uni 	BB0_107;
 
-BB0_103:
+BB0_104:
 	setp.geu.f32	%p111, %f163, 0f00000000;
-	@%p111 bra 	BB0_106;
+	@%p111 bra 	BB0_107;
 
 	cvt.rzi.f32.f32	%f730, %f624;
 	setp.neu.f32	%p112, %f730, 0f3EE66666;
 	selp.f32	%f984, 0f7FFFFFFF, %f984, %p112;
 
-BB0_106:
+BB0_107:
 	add.f32 	%f732, %f179, 0f3EE66666;
-	mov.b32 	 %r283, %f732;
-	setp.lt.s32	%p114, %r283, 2139095040;
-	@%p114 bra 	BB0_111;
+	mov.b32 	 %r286, %f732;
+	setp.lt.s32	%p114, %r286, 2139095040;
+	@%p114 bra 	BB0_112;
 
 	setp.gtu.f32	%p115, %f179, 0f7F800000;
-	@%p115 bra 	BB0_110;
-	bra.uni 	BB0_108;
+	@%p115 bra 	BB0_111;
+	bra.uni 	BB0_109;
 
-BB0_110:
+BB0_111:
 	add.f32 	%f984, %f163, 0f3EE66666;
-	bra.uni 	BB0_111;
+	bra.uni 	BB0_112;
 
-BB0_108:
+BB0_109:
 	setp.neu.f32	%p116, %f179, 0f7F800000;
-	@%p116 bra 	BB0_111;
+	@%p116 bra 	BB0_112;
 
 	selp.f32	%f984, 0fFF800000, 0f7F800000, %p5;
 
-BB0_111:
+BB0_112:
 	setp.eq.f32	%p117, %f163, 0f3F800000;
 	selp.f32	%f191, 0f3F800000, %f984, %p117;
 	abs.f32 	%f192, %f164;
@@ -1806,12 +1819,12 @@ BB0_111:
 	mul.f32 	%f735, %f192, 0f4B800000;
 	selp.f32	%f736, 0fC3170000, 0fC2FE0000, %p118;
 	selp.f32	%f737, %f735, %f192, %p118;
-	mov.b32 	 %r284, %f737;
-	and.b32  	%r285, %r284, 8388607;
-	or.b32  	%r286, %r285, 1065353216;
-	mov.b32 	 %f738, %r286;
-	shr.u32 	%r287, %r284, 23;
-	cvt.rn.f32.u32	%f739, %r287;
+	mov.b32 	 %r287, %f737;
+	and.b32  	%r288, %r287, 8388607;
+	or.b32  	%r289, %r288, 1065353216;
+	mov.b32 	 %f738, %r289;
+	shr.u32 	%r290, %r287, 23;
+	cvt.rn.f32.u32	%f739, %r290;
 	add.f32 	%f740, %f736, %f739;
 	setp.gt.f32	%p119, %f738, 0f3FB504F3;
 	mul.f32 	%f741, %f738, 0f3F000000;
@@ -1861,10 +1874,10 @@ BB0_111:
 	neg.f32 	%f788, %f787;
 	add.rn.f32 	%f789, %f781, %f788;
 	add.rn.f32 	%f790, %f789, %f786;
-	mov.b32 	 %r288, %f787;
-	setp.eq.s32	%p120, %r288, 1118925336;
-	add.s32 	%r289, %r288, -1;
-	mov.b32 	 %f791, %r289;
+	mov.b32 	 %r291, %f787;
+	setp.eq.s32	%p120, %r291, 1118925336;
+	add.s32 	%r292, %r291, -1;
+	mov.b32 	 %f791, %r292;
 	add.f32 	%f792, %f790, 0f37000000;
 	selp.f32	%f793, %f791, %f787, %p120;
 	selp.f32	%f193, %f792, %f790, %p120;
@@ -1882,157 +1895,157 @@ BB0_111:
 	setp.gt.f32	%p122, %f793, 0f42D20000;
 	selp.f32	%f985, 0f7F800000, %f805, %p122;
 	setp.eq.f32	%p123, %f985, 0f7F800000;
-	@%p123 bra 	BB0_113;
+	@%p123 bra 	BB0_114;
 
 	fma.rn.f32 	%f985, %f985, %f193, %f985;
 
-BB0_113:
+BB0_114:
 	setp.lt.f32	%p124, %f164, 0f00000000;
 	and.pred  	%p6, %p124, %p93;
-	mov.b32 	 %r290, %f985;
-	xor.b32  	%r291, %r290, -2147483648;
-	mov.b32 	 %f806, %r291;
+	mov.b32 	 %r293, %f985;
+	xor.b32  	%r294, %r293, -2147483648;
+	mov.b32 	 %f806, %r294;
 	selp.f32	%f987, %f806, %f985, %p6;
 	setp.eq.f32	%p126, %f164, 0f00000000;
-	@%p126 bra 	BB0_116;
-	bra.uni 	BB0_114;
+	@%p126 bra 	BB0_117;
+	bra.uni 	BB0_115;
 
-BB0_116:
+BB0_117:
 	add.f32 	%f809, %f164, %f164;
 	selp.f32	%f987, %f809, 0f00000000, %p93;
-	bra.uni 	BB0_117;
+	bra.uni 	BB0_118;
 
-BB0_114:
+BB0_115:
 	setp.geu.f32	%p127, %f164, 0f00000000;
-	@%p127 bra 	BB0_117;
+	@%p127 bra 	BB0_118;
 
 	cvt.rzi.f32.f32	%f808, %f624;
 	setp.neu.f32	%p128, %f808, 0f3EE66666;
 	selp.f32	%f987, 0f7FFFFFFF, %f987, %p128;
 
-BB0_117:
+BB0_118:
 	add.f32 	%f810, %f192, 0f3EE66666;
-	mov.b32 	 %r292, %f810;
-	setp.lt.s32	%p130, %r292, 2139095040;
-	@%p130 bra 	BB0_122;
+	mov.b32 	 %r295, %f810;
+	setp.lt.s32	%p130, %r295, 2139095040;
+	@%p130 bra 	BB0_123;
 
 	setp.gtu.f32	%p131, %f192, 0f7F800000;
-	@%p131 bra 	BB0_121;
-	bra.uni 	BB0_119;
+	@%p131 bra 	BB0_122;
+	bra.uni 	BB0_120;
 
-BB0_121:
+BB0_122:
 	add.f32 	%f987, %f164, 0f3EE66666;
-	bra.uni 	BB0_122;
+	bra.uni 	BB0_123;
 
-BB0_119:
+BB0_120:
 	setp.neu.f32	%p132, %f192, 0f7F800000;
-	@%p132 bra 	BB0_122;
+	@%p132 bra 	BB0_123;
 
 	selp.f32	%f987, 0fFF800000, 0f7F800000, %p6;
 
-BB0_122:
+BB0_123:
 	setp.eq.f32	%p133, %f164, 0f3F800000;
 	selp.f32	%f811, 0f3F800000, %f987, %p133;
-	cvt.u64.u32	%rd73, %r5;
-	cvt.u64.u32	%rd72, %r4;
-	mov.u64 	%rd76, image;
-	cvta.global.u64 	%rd71, %rd76;
+	cvt.u64.u32	%rd83, %r7;
+	cvt.u64.u32	%rd82, %r6;
+	mov.u64 	%rd86, image;
+	cvta.global.u64 	%rd81, %rd86;
 	// inline asm
-	call (%rd70), _rt_buffer_get_64, (%rd71, %r98, %r99, %rd72, %rd73, %rd24, %rd24);
+	call (%rd80), _rt_buffer_get_64, (%rd81, %r101, %r102, %rd82, %rd83, %rd25, %rd25);
 	// inline asm
 	cvt.sat.f32.f32	%f812, %f811;
 	mul.f32 	%f813, %f812, 0f437FFD71;
-	cvt.rzi.u32.f32	%r295, %f813;
+	cvt.rzi.u32.f32	%r298, %f813;
 	cvt.sat.f32.f32	%f814, %f191;
 	mul.f32 	%f815, %f814, 0f437FFD71;
-	cvt.rzi.u32.f32	%r296, %f815;
+	cvt.rzi.u32.f32	%r299, %f815;
 	cvt.sat.f32.f32	%f816, %f178;
 	mul.f32 	%f817, %f816, 0f437FFD71;
-	cvt.rzi.u32.f32	%r297, %f817;
-	cvt.u16.u32	%rs16, %r295;
-	cvt.u16.u32	%rs17, %r297;
-	cvt.u16.u32	%rs18, %r296;
-	mov.u16 	%rs19, 255;
-	st.v4.u8 	[%rd70], {%rs16, %rs18, %rs17, %rs19};
-	ld.global.u32 	%r408, [imageEnabled];
+	cvt.rzi.u32.f32	%r300, %f817;
+	cvt.u16.u32	%rs17, %r298;
+	cvt.u16.u32	%rs18, %r300;
+	cvt.u16.u32	%rs19, %r299;
+	mov.u16 	%rs20, 255;
+	st.v4.u8 	[%rd80], {%rs17, %rs19, %rs18, %rs20};
+	ld.global.u32 	%r410, [imageEnabled];
 
-BB0_123:
-	cvt.u64.u32	%rd15, %r4;
-	cvt.u64.u32	%rd16, %r5;
-	and.b32  	%r298, %r408, 4;
-	setp.eq.s32	%p134, %r298, 0;
-	@%p134 bra 	BB0_127;
+BB0_124:
+	cvt.u64.u32	%rd16, %r6;
+	cvt.u64.u32	%rd17, %r7;
+	and.b32  	%r301, %r410, 4;
+	setp.eq.s32	%p134, %r301, 0;
+	@%p134 bra 	BB0_128;
 
-	ld.global.u32 	%r299, [additive];
-	setp.eq.s32	%p135, %r299, 0;
+	ld.global.u32 	%r302, [additive];
+	setp.eq.s32	%p135, %r302, 0;
 	// inline asm
-	{  cvt.rn.f16.f32 %rs20, %f392;}
-
-	// inline asm
-	@%p135 bra 	BB0_126;
-
-	mov.u64 	%rd89, image_HDR;
-	cvta.global.u64 	%rd78, %rd89;
-	mov.u32 	%r303, 8;
-	// inline asm
-	call (%rd77), _rt_buffer_get_64, (%rd78, %r98, %r303, %rd15, %rd16, %rd24, %rd24);
-	// inline asm
-	ld.v4.u16 	{%rs27, %rs28, %rs29, %rs30}, [%rd77];
-	// inline asm
-	{  cvt.f32.f16 %f819, %rs27;}
+	{  cvt.rn.f16.f32 %rs21, %f392;}
 
 	// inline asm
+	@%p135 bra 	BB0_127;
+
+	mov.u64 	%rd99, image_HDR;
+	cvta.global.u64 	%rd88, %rd99;
+	mov.u32 	%r306, 8;
 	// inline asm
-	{  cvt.f32.f16 %f820, %rs28;}
+	call (%rd87), _rt_buffer_get_64, (%rd88, %r101, %r306, %rd16, %rd17, %rd25, %rd25);
+	// inline asm
+	ld.v4.u16 	{%rs28, %rs29, %rs30, %rs31}, [%rd87];
+	// inline asm
+	{  cvt.f32.f16 %f819, %rs28;}
 
 	// inline asm
 	// inline asm
-	{  cvt.f32.f16 %f821, %rs29;}
+	{  cvt.f32.f16 %f820, %rs29;}
 
 	// inline asm
 	// inline asm
-	call (%rd83), _rt_buffer_get_64, (%rd78, %r98, %r303, %rd15, %rd16, %rd24, %rd24);
+	{  cvt.f32.f16 %f821, %rs30;}
+
+	// inline asm
+	// inline asm
+	call (%rd93), _rt_buffer_get_64, (%rd88, %r101, %r306, %rd16, %rd17, %rd25, %rd25);
 	// inline asm
 	add.f32 	%f822, %f162, %f819;
 	add.f32 	%f823, %f163, %f820;
 	add.f32 	%f824, %f164, %f821;
 	// inline asm
-	{  cvt.rn.f16.f32 %rs26, %f824;}
+	{  cvt.rn.f16.f32 %rs27, %f824;}
 
 	// inline asm
 	// inline asm
-	{  cvt.rn.f16.f32 %rs25, %f823;}
+	{  cvt.rn.f16.f32 %rs26, %f823;}
 
 	// inline asm
 	// inline asm
-	{  cvt.rn.f16.f32 %rs24, %f822;}
+	{  cvt.rn.f16.f32 %rs25, %f822;}
 
 	// inline asm
-	st.v4.u16 	[%rd83], {%rs24, %rs25, %rs26, %rs20};
-	bra.uni 	BB0_127;
-
-BB0_126:
-	mov.u64 	%rd96, image_HDR;
-	cvta.global.u64 	%rd91, %rd96;
-	mov.u32 	%r305, 8;
-	// inline asm
-	call (%rd90), _rt_buffer_get_64, (%rd91, %r98, %r305, %rd15, %rd16, %rd24, %rd24);
-	// inline asm
-	// inline asm
-	{  cvt.rn.f16.f32 %rs33, %f164;}
-
-	// inline asm
-	// inline asm
-	{  cvt.rn.f16.f32 %rs32, %f163;}
-
-	// inline asm
-	// inline asm
-	{  cvt.rn.f16.f32 %rs31, %f162;}
-
-	// inline asm
-	st.v4.u16 	[%rd90], {%rs31, %rs32, %rs33, %rs20};
+	st.v4.u16 	[%rd93], {%rs25, %rs26, %rs27, %rs21};
+	bra.uni 	BB0_128;
 
 BB0_127:
+	mov.u64 	%rd106, image_HDR;
+	cvta.global.u64 	%rd101, %rd106;
+	mov.u32 	%r308, 8;
+	// inline asm
+	call (%rd100), _rt_buffer_get_64, (%rd101, %r101, %r308, %rd16, %rd17, %rd25, %rd25);
+	// inline asm
+	// inline asm
+	{  cvt.rn.f16.f32 %rs34, %f164;}
+
+	// inline asm
+	// inline asm
+	{  cvt.rn.f16.f32 %rs33, %f163;}
+
+	// inline asm
+	// inline asm
+	{  cvt.rn.f16.f32 %rs32, %f162;}
+
+	// inline asm
+	st.v4.u16 	[%rd100], {%rs32, %rs33, %rs34, %rs21};
+
+BB0_128:
 	selp.f32	%f829, 0f3F800000, 0f3E800000, %p148;
 	mul.f32 	%f204, %f829, %f971;
 	mul.f32 	%f205, %f829, %f972;
@@ -2044,76 +2057,76 @@ BB0_127:
 	mul.f32 	%f209, %f204, %f831;
 	ld.global.f32 	%f832, [lightColor+8];
 	mul.f32 	%f210, %f204, %f832;
-	ld.global.u32 	%r306, [additive];
-	setp.eq.s32	%p136, %r306, 0;
+	ld.global.u32 	%r309, [additive];
+	setp.eq.s32	%p136, %r309, 0;
 	// inline asm
-	{  cvt.rn.f16.f32 %rs34, %f392;}
+	{  cvt.rn.f16.f32 %rs35, %f392;}
 
 	// inline asm
-	@%p136 bra 	BB0_129;
+	@%p136 bra 	BB0_130;
 
-	mov.u64 	%rd109, image_RNM0;
-	cvta.global.u64 	%rd98, %rd109;
-	mov.u32 	%r310, 8;
+	mov.u64 	%rd119, image_RNM0;
+	cvta.global.u64 	%rd108, %rd119;
+	mov.u32 	%r313, 8;
 	// inline asm
-	call (%rd97), _rt_buffer_get_64, (%rd98, %r98, %r310, %rd15, %rd16, %rd24, %rd24);
+	call (%rd107), _rt_buffer_get_64, (%rd108, %r101, %r313, %rd16, %rd17, %rd25, %rd25);
 	// inline asm
-	ld.v4.u16 	{%rs41, %rs42, %rs43, %rs44}, [%rd97];
+	ld.v4.u16 	{%rs42, %rs43, %rs44, %rs45}, [%rd107];
 	// inline asm
-	{  cvt.f32.f16 %f833, %rs41;}
-
-	// inline asm
-	// inline asm
-	{  cvt.f32.f16 %f834, %rs42;}
+	{  cvt.f32.f16 %f833, %rs42;}
 
 	// inline asm
 	// inline asm
-	{  cvt.f32.f16 %f835, %rs43;}
+	{  cvt.f32.f16 %f834, %rs43;}
 
 	// inline asm
 	// inline asm
-	call (%rd103), _rt_buffer_get_64, (%rd98, %r98, %r310, %rd15, %rd16, %rd24, %rd24);
+	{  cvt.f32.f16 %f835, %rs44;}
+
+	// inline asm
+	// inline asm
+	call (%rd113), _rt_buffer_get_64, (%rd108, %r101, %r313, %rd16, %rd17, %rd25, %rd25);
 	// inline asm
 	add.f32 	%f836, %f208, %f833;
 	add.f32 	%f837, %f209, %f834;
 	add.f32 	%f838, %f210, %f835;
 	// inline asm
-	{  cvt.rn.f16.f32 %rs40, %f838;}
+	{  cvt.rn.f16.f32 %rs41, %f838;}
 
 	// inline asm
 	// inline asm
-	{  cvt.rn.f16.f32 %rs39, %f837;}
+	{  cvt.rn.f16.f32 %rs40, %f837;}
 
 	// inline asm
 	// inline asm
-	{  cvt.rn.f16.f32 %rs38, %f836;}
+	{  cvt.rn.f16.f32 %rs39, %f836;}
 
 	// inline asm
-	st.v4.u16 	[%rd103], {%rs38, %rs39, %rs40, %rs34};
-	bra.uni 	BB0_130;
-
-BB0_129:
-	mov.u64 	%rd116, image_RNM0;
-	cvta.global.u64 	%rd111, %rd116;
-	mov.u32 	%r312, 8;
-	// inline asm
-	call (%rd110), _rt_buffer_get_64, (%rd111, %r98, %r312, %rd15, %rd16, %rd24, %rd24);
-	// inline asm
-	// inline asm
-	{  cvt.rn.f16.f32 %rs47, %f210;}
-
-	// inline asm
-	// inline asm
-	{  cvt.rn.f16.f32 %rs46, %f209;}
-
-	// inline asm
-	// inline asm
-	{  cvt.rn.f16.f32 %rs45, %f208;}
-
-	// inline asm
-	st.v4.u16 	[%rd110], {%rs45, %rs46, %rs47, %rs34};
+	st.v4.u16 	[%rd113], {%rs39, %rs40, %rs41, %rs35};
+	bra.uni 	BB0_131;
 
 BB0_130:
+	mov.u64 	%rd126, image_RNM0;
+	cvta.global.u64 	%rd121, %rd126;
+	mov.u32 	%r315, 8;
+	// inline asm
+	call (%rd120), _rt_buffer_get_64, (%rd121, %r101, %r315, %rd16, %rd17, %rd25, %rd25);
+	// inline asm
+	// inline asm
+	{  cvt.rn.f16.f32 %rs48, %f210;}
+
+	// inline asm
+	// inline asm
+	{  cvt.rn.f16.f32 %rs47, %f209;}
+
+	// inline asm
+	// inline asm
+	{  cvt.rn.f16.f32 %rs46, %f208;}
+
+	// inline asm
+	st.v4.u16 	[%rd120], {%rs46, %rs47, %rs48, %rs35};
+
+BB0_131:
 	mov.f32 	%f843, 0f34000000;
 	max.f32 	%f844, %f204, %f843;
 	div.rn.f32 	%f845, %f205, %f844;
@@ -2122,192 +2135,192 @@ BB0_130:
 	fma.rn.f32 	%f212, %f846, 0f3F000000, 0f3F000000;
 	div.rn.f32 	%f847, %f207, %f844;
 	fma.rn.f32 	%f213, %f847, 0f3F000000, 0f3F000000;
-	ld.global.u32 	%r313, [additive];
-	setp.eq.s32	%p137, %r313, 0;
+	ld.global.u32 	%r316, [additive];
+	setp.eq.s32	%p137, %r316, 0;
 	// inline asm
-	{  cvt.rn.f16.f32 %rs48, %f392;}
+	{  cvt.rn.f16.f32 %rs49, %f392;}
 
 	// inline asm
-	@%p137 bra 	BB0_132;
+	@%p137 bra 	BB0_133;
 
-	mov.u64 	%rd129, image_RNM1;
-	cvta.global.u64 	%rd118, %rd129;
-	mov.u32 	%r317, 8;
+	mov.u64 	%rd139, image_RNM1;
+	cvta.global.u64 	%rd128, %rd139;
+	mov.u32 	%r320, 8;
 	// inline asm
-	call (%rd117), _rt_buffer_get_64, (%rd118, %r98, %r317, %rd15, %rd16, %rd24, %rd24);
+	call (%rd127), _rt_buffer_get_64, (%rd128, %r101, %r320, %rd16, %rd17, %rd25, %rd25);
 	// inline asm
-	ld.v4.u16 	{%rs55, %rs56, %rs57, %rs58}, [%rd117];
+	ld.v4.u16 	{%rs56, %rs57, %rs58, %rs59}, [%rd127];
 	// inline asm
-	{  cvt.f32.f16 %f848, %rs55;}
-
-	// inline asm
-	// inline asm
-	{  cvt.f32.f16 %f849, %rs56;}
+	{  cvt.f32.f16 %f848, %rs56;}
 
 	// inline asm
 	// inline asm
-	{  cvt.f32.f16 %f850, %rs57;}
+	{  cvt.f32.f16 %f849, %rs57;}
 
 	// inline asm
 	// inline asm
-	call (%rd123), _rt_buffer_get_64, (%rd118, %r98, %r317, %rd15, %rd16, %rd24, %rd24);
+	{  cvt.f32.f16 %f850, %rs58;}
+
+	// inline asm
+	// inline asm
+	call (%rd133), _rt_buffer_get_64, (%rd128, %r101, %r320, %rd16, %rd17, %rd25, %rd25);
 	// inline asm
 	add.f32 	%f851, %f211, %f848;
 	add.f32 	%f852, %f211, %f849;
 	add.f32 	%f853, %f211, %f850;
 	// inline asm
-	{  cvt.rn.f16.f32 %rs54, %f853;}
+	{  cvt.rn.f16.f32 %rs55, %f853;}
 
 	// inline asm
 	// inline asm
-	{  cvt.rn.f16.f32 %rs53, %f852;}
+	{  cvt.rn.f16.f32 %rs54, %f852;}
 
 	// inline asm
 	// inline asm
-	{  cvt.rn.f16.f32 %rs52, %f851;}
+	{  cvt.rn.f16.f32 %rs53, %f851;}
 
 	// inline asm
-	st.v4.u16 	[%rd123], {%rs52, %rs53, %rs54, %rs48};
-	bra.uni 	BB0_133;
-
-BB0_132:
-	mov.u64 	%rd136, image_RNM1;
-	cvta.global.u64 	%rd131, %rd136;
-	mov.u32 	%r319, 8;
-	// inline asm
-	call (%rd130), _rt_buffer_get_64, (%rd131, %r98, %r319, %rd15, %rd16, %rd24, %rd24);
-	// inline asm
-	// inline asm
-	{  cvt.rn.f16.f32 %rs59, %f211;}
-
-	// inline asm
-	st.v4.u16 	[%rd130], {%rs59, %rs59, %rs59, %rs48};
+	st.v4.u16 	[%rd133], {%rs53, %rs54, %rs55, %rs49};
+	bra.uni 	BB0_134;
 
 BB0_133:
-	ld.global.u32 	%r320, [additive];
-	setp.eq.s32	%p138, %r320, 0;
+	mov.u64 	%rd146, image_RNM1;
+	cvta.global.u64 	%rd141, %rd146;
+	mov.u32 	%r322, 8;
 	// inline asm
-	{  cvt.rn.f16.f32 %rs60, %f392;}
+	call (%rd140), _rt_buffer_get_64, (%rd141, %r101, %r322, %rd16, %rd17, %rd25, %rd25);
+	// inline asm
+	// inline asm
+	{  cvt.rn.f16.f32 %rs60, %f211;}
 
 	// inline asm
-	@%p138 bra 	BB0_135;
+	st.v4.u16 	[%rd140], {%rs60, %rs60, %rs60, %rs49};
 
-	mov.u64 	%rd149, image_RNM2;
-	cvta.global.u64 	%rd138, %rd149;
-	mov.u32 	%r324, 8;
+BB0_134:
+	ld.global.u32 	%r323, [additive];
+	setp.eq.s32	%p138, %r323, 0;
 	// inline asm
-	call (%rd137), _rt_buffer_get_64, (%rd138, %r98, %r324, %rd15, %rd16, %rd24, %rd24);
-	// inline asm
-	ld.v4.u16 	{%rs67, %rs68, %rs69, %rs70}, [%rd137];
-	// inline asm
-	{  cvt.f32.f16 %f856, %rs67;}
+	{  cvt.rn.f16.f32 %rs61, %f392;}
 
 	// inline asm
+	@%p138 bra 	BB0_136;
+
+	mov.u64 	%rd159, image_RNM2;
+	cvta.global.u64 	%rd148, %rd159;
+	mov.u32 	%r327, 8;
 	// inline asm
-	{  cvt.f32.f16 %f857, %rs68;}
+	call (%rd147), _rt_buffer_get_64, (%rd148, %r101, %r327, %rd16, %rd17, %rd25, %rd25);
+	// inline asm
+	ld.v4.u16 	{%rs68, %rs69, %rs70, %rs71}, [%rd147];
+	// inline asm
+	{  cvt.f32.f16 %f856, %rs68;}
 
 	// inline asm
 	// inline asm
-	{  cvt.f32.f16 %f858, %rs69;}
+	{  cvt.f32.f16 %f857, %rs69;}
 
 	// inline asm
 	// inline asm
-	call (%rd143), _rt_buffer_get_64, (%rd138, %r98, %r324, %rd15, %rd16, %rd24, %rd24);
+	{  cvt.f32.f16 %f858, %rs70;}
+
+	// inline asm
+	// inline asm
+	call (%rd153), _rt_buffer_get_64, (%rd148, %r101, %r327, %rd16, %rd17, %rd25, %rd25);
 	// inline asm
 	add.f32 	%f859, %f212, %f856;
 	add.f32 	%f860, %f212, %f857;
 	add.f32 	%f861, %f212, %f858;
 	// inline asm
-	{  cvt.rn.f16.f32 %rs66, %f861;}
+	{  cvt.rn.f16.f32 %rs67, %f861;}
 
 	// inline asm
 	// inline asm
-	{  cvt.rn.f16.f32 %rs65, %f860;}
+	{  cvt.rn.f16.f32 %rs66, %f860;}
 
 	// inline asm
 	// inline asm
-	{  cvt.rn.f16.f32 %rs64, %f859;}
+	{  cvt.rn.f16.f32 %rs65, %f859;}
 
 	// inline asm
-	st.v4.u16 	[%rd143], {%rs64, %rs65, %rs66, %rs60};
-	bra.uni 	BB0_136;
-
-BB0_135:
-	mov.u64 	%rd156, image_RNM2;
-	cvta.global.u64 	%rd151, %rd156;
-	mov.u32 	%r326, 8;
-	// inline asm
-	call (%rd150), _rt_buffer_get_64, (%rd151, %r98, %r326, %rd15, %rd16, %rd24, %rd24);
-	// inline asm
-	// inline asm
-	{  cvt.rn.f16.f32 %rs71, %f212;}
-
-	// inline asm
-	st.v4.u16 	[%rd150], {%rs71, %rs71, %rs71, %rs60};
+	st.v4.u16 	[%rd153], {%rs65, %rs66, %rs67, %rs61};
+	bra.uni 	BB0_137;
 
 BB0_136:
-	ld.global.u32 	%r327, [additive];
-	setp.eq.s32	%p139, %r327, 0;
+	mov.u64 	%rd166, image_RNM2;
+	cvta.global.u64 	%rd161, %rd166;
+	mov.u32 	%r329, 8;
 	// inline asm
-	{  cvt.rn.f16.f32 %rs72, %f392;}
+	call (%rd160), _rt_buffer_get_64, (%rd161, %r101, %r329, %rd16, %rd17, %rd25, %rd25);
+	// inline asm
+	// inline asm
+	{  cvt.rn.f16.f32 %rs72, %f212;}
 
 	// inline asm
-	@%p139 bra 	BB0_138;
+	st.v4.u16 	[%rd160], {%rs72, %rs72, %rs72, %rs61};
 
-	mov.u64 	%rd169, image_RNM3;
-	cvta.global.u64 	%rd158, %rd169;
-	mov.u32 	%r331, 8;
+BB0_137:
+	ld.global.u32 	%r330, [additive];
+	setp.eq.s32	%p139, %r330, 0;
 	// inline asm
-	call (%rd157), _rt_buffer_get_64, (%rd158, %r98, %r331, %rd15, %rd16, %rd24, %rd24);
-	// inline asm
-	ld.v4.u16 	{%rs79, %rs80, %rs81, %rs82}, [%rd157];
-	// inline asm
-	{  cvt.f32.f16 %f864, %rs79;}
+	{  cvt.rn.f16.f32 %rs73, %f392;}
 
 	// inline asm
+	@%p139 bra 	BB0_139;
+
+	mov.u64 	%rd179, image_RNM3;
+	cvta.global.u64 	%rd168, %rd179;
+	mov.u32 	%r334, 8;
 	// inline asm
-	{  cvt.f32.f16 %f865, %rs80;}
+	call (%rd167), _rt_buffer_get_64, (%rd168, %r101, %r334, %rd16, %rd17, %rd25, %rd25);
+	// inline asm
+	ld.v4.u16 	{%rs80, %rs81, %rs82, %rs83}, [%rd167];
+	// inline asm
+	{  cvt.f32.f16 %f864, %rs80;}
 
 	// inline asm
 	// inline asm
-	{  cvt.f32.f16 %f866, %rs81;}
+	{  cvt.f32.f16 %f865, %rs81;}
 
 	// inline asm
 	// inline asm
-	call (%rd163), _rt_buffer_get_64, (%rd158, %r98, %r331, %rd15, %rd16, %rd24, %rd24);
+	{  cvt.f32.f16 %f866, %rs82;}
+
+	// inline asm
+	// inline asm
+	call (%rd173), _rt_buffer_get_64, (%rd168, %r101, %r334, %rd16, %rd17, %rd25, %rd25);
 	// inline asm
 	add.f32 	%f867, %f213, %f864;
 	add.f32 	%f868, %f213, %f865;
 	add.f32 	%f869, %f213, %f866;
 	// inline asm
-	{  cvt.rn.f16.f32 %rs78, %f869;}
+	{  cvt.rn.f16.f32 %rs79, %f869;}
 
 	// inline asm
 	// inline asm
-	{  cvt.rn.f16.f32 %rs77, %f868;}
+	{  cvt.rn.f16.f32 %rs78, %f868;}
 
 	// inline asm
 	// inline asm
-	{  cvt.rn.f16.f32 %rs76, %f867;}
+	{  cvt.rn.f16.f32 %rs77, %f867;}
 
 	// inline asm
-	st.v4.u16 	[%rd163], {%rs76, %rs77, %rs78, %rs72};
-	bra.uni 	BB0_159;
+	st.v4.u16 	[%rd173], {%rs77, %rs78, %rs79, %rs73};
+	bra.uni 	BB0_160;
 
-BB0_138:
-	mov.u64 	%rd176, image_RNM3;
-	cvta.global.u64 	%rd171, %rd176;
-	mov.u32 	%r333, 8;
+BB0_139:
+	mov.u64 	%rd186, image_RNM3;
+	cvta.global.u64 	%rd181, %rd186;
+	mov.u32 	%r336, 8;
 	// inline asm
-	call (%rd170), _rt_buffer_get_64, (%rd171, %r98, %r333, %rd15, %rd16, %rd24, %rd24);
+	call (%rd180), _rt_buffer_get_64, (%rd181, %r101, %r336, %rd16, %rd17, %rd25, %rd25);
 	// inline asm
 	// inline asm
-	{  cvt.rn.f16.f32 %rs83, %f213;}
+	{  cvt.rn.f16.f32 %rs84, %f213;}
 
 	// inline asm
-	st.v4.u16 	[%rd170], {%rs83, %rs83, %rs83, %rs72};
+	st.v4.u16 	[%rd180], {%rs84, %rs84, %rs84, %rs73};
 
-BB0_159:
+BB0_160:
 	ret;
 }
 

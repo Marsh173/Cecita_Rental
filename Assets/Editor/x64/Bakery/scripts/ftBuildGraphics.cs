@@ -1,4 +1,5 @@
 #if UNITY_EDITOR
+#define USE_TERRAINS
 
 // Disable 'obsolete' warnings
 #pragma warning disable 0618
@@ -54,7 +55,7 @@ public class ftBuildGraphics : ScriptableWizard
     private static extern void SetAlphasFromRAM(int count, System.IntPtr tex, float[] alphaRefs, int[] alphaChannels, int numLODs, bool flip);
 
     [DllImport ("frender", CallingConvention=CallingConvention.Cdecl)]
-    public static extern void SaveSky(IntPtr tex, float rx, float ry, float rz, float ux, float uy, float uz, float fx, float fy, float fz, string path, bool isLinear, bool doubleLDR);
+    public static extern void SaveSky(IntPtr tex, float rx, float ry, float rz, float ux, float uy, float uz, float fx, float fy, float fz, string path, bool isLinear, bool doubleLDR, bool rgbm);
 
     [DllImport ("frender", CallingConvention=CallingConvention.Cdecl)]
     public static extern void SaveCookie(IntPtr tex, string path);
@@ -136,6 +137,7 @@ public class ftBuildGraphics : ScriptableWizard
     //public static int atlasPaddingPixels = ftAdditionalConfig.texelPaddingForDefaultAtlasPacker;
     public static bool atlasCountPriority = false;
     public static bool splitByScene = false;
+    public static bool splitByTag = true;
     public static bool uvPaddingMax = false;
     public static bool exportTerrainAsHeightmap = true;
     public static bool exportTerrainTrees = false;
@@ -170,7 +172,9 @@ public class ftBuildGraphics : ScriptableWizard
     static BakeryLightmapGroup volumeLMGroup = null;
 
     static List<GameObject> terrainObjectList;
+#if USE_TERRAINS
     static List<Terrain> terrainObjectToActual;
+#endif
     static List<Texture> terrainObjectToHeightMap;
     static List<TexInput> terrainObjectToHeightMapRAM;
     static List<float> terrainObjectToBounds;
@@ -197,6 +201,7 @@ public class ftBuildGraphics : ScriptableWizard
     public static List<Vector4> atlasOnlyScaleOffset;
     public static List<int> atlasOnlySize;
     public static List<int> atlasOnlyID;
+    public static List<BakeryLightmapGroup> atlasOnlyGroup;
 
     public static ftGlobalStorage.AtlasPacker atlasPacker = ftGlobalStorage.AtlasPacker.xatlas;
 
@@ -210,6 +215,8 @@ public class ftBuildGraphics : ScriptableWizard
 
     static ftGlobalStorage gstorage;
     static BakeryProjectSettings pstorage;
+
+    static ExportSceneData _tempData;
 
     static public void DebugLogError(string text)
     {
@@ -325,6 +332,25 @@ public class ftBuildGraphics : ScriptableWizard
         if ((pstorage.logLevel & (int)BakeryProjectSettings.LogLevel.Warning) != 0) Debug.LogWarning(info);
     }
 
+    static string FilterNonASCII(string s)
+    {
+        if (Encoding.UTF8.GetByteCount(s) == s.Length) return s;
+        var bytes = Encoding.UTF8.GetBytes(s);
+        var newStr = "";
+        for(int i=0; i<bytes.Length; i++)
+        {
+            if (bytes[i] > 127)
+            {
+                newStr += "_" + (int)bytes[i];
+            }
+            else
+            {
+                newStr += Convert.ToChar(bytes[i]);
+            }
+        }
+        return newStr;
+    }
+
     static void exportVBPos(BinaryWriter f, Transform t, Mesh m, Vector3[] vertices)
     {
         for(int i=0;i<vertices.Length;i++)
@@ -387,8 +413,6 @@ public class ftBuildGraphics : ScriptableWizard
             lmgroup = lmgroupSelector.lmgroupAsset as BakeryLightmapGroup;
             lmgroupHolder = lmgroupSelector.gameObject;
 
-            //var so = new SerializedObject(obj.GetComponent<Renderer>());
-            //var scaleInLm = so.FindProperty("m_ScaleInLightmap").floatValue;
             var scaleInLm = data.objToScaleInLm[obj];
             if (scaleInLm == 0.0f) lmgroup = data.autoVertexGroup;
                 //null; // ignore lightmaps when scaleInLightmap == 0
@@ -429,8 +453,6 @@ public class ftBuildGraphics : ScriptableWizard
             var r = GetValidRenderer(obj);
             if (r)
             {
-                //var so = new SerializedObject(r);
-                //var scaleInLm = so.FindProperty("m_ScaleInLightmap").floatValue;
                 var scaleInLm = data.objToScaleInLm[obj];
                 if (scaleInLm == 0.0f) lmgroup = data.autoVertexGroup;
                 // null; // ignore lightmaps when scaleInLightmap == 0
@@ -480,6 +502,10 @@ public class ftBuildGraphics : ScriptableWizard
             {
                 var so = new SerializedObject(r);
                 var scaleInLm = so.FindProperty("m_ScaleInLightmap").floatValue;
+#if UNITY_2019_2_OR_NEWER
+                var _r = r as MeshRenderer;
+                if (pstorage.takeReceiveGIIntoAccount && _r != null && _r.receiveGI == ReceiveGI.LightProbes) scaleInLm = 0;
+#endif
                 //var scaleInLm = data.objToScaleInLm[obj];
                 if (scaleInLm == 0.0f) lmgroup = null;
                 // null; // ignore lightmaps when scaleInLightmap == 0
@@ -1063,8 +1089,8 @@ public class ftBuildGraphics : ScriptableWizard
         // SH requires tangents only if there is a SH skylight
         if (!tangentSHLights) return false;
 
-        if (ftRenderLightmap.renderDirMode == ftRenderLightmap.RenderDirMode.SH ||
-            (lmgroup!=null && lmgroup.renderDirMode == BakeryLightmapGroup.RenderDirMode.SH)) return true;
+        if (ftRenderLightmap.renderDirMode == ftRenderLightmap.RenderDirMode.SH || ftRenderLightmap.renderDirMode == ftRenderLightmap.RenderDirMode.MonoSH ||
+            (lmgroup!=null && (lmgroup.renderDirMode == BakeryLightmapGroup.RenderDirMode.SH || lmgroup.renderDirMode == BakeryLightmapGroup.RenderDirMode.MonoSH))) return true;
 
         return false;
     }
@@ -1362,9 +1388,11 @@ public class ftBuildGraphics : ScriptableWizard
                 storages[i].bakedScaleOffset = new List<Vector4>();
                 storages[i].bakedVertexOffset = new List<int>();
                 storages[i].bakedVertexColorMesh = new List<Mesh>();
+#if USE_TERRAINS
                 storages[i].bakedRenderersTerrain = new List<Terrain>();
                 storages[i].bakedIDsTerrain = new List<int>();
                 storages[i].bakedScaleOffsetTerrain = new List<Vector4>();
+#endif
             }
         }
     }
@@ -1582,6 +1610,7 @@ public class ftBuildGraphics : ScriptableWizard
             int rx = ftRenderLightmap.VolumeDimension(vol.resolutionX);
             int ry = ftRenderLightmap.VolumeDimension(vol.resolutionY);
             int rz = ftRenderLightmap.VolumeDimension(vol.resolutionZ);
+            vol.UpdateBounds();
             var bmin = vol.bounds.min;
             var bmax = vol.bounds.max;
             halfVoxelSize = bmax - bmin;
@@ -1675,6 +1704,7 @@ public class ftBuildGraphics : ScriptableWizard
             if (lmgroup == null) continue;
             if (!groupList.Contains(lmgroup))
             {
+                lmgroup.name = FilterNonASCII(lmgroup.name);
                 lmgroup.id = data.lmid;
                 lmgroup.sceneLodLevel = -1;
                 lmgroup.sceneName = "";
@@ -1705,6 +1735,7 @@ public class ftBuildGraphics : ScriptableWizard
         return true;
     }
 
+#if USE_TERRAINS
     static void ConvertTerrain(GameObject obj)
     {
         var terr = obj.GetComponent<Terrain>();
@@ -1745,7 +1776,11 @@ public class ftBuildGraphics : ScriptableWizard
         float scaleZ = tdata.size.z / (res-1);
 
         int patchRes = res;
+#if UNITY_2017_3_OR_NEWER
+        // supports 32-bit indices
+#else
         while(patchRes > 254) patchRes = 254;//patchRes /= 2;
+#endif
         int numVerts = patchRes * patchRes;
         int numPatches = (int)Mathf.Ceil(res / (float)patchRes);
 
@@ -1763,6 +1798,13 @@ public class ftBuildGraphics : ScriptableWizard
 #if UNITY_2018_3_OR_NEWER
         terr.drawInstanced = false;
 #endif
+
+        int baseMapResolution = tdata.baseMapResolution;
+#if UNITY_2019_3_OR_NEWER
+        int holesResolution = tdata.holesResolution;
+        if (holesResolution > baseMapResolution) baseMapResolution = holesResolution;
+#endif
+
         obj.transform.position = new Vector3(-10000, -10000, -10000); // let's hope it's not the worst idea
         var tempCamGO = new GameObject();
         tempCamGO.transform.parent = obj.transform;
@@ -1776,8 +1818,8 @@ public class ftBuildGraphics : ScriptableWizard
         tempCam.clearFlags = CameraClearFlags.SolidColor;
         tempCam.backgroundColor = new Color(0,0,0,0);
         tempCam.targetTexture =
-            new RenderTexture(tdata.baseMapResolution, tdata.baseMapResolution, 0, RenderTextureFormat.ARGB32, RenderTextureReadWrite.sRGB);
-        var tex = new Texture2D(tdata.baseMapResolution, tdata.baseMapResolution, TextureFormat.ARGB32, true, false);
+            new RenderTexture(baseMapResolution, baseMapResolution, 0, RenderTextureFormat.ARGB32, RenderTextureReadWrite.sRGB);
+        var tex = new Texture2D(baseMapResolution, baseMapResolution, TextureFormat.ARGB32, true, false);
         RenderTexture.active = tempCam.targetTexture;
         tempCam.Render();
         terr.materialTemplate = oldMat;
@@ -1787,7 +1829,7 @@ public class ftBuildGraphics : ScriptableWizard
 #endif
         obj.transform.position = oldPos;
         RenderTexture.active = tempCam.targetTexture;
-        tex.ReadPixels(new Rect(0,0,tdata.baseMapResolution, tdata.baseMapResolution), 0, 0, true);
+        tex.ReadPixels(new Rect(0,0,baseMapResolution, baseMapResolution), 0, 0, true);
         tex.Apply();
         unlitTerrainMat.mainTexture = tex;
         Graphics.SetRenderTarget(null);
@@ -2081,6 +2123,9 @@ public class ftBuildGraphics : ScriptableWizard
                     }
 
                     var mesh = new Mesh();
+#if UNITY_2017_3_OR_NEWER
+                    mesh.indexFormat = UnityEngine.Rendering.IndexFormat.UInt32;
+#endif
                     mesh.vertices = positions;
                     mesh.triangles = indices;
                     mesh.normals = normals;
@@ -2162,6 +2207,7 @@ public class ftBuildGraphics : ScriptableWizard
             }
         }
     }
+#endif
 
     static bool ConvertUnityAreaLight(GameObject obj)
     {
@@ -2258,6 +2304,10 @@ public class ftBuildGraphics : ScriptableWizard
 
                     var so = new SerializedObject(mr);
                     var scaleInLm = so.FindProperty("m_ScaleInLightmap").floatValue; // (before FilterObjects)
+#if UNITY_2019_2_OR_NEWER
+                    var _r = mr as MeshRenderer;
+                    if (pstorage.takeReceiveGIIntoAccount && _r != null && _r.receiveGI == ReceiveGI.LightProbes) scaleInLm = 0;
+#endif
                     if (scaleInLm == 0) continue;
 
                     lightmappedLOD = true;
@@ -3152,7 +3202,7 @@ public class ftBuildGraphics : ScriptableWizard
         var lmBounds = data.lmBounds;
 
         data.autoVertexGroup = ScriptableObject.CreateInstance<BakeryLightmapGroup>();
-        data.autoVertexGroup.name = (anyObj == null ? "scene" : anyObj.scene.name) + "_VLM";
+        data.autoVertexGroup.name = (anyObj == null ? "scene" : FilterNonASCII(anyObj.scene.name)) + "_VLM";
         data.autoVertexGroup.isImplicit = true;
         data.autoVertexGroup.resolution = 256;
         data.autoVertexGroup.bitmask = 1;
@@ -3161,6 +3211,33 @@ public class ftBuildGraphics : ScriptableWizard
         groupList.Add(data.autoVertexGroup);
         lmBounds.Add(new Bounds(new Vector3(0,0,0), new Vector3(0,0,0)));
         data.lmid++;
+    }
+
+    static int GetLightmapTag(GameObject obj, ExportSceneData data)
+    {
+        var objToBakeTag = data.objToBakeTag;
+        if (objToBakeTag == null) objToBakeTag = data.objToBakeTag = new Dictionary<GameObject, int>();
+
+        int tag;
+        if (objToBakeTag.TryGetValue(obj, out tag)) return tag;
+        tag = -1;
+
+        var mr = obj.GetComponent<MeshRenderer>();
+        if (mr != null)
+        {
+            var so = new SerializedObject(mr);
+            var param = so.FindProperty("m_LightmapParameters").objectReferenceValue;
+            if (param != null)
+            {
+                var param2 = param as LightmapParameters;
+                if (param2 != null)
+                {
+                    tag = param2.bakedLightmapTag;
+                }
+            }
+        }
+        objToBakeTag[obj] = tag;
+        return tag;
     }
 
     static bool FilterObjects(ExportSceneData data, UnityEngine.Object[] objects)
@@ -3255,6 +3332,10 @@ public class ftBuildGraphics : ScriptableWizard
 
             var so = new SerializedObject(mr);//obj.GetComponent<Renderer>());
             var scaleInLm = so.FindProperty("m_ScaleInLightmap").floatValue;
+#if UNITY_2019_2_OR_NEWER
+            var _r = mr as MeshRenderer;
+            if (pstorage.takeReceiveGIIntoAccount && _r != null && _r.receiveGI == ReceiveGI.LightProbes) scaleInLm = 0;
+#endif
 
             if (ftRenderLightmap.fullSectorRender)
             {
@@ -3289,11 +3370,21 @@ public class ftBuildGraphics : ScriptableWizard
                         }
                         else
                         {
-                            if (!ExportSceneValidationMessage("Multiple LOD levels in " + group.name + ", this is only supported when xatlas is set as the atlas packer and post-packing is enabled.")) return false;
+                            if (lodLevel > 0)
+                            {
+                                if (!ExportSceneValidationMessage("Multiple LOD levels in " + group.name + ", this is only supported when xatlas is set as the atlas packer and post-packing is enabled.")) return false;
+                            }
                         }
                     }
 
+                    if (exportTerrainAsHeightmap && !group.isImplicit && obj.name == "__ExportTerrain")
+                    {
+                        if (!ExportSceneValidationMessage("Terrain Optimization is enabled and terrains are inside a lightmap group. This is not currently supported. Try disabling Terrain Optimization (" + group.name + ", " + group.isImplicit + ").")) return false;
+                    }
+
+                    // Set for explicit group
                     if (splitByScene) group.sceneName = obj.scene.name;
+                    if (splitByTag) group.tag = GetLightmapTag(obj, data);
 
                     // New explicit Pack Atlas holder selection
                     if (!group.isImplicit && group.mode == BakeryLightmapGroup.ftLMGroupMode.PackAtlas)
@@ -3500,7 +3591,7 @@ public class ftBuildGraphics : ScriptableWizard
                     int lmNum = storages[sceneToID[holder.scene]].implicitGroups.Count;
                     if (ftRenderLightmap.lightProbeMode == ftRenderLightmap.LightProbeMode.L1 && ftRenderLightmap.hasAnyProbes && renderTextures && !atlasOnly) lmNum--;
 
-                    newGroup.name = holder.scene.name + "_LM" + autoAtlasGroups.Count;//lmNum;
+                    newGroup.name = FilterNonASCII(holder.scene.name) + "_LM" + autoAtlasGroups.Count;//lmNum;
                     newGroup.isImplicit = true;
                     newGroup.resolution = 256;
                     newGroup.bitmask = 1;
@@ -3526,7 +3617,10 @@ public class ftBuildGraphics : ScriptableWizard
                 //Debug.LogError("Add "+(storages[sceneToID[holder.scene]].implicitGroups.Count-1)+" "+newGroup.name);
 
                 tempStorage.implicitGroupMap[holder] = newGroup;
+
+                // Set for implicit group
                 if (splitByScene) newGroup.sceneName = holder.scene.name;
+                if (splitByTag) newGroup.tag = GetLightmapTag(holder, data);
             }
 
             if (!tempStorage.implicitGroupMap.ContainsKey(holder))
@@ -3959,6 +4053,7 @@ public class ftBuildGraphics : ScriptableWizard
                 var storedScaleOffset = Vector4.zero;
                 if (obj.name == "__ExportTerrain")
                 {
+#if USE_TERRAINS
                     var tindex = terrainObjectList.IndexOf(obj.transform.parent.gameObject);
                     var terrain = terrainObjectToActual[tindex];
                     int index = st.bakedRenderersTerrain.IndexOf(terrain);
@@ -3969,6 +4064,7 @@ public class ftBuildGraphics : ScriptableWizard
                     }*/
                     if (index < 0 || st.bakedScaleOffsetTerrain.Count <= index) continue;
                     storedScaleOffset = st.bakedScaleOffsetTerrain[index];
+#endif
                 }
                 else
                 {
@@ -4094,7 +4190,7 @@ public class ftBuildGraphics : ScriptableWizard
         {
             var obj = objsToWrite[i];
             var lmgroup = objsToWriteGroup[i];
-            var calculateArea = lmgroup == null ? false : (lmgroup.isImplicit || lmgroup.mode == BakeryLightmapGroup.ftLMGroupMode.PackAtlas);
+            var calculateArea = lmgroup == null ? false : (lmgroup.isImplicit || lmgroup.mode == BakeryLightmapGroup.ftLMGroupMode.PackAtlas || lmgroup.autoResolution);
             if (!calculateArea) continue;
 
             var holderObj = objsToWriteHolder[i];
@@ -4163,13 +4259,11 @@ public class ftBuildGraphics : ScriptableWizard
                 // uv layouts always have empty spaces
                 //area /= areaUV;
 
-                //var so = new SerializedObject(mr);
-                //var scaleInLm = so.FindProperty("m_ScaleInLightmap").floatValue;
                 var scaleInLm = data.objToScaleInLm[obj];
 
                 if (!pstorage.alternativeScaleInLightmap) area *= scaleInLm;
 
-                if (lmgroup.isImplicit && lodLevel == -1)
+                if ((lmgroup.isImplicit || lmgroup.autoResolution) && lodLevel == -1)
                 {
                     lmgroup.area += area; // accumulate LMGroup area
                     // only use base scene values, no LODs, to properly initialize autoatlas size
@@ -4231,7 +4325,7 @@ public class ftBuildGraphics : ScriptableWizard
         for(int i=0; i<groupList.Count; i++)
         {
             var lmgroup = groupList[i];
-            if (lmgroup.isImplicit)
+            if (lmgroup.isImplicit || lmgroup.autoResolution)
             {
                 lmgroup.resolution = ResolutionFromArea(lmgroup.area);
             }
@@ -4300,12 +4394,19 @@ public class ftBuildGraphics : ScriptableWizard
             if (a.scene.name != b.scene.name) return a.scene.name.CompareTo(b.scene.name);
         }
 
-        if (ftRenderLightmap.giLodMode != ftRenderLightmap.GILODMode.ForceOff && exportTerrainAsHeightmap)
+        if (splitByTag)
+        {
+            int tagA = GetLightmapTag(a, _tempData);
+            int tagB = GetLightmapTag(b, _tempData);
+            if (tagA != tagB) return tagA.CompareTo(tagB);
+        }
+
+        /*if (ftRenderLightmap.giLodMode != ftRenderLightmap.GILODMode.ForceOff && exportTerrainAsHeightmap)
         {
             bool ba = a.name != "__ExportTerrainParent";
             bool bb = b.name != "__ExportTerrainParent";
             if (ba != bb) return ba.CompareTo(bb);
-        }
+        }*/
 
         int lodLevelA = -1;
         int lodLevelB = -1;
@@ -4330,7 +4431,9 @@ public class ftBuildGraphics : ScriptableWizard
 
     static void ApplyAreaToUVBounds(float area, Vector4 uvbounds, out float width, out float height)
     {
+        if (pstorage.alternativeScaleInLightmap) area *= 2;
         width = height = Mathf.Sqrt(area);
+        if (pstorage.alternativeScaleInLightmap) width = height = Mathf.Max(1.0f, Mathf.Floor(height * 0.5f));
         float uwidth = uvbounds.z - uvbounds.x;
         float uheight = uvbounds.w - uvbounds.y;
         if (uwidth == 0 && uheight == 0)
@@ -4409,6 +4512,10 @@ public class ftBuildGraphics : ScriptableWizard
                     {
                         var so = new SerializedObject(mr);
                         var scaleInLm = so.FindProperty("m_ScaleInLightmap").floatValue;
+#if UNITY_2019_2_OR_NEWER
+                        var _r = mr as MeshRenderer;
+                        if (pstorage.takeReceiveGIIntoAccount && _r != null && _r.receiveGI == ReceiveGI.LightProbes) scaleInLm = 0;
+#endif
                         width *= scaleInLm;
                         height *= scaleInLm;
                     }
@@ -4461,7 +4568,14 @@ public class ftBuildGraphics : ScriptableWizard
                     splitAtlas = true;
                 }
             }
-            if (ftRenderLightmap.giLodMode != ftRenderLightmap.GILODMode.ForceOff && exportTerrainAsHeightmap)
+            if (splitByTag)
+            {
+                if (GetLightmapTag(holderObjs[i], data) != lmgroup.tag)
+                {
+                    splitAtlas = true;
+                }
+            }
+            /*if (ftRenderLightmap.giLodMode != ftRenderLightmap.GILODMode.ForceOff && exportTerrainAsHeightmap)
             {
                 bool ba = holderObjs[i].name == "__ExportTerrainParent";
                 if (ba) lmgroup.containsTerrains = true;
@@ -4474,7 +4588,7 @@ public class ftBuildGraphics : ScriptableWizard
                         splitAtlas = true;
                     }
                 }
-            }
+            }*/
             if (!splitAtlas)
             {
                 if (lmgroup.isImplicit && lmgroup.mode == BakeryLightmapGroup.ftLMGroupMode.PackAtlas)
@@ -4509,12 +4623,16 @@ public class ftBuildGraphics : ScriptableWizard
                         {
                             if (autoAtlasGroups[g].sceneName != holderObjs[i].scene.name) continue;
                         }
-                        if (ftRenderLightmap.giLodMode != ftRenderLightmap.GILODMode.ForceOff && exportTerrainAsHeightmap)
+                        if (splitByTag)
+                        {
+                            if (autoAtlasGroups[g].tag != GetLightmapTag(holderObjs[i], data)) continue;
+                        }
+                        /*if (ftRenderLightmap.giLodMode != ftRenderLightmap.GILODMode.ForceOff && exportTerrainAsHeightmap)
                         {
                             bool ba = holderObjs[i].name != "__ExportTerrainParent";
                             bool bb = !autoAtlasGroups[g].containsTerrains;
                             if (ba != bb) continue;
-                        }
+                        }*/
                         if (autoAtlasGroups[g].sceneLodLevel != lodLevel) continue;
                         twidth = (width * texelsPerUnit) / autoAtlasGroups[g].resolution;
                         theight = (height * texelsPerUnit) / autoAtlasGroups[g].resolution;
@@ -4538,16 +4656,17 @@ public class ftBuildGraphics : ScriptableWizard
                     if (goodGroup < 0)
                     {
                         newGroup = ScriptableObject.CreateInstance<BakeryLightmapGroup>();
-                        newGroup.name = holder.scene.name + "_LMA" + autoAtlasGroups.Count;
+                        newGroup.name = FilterNonASCII(holder.scene.name) + "_LMA" + autoAtlasGroups.Count;
                         newGroup.isImplicit = true;
                         newGroup.sceneLodLevel = lodLevel;
                         if (splitByScene) newGroup.sceneName = holderObjs[i].scene.name;
+                        if (splitByTag) newGroup.tag = GetLightmapTag(holderObjs[i], data);
                         //Debug.Log(holder.name+" creates "+newGroup.name);
 
-                        if (ftRenderLightmap.giLodMode != ftRenderLightmap.GILODMode.ForceOff && exportTerrainAsHeightmap)
+                        /*if (ftRenderLightmap.giLodMode != ftRenderLightmap.GILODMode.ForceOff && exportTerrainAsHeightmap)
                         {
                             newGroup.containsTerrains = holderObjs[i].name == "__ExportTerrainParent";
-                        }
+                        }*/
 
                         newGroup.resolution = (int)(Mathf.Sqrt(remainingAreaPerLodLevel[lodLevel]) * texelsPerUnit);
                         if (mustBePOT)
@@ -4728,9 +4847,11 @@ public class ftBuildGraphics : ScriptableWizard
         if (holderObjs.Count > 0)
         {
             var sceneName = holderObjs[0].scene.name;
+            int tag = -1;
+            if (splitByTag) tag = GetLightmapTag(holderObjs[0], data);
             int lodLevel;
             if (!objToLodLevel.TryGetValue(holderObjs[0], out lodLevel)) lodLevel = -1;
-            bool isTerrain = holderObjs[0].name == "__ExportTerrainParent";
+            //bool isTerrain = holderObjs[0].name == "__ExportTerrainParent";
 
             for(int i=0; i<holderObjs.Count; i++)
             {
@@ -4747,6 +4868,16 @@ public class ftBuildGraphics : ScriptableWizard
                     }
                 }
 
+                if (splitByTag)
+                {
+                    var objTag = GetLightmapTag(holderObjs[i], data);
+                    if (objTag != tag)
+                    {
+                        splitAtlas = true;
+                        tag = objTag;
+                    }
+                }
+
                 if (!onlyUserSplits)
                 {
                     // Split by LOD
@@ -4754,12 +4885,18 @@ public class ftBuildGraphics : ScriptableWizard
                     if (!objToLodLevel.TryGetValue(holderObjs[i], out objLodLevel)) objLodLevel = -1;
                     if (objLodLevel != lodLevel)
                     {
-                        lodLevel = objLodLevel;
-                        splitAtlas = true;
+                        //bool objNonOr0 = objLodLevel <= 0;
+                        //bool lodNonOr0 = lodLevel <= 0;
+                        //bool validToCombine = objNonOr0 && lodNonOr0;
+                        //if (!validToCombine) // didn't work; LOD0 never showed up in lmlods, thus never loaded as shadowcast for non-LOD
+                        {
+                            lodLevel = objLodLevel;
+                            splitAtlas = true;
+                        }
                     }
 
                     // Split by terrain
-                    if (ftRenderLightmap.giLodMode != ftRenderLightmap.GILODMode.ForceOff && exportTerrainAsHeightmap)
+                    /*if (ftRenderLightmap.giLodMode != ftRenderLightmap.GILODMode.ForceOff && exportTerrainAsHeightmap)
                     {
                         bool ba = holderObjs[i].name == "__ExportTerrainParent";
                         if (ba != isTerrain)
@@ -4767,7 +4904,7 @@ public class ftBuildGraphics : ScriptableWizard
                             isTerrain = ba;
                             splitAtlas = true;
                         }
-                    }
+                    }*/
                 }
 
                 if (splitAtlas)
@@ -4792,7 +4929,26 @@ public class ftBuildGraphics : ScriptableWizard
         float area = 0;
         for(int i=start; i<=end; i++)
         {
-            area += holderObjArea[holderObjs[i]];
+            float a = holderObjArea[holderObjs[i]];
+            var mr = holderObjs[i].GetComponent<Renderer>();
+            if (mr != null)
+            {
+                var so = new SerializedObject(mr);
+                var scaleInLm = so.FindProperty("m_ScaleInLightmap").floatValue;
+#if UNITY_2019_2_OR_NEWER
+                var _r = mr as MeshRenderer;
+                if (pstorage.takeReceiveGIIntoAccount && _r != null && _r.receiveGI == ReceiveGI.LightProbes) scaleInLm = 0;
+#endif
+                if (pstorage.alternativeScaleInLightmap)
+                {
+                    a *= scaleInLm * scaleInLm;
+                }
+                else
+                {
+                    a *= scaleInLm;
+                }
+            }
+            area += a;
         }
         return area;
     }
@@ -4814,11 +4970,12 @@ public class ftBuildGraphics : ScriptableWizard
             newGroup.isImplicit = true;
             newGroup.sceneLodLevel = lmgroup.sceneLodLevel;
             if (splitByScene) newGroup.sceneName = lmgroup.sceneName;
+            if (splitByTag) newGroup.tag = lmgroup.tag;
             newGroup.containsTerrains = lmgroup.containsTerrains;
 
             newGroup.resolution = atlasSizes != null ? atlasSizes[i] : lmgroup.resolution;
 
-            newGroup.bitmask = 1;
+            newGroup.bitmask = lmgroup.bitmask;
             newGroup.area = 0;
             newGroup.mode = lmgroup.mode;// BakeryLightmapGroup.ftLMGroupMode.PackAtlas;
 
@@ -4903,13 +5060,17 @@ public class ftBuildGraphics : ScriptableWizard
 
             // Fill some LMGroup data
             lmgroup.sceneName = holderObjs[bStart].scene.name;
+            if (splitByTag)
+            {
+                lmgroup.tag = GetLightmapTag(holderObjs[bStart], data);
+            }
             int lodLevel;
             if (!objToLodLevel.TryGetValue(holderObjs[bStart], out lodLevel)) lodLevel = -1;
             lmgroup.sceneLodLevel = lodLevel;
-            if (ftRenderLightmap.giLodMode != ftRenderLightmap.GILODMode.ForceOff && exportTerrainAsHeightmap)
+            /*if (ftRenderLightmap.giLodMode != ftRenderLightmap.GILODMode.ForceOff && exportTerrainAsHeightmap)
             {
                 lmgroup.containsTerrains = holderObjs[bStart].name == "__ExportTerrainParent";
-            }
+            }*/
 
             var atlas = xatlas.xatlasCreateAtlas();
 
@@ -4962,6 +5123,22 @@ public class ftBuildGraphics : ScriptableWizard
                 // Automatic: width and height = sqrt(area) transformed by UV AABB aspect ratio
                 float width, height;
                 ApplyAreaToUVBounds(area, uvbounds, out width, out height);
+
+                if (pstorage.alternativeScaleInLightmap)
+                {
+                    var mr = holderObjs[i].GetComponent<Renderer>();
+                    if (mr != null)
+                    {
+                        var so = new SerializedObject(mr);
+                        var scaleInLm = so.FindProperty("m_ScaleInLightmap").floatValue;
+#if UNITY_2019_2_OR_NEWER
+                        var _r = mr as MeshRenderer;
+                        if (pstorage.takeReceiveGIIntoAccount && _r != null && _r.receiveGI == ReceiveGI.LightProbes) scaleInLm = 0;
+#endif
+                        width *= scaleInLm;
+                        height *= scaleInLm;
+                    }
+                }
 
                 // Clamp to full lightmap size
                 float twidth = width;
@@ -5085,12 +5262,12 @@ public class ftBuildGraphics : ScriptableWizard
             }
 
             //xatlas.xatlasParametrize(atlas);
-            xatlas.xatlasPack(atlas, attempts, packTexelsPerUnit, packResolution, maxChartSize, padding, bruteForce, true);//, allowRotate);
+            xatlas.xatlasPack(atlas, attempts, packTexelsPerUnit, packResolution, maxChartSize, padding, bruteForce, pstorage.alignToTextureBlocksWithXatlas);//, allowRotate);
 
             int atlasCount = xatlas.xatlasGetAtlasCount(atlas);
             var atlasSizes = new int[atlasCount];
 
-            xatlas.xatlasNormalize(atlas, atlasSizes);
+            xatlas.xatlasNormalize(atlas, atlasSizes, pstorage.alternativeScaleInLightmap);
 
             // Create additional lightmaps
             AllocateAutoAtlas(atlasCount-1, lmgroup, data, atlasSizes);
@@ -5217,10 +5394,10 @@ public class ftBuildGraphics : ScriptableWizard
                             int lodLevel;
                             if (!objToLodLevel.TryGetValue(holderObjs[bStart], out lodLevel)) lodLevel = -1;
                             newGroup.sceneLodLevel = lodLevel;
-                            if (ftRenderLightmap.giLodMode != ftRenderLightmap.GILODMode.ForceOff && exportTerrainAsHeightmap)
+                            /*if (ftRenderLightmap.giLodMode != ftRenderLightmap.GILODMode.ForceOff && exportTerrainAsHeightmap)
                             {
                                 newGroup.containsTerrains = holderObjs[bStart].name == "__ExportTerrainParent";
-                            }
+                            }*/
                             newGroup.parentName = autoAtlasGroups[i].name;
                             autoAtlasGroups[i].parentName = "|";
                             //Debug.LogError(autoAtlasGroups[i].name+" (" +autoAtlasGroups[i].id+") -> "+newGroup.name + " (" + newGroup.id+", "+newGroup.parentID+")");
@@ -5251,10 +5428,10 @@ public class ftBuildGraphics : ScriptableWizard
                             int lodLevel;
                             if (!objToLodLevel.TryGetValue(holderObjs[j], out lodLevel)) lodLevel = -1;
                             newGroup.sceneLodLevel = lodLevel;
-                            if (ftRenderLightmap.giLodMode != ftRenderLightmap.GILODMode.ForceOff && exportTerrainAsHeightmap)
+                            /*if (ftRenderLightmap.giLodMode != ftRenderLightmap.GILODMode.ForceOff && exportTerrainAsHeightmap)
                             {
                                 newGroup.containsTerrains = holderObjs[j].name == "__ExportTerrainParent";
-                            }
+                            }*/
 
                             break;
                         }
@@ -5272,10 +5449,10 @@ public class ftBuildGraphics : ScriptableWizard
                 int lodLevel;
                 if (!objToLodLevel.TryGetValue(holderObjs[bStart], out lodLevel)) lodLevel = -1;
                 lmgroup.sceneLodLevel = lodLevel;
-                if (ftRenderLightmap.giLodMode != ftRenderLightmap.GILODMode.ForceOff && exportTerrainAsHeightmap)
+                /*if (ftRenderLightmap.giLodMode != ftRenderLightmap.GILODMode.ForceOff && exportTerrainAsHeightmap)
                 {
                     lmgroup.containsTerrains = holderObjs[bStart].name == "__ExportTerrainParent";
-                }
+                }*/
                 //Debug.LogError(lmgroup.name+": "+ lmgroup.sceneLodLevel+" because of " + holderObjs[bStart].name);
 
                 // Skip first bucket
@@ -5288,10 +5465,10 @@ public class ftBuildGraphics : ScriptableWizard
 
                     if (!objToLodLevel.TryGetValue(holderObjs[bStart], out lodLevel)) lodLevel = -1;
                     newGroup.sceneLodLevel = lodLevel;
-                    if (ftRenderLightmap.giLodMode != ftRenderLightmap.GILODMode.ForceOff && exportTerrainAsHeightmap)
+                    /*if (ftRenderLightmap.giLodMode != ftRenderLightmap.GILODMode.ForceOff && exportTerrainAsHeightmap)
                     {
                         newGroup.containsTerrains = holderObjs[bStart].name == "__ExportTerrainParent";
-                    }
+                    }*/
                     newGroup.mode = lmgroup.mode;
                     newGroup.parentName = lmgroup.name;
                     lmgroup.parentName = "|";
@@ -5351,47 +5528,54 @@ public class ftBuildGraphics : ScriptableWizard
 
         // Pack atlases
         // Try to scale all objects to occupy all atlas space
-        foreach(var pair in groupToHolderObjects)
+        for(int pass=0; pass<2; pass++)
         {
-            // For every LMGroup with PackAtlas mode
-            var lmgroup = pair.Key;
-            var holderObjs = pair.Value; // get all objects
-
-            var pdata = new PackData();
-
-            // Normalize by worldspace area and uv area
-            // Read/write holderObjArea
-            NormalizeHolderArea(lmgroup, holderObjs, data);
-
-            // Sort objects by area and scene LOD level
-            // + optionally by scene
-            // + split by terrain
-            holderObjs.Sort(CompareGameObjectsForPacking);
-
-            var packer = lmgroup.atlasPacker == BakeryLightmapGroup.AtlasPacker.Auto ? atlasPacker : (ftGlobalStorage.AtlasPacker)lmgroup.atlasPacker;
-            if (packer == ftGlobalStorage.AtlasPacker.xatlas)
+            foreach(var pair in groupToHolderObjects)
             {
-                if (!PackWithXatlas(lmgroup, holderObjs, data, pdata))
-                {
-                    ExportSceneError("Failed packing atlas");
-                    return false;
-                }
-            }
-            else
-            {
-                // Calculate area sum for every scene LOD level in LMGroup
-                // Write remainingAreaPerLodLevel
-                SumHolderAreaPerLODLevel(holderObjs, data, pdata);
+                // For every LMGroup with PackAtlas mode
+                var lmgroup = pair.Key;
+                if (pass == 0 && !lmgroup.isImplicit) continue; // implicit groups get packed first
+                if (pass == 1 && lmgroup.isImplicit) continue;
+                var holderObjs = pair.Value; // get all objects
 
-                // Perform recursive packing
-                while(pdata.repack)
+                var pdata = new PackData();
+
+                // Normalize by worldspace area and uv area
+                // Read/write holderObjArea
+                NormalizeHolderArea(lmgroup, holderObjs, data);
+
+                // Sort objects by area and scene LOD level
+                // + optionally by scene
+                // + split by terrain
+                _tempData = data;
+                holderObjs.Sort(CompareGameObjectsForPacking);
+                _tempData = null;
+
+                var packer = lmgroup.atlasPacker == BakeryLightmapGroup.AtlasPacker.Auto ? atlasPacker : (ftGlobalStorage.AtlasPacker)lmgroup.atlasPacker;
+                if (packer == ftGlobalStorage.AtlasPacker.xatlas)
                 {
-                    pdata.continueRepack = true;
-                    if (!Pack(lmgroup, holderObjs, data, pdata)) return false;
-                    if (!pdata.continueRepack) break;
+                    if (!PackWithXatlas(lmgroup, holderObjs, data, pdata))
+                    {
+                        ExportSceneError("Failed packing atlas");
+                        return false;
+                    }
                 }
-                // Normalize atlas by largest axis
-                NormalizeAtlas(lmgroup, holderObjs, data, pdata);
+                else
+                {
+                    // Calculate area sum for every scene LOD level in LMGroup
+                    // Write remainingAreaPerLodLevel
+                    SumHolderAreaPerLODLevel(holderObjs, data, pdata);
+
+                    // Perform recursive packing
+                    while(pdata.repack)
+                    {
+                        pdata.continueRepack = true;
+                        if (!Pack(lmgroup, holderObjs, data, pdata)) return false;
+                        if (!pdata.continueRepack) break;
+                    }
+                    // Normalize atlas by largest axis
+                    NormalizeAtlas(lmgroup, holderObjs, data, pdata);
+                }
             }
         }
         cmp_objToLodLevel = null;
@@ -5461,6 +5645,7 @@ public class ftBuildGraphics : ScriptableWizard
 
             string cat = "/" + autoAtlasGroups[g].sceneLodLevel;
             if (splitByScene) cat = autoAtlasGroups[g].sceneName + cat;
+            if (splitByTag) cat = autoAtlasGroups[g].tag + "/" + cat;
             if (!autoAtlasCategories.Contains(cat)) autoAtlasCategories.Add(cat);
         }
         for(int alod=0; alod<autoAtlasCategories.Count; alod++)
@@ -5474,6 +5659,7 @@ public class ftBuildGraphics : ScriptableWizard
 
                 var thisCat = "/" + autoAtlasGroups[g].sceneLodLevel;
                 if (splitByScene) thisCat = autoAtlasGroups[g].sceneName + thisCat;
+                if (splitByTag) thisCat = autoAtlasGroups[g].tag + "/" + thisCat;
 
                 if (thisCat != cat) continue;
                 if (autoAtlasGroups[g].resolution == maxAutoResolution) continue;
@@ -5490,6 +5676,7 @@ public class ftBuildGraphics : ScriptableWizard
 
                     var thisCat = "/" + autoAtlasGroups[g].sceneLodLevel;
                     if (splitByScene) thisCat = autoAtlasGroups[g].sceneName + thisCat;
+                    if (splitByTag) thisCat = autoAtlasGroups[g].tag + "/" + thisCat;
 
                     if (thisCat != cat) continue;
                     if (autoAtlasGroups[g].resolution != asize) continue;
@@ -5666,6 +5853,7 @@ public class ftBuildGraphics : ScriptableWizard
         public Dictionary<GameObject,int> objToLodLevel = new Dictionary<GameObject,int>(); // defines atlas LOD level
         public Dictionary<GameObject,List<int>> objToLodLevelVisible = new Dictionary<GameObject,List<int>>(); // defines LOD levels where this object is visible
         public Dictionary<GameObject, float> objToScaleInLm = new Dictionary<GameObject, float>();
+        public Dictionary<GameObject, int> objToBakeTag;
 
         public List<GameObject> objsToWrite = new List<GameObject>();
         public List<bool> objsToWriteLightmapped = new List<bool>();
@@ -5785,10 +5973,7 @@ public class ftBuildGraphics : ScriptableWizard
         // lod-related
         var lmVOffset = new List<int>();
         var lmUVArrays = new List<List<float>>();
-        var lmUVArrays2 = new List<float[]>();
-        var lmUVArrays3 = new List<float[]>();
         var lmIndexArrays = new List<List<int>>();
-        var lmIndexArrays2 = new List<int[]>();
         var lmLocalToGlobalIndices = new List<List<int>>();
 
         vbtraceTexPosNormalArray = new List<float>();
@@ -5857,7 +6042,9 @@ public class ftBuildGraphics : ScriptableWizard
         var holderRect = data.holderRect;
 
         terrainObjectList = new List<GameObject>();
+#if USE_TERRAINS
         terrainObjectToActual = new List<Terrain>();
+#endif
         terrainObjectToHeightMap = new List<Texture>();
         terrainObjectToHeightMapRAM = new List<TexInput>();
         terrainObjectToBounds = new List<float>();
@@ -5888,9 +6075,17 @@ public class ftBuildGraphics : ScriptableWizard
                 {
                     GameObject obj = (GameObject)objects[objNum];
                     if (obj == null) continue;
+
+                    if (!obj.activeInHierarchy) continue;
+                    var path = AssetDatabase.GetAssetPath(obj);
+                    if (path != "") continue; // must belong to scene
+                    
+
                     if (!CheckForMultipleSceneStorages(obj, data)) yield break;
                     if (ConvertUnityAreaLight(obj)) continue;
+#if USE_TERRAINS
                     ConvertTerrain(obj);
+#endif
                 }
 
                 // Regather objects if new were added
@@ -6038,8 +6233,11 @@ public class ftBuildGraphics : ScriptableWizard
 
                 if (atlasPacker == ftGlobalStorage.AtlasPacker.Default)
                 {
-                    NormalizeAutoAtlases(data);
-                    JoinAutoAtlases(data);
+                    if (!pstorage.alternativeScaleInLightmap)
+                    {
+                        NormalizeAutoAtlases(data);
+                        JoinAutoAtlases(data);
+                    }
                 }
 
                 if (!ValidateScaleOffsetImmutability(data))
@@ -6086,12 +6284,17 @@ public class ftBuildGraphics : ScriptableWizard
                     atlasOnlyObj = new List<Renderer>();
                     atlasOnlySize = new List<int>();
                     atlasOnlyID = new List<int>();
+                    atlasOnlyGroup = new List<BakeryLightmapGroup>();
                     atlasOnlyScaleOffset = new List<Vector4>();
                     var emptyVec4 = new Vector4(1,1,0,0);
                     Rect rc = new Rect();
                     for(int i=0; i<objsToWrite.Count; i++)
                     {
                         var lmgroup = objsToWriteGroup[i];
+                        if (lmgroup == null) continue;
+                        if (lmgroup.mode == BakeryLightmapGroup.ftLMGroupMode.Vertex) continue;
+                        var obj = objsToWrite[i];
+                        if (obj != null && obj.GetComponent<BakeryLightMesh>() != null) continue;
                         var holderObj = objsToWriteHolder[i];
                         if (holderObj != null)
                         {
@@ -6104,7 +6307,25 @@ public class ftBuildGraphics : ScriptableWizard
                         atlasOnlyObj.Add(GetValidRenderer(objsToWrite[i]));
                         atlasOnlyScaleOffset.Add(scaleOffset);
                         atlasOnlySize.Add(lmgroup == null ? 0 : lmgroup.resolution);
-                        atlasOnlyID.Add(lmgroup == null ? 0 : lmgroup.id);
+                        int id = lmgroup == null ? 0 : lmgroup.id;
+                        if (lmgroup != null)
+                        {
+                            var nm = lmgroup.parentName;
+                            if (nm != null && nm.Length > 0 && nm != "|")
+                            {
+                                // dependant sub-lightmaps
+                                for(int j=0; j<groupList.Count; j++)
+                                {
+                                    if (groupList[j].name == nm)
+                                    {
+                                        id = groupList[j].id;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                        atlasOnlyID.Add(id);
+                        atlasOnlyGroup.Add(lmgroup);
                     }
                     yield break;
                 }
@@ -6127,6 +6348,36 @@ public class ftBuildGraphics : ScriptableWizard
                     groupList[i].id = i;
                 }
                 lmBounds = lmBounds2;
+
+                if (splitByTag)
+                {
+                    // Init settings set by tag overrides
+                    var tagTable = gstorage.tagOverrides;
+                    for(int i=0; i<groupList.Count; i++)
+                    {
+                        var group = groupList[i];
+                        if (group.isImplicit && group.tag >= 0)
+                        {
+                            for(int j=0; j<tagTable.Count; j++)
+                            {
+                                var tagData = tagTable[j];
+                                if (tagData.tag != group.tag) continue;
+
+                                if (tagData.renderMode != (int)BakeryLightmapGroup.RenderMode.Auto) group.renderMode = (BakeryLightmapGroup.RenderMode)tagData.renderMode;
+                                if (tagData.renderDirMode != (int)BakeryLightmapGroup.RenderDirMode.Auto) group.renderDirMode = (BakeryLightmapGroup.RenderDirMode)tagData.renderDirMode;
+                                group.bitmask = tagData.bitmask;
+                                group.transparentSelfShadow = tagData.transparentSelfShadow;
+                                group.computeSSS = tagData.computeSSS;
+                                if (group.computeSSS)
+                                {
+                                    group.sssSamples = tagData.sssSamples;
+                                    group.sssDensity = tagData.sssDensity;
+                                    group.sssColor = tagData.sssColor;
+                                }
+                            }
+                        }
+                    }
+                }
 
                 // Check for existing files
                 if (overwriteWarning)
@@ -6172,7 +6423,7 @@ public class ftBuildGraphics : ScriptableWizard
                     }
                 }
 
-                ftRenderLightmap.giLodModeEnabled = ftRenderLightmap.giLodMode == ftRenderLightmap.GILODMode.ForceOn;
+                ftRenderLightmap.giLodModeEnabled = false;//ftRenderLightmap.giLodMode == ftRenderLightmap.GILODMode.ForceOn;
                 ulong approxMem = 0;
 
                 if (groupList.Count > 100 && ftRenderLightmap.verbose)
@@ -6236,6 +6487,7 @@ public class ftBuildGraphics : ScriptableWizard
                 // Generate terrain geometry with detail enough for given size for UVGBuffer purposes
                 fhmaps = new BinaryWriter(File.Open(scenePath + "/heightmaps.bin", FileMode.Create));
                 if (ftRenderLightmap.clientMode) ftClient.serverFileList.Add("heightmaps.bin");
+#if USE_TERRAINS
                 if (exportTerrainAsHeightmap)
                 {
                     for(int i=0; i<objsToWrite.Count; i++)
@@ -6396,7 +6648,7 @@ public class ftBuildGraphics : ScriptableWizard
                         }
                     }
                 }
-
+#endif
                 // Write mark last written scene
                 File.WriteAllText(scenePath + "/lastscene.txt", ftRenderLightmap.GenerateLightingDataAssetName());
 
@@ -6422,7 +6674,8 @@ public class ftBuildGraphics : ScriptableWizard
                         uvgbGlobalFlags = UVGBFLAG_FACENORMAL | UVGBFLAG_POS | _UVGBFLAG_SMOOTHPOS;
                     }
                     else if (ftRenderLightmap.renderDirMode == ftRenderLightmap.RenderDirMode.RNM ||
-                            (ftRenderLightmap.renderDirMode == ftRenderLightmap.RenderDirMode.SH && tangentSHLights))
+                            (ftRenderLightmap.renderDirMode == ftRenderLightmap.RenderDirMode.SH && tangentSHLights) ||
+                            (ftRenderLightmap.renderDirMode == ftRenderLightmap.RenderDirMode.MonoSH && tangentSHLights))
                     {
                         uvgbGlobalFlags = UVGBFLAG_NORMAL | UVGBFLAG_FACENORMAL | UVGBFLAG_POS | _UVGBFLAG_SMOOTHPOS | UVGBFLAG_TANGENT;
                     }
@@ -6435,7 +6688,9 @@ public class ftBuildGraphics : ScriptableWizard
                 {
                     uvgbGlobalFlags = UVGBFLAG_NORMAL | UVGBFLAG_FACENORMAL | UVGBFLAG_ALBEDO | UVGBFLAG_EMISSIVE | UVGBFLAG_POS | _UVGBFLAG_SMOOTHPOS;
                 }
+#if USE_TERRAINS
                 if (terrainObjectToActual.Count > 0) uvgbGlobalFlags |= UVGBFLAG_TERRAIN;
+#endif
                 SetUVGBFlags(uvgbGlobalFlags);
 
                 for(int i=0; i<groupList.Count; i++)
@@ -6454,7 +6709,8 @@ public class ftBuildGraphics : ScriptableWizard
                         uvgbflags = UVGBFLAG_FACENORMAL | UVGBFLAG_POS | _UVGBFLAG_SMOOTHPOS;
 
                     if (lmgroup.renderDirMode == BakeryLightmapGroup.RenderDirMode.RNM ||
-                        (lmgroup.renderDirMode == BakeryLightmapGroup.RenderDirMode.SH && tangentSHLights))
+                        (lmgroup.renderDirMode == BakeryLightmapGroup.RenderDirMode.SH && tangentSHLights) ||
+                        (lmgroup.renderDirMode == BakeryLightmapGroup.RenderDirMode.MonoSH && tangentSHLights))
                         uvgbflags = UVGBFLAG_NORMAL | UVGBFLAG_FACENORMAL | UVGBFLAG_POS | _UVGBFLAG_SMOOTHPOS | UVGBFLAG_TANGENT;
 
                     if (lmgroup.probes) uvgbflags = UVGBFLAG_RESERVED;
@@ -6672,17 +6928,6 @@ public class ftBuildGraphics : ScriptableWizard
                     ftClient.serverFileList.Add("ib32.bin");
                 }
 
-                // Export heightmap metadata
-                //fhmaps.Write(terrainObjectToActual.Count);
-                if (terrainObjectToActual.Count > 0)
-                {
-                    //terrainObjectToHeightMapPtr = new IntPtr[terrainObjectToHeightMap.Count];
-                    /*for(int i=0; i<terrainObjectToHeightMap.Count; i++)
-                    {
-                        for(int fl=0; fl<6; fl++) fhmaps.Write(terrainObjectToBounds[i*6+fl]);
-                    }*/
-                }
-
                 // Export some scene data
                 // - LMIDs
                 // - mesh definitions
@@ -6825,9 +7070,29 @@ public class ftBuildGraphics : ScriptableWizard
                             if (alphaMetaPass && ftRenderLightmap.lightProbeMode ==  ftRenderLightmap.LightProbeMode.Legacy)
                             {
                                 alphaMetaPass = false;
-                                Debug.LogError("Skipping alpha meta pass in legacy light probe mode");
+                                DebugLogWarning("Skipping alpha meta pass in legacy light probe mode");
                             }
-                            if (tex != null || alphaMetaPass) {
+
+                            if (alphaMetaPass)
+                            {
+                                float alphaRef = 0.5f;
+
+                                // Will use meta pass alpha
+
+                                lmAlphaList.Add((System.IntPtr)0); // will be replaced after in-engine UVGBuffer part generation
+                                if (nonDX11) lmAlphaListRAM.Add(new TexInput());
+                                lmAlphaListTex.Add(null);
+                                lmAlphaRefList.Add(alphaRef);
+                                lmAlphaChannelList.Add(id); // channel is always 3; store LMID instead
+
+                                texID = alphaCounter;
+                                alphaCounter++;
+                                alphaID = (ushort)texID;
+
+                                hasMetaAlpha = true;
+                            }
+                            else if (tex != null)
+                            {
                                 var matTag = mat.GetTag("RenderType", true);
                                 bool isCutout = matTag == "TransparentCutout";
                                 if (isCutout || matTag == "Transparent" || matTag == "TreeLeaf") {
@@ -6846,32 +7111,44 @@ public class ftBuildGraphics : ScriptableWizard
                                     alphaRef = 1.0f - (1.0f - alphaRef) * opacity;
                                     if (alphaRef > 1) alphaRef = 1;
 
-                                    if (alphaMetaPass)
+                                    // Using alpha texture directly
+
+                                    // allow same map instances with different threshold
+                                    List<int> texIDs;
+                                    if (!alphaMap.TryGetValue(texPtr, out texIDs))
                                     {
-                                        // Will use meta pass alpha
+                                        alphaMap[texPtr] = texIDs = new List<int>();
 
-                                        lmAlphaList.Add((System.IntPtr)0); // will be replaced after in-engine UVGBuffer part generation
-                                        if (nonDX11) lmAlphaListRAM.Add(new TexInput());
-                                        lmAlphaListTex.Add(null);
+                                        lmAlphaList.Add(texPtr);
+                                        if (nonDX11) lmAlphaListRAM.Add(InputDataFromTex(tex));
+                                        lmAlphaListTex.Add(tex);
                                         lmAlphaRefList.Add(alphaRef);
-                                        lmAlphaChannelList.Add(id); // channel is always 3; store LMID instead
+                                        lmAlphaChannelList.Add(alphaChannel);
 
+                                        texIDs.Add(alphaCounter);
                                         texID = alphaCounter;
                                         alphaCounter++;
+                                        //Debug.Log("Alpha " + texID+": " + tex.name+" "+alphaRef);
                                         alphaID = (ushort)texID;
-
-                                        hasMetaAlpha = true;
                                     }
                                     else
                                     {
-                                        // Using alpha texture directly
-
-                                        // allow same map instances with different threshold
-                                        List<int> texIDs;
-                                        if (!alphaMap.TryGetValue(texPtr, out texIDs))
+                                        int matchingInstance = -1;
+                                        for(int instance=0; instance<texIDs.Count; instance++)
                                         {
-                                            alphaMap[texPtr] = texIDs = new List<int>();
-
+                                            texID = texIDs[instance];
+                                            if (Mathf.Abs(lmAlphaRefList[texID] - alphaRef) <= alphaInstanceThreshold)
+                                            {
+                                                if (lmAlphaChannelList[texID] == alphaChannel)
+                                                {
+                                                    matchingInstance = instance;
+                                                    alphaID = (ushort)texID;
+                                                    break;
+                                                }
+                                            }
+                                        }
+                                        if (matchingInstance < 0)
+                                        {
                                             lmAlphaList.Add(texPtr);
                                             if (nonDX11) lmAlphaListRAM.Add(InputDataFromTex(tex));
                                             lmAlphaListTex.Add(tex);
@@ -6883,37 +7160,6 @@ public class ftBuildGraphics : ScriptableWizard
                                             alphaCounter++;
                                             //Debug.Log("Alpha " + texID+": " + tex.name+" "+alphaRef);
                                             alphaID = (ushort)texID;
-                                        }
-                                        else
-                                        {
-                                            int matchingInstance = -1;
-                                            for(int instance=0; instance<texIDs.Count; instance++)
-                                            {
-                                                texID = texIDs[instance];
-                                                if (Mathf.Abs(lmAlphaRefList[texID] - alphaRef) <= alphaInstanceThreshold)
-                                                {
-                                                    if (lmAlphaChannelList[texID] == alphaChannel)
-                                                    {
-                                                        matchingInstance = instance;
-                                                        alphaID = (ushort)texID;
-                                                        break;
-                                                    }
-                                                }
-                                            }
-                                            if (matchingInstance < 0)
-                                            {
-                                                lmAlphaList.Add(texPtr);
-                                                if (nonDX11) lmAlphaListRAM.Add(InputDataFromTex(tex));
-                                                lmAlphaListTex.Add(tex);
-                                                lmAlphaRefList.Add(alphaRef);
-                                                lmAlphaChannelList.Add(alphaChannel);
-
-                                                texIDs.Add(alphaCounter);
-                                                texID = alphaCounter;
-                                                alphaCounter++;
-                                                //Debug.Log("Alpha " + texID+": " + tex.name+" "+alphaRef);
-                                                alphaID = (ushort)texID;
-                                            }
                                         }
                                     }
                                 }
@@ -7027,6 +7273,7 @@ public class ftBuildGraphics : ScriptableWizard
                                 lmBounds[id] = b;
                             }
 
+#if USE_TERRAINS
                             if (isTerrain && exportTerrainAsHeightmap)
                             {
                                 var b = lmBounds[id];
@@ -7037,6 +7284,7 @@ public class ftBuildGraphics : ScriptableWizard
                                 b.Encapsulate(tb);
                                 lmBounds[id] = b;
                             }
+#endif
                         }
 
                     } else {
@@ -7091,7 +7339,13 @@ public class ftBuildGraphics : ScriptableWizard
                                     {
                                         if (mats[k].HasProperty("_Color"))
                                         {
-                                            if (mats[k].color.a < 0.5f) submeshCastsShadows = false;
+                                            if (mats[k].color.a < 0.5f)
+                                            {
+                                                if (!mats[k].HasProperty("BAKERY_META_ALPHA_ENABLE"))
+                                                {
+                                                    submeshCastsShadows = false;
+                                                }
+                                            }
                                         }
                                     }
                                 }
@@ -7286,6 +7540,7 @@ public class ftBuildGraphics : ScriptableWizard
                     var sceneID = sceneToID[obj.scene];
                     if (obj.name == "__ExportTerrain")
                     {
+#if USE_TERRAINS
                         fseamfix.Write(false);
                         var index = terrainObjectList.IndexOf(obj.transform.parent.gameObject);
                         var terrain = terrainObjectToActual[index];
@@ -7300,6 +7555,7 @@ public class ftBuildGraphics : ScriptableWizard
                             }
                         }
                         objsToWriteScaleOffset.Add(scaleOffset);
+#endif
                     }
                     else
                     {
@@ -7325,96 +7581,6 @@ public class ftBuildGraphics : ScriptableWizard
                     }
                 }
 
-                // Generate LOD UVs
-                if (ftRenderLightmap.giLodModeEnabled)
-                {
-                    for(int s=0; s<sceneCount; s++)
-                    {
-                        if (storages[s] == null) continue;
-                        storages[s].lmGroupMinLOD = new int[groupList.Count];
-                        storages[s].lmGroupLODMatrix = new int[groupList.Count * groupList.Count];
-                    }
-                    for(int i=0; i<groupList.Count; i++)
-                    {
-                        var lmgroup = groupList[i];
-                        if (lmgroup.resolution < 128)
-                        {
-                            lmUVArrays2.Add(null);
-                            lmIndexArrays2.Add(null);
-                            lmUVArrays3.Add(null);
-                            continue;
-                        }
-                        if (lmgroup.mode == BakeryLightmapGroup.ftLMGroupMode.Vertex || lmgroup.containsTerrains)
-                        {
-                            lmUVArrays2.Add(null);
-                            lmIndexArrays2.Add(null);
-                            lmUVArrays3.Add(null);
-                            if (lmgroup.containsTerrains)
-                            {
-                                int minLodResolutionTerrain = 128;
-                                for(int s=0; s<sceneCount; s++)
-                                {
-                                    if (storages[s] == null) continue;
-                                    int minLOD = (int)(Mathf.Log(lmgroup.resolution, 2.0f) - Mathf.Log(minLodResolutionTerrain, 2.0f)) - 1;
-                                    if (minLOD < 0) minLOD = 0;
-                                    storages[s].lmGroupMinLOD[lmgroup.id] = minLOD;
-                                }
-                            }
-                            continue;
-                        }
-                        int id = lmgroup.id;
-                        lmUVArrays2.Add(lmUVArrays[i].ToArray());
-                        lmIndexArrays2.Add(lmIndexArrays[i].ToArray());
-
-                        lmUVArrays3.Add(lmUVArrays[i].ToArray());
-                        int uvIslands = uvrLoad(lmUVArrays2[i], lmUVArrays2[i].Length/2, lmIndexArrays2[i], lmIndexArrays2[i].Length);
-                        if (uvIslands <= 0)
-                        {
-                            Debug.LogError("Can't generate LOD UVs for  " + lmgroup.name+" "+lmUVArrays2[i].Length+" "+lmIndexArrays2[i].Length+" "+lmgroup.containsTerrains);
-                            uvrUnload();
-                            continue;
-                        }
-                        int minLodResolution = Mathf.NextPowerOfTwo((int)Mathf.Ceil(Mathf.Sqrt((float)uvIslands)));
-                        minLodResolution = minLodResolution << 1;
-                        if (minLodResolution > lmgroup.resolution)
-                        {
-                            DebugLogWarning("Not generating LOD UVs for " + lmgroup.name + ", because there are too many UV islands");
-                            uvrUnload();
-                            continue;
-                        }
-                        DebugLogInfo("Min LOD resolution for " + lmgroup.name + " is " + minLodResolution);
-                        for(int s=0; s<sceneCount; s++)
-                        {
-                            if (storages[s] == null) continue;
-                            int minLOD = (int)(Mathf.Log(lmgroup.resolution, 2.0f) - Mathf.Log(minLodResolution, 2.0f)) - 1;
-                            if (minLOD < 0) minLOD = 0;
-                            storages[s].lmGroupMinLOD[lmgroup.id] = minLOD;
-                        }
-
-                        int uvrErrCode = uvrRepack(0, minLodResolution);
-                        if (uvrErrCode == -1)
-                        {
-                            Debug.LogError("Can't repack LOD UVs for " + lmgroup.name);
-                            uvrUnload();
-                            continue;
-                        }
-                        DebugLogInfo("Tries left: " + uvrErrCode);
-                        uvrUnload();
-                        var numLocalVerts = lmUVArrays2[i].Length / 2;
-                        for(int k=0; k<numLocalVerts; k++)
-                        {
-                            float u = lmUVArrays2[i][k * 2];
-                            u = Mathf.Clamp(u, 0, 0.99999f);
-                            u += id * 10;
-                            if (i >= 0 && (int)u > id*10)
-                            {
-                                Debug.LogError("Float overflow (GI LOD)");
-                            }
-                            lmUVArrays2[i][k * 2] = u;
-                        }
-                    }
-                }
-
                 // Write vbTraceTex
                 int numTraceVerts = vbtraceTexUVArray.Count/2;
                 for(int i=0; i<numTraceVerts; i++)
@@ -7428,83 +7594,6 @@ public class ftBuildGraphics : ScriptableWizard
 
                     fvbtraceTex.Write(vbtraceTexUVArray[i * 2]);
                     fvbtraceTex.Write(vbtraceTexUVArray[i * 2 + 1]);
-                }
-
-                // Generate LOD UV buffer
-                if (ftRenderLightmap.giLodModeEnabled)
-                {
-                    var uvBuffOffsets = new int[lmUVArrays3.Count];
-                    var uvBuffLengths = new int[lmUVArrays3.Count];
-                    int uvBuffSize = 0;
-                    for(int i=0; i< lmUVArrays3.Count; i++)
-                    {
-                        if (lmUVArrays3[i] == null) continue;
-                        uvBuffOffsets[i] = uvBuffSize;
-                        uvBuffLengths[i] = lmUVArrays3[i].Length;
-                        uvBuffSize += lmUVArrays3[i].Length;
-                    }
-                    var uvSrcBuff = new float[uvBuffSize];
-                    var uvDestBuff = new float[uvBuffSize];
-                    for(int i=0; i< lmUVArrays3.Count; i++)
-                    {
-                        if (lmUVArrays3[i] == null) continue;
-                        var arr = lmUVArrays3[i];
-                        var arr2 = lmUVArrays2[i];
-                        var offset = uvBuffOffsets[i];
-                        for(int j=0; j<arr.Length; j++)
-                        {
-                            uvSrcBuff[j + offset] = arr[j];
-                            uvDestBuff[j + offset] = arr2[j];
-                        }
-                    }
-                    var lmrIndicesOffsets = new int[lmIndexArrays2.Count];
-                    var lmrIndicesLengths = new int[lmIndexArrays2.Count];
-                    int lmrIndicesSize = 0;
-                    for(int i=0; i< lmIndexArrays2.Count; i++)
-                    {
-                        if (lmIndexArrays2[i] == null) continue;
-                        lmrIndicesOffsets[i] = lmrIndicesSize;
-                        lmrIndicesLengths[i] = lmIndexArrays2[i].Length;
-                        lmrIndicesSize += lmIndexArrays2[i].Length;
-                    }
-                    var lmrIndicesBuff = new int[lmrIndicesSize];
-                    for(int i=0; i< lmIndexArrays2.Count; i++)
-                    {
-                        if (lmIndexArrays2[i] == null) continue;
-                        var arr = lmIndexArrays2[i];
-                        var offset = lmrIndicesOffsets[i];
-                        for(int j=0; j<arr.Length; j++)
-                        {
-                            lmrIndicesBuff[j + offset] = arr[j];
-                        }
-                    }
-
-                    for(int s=0; s<sceneCount; s++)
-                    {
-                        if (storages[s] == null) continue;
-                        storages[s].uvBuffOffsets = uvBuffOffsets;
-                        storages[s].uvBuffLengths = uvBuffLengths;
-                        storages[s].uvSrcBuff = uvSrcBuff;
-                        storages[s].uvDestBuff = uvDestBuff;
-                        storages[s].lmrIndicesOffsets = lmrIndicesOffsets;
-                        storages[s].lmrIndicesLengths = lmrIndicesLengths;
-                        storages[s].lmrIndicesBuff = lmrIndicesBuff;
-
-                    }
-                    vbtraceTexUVArrayLOD = new float[vbtraceTexUVArray.Count];
-                    for(int i=0; i<groupList.Count; i++)
-                    {
-                        var lmgroup = groupList[i];
-                        if (lmgroup.resolution < 128) continue;
-                        if (lmgroup.mode == BakeryLightmapGroup.ftLMGroupMode.Vertex || lmgroup.containsTerrains) continue;
-                        var remapArray = lmLocalToGlobalIndices[i];
-                        var uvArray = lmUVArrays2[i];
-                        for(int j=0; j<remapArray.Count; j++)
-                        {
-                            vbtraceTexUVArrayLOD[remapArray[j]*2] = uvArray[j*2];
-                            vbtraceTexUVArrayLOD[remapArray[j]*2+1] = uvArray[j*2+1];
-                        }
-                    }
                 }
 
                 // Write tracing index buffer
@@ -7671,7 +7760,7 @@ public class ftBuildGraphics : ScriptableWizard
                     {
                         ftUVGBufferGen.Multiply(emissive, ftRenderLightmap.hackEmissiveBoost);
                     }
-                    if (!vertexBake) ftUVGBufferGen.Dilate(emissive);
+                    //if (!vertexBake) ftUVGBufferGen.Dilate(emissive);
                 }
                 if (!vertexBake) ftUVGBufferGen.Dilate(albedo);
 
@@ -7796,6 +7885,7 @@ public class ftBuildGraphics : ScriptableWizard
 
         if (exportShaderColors)
         {
+#if USE_TERRAINS
             if (terrainObjectToActual.Count > 0)
             {
                 if (isDX11)
@@ -7834,6 +7924,7 @@ public class ftBuildGraphics : ScriptableWizard
                 }
             }
             else
+#endif
             {
                 SetAlbedos(0, null);
             }
@@ -7907,18 +7998,6 @@ public class ftBuildGraphics : ScriptableWizard
                 userCanceled = true;
                 ProgressBarEnd(true);
                 yield break;
-            }
-        }
-
-        if (!pstorage.generateSmoothPos)
-        {
-            // further passes still require smooth pos, copy from pos
-            for(int i=0; i<groupList.Count; i++)
-            {
-                var lmgroup = groupList[i];
-                File.Copy(scenePath + "/uvpos_" + lmgroup.name + (ftRenderLightmap.compressedGBuffer ? ".lz4" : ".dds"),
-                          scenePath + "/uvsmoothpos_" + lmgroup.name + (ftRenderLightmap.compressedGBuffer ? ".lz4" : ".dds"),
-                          true);
             }
         }
 

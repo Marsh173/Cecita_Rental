@@ -15,6 +15,13 @@ public class ftAdditionalConfig
     public const float irradianceConvolutionL2_6 =     0.07884789131313001f;//0.29121293321402086f * 0.3153915652f;
     public const float irradianceConvolutionL2_8 =     0.1365685538240099f;//0.29121293321402086f * 0.5462742153f;
 
+    // Coefficients used in "Remove ringing" mode
+    public const float rr_irradianceConvolutionL0 =       irradianceConvolutionL0;
+    public const float rr_irradianceConvolutionL1 =       irradianceConvolutionL1;
+    public const float rr_irradianceConvolutionL2_4_5_7 = irradianceConvolutionL2_4_5_7 * 0.6F;
+    public const float rr_irradianceConvolutionL2_6 =     irradianceConvolutionL2_6 * 0.6f;
+    public const float rr_irradianceConvolutionL2_8 =     irradianceConvolutionL2_8 * 0.6f;
+
     // Used for L1 light probes and volumes
     public const float convL0 = 1;
     public const float convL1 = 0.9f; // approx convolution

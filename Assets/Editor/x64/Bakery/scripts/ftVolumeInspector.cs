@@ -15,7 +15,7 @@ public class BakeryVolumeInspector : Editor
 {
     BoxBoundsHandle boundsHandle = new BoxBoundsHandle(typeof(BakeryVolumeInspector).GetHashCode());
 
-    SerializedProperty ftraceAdaptiveRes, ftraceResX, ftraceResY, ftraceResZ, ftraceVoxelsPerUnit, ftraceAdjustSamples, ftraceEnableBaking, ftraceEncoding, ftraceShadowmaskEncoding, ftraceDenoise, ftraceGlobal, ftraceRotation;
+    SerializedProperty ftraceAdaptiveRes, ftraceResX, ftraceResY, ftraceResZ, ftraceVoxelsPerUnit, ftraceAdjustSamples, ftraceEnableBaking, ftraceEncoding, ftraceShadowmaskEncoding, ftraceShadowmaskFirstLightIsAlwaysAlpha, ftraceDenoise, ftraceGlobal, ftraceRotation;
 
     bool showExperimental = false;
 
@@ -33,6 +33,7 @@ public class BakeryVolumeInspector : Editor
         ftraceEnableBaking = serializedObject.FindProperty("enableBaking");
         ftraceEncoding = serializedObject.FindProperty("encoding");
         ftraceShadowmaskEncoding = serializedObject.FindProperty("shadowmaskEncoding");
+        ftraceShadowmaskFirstLightIsAlwaysAlpha = serializedObject.FindProperty("firstLightIsAlwaysAlpha");
         ftraceDenoise = serializedObject.FindProperty("denoise");
         ftraceGlobal = serializedObject.FindProperty("isGlobal");
         ftraceRotation = serializedObject.FindProperty("supportRotationAfterBake");
@@ -121,6 +122,7 @@ public class BakeryVolumeInspector : Editor
         {
             EditorGUILayout.PropertyField(ftraceEncoding, new GUIContent("Encoding"));
             EditorGUILayout.PropertyField(ftraceShadowmaskEncoding, new GUIContent("Shadowmask Encoding"));
+            EditorGUILayout.PropertyField(ftraceShadowmaskFirstLightIsAlwaysAlpha, new GUIContent("First light uses Alpha", "In RGBA8 mode, the first light will always be in the alpha channel. This is useful when unifying RGBA8 and A8 volumes, as the main/first light is always in the same channel."));
 
             bool wasSet = ftraceRotation.boolValue;
             EditorGUILayout.PropertyField(ftraceRotation, new GUIContent("Support rotation after bake", "Normally volumes can only be repositioned or rescaled at runtime. With this checkbox volume's rotation matrix will also be sent to shaders. Shaders must have a similar checkbox enabled."));
@@ -155,6 +157,7 @@ public class BakeryVolumeInspector : Editor
                     b.Encapsulate(mrs[i].bounds);
                 }
                 Undo.RecordObject(vol, "Change Bounds");
+                Undo.RecordObject(vol.transform, "Change Bounds");
                 vol.transform.position = b.center;
                 vol.bounds = b;
                 Debug.Log("Bounds set");
@@ -207,6 +210,7 @@ public class BakeryVolumeInspector : Editor
         if (EditorGUI.EndChangeCheck())
         {
             Undo.RecordObject(vol, "Change Bounds");
+            Undo.RecordObject(vol.transform, "Change Bounds");
 
             Bounds newBounds = new Bounds();
             newBounds.center = boundsHandle.center;

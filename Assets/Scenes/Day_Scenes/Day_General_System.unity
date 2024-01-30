@@ -1622,8 +1622,10 @@ MonoBehaviour:
   renderSettingsRenderDirMode: 2
   renderSettingsShowCheckerSettings: 0
   renderSettingsSamplesWarning: 1
+  renderSettingsSuppressPopups: 0
   renderSettingsPrefabWarning: 1
   renderSettingsSplitByScene: 0
+  renderSettingsSplitByTag: 0
   renderSettingsUVPaddingMax: 0
   renderSettingsPostPacking: 1
   renderSettingsHoleFilling: 0
@@ -1644,12 +1646,13 @@ MonoBehaviour:
   renderSettingsSector: {fileID: 0}
   renderSettingsRTPVExport: 1
   renderSettingsRTPVSceneView: 0
+  renderSettingsRTPVHDR: 0
   renderSettingsRTPVWidth: 640
   renderSettingsRTPVHeight: 360
   lastBakeTime: 698
   enlightenWarningShown: 0
   enlightenWarningShown2: 0
-  lightUIDs: 
+  uniqueLights: []
   lights: []
   implicitGroups: []
   implicitGroupedObjects: []
@@ -1673,7 +1676,7 @@ MonoBehaviour:
   lmGroupLODMatrix: 
   serverGetFileList: []
   lightmapHasColor: 010101
-  lightmapHasMask: 000000
+  lightmapHasMask: 
   lightmapHasDir: 010101
   lightmapHasRNM: 000000
   modifiedAssetPathList: []
@@ -1726,14 +1729,14 @@ MonoBehaviour:
     mapsMode: 
     bakedRenderers:
     - {fileID: 1869418619}
-    bakedRenderersTerrain: []
     bakedIDs: 00000000
-    bakedIDsTerrain: 
     bakedScaleOffset:
     - {x: -0.000250084, y: 0.0001660627, z: 0.04166987, w: 0.9975429}
-    bakedScaleOffsetTerrain: []
     bakedVertexColorMesh:
     - {fileID: 0}
+    bakedRenderersTerrain: []
+    bakedIDsTerrain: 
+    bakedScaleOffsetTerrain: []
     nonBakedRenderers: []
 --- !u!4 &170631373
 Transform:
@@ -3751,6 +3754,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 498715942}
   m_CullTransparentMesh: 1
+--- !u!1 &504189424
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 504189425}
+  m_Layer: 0
+  m_Name: 'Task3: Ask Lobby about your lost package'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &504189425
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 504189424}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1260023388}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &505557755
 GameObject:
   m_ObjectHideFlags: 0
@@ -4544,17 +4577,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17196a51ba72cea4ea4346c84d1d493f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  assign: 1
-  task_name: Pick up your package
-  sub_task_name: 
-  MainTask_num: 0
-  SubTask_num: 0
-  CollisionTag: 
-  addmaintask: 1
-  addsubtask: 0
-  finishmaintask: 0
-  finishsubtask: 0
+  assign: 0
   destroy_after_trigger: 0
+  disable_after_trigger: 0
 --- !u!114 &575497404
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4568,16 +4593,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   assign: 1
-  task_name: Check your email
-  sub_task_name: 
-  MainTask_num: 1
-  SubTask_num: 0
-  CollisionTag: 
-  addmaintask: 0
-  addsubtask: 0
-  finishmaintask: 1
-  finishsubtask: 0
   destroy_after_trigger: 0
+  disable_after_trigger: 0
 --- !u!1 &589041333
 GameObject:
   m_ObjectHideFlags: 0
@@ -11011,6 +11028,39 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1259085631}
   m_CullTransparentMesh: 0
+--- !u!1 &1260023387
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1260023388}
+  m_Layer: 0
+  m_Name: = TASK TRIGGERS
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1260023388
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1260023387}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1948145922}
+  - {fileID: 1398343081}
+  - {fileID: 504189425}
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1275473002
 GameObject:
   m_ObjectHideFlags: 0
@@ -12160,16 +12210,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   assign: 0
-  task_name: 
-  sub_task_name: 
-  MainTask_num: 0
-  SubTask_num: 0
-  CollisionTag: 
-  addmaintask: 0
-  addsubtask: 0
-  finishmaintask: 0
-  finishsubtask: 0
   destroy_after_trigger: 0
+  disable_after_trigger: 0
 --- !u!114 &1362087535
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12183,16 +12225,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   assign: 1
-  task_name: 
-  sub_task_name: 
-  MainTask_num: 0
-  SubTask_num: 0
-  CollisionTag: 
-  addmaintask: 0
-  addsubtask: 0
-  finishmaintask: 1
-  finishsubtask: 0
   destroy_after_trigger: 0
+  disable_after_trigger: 0
 --- !u!224 &1377071050 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 302162671290387369, guid: 1d284e297a1689d46958f79a7635e65d, type: 3}
@@ -12293,6 +12327,36 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1390396966}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1398343080
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1398343081}
+  m_Layer: 0
+  m_Name: 'Task2: Find your package'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1398343081
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1398343080}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1260023388}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1407285124
 GameObject:
   m_ObjectHideFlags: 0
@@ -16913,6 +16977,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1940474866}
   m_CullTransparentMesh: 1
+--- !u!1 &1948145921
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1948145922}
+  - component: {fileID: 1948145923}
+  m_Layer: 0
+  m_Name: 'Task1: Check Email'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1948145922
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1948145921}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1260023388}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1948145923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1948145921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17196a51ba72cea4ea4346c84d1d493f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  assign: 3
+  destroy_after_trigger: 0
+  disable_after_trigger: 1
 --- !u!1 &1948651564
 GameObject:
   m_ObjectHideFlags: 0
@@ -21556,16 +21666,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   assign: 3
-  task_name: Check your email
-  sub_task_name: 
-  MainTask_num: 0
-  SubTask_num: 0
-  CollisionTag: 
-  addmaintask: 1
-  addsubtask: 0
-  finishmaintask: 0
-  finishsubtask: 0
   destroy_after_trigger: 0
+  disable_after_trigger: 0
 --- !u!81 &1784866649917262593
 AudioListener:
   m_ObjectHideFlags: 0

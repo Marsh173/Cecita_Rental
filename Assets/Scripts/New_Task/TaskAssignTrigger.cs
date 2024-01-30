@@ -6,16 +6,16 @@ public class TaskAssignTrigger : MonoBehaviour
 {
     public AssignTask_By assign;
 
-    [SerializeField] public string task_name;
-    [SerializeField] public string sub_task_name;
-    [SerializeField] public int MainTask_num;
-    [SerializeField] public int SubTask_num;
+    private string task_name;
+    private string sub_task_name;
+    private int MainTask_num;
+    private int SubTask_num;
 
-    [SerializeField] private string CollisionTag;
-    [SerializeField] private bool addmaintask = false;
-    [SerializeField] private bool addsubtask = false;
-    [SerializeField] private bool finishmaintask = false;
-    [SerializeField] private bool finishsubtask = false;
+    private string CollisionTag;
+    private bool addmaintask = false;
+    private bool addsubtask = false;
+    private bool finishmaintask = false;
+    private bool finishsubtask = false;
 
     [SerializeField] private bool destroy_after_trigger = false;
     [SerializeField] private bool disable_after_trigger = false;

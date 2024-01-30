@@ -20,7 +20,7 @@ public class TaskData :  MonoBehaviour
 
     public float y_height;
 
-    //add sub and give them a name
+    //add sub and give them a name and a number
     public void addSub(string subtask_name, int sub_num)
     {
         var s = Instantiate(subtaskPrefab, transform);

@@ -8,14 +8,18 @@ public class TaskAssignTrigger : MonoBehaviour
 
     private string task_name;
     private string sub_task_name;
+    private string subsubtask_name;
     private int MainTask_num;
     private int SubTask_num;
-
+    private int subsubtask_num;
+    
     private string CollisionTag;
     private bool addmaintask = false;
     private bool addsubtask = false;
+    private bool addsubsubtask = false;
     private bool finishmaintask = false;
     private bool finishsubtask = false;
+    private bool finishsubsubtask = false;
 
     [SerializeField] private bool destroy_after_trigger = false;
     [SerializeField] private bool disable_after_trigger = false;
@@ -33,15 +37,6 @@ public class TaskAssignTrigger : MonoBehaviour
         }
     }
 
-    public void settext()
-    {
-        tm.temp_task_name = task_name;
-        tm.temp_sub_task_name = sub_task_name;
-        tm.temp_attach_to_main_num = MainTask_num;
-        tm.temp_main_num = MainTask_num;
-        tm.temp_sub_num = SubTask_num;
-    }
-
     public enum AssignTask_By
     {
         trigger,
@@ -52,18 +47,19 @@ public class TaskAssignTrigger : MonoBehaviour
 
     public void Set_Tasks()
     {
-        if (addmaintask) tm.AddTask_Script(task_name, MainTask_num);
-        if (addsubtask) tm.SetSubTask_Script(sub_task_name, MainTask_num);
+        if (addmaintask) tm.AddTask(MainTask_num,task_name);
+        if (addsubtask) tm.SetSubTask(SubTask_num, MainTask_num, sub_task_name);
+        if (addsubsubtask) tm.SetSubsubTask(MainTask_num, SubTask_num, subsubtask_num, subsubtask_name);
         if (finishmaintask) 
         {
-            //tm.TaskDone(MainTask_num);
-            tm.TaskDone_ByName(task_name);
+            tm.TaskDone(MainTask_num);
         }
         
         
-        if (finishsubtask) tm.SubTaskDone_Script(SubTask_num, MainTask_num);
+        if (finishsubtask) tm.SubTaskDone(SubTask_num, MainTask_num);
+        if (finishsubsubtask) tm.SubsubTaskDone(SubTask_num, MainTask_num,subsubtask_num);
 
-        if (addmaintask || addsubtask|| finishmaintask || finishsubtask)
+        if (addmaintask || addsubtask|| finishmaintask || finishsubtask||addsubsubtask||finishsubsubtask)
         {
             if (destroy_after_trigger) Destroy(gameObject);
             if (disable_after_trigger) this.enabled = false;

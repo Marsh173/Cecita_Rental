@@ -5,7 +5,7 @@ using TMPro;
 
 public class TriggerToAssignTask : MonoBehaviour
 {
-    [SerializeField] private InitializeTask InitialT;
+/*    [SerializeField] private InitializeTask InitialT;
     [SerializeField] private TaskManager_Test_Yunfei TM;
     private TaskData TD;
     public TMP_Text monologue;
@@ -58,5 +58,7 @@ public class TriggerToAssignTask : MonoBehaviour
     public void TempTalktoFrontDeskDone()
     {
         CutSceneScript.talkedtoNPC = true;
-    }
+    }*/
+
+    
 }

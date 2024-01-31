@@ -3764,7 +3764,7 @@ GameObject:
   m_Component:
   - component: {fileID: 504189425}
   m_Layer: 0
-  m_Name: 'Task3: Ask Lobby about your lost package'
+  m_Name: Terminal Leave
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3782,7 +3782,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1260023388}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &505557755
 GameObject:
@@ -5991,6 +5991,52 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 254446210889785141, guid: baa45a6adc565eb4d95dd7617b45c679, type: 3}
   m_PrefabInstance: {fileID: 762356376}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &763506108
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 763506109}
+  - component: {fileID: 763506110}
+  m_Layer: 0
+  m_Name: Check Email
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &763506109
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 763506108}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1260023388}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &763506110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 763506108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17196a51ba72cea4ea4346c84d1d493f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  assign: 3
+  destroy_after_trigger: 1
+  disable_after_trigger: 0
 --- !u!1 &783118084
 GameObject:
   m_ObjectHideFlags: 0
@@ -6548,6 +6594,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 812178259}
   m_CullTransparentMesh: 1
+--- !u!1 &813330265
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 813330266}
+  - component: {fileID: 813330267}
+  m_Layer: 0
+  m_Name: Find your package
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &813330266
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 813330265}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1260023388}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &813330267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 813330265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17196a51ba72cea4ea4346c84d1d493f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  assign: 3
+  destroy_after_trigger: 1
+  disable_after_trigger: 0
 --- !u!1001 &816692196
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11056,8 +11148,11 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1948145922}
+  - {fileID: 763506109}
+  - {fileID: 813330266}
   - {fileID: 1398343081}
   - {fileID: 504189425}
+  - {fileID: 1305968678}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -11631,6 +11726,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1302680779}
   m_CullTransparentMesh: 1
+--- !u!1 &1305968677
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1305968678}
+  m_Layer: 0
+  m_Name: Lost Package
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1305968678
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1305968677}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1260023388}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &1319561955 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 302162671290387369, guid: 1d284e297a1689d46958f79a7635e65d, type: 3}
@@ -12336,8 +12461,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1398343081}
+  - component: {fileID: 1398343082}
   m_Layer: 0
-  m_Name: 'Task2: Find your package'
+  m_Name: Change clothes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12355,8 +12481,23 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1260023388}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1398343082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1398343080}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17196a51ba72cea4ea4346c84d1d493f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  assign: 3
+  destroy_after_trigger: 1
+  disable_after_trigger: 0
 --- !u!1 &1407285124
 GameObject:
   m_ObjectHideFlags: 0
@@ -16988,7 +17129,7 @@ GameObject:
   - component: {fileID: 1948145922}
   - component: {fileID: 1948145923}
   m_Layer: 0
-  m_Name: 'Task1: Check Email'
+  m_Name: Wash your face
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17021,8 +17162,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   assign: 3
-  destroy_after_trigger: 0
-  disable_after_trigger: 1
+  destroy_after_trigger: 1
+  disable_after_trigger: 0
 --- !u!1 &1948651564
 GameObject:
   m_ObjectHideFlags: 0
@@ -21632,10 +21773,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b3add184428043d5adf20000cef4647, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InitialT: {fileID: 1784319151483798917}
-  TM: {fileID: 1362087532}
-  monologue: {fileID: 0}
-  checkedEmail: 0
 --- !u!114 &1784319151483798917
 MonoBehaviour:
   m_ObjectHideFlags: 0

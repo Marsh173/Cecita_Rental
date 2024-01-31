@@ -16,9 +16,7 @@ public class TaskConditions : MonoBehaviour
             TaskManager_Test_Yunfei tm = GameObject.FindGameObjectWithTag("TaskManager").GetComponent<TaskManager_Test_Yunfei>();
             if (isSubtask)
             {
-                tm.temp_attach_to_main_num = Task_num;
-                tm.SubTaskDone(subTask_num);
-
+                tm.SubTaskDone(subTask_num,Task_num);
             }
             else tm.TaskDone(Task_num);
         }

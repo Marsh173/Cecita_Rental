@@ -5,7 +5,7 @@ using UnityEditor;
 [CanEditMultipleObjects]
 public class TaskAssignEditor : Editor
 {
-    SerializedProperty TaskAssignTrigger;
+    //SerializedProperty TaskAssignTrigger;
     string Trigger_Type = "none selected";
     string Task_Type = "none selected";
     int trigger = 0;
@@ -14,6 +14,7 @@ public class TaskAssignEditor : Editor
     string maintask = "";
     string subtask = "";
     string attach_to_main_task = "";
+    string subsubtask = "";
     public override void OnInspectorGUI()
     {
 

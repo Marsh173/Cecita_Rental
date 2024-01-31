@@ -6,11 +6,8 @@ using UnityEngine.UI;
 
 public class TaskData :  MonoBehaviour
 {
-    public string taskTitle;
     public string taskName;
     public int task_num;
-
-    public TextMeshProUGUI task_title_UI;
     public TextMeshProUGUI task_name_UI;
     
     public List<GameObject> subtask = new List<GameObject>();
@@ -34,15 +31,14 @@ public class TaskData :  MonoBehaviour
 
     private void Update()
     {
-        //task_title_UI.text = taskTitle;
         task_name_UI.text = taskName;
-
-        //if(started)isCompleted = allSubFinished();
 
         if (isCompleted)
         {
             FinishTask();
         }
+
+        FinishSubTask();
     }
 
     public bool allSubFinished()
@@ -70,6 +66,14 @@ public class TaskData :  MonoBehaviour
         
 
         Destroy(gameObject);
+    }
+
+    public void FinishSubTask()
+    {
+        foreach (GameObject g in subtask)
+        {
+            if(g == null)Destroy(g);
+        }
     }
 
     public void updateHeight()

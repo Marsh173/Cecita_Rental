@@ -284,8 +284,10 @@ MonoBehaviour:
   renderSettingsRenderDirMode: 0
   renderSettingsShowCheckerSettings: 0
   renderSettingsSamplesWarning: 1
+  renderSettingsSuppressPopups: 0
   renderSettingsPrefabWarning: 1
   renderSettingsSplitByScene: 0
+  renderSettingsSplitByTag: 0
   renderSettingsUVPaddingMax: 0
   renderSettingsPostPacking: 1
   renderSettingsHoleFilling: 0
@@ -306,12 +308,13 @@ MonoBehaviour:
   renderSettingsSector: {fileID: 0}
   renderSettingsRTPVExport: 1
   renderSettingsRTPVSceneView: 0
+  renderSettingsRTPVHDR: 0
   renderSettingsRTPVWidth: 640
   renderSettingsRTPVHeight: 360
   lastBakeTime: 0
   enlightenWarningShown: 0
   enlightenWarningShown2: 0
-  lightUIDs: 80b874b24852c2dc9ab2cbe57f5df83d0c489533013d03a751dc64881665195426cf7ebbe963ddee4be51369
+  uniqueLights: []
   lights:
   - tform:
       e00: 1
@@ -343,6 +346,7 @@ MonoBehaviour:
     projMode: 3
     cookie: {fileID: 0}
     angle: 30
+    UID: 0
   - tform:
       e00: 1
       e01: 0
@@ -373,6 +377,7 @@ MonoBehaviour:
     projMode: 3
     cookie: {fileID: 0}
     angle: 30
+    UID: 0
   - tform:
       e00: 1
       e01: 0
@@ -403,6 +408,7 @@ MonoBehaviour:
     projMode: 0
     cookie: {fileID: 0}
     angle: 30
+    UID: 0
   - tform:
       e00: 1
       e01: 0
@@ -433,6 +439,7 @@ MonoBehaviour:
     projMode: 0
     cookie: {fileID: 0}
     angle: 30
+    UID: 0
   - tform:
       e00: 1
       e01: 0
@@ -463,6 +470,7 @@ MonoBehaviour:
     projMode: 0
     cookie: {fileID: 0}
     angle: 30
+    UID: 0
   - tform:
       e00: 1
       e01: 0
@@ -493,6 +501,7 @@ MonoBehaviour:
     projMode: 0
     cookie: {fileID: 0}
     angle: 30
+    UID: 0
   - tform:
       e00: 1
       e01: 0
@@ -523,6 +532,7 @@ MonoBehaviour:
     projMode: 3
     cookie: {fileID: 0}
     angle: 30
+    UID: 0
   - tform:
       e00: 1
       e01: 0
@@ -553,6 +563,7 @@ MonoBehaviour:
     projMode: 3
     cookie: {fileID: 0}
     angle: 30
+    UID: 0
   - tform:
       e00: 1
       e01: 0
@@ -583,6 +594,7 @@ MonoBehaviour:
     projMode: 3
     cookie: {fileID: 0}
     angle: 30
+    UID: 0
   - tform:
       e00: 1
       e01: 0
@@ -613,6 +625,7 @@ MonoBehaviour:
     projMode: 0
     cookie: {fileID: 0}
     angle: 30
+    UID: 0
   - tform:
       e00: 1
       e01: 0
@@ -643,6 +656,7 @@ MonoBehaviour:
     projMode: 0
     cookie: {fileID: 8900000, guid: aebb94b7f3fb8ad43b235972de4325ae, type: 3}
     angle: 30
+    UID: 0
   implicitGroups:
   - {fileID: 1228496669}
   - {fileID: 1717328059}
@@ -1295,7 +1309,7 @@ MonoBehaviour:
   lmGroupLODMatrix: 
   serverGetFileList: []
   lightmapHasColor: 010101
-  lightmapHasMask: 000000
+  lightmapHasMask: 
   lightmapHasDir: 010101
   lightmapHasRNM: 000000
   modifiedAssetPathList: []
@@ -2325,7 +2339,7 @@ MonoBehaviour:
   bakedScaleOffsetTerrain: []
   assetList: []
   uvOverlapAssetList: 
-  idremap: 000000000100000002000000
+  idremap: 2d0000002e0000002f000000
   usesRealtimeGI: 0
   emptyDirectionTex: {fileID: 0}
   anyVolumes: 0
@@ -2674,9 +2688,7 @@ MonoBehaviour:
     - {fileID: 8551229135387589058}
     - {fileID: 5658309456909979643}
     - {fileID: 1727257773230123446}
-    bakedRenderersTerrain: []
     bakedIDs: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000010000000200000000000000000000000100000000000000020000000000000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000100000001000000010000000000000001000000010000000000000002000000020000000200000002000000010000000200000002000000020000000200000000000000020000000000000001000000020000000100000000000000020000000000000000000000000000000100000000000000000000000200000001000000000000000000000000000000020000000000000001000000010000000000000000000000020000000000000000000000000000000000000002000000000000000000000000000000020000000000000001000000020000000100000001000000010000000100000000000000010000000000000000000000020000000100000000000000000000000200000000000000010000000000000001000000000000000100000001000000000000000100000002000000000000000000000000000000000000000000000001000000020000000000000000000000000000000200000002000000020000000100000000000000000000000200000001000000000000000100000000000000010000000100000000000000000000000000000000000000000000000000000001000000000000000100000000000000010000000100000001000000020000000000000000000000020000000100000001000000000000000000000001000000000000000000000000000000020000000000000000000000010000000200000002000000000000000200000001000000000000000200000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000001000000010000000000000000000000010000000000000002000000020000000100000000000000020000000000000000000000000000000100000001000000010000000000000000000000000000000000000001000000000000000200000000000000000000000200000001000000000000000000000000000000000000000200000000000000020000000000000002000000000000000100000000000000000000000000000000000000000000000200000000000000020000000000000000000000000000000100000002000000000000000000000000000000020000000100000000000000020000000000000000000000000000000000000000000000020000000100000000000000000000000200000001000000000000000000000000000000000000000100000000000000020000000000000002000000020000000200000000000000000000000000000000000000010000000200000002000000000000000000000002000000000000000200000002000000000000000100000001000000020000000000000000000000020000000200000001000000010000000000000000000000000000000000000000000000000000000100000002000000010000000000000002000000000000000100000001000000000000000100000002000000000000000000000000000000020000000200000000000000000000000200000000000000020000000000000000000000
-    bakedIDsTerrain: 
     bakedScaleOffset:
     - {x: 0.11079295, y: 0.11080433, z: 0.87038314, w: 0.46202332}
     - {x: 0.11079295, y: 0.11080433, z: 0.87038314, w: 0.46202332}
@@ -3006,7 +3018,6 @@ MonoBehaviour:
     - {x: 0.13913889, y: 0.1385691, z: 0.4208068, w: 0.15737346}
     - {x: 0.08510235, y: 0.08393974, z: 0.96582294, w: 0.49336603}
     - {x: -0.015323882, y: 0.02671242, z: 0.9999371, w: 0.07022523}
-    bakedScaleOffsetTerrain: []
     bakedVertexColorMesh:
     - {fileID: 0}
     - {fileID: 0}
@@ -3336,6 +3347,9 @@ MonoBehaviour:
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
+    bakedRenderersTerrain: []
+    bakedIDsTerrain: 
+    bakedScaleOffsetTerrain: []
     nonBakedRenderers: []
 --- !u!4 &13239486
 Transform:
@@ -3351,6 +3365,50 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &15805497
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 15805498}
+  - component: {fileID: 15805499}
+  m_Layer: 0
+  m_Name: Block for tasks
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &15805498
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 15805497}
+  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -19.51, y: 2.42, z: -30.29}
+  m_LocalScale: {x: 2.4204605, y: 3.4688396, z: 1.4567}
+  m_Children: []
+  m_Father: {fileID: 1021139578}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &15805499
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 15805497}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &31108587
 GameObject:
   m_ObjectHideFlags: 0
@@ -4029,7 +4087,7 @@ Transform:
   m_LocalScale: {x: 0.26122007, y: 0.11544864, z: 0.058040723}
   m_Children: []
   m_Father: {fileID: 1021139578}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &64211964
 MonoBehaviour:
@@ -4556,7 +4614,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1021139578}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &226189359
 GameObject:
@@ -5784,6 +5842,7 @@ MonoBehaviour:
   shadowSpread: 0.05
   cutoff: 6.7
   realisticFalloff: 0
+  legacySampling: 1
   samples: 8
   projMode: 3
   cookie: {fileID: 0}
@@ -5794,10 +5853,12 @@ MonoBehaviour:
   bitmask: 1
   bakeToIndirect: 0
   shadowmask: 0
+  shadowmaskFalloff: 0
   indirectIntensity: 1
   falloffMinRadius: 1
   shadowmaskGroupID: 0
   directionMode: 0
+  maskChannel: 0
 --- !u!4 &306933582
 Transform:
   m_ObjectHideFlags: 0
@@ -6465,7 +6526,7 @@ Transform:
   - {fileID: 41291769}
   - {fileID: 1967233457}
   m_Father: {fileID: 1021139578}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &628169644
 GameObject:
@@ -6692,6 +6753,7 @@ MonoBehaviour:
   shadowSpread: 0.05
   cutoff: 6.7
   realisticFalloff: 0
+  legacySampling: 1
   samples: 8
   projMode: 3
   cookie: {fileID: 0}
@@ -6702,10 +6764,12 @@ MonoBehaviour:
   bitmask: 1
   bakeToIndirect: 0
   shadowmask: 0
+  shadowmaskFalloff: 0
   indirectIntensity: 1
   falloffMinRadius: 1
   shadowmaskGroupID: 0
   directionMode: 0
+  maskChannel: 0
 --- !u!4 &717200085
 Transform:
   m_ObjectHideFlags: 0
@@ -6755,6 +6819,7 @@ MonoBehaviour:
   shadowSpread: 0.05
   cutoff: 13.39
   realisticFalloff: 0
+  legacySampling: 1
   samples: 8
   projMode: 3
   cookie: {fileID: 0}
@@ -6765,10 +6830,12 @@ MonoBehaviour:
   bitmask: 1
   bakeToIndirect: 0
   shadowmask: 0
+  shadowmaskFalloff: 0
   indirectIntensity: 1
   falloffMinRadius: 1
   shadowmaskGroupID: 0
   directionMode: 0
+  maskChannel: 0
 --- !u!4 &722389802
 Transform:
   m_ObjectHideFlags: 0
@@ -6894,7 +6961,7 @@ Transform:
   - {fileID: 1285428358}
   - {fileID: 1843403706}
   m_Father: {fileID: 1021139578}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!1 &751185759
 GameObject:
@@ -7721,6 +7788,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1860811792}
+  - {fileID: 15805498}
   - {fileID: 541983732}
   - {fileID: 746428139}
   - {fileID: 1899999937}
@@ -8007,7 +8075,9 @@ MonoBehaviour:
   totalVertexCount: 0
   vertexCounter: 0
   sceneLodLevel: -1
+  autoResolution: 0
   sceneName: 
+  tag: -1
   containsTerrains: 0
   probes: 0
   mode: 1
@@ -8519,6 +8589,7 @@ MonoBehaviour:
   shadowSpread: 0.05
   cutoff: 6.7
   realisticFalloff: 0
+  legacySampling: 1
   samples: 8
   projMode: 3
   cookie: {fileID: 0}
@@ -8529,10 +8600,12 @@ MonoBehaviour:
   bitmask: 1
   bakeToIndirect: 0
   shadowmask: 0
+  shadowmaskFalloff: 0
   indirectIntensity: 1
   falloffMinRadius: 1
   shadowmaskGroupID: 0
   directionMode: 0
+  maskChannel: 0
 --- !u!4 &1367502540
 Transform:
   m_ObjectHideFlags: 0
@@ -9346,6 +9419,7 @@ MonoBehaviour:
   shadowSpread: 0.05
   cutoff: 13.39
   realisticFalloff: 0
+  legacySampling: 1
   samples: 8
   projMode: 0
   cookie: {fileID: 0}
@@ -9356,10 +9430,12 @@ MonoBehaviour:
   bitmask: 1
   bakeToIndirect: 0
   shadowmask: 0
+  shadowmaskFalloff: 0
   indirectIntensity: 1
   falloffMinRadius: 1
   shadowmaskGroupID: 0
   directionMode: 0
+  maskChannel: 0
 --- !u!4 &1599625924
 Transform:
   m_ObjectHideFlags: 0
@@ -9409,6 +9485,7 @@ MonoBehaviour:
   shadowSpread: 0.05
   cutoff: 6.48
   realisticFalloff: 0
+  legacySampling: 1
   samples: 8
   projMode: 0
   cookie: {fileID: 0}
@@ -9419,10 +9496,12 @@ MonoBehaviour:
   bitmask: 1
   bakeToIndirect: 0
   shadowmask: 0
+  shadowmaskFalloff: 0
   indirectIntensity: 1
   falloffMinRadius: 1
   shadowmaskGroupID: 0
   directionMode: 0
+  maskChannel: 0
 --- !u!4 &1619818247
 Transform:
   m_ObjectHideFlags: 0
@@ -9539,7 +9618,9 @@ MonoBehaviour:
   totalVertexCount: 0
   vertexCounter: 0
   sceneLodLevel: -1
+  autoResolution: 0
   sceneName: 
+  tag: -1
   containsTerrains: 0
   probes: 0
   mode: 1
@@ -9594,6 +9675,7 @@ MonoBehaviour:
   shadowSpread: 0.05
   cutoff: 18.8
   realisticFalloff: 0
+  legacySampling: 1
   samples: 8
   projMode: 0
   cookie: {fileID: 0}
@@ -9604,10 +9686,12 @@ MonoBehaviour:
   bitmask: 1
   bakeToIndirect: 0
   shadowmask: 0
+  shadowmaskFalloff: 0
   indirectIntensity: 1
   falloffMinRadius: 1
   shadowmaskGroupID: 0
   directionMode: 0
+  maskChannel: 0
 --- !u!4 &1743277204
 Transform:
   m_ObjectHideFlags: 0
@@ -10238,7 +10322,7 @@ Transform:
   - {fileID: 4347998683470578466}
   - {fileID: 2145352011}
   m_Father: {fileID: 1021139578}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1899999938
 BoxCollider:
@@ -10422,6 +10506,7 @@ MonoBehaviour:
   shadowSpread: 0.05
   cutoff: 1.5
   realisticFalloff: 0
+  legacySampling: 1
   samples: 8
   projMode: 0
   cookie: {fileID: 0}
@@ -10432,10 +10517,12 @@ MonoBehaviour:
   bitmask: 1
   bakeToIndirect: 0
   shadowmask: 0
+  shadowmaskFalloff: 0
   indirectIntensity: 1
   falloffMinRadius: 1
   shadowmaskGroupID: 0
   directionMode: 0
+  maskChannel: 0
 --- !u!4 &1929371832
 Transform:
   m_ObjectHideFlags: 0
@@ -10485,6 +10572,7 @@ MonoBehaviour:
   shadowSpread: 0.05
   cutoff: 13.39
   realisticFalloff: 0
+  legacySampling: 1
   samples: 8
   projMode: 0
   cookie: {fileID: 0}
@@ -10495,10 +10583,12 @@ MonoBehaviour:
   bitmask: 1
   bakeToIndirect: 0
   shadowmask: 0
+  shadowmaskFalloff: 0
   indirectIntensity: 1
   falloffMinRadius: 1
   shadowmaskGroupID: 0
   directionMode: 0
+  maskChannel: 0
 --- !u!4 &1954578318
 Transform:
   m_ObjectHideFlags: 0
@@ -10534,7 +10624,9 @@ MonoBehaviour:
   totalVertexCount: 0
   vertexCounter: 0
   sceneLodLevel: -1
+  autoResolution: 0
   sceneName: 
+  tag: -1
   containsTerrains: 0
   probes: 0
   mode: 1
@@ -11361,6 +11453,7 @@ MonoBehaviour:
   shadowSpread: 0.05
   cutoff: 13.39
   realisticFalloff: 0
+  legacySampling: 1
   samples: 8
   projMode: 3
   cookie: {fileID: 0}
@@ -11371,10 +11464,12 @@ MonoBehaviour:
   bitmask: 1
   bakeToIndirect: 0
   shadowmask: 0
+  shadowmaskFalloff: 0
   indirectIntensity: 1
   falloffMinRadius: 1
   shadowmaskGroupID: 0
   directionMode: 0
+  maskChannel: 0
 --- !u!4 &2104139958
 Transform:
   m_ObjectHideFlags: 0

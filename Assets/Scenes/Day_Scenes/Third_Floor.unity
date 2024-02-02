@@ -298,8 +298,10 @@ MonoBehaviour:
   renderSettingsRenderDirMode: 0
   renderSettingsShowCheckerSettings: 0
   renderSettingsSamplesWarning: 1
+  renderSettingsSuppressPopups: 0
   renderSettingsPrefabWarning: 1
   renderSettingsSplitByScene: 0
+  renderSettingsSplitByTag: 0
   renderSettingsUVPaddingMax: 0
   renderSettingsPostPacking: 1
   renderSettingsHoleFilling: 0
@@ -320,12 +322,13 @@ MonoBehaviour:
   renderSettingsSector: {fileID: 0}
   renderSettingsRTPVExport: 1
   renderSettingsRTPVSceneView: 0
+  renderSettingsRTPVHDR: 0
   renderSettingsRTPVWidth: 640
   renderSettingsRTPVHeight: 360
   lastBakeTime: 0
   enlightenWarningShown: 0
   enlightenWarningShown2: 0
-  lightUIDs: 13ac3b9bf9ac71fdf97a3848a459228c64cf4b0925155a02692846fb
+  uniqueLights: []
   lights:
   - tform:
       e00: 1
@@ -357,6 +360,7 @@ MonoBehaviour:
     projMode: 3
     cookie: {fileID: 0}
     angle: 30
+    UID: 0
   - tform:
       e00: 1
       e01: 0
@@ -387,6 +391,7 @@ MonoBehaviour:
     projMode: 3
     cookie: {fileID: 0}
     angle: 30
+    UID: 0
   - tform:
       e00: 1
       e01: 0
@@ -417,6 +422,7 @@ MonoBehaviour:
     projMode: 3
     cookie: {fileID: 0}
     angle: 30
+    UID: 0
   - tform:
       e00: 1
       e01: 0
@@ -447,6 +453,7 @@ MonoBehaviour:
     projMode: 3
     cookie: {fileID: 0}
     angle: 30
+    UID: 0
   - tform:
       e00: 1
       e01: 0
@@ -477,6 +484,7 @@ MonoBehaviour:
     projMode: 3
     cookie: {fileID: 0}
     angle: 30
+    UID: 0
   - tform:
       e00: 1
       e01: 0
@@ -507,6 +515,7 @@ MonoBehaviour:
     projMode: 3
     cookie: {fileID: 0}
     angle: 30
+    UID: 0
   - tform:
       e00: 1
       e01: 0
@@ -537,6 +546,7 @@ MonoBehaviour:
     projMode: 0
     cookie: {fileID: 8900000, guid: 8cd3fb75e1bf52d4f9bf9fa5e0c2f9c6, type: 3}
     angle: 30
+    UID: 0
   implicitGroups:
   - {fileID: 1717328059}
   - {fileID: 1228496669}
@@ -921,7 +931,7 @@ MonoBehaviour:
   lmGroupLODMatrix: 
   serverGetFileList: []
   lightmapHasColor: 010101
-  lightmapHasMask: 000000
+  lightmapHasMask: 
   lightmapHasDir: 010101
   lightmapHasRNM: 000000
   modifiedAssetPathList: []
@@ -1615,9 +1625,7 @@ MonoBehaviour:
     - {fileID: 1122397496886747975}
     - {fileID: 5013750184896376092}
     - {fileID: 2159970089340286757}
-    bakedRenderersTerrain: []
     bakedIDs: 010000000200000002000000010000000000000000000000010000000000000002000000010000000100000002000000010000000100000000000000000000000100000002000000020000000100000002000000000000000100000002000000020000000100000002000000010000000100000000000000000000000200000000000000000000000000000001000000020000000200000001000000010000000100000000000000010000000200000002000000010000000000000000000000000000000100000002000000000000000200000000000000000000000100000001000000000000000100000001000000010000000000000001000000020000000200000002000000010000000000000001000000020000000000000002000000020000000200000000000000020000000000000001000000010000000200000001000000000000000100000000000000010000000000000002000000010000000000000002000000000000000100000001000000020000000000000000000000
-    bakedIDsTerrain: 
     bakedScaleOffset:
     - {x: 0.15561323, y: 0.15563837, z: 0.57470083, w: 0.0014514036}
     - {x: 0.12676261, y: 0.117748186, z: 0.49392912, w: 0.23924483}
@@ -1715,7 +1723,6 @@ MonoBehaviour:
     - {x: 0.06449582, y: 0.063059695, z: 0.33166504, w: 0.7628112}
     - {x: 0.003681798, y: 0.008437921, z: 0.20357452, w: 0.9934783}
     - {x: 0.0063007628, y: 0.0074722283, z: 0.9937001, w: 0.25154895}
-    bakedScaleOffsetTerrain: []
     bakedVertexColorMesh:
     - {fileID: 0}
     - {fileID: 0}
@@ -1813,6 +1820,9 @@ MonoBehaviour:
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
+    bakedRenderersTerrain: []
+    bakedIDsTerrain: 
+    bakedScaleOffsetTerrain: []
     nonBakedRenderers: []
 --- !u!4 &13239486
 Transform:
@@ -2049,7 +2059,7 @@ Transform:
   - {fileID: 1128553599}
   - {fileID: 673312860}
   m_Father: {fileID: 641101684}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &34748064
 GameObject:
@@ -15959,109 +15969,6 @@ Mesh:
     offset: 0
     size: 0
     path: 
---- !u!1 &345861139
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 345861144}
-  - component: {fileID: 345861141}
-  - component: {fileID: 345861142}
-  - component: {fileID: 345861140}
-  - component: {fileID: 345861143}
-  m_Layer: 0
-  m_Name: Trigger Lost Package
-  m_TagString: TriggerForPackage
-  m_Icon: {fileID: 419385456094870383, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &345861140
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 345861139}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 218added9d755964f9cba352c1b716f3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  task_name: Lost Package
-  sub_task_name: Ask the front desk about your missing package
-  MainTask_num: 1
-  SubTask_num: 0
-  tm: {fileID: 0}
---- !u!65 &345861141
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 345861139}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &345861142
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 345861139}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b3add184428043d5adf20000cef4647, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  InitialT: {fileID: 345861140}
-  TM: {fileID: 0}
-  monologue: {fileID: 0}
-  checkedEmail: 0
---- !u!114 &345861143
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 345861139}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17196a51ba72cea4ea4346c84d1d493f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  assign: 0
-  task_name: Lost Package
-  sub_task_name: Ask the front desk about your missing package
-  MainTask_num: 1
-  SubTask_num: 0
-  CollisionTag: 
-  addmaintask: 1
-  addsubtask: 1
-  finishmaintask: 0
-  finishsubtask: 0
-  destroy_after_trigger: 0
---- !u!4 &345861144
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 345861139}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.9, y: 0.55, z: -22.82}
-  m_LocalScale: {x: 2, y: 2, z: 4.0208}
-  m_Children: []
-  m_Father: {fileID: 1339167015}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &347224179
 GameObject:
   m_ObjectHideFlags: 0
@@ -17260,6 +17167,7 @@ MonoBehaviour:
   shadowSpread: 0.05
   cutoff: 14
   realisticFalloff: 0
+  legacySampling: 1
   samples: 8
   projMode: 3
   cookie: {fileID: 0}
@@ -17270,10 +17178,12 @@ MonoBehaviour:
   bitmask: 1
   bakeToIndirect: 0
   shadowmask: 0
+  shadowmaskFalloff: 0
   indirectIntensity: 1
   falloffMinRadius: 1
   shadowmaskGroupID: 0
   directionMode: 0
+  maskChannel: 0
 --- !u!4 &413618356
 Transform:
   m_ObjectHideFlags: 0
@@ -18258,6 +18168,7 @@ MonoBehaviour:
   shadowSpread: 0.05
   cutoff: 14
   realisticFalloff: 0
+  legacySampling: 1
   samples: 8
   projMode: 3
   cookie: {fileID: 0}
@@ -18268,10 +18179,12 @@ MonoBehaviour:
   bitmask: 1
   bakeToIndirect: 0
   shadowmask: 0
+  shadowmaskFalloff: 0
   indirectIntensity: 1
   falloffMinRadius: 1
   shadowmaskGroupID: 0
   directionMode: 0
+  maskChannel: 0
 --- !u!4 &460958089
 Transform:
   m_ObjectHideFlags: 0
@@ -20012,7 +19925,7 @@ Transform:
   - {fileID: 132742572}
   - {fileID: 1833555895}
   m_Father: {fileID: 641101684}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &556458847
 GameObject:
@@ -21513,7 +21426,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5437539276558482560}
-  - {fileID: 1339167015}
   - {fileID: 8419101086460477470}
   - {fileID: 34110928}
   - {fileID: 555307921}
@@ -40716,91 +40628,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1009689158}
   m_Mesh: {fileID: -5385231579725983398, guid: 2fca9afdae1ed3f41b0e62f9390e8451, type: 3}
---- !u!1 &1013056171
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1013056172}
-  - component: {fileID: 1013056173}
-  - component: {fileID: 1013056174}
-  - component: {fileID: 1013056175}
-  m_Layer: 0
-  m_Name: Trigger reminder to check email
-  m_TagString: Untagged
-  m_Icon: {fileID: 419385456094870383, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1013056172
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1013056171}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.13, y: 0.88, z: -22.99}
-  m_LocalScale: {x: 1.7131544, y: 2, z: 2.4459743}
-  m_Children: []
-  m_Father: {fileID: 1339167015}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1013056173
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1013056171}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1013056174
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1013056171}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b3add184428043d5adf20000cef4647, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  InitialT: {fileID: 0}
-  TM: {fileID: 0}
-  monologue: {fileID: 0}
-  checkedEmail: 0
---- !u!114 &1013056175
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1013056171}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17196a51ba72cea4ea4346c84d1d493f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  assign: 2
-  task_name: Check your Email
-  sub_task_name: 
-  MainTask_num: 0
-  SubTask_num: 0
-  CollisionTag: 
-  addmaintask: 1
-  addsubtask: 0
-  finishmaintask: 0
-  finishsubtask: 0
-  destroy_after_trigger: 0
 --- !u!1 &1021503728
 GameObject:
   m_ObjectHideFlags: 0
@@ -46812,7 +46639,9 @@ MonoBehaviour:
   totalVertexCount: 0
   vertexCounter: 0
   sceneLodLevel: -1
+  autoResolution: 0
   sceneName: 
+  tag: -1
   containsTerrains: 0
   probes: 0
   mode: 1
@@ -48018,114 +47847,6 @@ MonoBehaviour:
       version: 1
     _data:
       data: []
-  - _sourceObject: {fileID: 1639841369}
-    _sourceField: monologue
-    DEPRECATED_fromObject:
-      scene:
-        editorAssetGUID: 
-        name: 
-        _path: 
-      fullPath: 
-      componentName: 
-      componentIndex: 0
-      editorLocalId: 0
-      editorPrefabRelativePath: 
-      version: 0
-    _toObject:
-      scene:
-        editorAssetGUID: 7802eded624d4e94ab9045112112fdb7
-        name: Day_General_System
-        _path: Assets/Scenes/Day_Scenes/Day_General_System.unity
-      fullPath: /= SYSTEM/Canvas/Protagonist Monologue
-      componentName: TMPro.TextMeshProUGUI, Unity.TextMeshPro, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
-      componentIndex: 0
-      editorLocalId: 1429556762
-      editorPrefabRelativePath: 
-      version: 1
-    _data:
-      data: []
-  - _sourceObject: {fileID: 1013056174}
-    _sourceField: monologue
-    DEPRECATED_fromObject:
-      scene:
-        editorAssetGUID: 
-        name: 
-        _path: 
-      fullPath: 
-      componentName: 
-      componentIndex: 0
-      editorLocalId: 0
-      editorPrefabRelativePath: 
-      version: 0
-    _toObject:
-      scene:
-        editorAssetGUID: 7802eded624d4e94ab9045112112fdb7
-        name: Day_General_System
-        _path: Assets/Scenes/Day_Scenes/Day_General_System.unity
-      fullPath: /= SYSTEM/Canvas/Protagonist Monologue
-      componentName: TMPro.TextMeshProUGUI, Unity.TextMeshPro, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
-      componentIndex: 0
-      editorLocalId: 1429556762
-      editorPrefabRelativePath: 
-      version: 1
-    _data:
-      data: []
-  - _sourceObject: {fileID: 345861142}
-    _sourceField: TM
-    DEPRECATED_fromObject:
-      scene:
-        editorAssetGUID: 
-        name: 
-        _path: 
-      fullPath: 
-      componentName: 
-      componentIndex: 0
-      editorLocalId: 0
-      editorPrefabRelativePath: 
-      version: 0
-    _toObject:
-      scene:
-        editorAssetGUID: 7802eded624d4e94ab9045112112fdb7
-        name: Day_General_System
-        _path: Assets/Scenes/Day_Scenes/Day_General_System.unity
-      fullPath: /= SYSTEM/Canvas/TaskManager
-      componentName: TaskManager_Test_Yunfei, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
-      componentIndex: 0
-      editorLocalId: 1362087528
-      editorPrefabRelativePath: 
-      version: 1
-    _data:
-      data: []
-  - _sourceObject: {fileID: 345861140}
-    _sourceField: tm
-    DEPRECATED_fromObject:
-      scene:
-        editorAssetGUID: 
-        name: 
-        _path: 
-      fullPath: 
-      componentName: 
-      componentIndex: 0
-      editorLocalId: 0
-      editorPrefabRelativePath: 
-      version: 0
-    _toObject:
-      scene:
-        editorAssetGUID: 7802eded624d4e94ab9045112112fdb7
-        name: Day_General_System
-        _path: Assets/Scenes/Day_Scenes/Day_General_System.unity
-      fullPath: /= SYSTEM/Canvas/TaskManager
-      componentName: TaskManager_Test_Yunfei, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
-      componentIndex: 0
-      editorLocalId: 1362087528
-      editorPrefabRelativePath: 
-      version: 1
-    _data:
-      data: []
   - _sourceObject: {fileID: 61940018}
     _sourceField: promptIcon
     DEPRECATED_fromObject:
@@ -48344,39 +48065,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1331497639}
   m_Mesh: {fileID: 2619086233303812490, guid: 2fca9afdae1ed3f41b0e62f9390e8451, type: 3}
---- !u!1 &1339167014
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1339167015}
-  m_Layer: 0
-  m_Name: task triggers
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1339167015
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1339167014}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.378, y: -1.3981166, z: 0.08383322}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1013056172}
-  - {fileID: 345861144}
-  - {fileID: 1639841367}
-  m_Father: {fileID: 641101684}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1339977387
 GameObject:
   m_ObjectHideFlags: 0
@@ -52288,6 +51976,7 @@ MonoBehaviour:
   shadowSpread: 0.05
   cutoff: 14
   realisticFalloff: 0
+  legacySampling: 1
   samples: 8
   projMode: 3
   cookie: {fileID: 0}
@@ -52298,10 +51987,12 @@ MonoBehaviour:
   bitmask: 1
   bakeToIndirect: 0
   shadowmask: 0
+  shadowmaskFalloff: 0
   indirectIntensity: 1
   falloffMinRadius: 1
   shadowmaskGroupID: 0
   directionMode: 0
+  maskChannel: 0
 --- !u!4 &1599625924
 Transform:
   m_ObjectHideFlags: 0
@@ -52777,64 +52468,6 @@ Transform:
   m_Father: {fileID: 2137952197}
   m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1639841366
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1639841367}
-  - component: {fileID: 1639841368}
-  - component: {fileID: 1639841369}
-  m_Layer: 0
-  m_Name: trigger for end scene
-  m_TagString: Untagged
-  m_Icon: {fileID: 419385456094870383, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1639841367
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1639841366}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.5, y: 0.88, z: -22.99}
-  m_LocalScale: {x: 1.7131544, y: 2, z: 7.913216}
-  m_Children: []
-  m_Father: {fileID: 1339167015}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1639841368
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1639841366}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1639841369
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1639841366}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df499516a9b8d2549a10e66641ab93fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  monologue: {fileID: 0}
 --- !u!1 &1642123182
 GameObject:
   m_ObjectHideFlags: 0
@@ -59756,7 +59389,9 @@ MonoBehaviour:
   totalVertexCount: 0
   vertexCounter: 0
   sceneLodLevel: -1
+  autoResolution: 0
   sceneName: 
+  tag: -1
   containsTerrains: 0
   probes: 0
   mode: 1
@@ -60223,6 +59858,7 @@ MonoBehaviour:
   shadowSpread: 0.05
   cutoff: 14
   realisticFalloff: 0
+  legacySampling: 1
   samples: 8
   projMode: 3
   cookie: {fileID: 0}
@@ -60233,10 +59869,12 @@ MonoBehaviour:
   bitmask: 1
   bakeToIndirect: 0
   shadowmask: 0
+  shadowmaskFalloff: 0
   indirectIntensity: 1
   falloffMinRadius: 1
   shadowmaskGroupID: 0
   directionMode: 0
+  maskChannel: 0
 --- !u!4 &1743277204
 Transform:
   m_ObjectHideFlags: 0
@@ -64782,7 +64420,9 @@ MonoBehaviour:
   totalVertexCount: 0
   vertexCounter: 0
   sceneLodLevel: -1
+  autoResolution: 0
   sceneName: 
+  tag: -1
   containsTerrains: 0
   probes: 0
   mode: 1
@@ -65828,6 +65468,7 @@ MonoBehaviour:
   shadowSpread: 0.05
   cutoff: 14
   realisticFalloff: 0
+  legacySampling: 1
   samples: 8
   projMode: 3
   cookie: {fileID: 0}
@@ -65838,10 +65479,12 @@ MonoBehaviour:
   bitmask: 1
   bakeToIndirect: 0
   shadowmask: 0
+  shadowmaskFalloff: 0
   indirectIntensity: 1
   falloffMinRadius: 1
   shadowmaskGroupID: 0
   directionMode: 0
+  maskChannel: 0
 --- !u!4 &2008793318
 Transform:
   m_ObjectHideFlags: 0
@@ -67537,6 +67180,7 @@ MonoBehaviour:
   shadowSpread: 0.05
   cutoff: 14
   realisticFalloff: 0
+  legacySampling: 1
   samples: 8
   projMode: 3
   cookie: {fileID: 0}
@@ -67547,10 +67191,12 @@ MonoBehaviour:
   bitmask: 1
   bakeToIndirect: 0
   shadowmask: 0
+  shadowmaskFalloff: 0
   indirectIntensity: 1
   falloffMinRadius: 1
   shadowmaskGroupID: 0
   directionMode: 0
+  maskChannel: 0
 --- !u!4 &2104139958
 Transform:
   m_ObjectHideFlags: 0
@@ -70855,7 +70501,7 @@ Transform:
   m_LocalScale: {x: 0.039354995, y: 0.03935499, z: 0.03935499}
   m_Children: []
   m_Father: {fileID: 641101684}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &8645842250629471095
 MeshRenderer:

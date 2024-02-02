@@ -5,41 +5,22 @@ using UnityEngine;
 public class TaskAssignTrigger : MonoBehaviour
 {
     public AssignTask_By assign;
+    public Task_Type type;
 
-    [SerializeField] public string task_name;
-    [SerializeField] public string sub_task_name;
-    [SerializeField] public int MainTask_num;
-    [SerializeField] public int SubTask_num;
-
-    [SerializeField] private string CollisionTag;
-    [SerializeField] private bool addmaintask = false;
-    [SerializeField] private bool addsubtask = false;
-    [SerializeField] private bool finishmaintask = false;
-    [SerializeField] private bool finishsubtask = false;
-
-    [SerializeField] private bool destroy_after_trigger = false;
-    [SerializeField] private bool disable_after_trigger = false;
+    public string task_name;
+    public int task_num_DONOTCHANGE = 0;
+    public int attach_to_number = 0;
 
     private TaskManager_Test_Yunfei tm;
 
     private void Start()
     {
-        tm = GameObject.FindGameObjectWithTag("TaskManager").GetComponent<TaskManager_Test_Yunfei>();
+        if (tm == null) tm = GameObject.FindGameObjectWithTag("TaskManager").GetComponent<TaskManager_Test_Yunfei>();
+
         if (assign == AssignTask_By.add_when_awake)
         {
             Set_Tasks();
-            if (destroy_after_trigger) Destroy(gameObject);
-            if (disable_after_trigger) this.enabled = false;
         }
-    }
-
-    public void settext()
-    {
-        tm.temp_task_name = task_name;
-        tm.temp_sub_task_name = sub_task_name;
-        tm.temp_attach_to_main_num = MainTask_num;
-        tm.temp_main_num = MainTask_num;
-        tm.temp_sub_num = SubTask_num;
     }
 
     public enum AssignTask_By
@@ -47,33 +28,41 @@ public class TaskAssignTrigger : MonoBehaviour
         trigger,
         button,
         dialogue,
-        add_when_awake
+        add_when_awake,
+        when_tasks_done,
+        none
         }
+
+    public enum Task_Type
+    {
+        Main_Task,Sub_Task, Sub_Sub_Task,none
+    }
 
     public void Set_Tasks()
     {
-        if (addmaintask) tm.AddTask_Script(task_name, MainTask_num);
-        if (addsubtask) tm.SetSubTask_Script(sub_task_name, MainTask_num);
-        if (finishmaintask) 
+        switch (type)
         {
-            //tm.TaskDone(MainTask_num);
-            tm.TaskDone_ByName(task_name);
-        }
-        
-        
-        if (finishsubtask) tm.SubTaskDone_Script(SubTask_num, MainTask_num);
+            case Task_Type.Main_Task:
+                tm.AddTask(task_num_DONOTCHANGE,task_name);
+                break;
 
-        if (addmaintask || addsubtask|| finishmaintask || finishsubtask)
-        {
-            if (destroy_after_trigger) Destroy(gameObject);
-            if (disable_after_trigger) this.enabled = false;
+            case Task_Type.Sub_Task:
+                tm.AddTask_Attach(attach_to_number,task_num_DONOTCHANGE, task_name,1);
+
+                break;
+
+            case Task_Type.Sub_Sub_Task:
+                tm.AddTask_Attach(attach_to_number, task_num_DONOTCHANGE, task_name,2);
+                break;
         }
 
+        if (assign == AssignTask_By.trigger) GetComponent<Collider>().enabled = false;
+        gameObject.GetComponent<TaskAssignTrigger>().enabled = false;
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void OnTriggerEnter(Collider other)
     {
-        if(other.tag == CollisionTag)
+        if(other.tag == "Player")
         {
             Set_Tasks();
         }

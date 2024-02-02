@@ -28,7 +28,8 @@ public class InventoryManager : MonoBehaviour
 
     private void Awake()
     {
-        Inventory.SetActive(false);
+        Inventory.transform.position = new Vector2(960, -2000);
+
         Instance = this;
         //hide cursor at game start
         Cursor.visible = false;
@@ -48,18 +49,18 @@ public class InventoryManager : MonoBehaviour
     {
         if (Input.GetKeyDown(inventoryKey))
         {
-            if(Inventory.activeSelf)
+            if(Inventory.transform.position.y == 540)
             {
-                Inventory.SetActive(false);
+                Inventory.transform.position = new Vector2(960, -1000);
                 FirstPersonAIO.instance.enableCameraMovement = true;
                 FirstPersonAIO.instance.playerCanMove = true;
 
                 //hide cursor when close inventory 
                 Cursor.visible = false;
             }
-            else if(!Inventory.activeSelf)
+            else if(Inventory.transform.position.y != 540)
             {
-                Inventory.SetActive(true);
+                Inventory.transform.position = new Vector2(960, 540);
                 FirstPersonAIO.instance.enableCameraMovement = false;
                 FirstPersonAIO.instance.playerCanMove = false;
 
@@ -91,12 +92,15 @@ public class InventoryManager : MonoBehaviour
     public void ListItems()
     {
         //clean inventory before listing the items
-        foreach(Transform item in PlaylistBroadcastContent)
+        foreach (Transform item in PlaylistBroadcastContent)
         {
-            Destroy(item.gameObject);
+            if (AItems.Find(item => item.name == item.name))
+            {
+                Destroy(item.gameObject);
+            }
         }
 
-        foreach(var item in AItems)
+        foreach (var item in AItems)
         {
             //find the elemets in each item and replace inventory default
             GameObject itemobj = Instantiate(PlaylistItem, PlaylistBroadcastContent);
@@ -113,7 +117,7 @@ public class InventoryManager : MonoBehaviour
         }
 
 
-        //clean inventory before listing the items
+        //clean normal inventory before listing the items
         foreach (Transform item in NormalItemContent)
         {
             Destroy(item.gameObject);

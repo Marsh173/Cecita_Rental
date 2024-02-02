@@ -1,4 +1,4 @@
-using UnityEngine;
+/*using UnityEngine;
 using UnityEditor;
 
 [CustomEditor(typeof(TaskAssignTrigger))]
@@ -24,90 +24,77 @@ public class TaskAssignEditor : Editor
         switch (trigger)
         { 
             case 1:
-                taskassigntrigger.assign = global::TaskAssignTrigger.AssignTask_By.trigger;
+                taskassigntrigger.assign = TaskAssignTrigger.AssignTask_By.trigger;
                 break;
 
             case 2:
-                taskassigntrigger.assign = global::TaskAssignTrigger.AssignTask_By.dialogue;
+                taskassigntrigger.assign = TaskAssignTrigger.AssignTask_By.dialogue;
                 break;
 
             case 3:
-                taskassigntrigger.assign = global::TaskAssignTrigger.AssignTask_By.button;
+                taskassigntrigger.assign = TaskAssignTrigger.AssignTask_By.button;
                 break;
 
             case 4:
-                taskassigntrigger.assign = global::TaskAssignTrigger.AssignTask_By.add_when_awake;
+                taskassigntrigge
+                    r.assign = TaskAssignTrigger.AssignTask_By.add_when_awake;
                 break;
 
             default:
-
+                taskassigntrigger.assign = TaskAssignTrigger.AssignTask_By.none;
                 break;
 
         }
-
-        GUILayout.BeginHorizontal();
-        GUILayout.Box("Trigger Type : " + Trigger_Type);
-        if (GUILayout.Button("x"))
-            {
-                trigger = 0;
-                Trigger_Type = "none selected";
-            }
-        GUILayout.EndHorizontal();
-
-        GUILayout.BeginHorizontal();
-        GUILayout.Box("Task Type : " + Task_Type);
-            if (GUILayout.Button("x"))
-            {
-                task = 0;
-                Task_Type = "none selected";
-            }
-        GUILayout.EndHorizontal();
-
-        GUILayout.BeginHorizontal();
-        if (trigger != 1)
+        if(taskassigntrigger.assign == TaskAssignTrigger.AssignTask_By.none)
         {
-            if (GUILayout.Button("Trigger"))
+            GUILayout.BeginHorizontal();
+            if (trigger != 1)
             {
-                Trigger_Type = "Trigger";
-                trigger = 1;
+                if (GUILayout.Button("Trigger"))
+                {
+                    Trigger_Type = "Trigger";
+                    trigger = 1;
+                }
+
             }
+            else GUILayout.Box("Trigger");
 
-        }
-        else GUILayout.Box("Trigger");
-
-        if (trigger != 2)
-        {
-            if (GUILayout.Button("Dialogue"))
+            if (trigger != 2)
             {
-                Trigger_Type = "Dialogue";
-                trigger = 2;
+                if (GUILayout.Button("Dialogue"))
+                {
+                    Trigger_Type = "Dialogue";
+                    trigger = 2;
+                }
             }
-        }
-        else GUILayout.Box("Dialogue");
+            else GUILayout.Box("Dialogue");
 
-        if (trigger != 3)
-        {
-            if (GUILayout.Button("Button"))
+            if (trigger != 3)
             {
-                Trigger_Type = "Button";
-                trigger = 3;
+                if (GUILayout.Button("Button"))
+                {
+                    Trigger_Type = "Button";
+                    trigger = 3;
+                }
+
             }
+            else GUILayout.Box("Button");
 
-        }
-        else GUILayout.Box("Button");
-
-        if (trigger!= 4)
-        {
-
-            if (GUILayout.Button("Awake"))
+            if (trigger != 4)
             {
-                Trigger_Type = "Awake";
-                trigger = 4;
-            }
-        }
-        else GUILayout.Box("Awake");
 
-        GUILayout.EndHorizontal();
+                if (GUILayout.Button("Awake"))
+                {
+                    Trigger_Type = "Awake";
+                    trigger = 4;
+                }
+            }
+            else GUILayout.Box("Awake");
+
+            GUILayout.EndHorizontal();
+        }
+
+        
 
         GUILayout.BeginHorizontal();
 
@@ -155,7 +142,29 @@ public class TaskAssignEditor : Editor
                 task = 4;
             }
         }
-        else GUILayout.Box("Finish Subtask");
+        else GUILayout.Box("Add Subtask");
+        
+        GUILayout.EndHorizontal();
+        GUILayout.BeginHorizontal();
+        if (task != 5)
+        {
+            if (GUILayout.Button("Add Subsubtask"))
+            {
+                Task_Type = "Add Subsubtask";
+                task = 5;
+            }
+        }
+        else GUILayout.Box("Finish Subsubtask");
+
+        if (task != 6)
+        {
+            if (GUILayout.Button("Finish Subsubtask"))
+            {
+                Task_Type = "Finish Subsubtask";
+                task = 6;
+            }
+        }
+        else GUILayout.Box("Finish Subsubtask");
 
 
         GUILayout.EndHorizontal();
@@ -170,10 +179,37 @@ public class TaskAssignEditor : Editor
         {
             GUILayout.Label("Sub Task : ");
             subtask = GUILayout.TextArea(subtask, 200);
-            GUILayout.Label("Attach to Main Task : ");
+            GUILayout.Label("Attach to MaintaskNum : ");
             attach_to_main_task = GUILayout.TextArea(attach_to_main_task, 200);
         }
 
+            switch (task)
+        {
+            case 1:
+                taskassigntrigger.type = TaskAssignTrigger.Task_Type.Add_Maintask;
+                break;
+
+            case 2:
+                taskassigntrigger.type = TaskAssignTrigger.Task_Type.Finish_Maintask;
+                break;
+            case 3:
+                taskassigntrigger.type = TaskAssignTrigger.Task_Type.Add_subtask;
+                break;
+            case 4:
+                taskassigntrigger.type = TaskAssignTrigger.Task_Type.Finish_subtask;
+                break;
+            case 5:
+                taskassigntrigger.type = TaskAssignTrigger.Task_Type.Add_subsubtask;
+                break;
+            case 6:
+                taskassigntrigger.type = TaskAssignTrigger.Task_Type.Finish_subsubtask;
+                break;
+            default:
+                taskassigntrigger.type = TaskAssignTrigger.Task_Type.none;
+                break;
+
+        }
             base.OnInspectorGUI();
     }
 }
+*/

@@ -11,14 +11,14 @@ public class TaskData :  MonoBehaviour
     public TextMeshProUGUI task_name_UI;
     
     public List<GameObject> subtask = new List<GameObject>();
-    public GameObject subtaskPrefab;
+    //public GameObject subtaskPrefab;
     public bool started = false; // turn this to true when all sub tasks are added
     public bool isCompleted;
 
     public float y_height;
 
     //add sub and give them a name and a number
-    public void addSub(string subtask_name, int sub_num)
+    /*public void addSub(string subtask_name, int sub_num)
     {
         var s = Instantiate(subtaskPrefab, transform);
         s.transform.SetParent(transform);
@@ -27,7 +27,7 @@ public class TaskData :  MonoBehaviour
         var sublistHeight = subtask.Count * y_height;
         s.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, -  sublistHeight,0);
         s.GetComponent<Sub_Task>().sub_num = sub_num;
-    }
+    }*/
 
     private void Update()
     {
@@ -35,44 +35,7 @@ public class TaskData :  MonoBehaviour
 
         if (isCompleted)
         {
-            FinishTask();
-        }
-
-        FinishSubTask();
-    }
-
-    public bool allSubFinished()
-    {
-        if(subtask.Count == 0)
-        return true;
-        else
-        {
-            return false;
-        }
-    }
-
-    public void FinishTask()
-    {
-        //finish all sub tasks
-
-        //finish main task
-        if(subtask.Count != 0)
-        {
-            for (int i = 0; i < subtask.Count; i++)
-            {
-                subtask[i].GetComponent<Sub_Task>().isCompleted = true;
-            }
-        }
-        
-
-        Destroy(gameObject);
-    }
-
-    public void FinishSubTask()
-    {
-        foreach (GameObject g in subtask)
-        {
-            if(g == null)Destroy(g);
+           
         }
     }
 

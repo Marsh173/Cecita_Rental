@@ -5,24 +5,11 @@ using UnityEngine;
 public class TaskAssignTrigger : MonoBehaviour
 {
     public AssignTask_By assign;
+    public Task_Type type;
 
-    private string task_name;
-    private string sub_task_name;
-    private string subsubtask_name;
-    private int MainTask_num;
-    private int SubTask_num;
-    private int subsubtask_num;
-    
-    private string CollisionTag;
-    private bool addmaintask = false;
-    private bool addsubtask = false;
-    private bool addsubsubtask = false;
-    private bool finishmaintask = false;
-    private bool finishsubtask = false;
-    private bool finishsubsubtask = false;
+    public string task_name;
 
-    [SerializeField] private bool destroy_after_trigger = false;
-    [SerializeField] private bool disable_after_trigger = false;
+    public int attach_to_number = 0;
 
     private TaskManager_Test_Yunfei tm;
 
@@ -32,8 +19,6 @@ public class TaskAssignTrigger : MonoBehaviour
         if (assign == AssignTask_By.add_when_awake)
         {
             Set_Tasks();
-            if (destroy_after_trigger) Destroy(gameObject);
-            if (disable_after_trigger) this.enabled = false;
         }
     }
 
@@ -42,36 +27,20 @@ public class TaskAssignTrigger : MonoBehaviour
         trigger,
         button,
         dialogue,
-        add_when_awake
+        add_when_awake,
+        when_tasks_done,
+        none
         }
+
+    public enum Task_Type
+    {
+        Main_Task,Sub_Task, Sub_Sub_Task,none
+    }
 
     public void Set_Tasks()
     {
-        if (addmaintask) tm.AddTask(MainTask_num,task_name);
-        if (addsubtask) tm.SetSubTask(SubTask_num, MainTask_num, sub_task_name);
-        if (addsubsubtask) tm.SetSubsubTask(MainTask_num, SubTask_num, subsubtask_num, subsubtask_name);
-        if (finishmaintask) 
-        {
-            tm.TaskDone(MainTask_num);
-        }
-        
-        
-        if (finishsubtask) tm.SubTaskDone(SubTask_num, MainTask_num);
-        if (finishsubsubtask) tm.SubsubTaskDone(SubTask_num, MainTask_num,subsubtask_num);
-
-        if (addmaintask || addsubtask|| finishmaintask || finishsubtask||addsubsubtask||finishsubsubtask)
-        {
-            if (destroy_after_trigger) Destroy(gameObject);
-            if (disable_after_trigger) this.enabled = false;
-        }
+      
 
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.tag == CollisionTag)
-        {
-            Set_Tasks();
-        }
-    }
 }

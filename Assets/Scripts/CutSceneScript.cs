@@ -11,7 +11,7 @@ public class CutSceneScript : MonoBehaviour
     public AudioSource emailsound;
     public AudioClip emailNote;
     public static bool cutsceneEnd;
-    public GameObject taskList, FirstPerson, startSceneObj, cutSceneCanvas, crosshair, dialoguemanager, endscneneObj;
+    public GameObject taskList, taskTriggers, FirstPerson, startSceneObj, cutSceneCanvas, crosshair, dialoguemanager, endscneneObj;
     public TMP_Text monologue;
     public static bool talkedtoNPC, enteredEndSequen;
 
@@ -29,6 +29,7 @@ public class CutSceneScript : MonoBehaviour
     void Awake()
     {
         taskList.SetActive(false);
+        taskTriggers.SetActive(false);
         FirstPerson.SetActive(false);
         crosshair.SetActive(false);
         dialoguemanager.SetActive(false);
@@ -57,6 +58,7 @@ public class CutSceneScript : MonoBehaviour
         cutsceneEnd = true;
         emailsound.PlayOneShot(emailNote);
         taskList.SetActive(true);
+        taskTriggers.SetActive(true);
         FirstPerson.SetActive(true);
         startSceneObj.SetActive(false);
         cutSceneCanvas.SetActive(false);

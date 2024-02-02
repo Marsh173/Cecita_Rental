@@ -94,10 +94,10 @@ public class TaskManager_Test_Yunfei : MonoBehaviour
 
     public IEnumerator TaskFinish(int num)
     {
-        Tasks[num].GetComponent<Animator>().SetBool("Done", true);
+        GameObject t = Tasks[GetTaskIndex(num)];
+        t.GetComponent<Animator>().SetBool("Done", true);
         yield return new WaitForSeconds(1.5f);
-        GameObject t = Tasks[num];
-        Tasks.RemoveAt(num);
+        Tasks.RemoveAt(GetTaskIndex(num));
         Destroy(t);
         RearrangeTasks();
 

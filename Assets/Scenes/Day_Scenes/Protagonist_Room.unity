@@ -4794,14 +4794,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37feb22ac0081c14a86bcdb8a83927c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  promptMessage: Change Clothes
+  promptMessage: Wash Face
   promptIcon: {fileID: 0}
   interacted: 0
   NItem: {fileID: 0}
   AItem: {fileID: 0}
   monologue: {fileID: 0}
   recordWaitTime: 0
-  interactWaitTime: 0
+  interactWaitTime: 1
   EventPreRecording:
     m_PersistentCalls:
       m_Calls: []
@@ -4832,6 +4832,42 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: TaskAssignTrigger, Assembly-CSharp
+        m_MethodName: Set_Tasks
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: TaskAssignTrigger, Assembly-CSharp
+        m_MethodName: Set_Tasks
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: TaskAssignTrigger, Assembly-CSharp
+        m_MethodName: Set_Tasks
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!65 &179617513
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4843,8 +4879,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 2.7815173}
-  m_Center: {x: -2.8112795e-15, y: 0, z: -0.8907544}
+  m_Size: {x: 1, y: 1, z: 1.8704284}
+  m_Center: {x: 7.947761e-16, y: 0, z: -0.43521026}
 --- !u!23 &179617514
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -9577,8 +9613,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 2.7815173}
-  m_Center: {x: -2.8112795e-15, y: 0, z: -0.8907544}
+  m_Size: {x: 1, y: 1, z: 1.7544283}
+  m_Center: {x: -1.0116635e-15, y: 0, z: -0.37720913}
 --- !u!23 &1501550576
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -10693,8 +10729,8 @@ MonoBehaviour:
       version: 1
     _data:
       data: []
-  - _sourceObject: {fileID: 64211965}
-    _sourceField: inspectionWindow
+  - _sourceObject: {fileID: 1639752305}
+    _sourceField: tlt
     DEPRECATED_fromObject:
       scene:
         editorAssetGUID: 
@@ -10711,62 +10747,11 @@ MonoBehaviour:
         editorAssetGUID: 7802eded624d4e94ab9045112112fdb7
         name: Day_General_System
         _path: Assets/Scenes/Day_Scenes/Day_General_System.unity
-      fullPath: /= SYSTEM/Canvas/InspectionWindow
-      componentName: 
+      fullPath: /= TASK TRIGGERS
+      componentName: TaskListTrack, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
       componentIndex: 0
-      editorLocalId: 1042000669
-      editorPrefabRelativePath: 
-      version: 1
-    _data:
-      data: []
-  - _sourceObject: {fileID: 64211965}
-    _sourceField: inspectionButton
-    DEPRECATED_fromObject:
-      scene:
-        editorAssetGUID: 
-        name: 
-        _path: 
-      fullPath: 
-      componentName: 
-      componentIndex: 0
-      editorLocalId: 0
-      editorPrefabRelativePath: 
-      version: 0
-    _toObject:
-      scene:
-        editorAssetGUID: 7802eded624d4e94ab9045112112fdb7
-        name: Day_General_System
-        _path: Assets/Scenes/Day_Scenes/Day_General_System.unity
-      fullPath: /= SYSTEM/Canvas/InspectionButtonScreen
-      componentName: 
-      componentIndex: 0
-      editorLocalId: 505557755
-      editorPrefabRelativePath: 
-      version: 1
-    _data:
-      data: []
-  - _sourceObject: {fileID: 64211964}
-    _sourceField: promptIcon
-    DEPRECATED_fromObject:
-      scene:
-        editorAssetGUID: 
-        name: 
-        _path: 
-      fullPath: 
-      componentName: 
-      componentIndex: 0
-      editorLocalId: 0
-      editorPrefabRelativePath: 
-      version: 0
-    _toObject:
-      scene:
-        editorAssetGUID: 7802eded624d4e94ab9045112112fdb7
-        name: Day_General_System
-        _path: Assets/Scenes/Day_Scenes/Day_General_System.unity
-      fullPath: /= SYSTEM/Canvas/crosshair stuff/ItemPrompt/Inspector Icon
-      componentName: 
-      componentIndex: 0
-      editorLocalId: 1936583223
+      editorLocalId: 1260023389
       editorPrefabRelativePath: 
       version: 1
     _data:
@@ -10825,6 +10810,88 @@ MonoBehaviour:
     _data:
       data: []
   - _sourceObject: {fileID: 179617512}
+    _sourceField: EventOnInteraction.m_PersistentCalls.m_Calls,4.m_Target
+    DEPRECATED_fromObject:
+      scene:
+        editorAssetGUID: 
+        name: 
+        _path: 
+      fullPath: 
+      componentName: 
+      componentIndex: 0
+      editorLocalId: 0
+      editorPrefabRelativePath: 
+      version: 0
+    _toObject:
+      scene:
+        editorAssetGUID: 7802eded624d4e94ab9045112112fdb7
+        name: Day_General_System
+        _path: Assets/Scenes/Day_Scenes/Day_General_System.unity
+      fullPath: /= TASK TRIGGERS/Terminal Leave/Find a way to leave the apartment/ask
+        around
+      componentName: TaskAssignTrigger, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      componentIndex: 0
+      editorLocalId: 1827495010
+      editorPrefabRelativePath: 
+      version: 1
+    _data:
+      data: []
+  - _sourceObject: {fileID: 179617512}
+    _sourceField: EventOnInteraction.m_PersistentCalls.m_Calls,3.m_Target
+    DEPRECATED_fromObject:
+      scene:
+        editorAssetGUID: 
+        name: 
+        _path: 
+      fullPath: 
+      componentName: 
+      componentIndex: 0
+      editorLocalId: 0
+      editorPrefabRelativePath: 
+      version: 0
+    _toObject:
+      scene:
+        editorAssetGUID: 7802eded624d4e94ab9045112112fdb7
+        name: Day_General_System
+        _path: Assets/Scenes/Day_Scenes/Day_General_System.unity
+      fullPath: /= TASK TRIGGERS/Terminal Leave/Find a way to leave the apartment
+      componentName: TaskAssignTrigger, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      componentIndex: 0
+      editorLocalId: 494373700
+      editorPrefabRelativePath: 
+      version: 1
+    _data:
+      data: []
+  - _sourceObject: {fileID: 179617512}
+    _sourceField: EventOnInteraction.m_PersistentCalls.m_Calls,2.m_Target
+    DEPRECATED_fromObject:
+      scene:
+        editorAssetGUID: 
+        name: 
+        _path: 
+      fullPath: 
+      componentName: 
+      componentIndex: 0
+      editorLocalId: 0
+      editorPrefabRelativePath: 
+      version: 0
+    _toObject:
+      scene:
+        editorAssetGUID: 7802eded624d4e94ab9045112112fdb7
+        name: Day_General_System
+        _path: Assets/Scenes/Day_Scenes/Day_General_System.unity
+      fullPath: /= TASK TRIGGERS/Terminal Leave
+      componentName: TaskAssignTrigger, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      componentIndex: 0
+      editorLocalId: 504189426
+      editorPrefabRelativePath: 
+      version: 1
+    _data:
+      data: []
+  - _sourceObject: {fileID: 179617512}
     _sourceField: EventOnInteraction.m_PersistentCalls.m_Calls,0.m_Target
     DEPRECATED_fromObject:
       scene:
@@ -10852,6 +10919,84 @@ MonoBehaviour:
     _data:
       data: []
   - _sourceObject: {fileID: 179617512}
+    _sourceField: promptIcon
+    DEPRECATED_fromObject:
+      scene:
+        editorAssetGUID: 
+        name: 
+        _path: 
+      fullPath: 
+      componentName: 
+      componentIndex: 0
+      editorLocalId: 0
+      editorPrefabRelativePath: 
+      version: 0
+    _toObject:
+      scene:
+        editorAssetGUID: 7802eded624d4e94ab9045112112fdb7
+        name: Day_General_System
+        _path: Assets/Scenes/Day_Scenes/Day_General_System.unity
+      fullPath: /= SYSTEM/Canvas/crosshair stuff/ItemPrompt/Inspector Icon
+      componentName: 
+      componentIndex: 0
+      editorLocalId: 1936583223
+      editorPrefabRelativePath: 
+      version: 1
+    _data:
+      data: []
+  - _sourceObject: {fileID: 64211965}
+    _sourceField: inspectionWindow
+    DEPRECATED_fromObject:
+      scene:
+        editorAssetGUID: 
+        name: 
+        _path: 
+      fullPath: 
+      componentName: 
+      componentIndex: 0
+      editorLocalId: 0
+      editorPrefabRelativePath: 
+      version: 0
+    _toObject:
+      scene:
+        editorAssetGUID: 7802eded624d4e94ab9045112112fdb7
+        name: Day_General_System
+        _path: Assets/Scenes/Day_Scenes/Day_General_System.unity
+      fullPath: /= SYSTEM/Canvas/InspectionWindow
+      componentName: 
+      componentIndex: 0
+      editorLocalId: 1042000669
+      editorPrefabRelativePath: 
+      version: 1
+    _data:
+      data: []
+  - _sourceObject: {fileID: 64211965}
+    _sourceField: inspectionButton
+    DEPRECATED_fromObject:
+      scene:
+        editorAssetGUID: 
+        name: 
+        _path: 
+      fullPath: 
+      componentName: 
+      componentIndex: 0
+      editorLocalId: 0
+      editorPrefabRelativePath: 
+      version: 0
+    _toObject:
+      scene:
+        editorAssetGUID: 7802eded624d4e94ab9045112112fdb7
+        name: Day_General_System
+        _path: Assets/Scenes/Day_Scenes/Day_General_System.unity
+      fullPath: /= SYSTEM/Canvas/InspectionButtonScreen
+      componentName: 
+      componentIndex: 0
+      editorLocalId: 505557755
+      editorPrefabRelativePath: 
+      version: 1
+    _data:
+      data: []
+  - _sourceObject: {fileID: 64211964}
     _sourceField: promptIcon
     DEPRECATED_fromObject:
       scene:

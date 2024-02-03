@@ -16,16 +16,15 @@ public class OnTaskDone : MonoBehaviour
         bool b = true;
         for (int i = 0; i < conditions.Count; i ++)
         {
-            if (b) b = tlt.task_track[i];
+            if (b) b = tlt.task_track[conditions[i]];
             else break;
         }
         return b;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (CheckConditions()) TaskAreDone();
-        Debug.Log(CheckConditions());
     }
     public void TaskAreDone()
     {

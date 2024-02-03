@@ -59,12 +59,4 @@ public class TaskAssignTrigger : MonoBehaviour
         if (assign == AssignTask_By.trigger) GetComponent<Collider>().enabled = false;
         gameObject.GetComponent<TaskAssignTrigger>().enabled = false;
     }
-
-    public void OnTriggerEnter(Collider other)
-    {
-        if(other.tag == "Player")
-        {
-            Set_Tasks();
-        }
-    }
 }

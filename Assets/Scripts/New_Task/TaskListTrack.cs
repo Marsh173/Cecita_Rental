@@ -54,9 +54,7 @@ public class TaskListTrack : MonoBehaviour
             NametoNum.Add(i,tasks[i]);
             task_track.Add(i, false);
         }
-
-
-
         
     }
+
 }

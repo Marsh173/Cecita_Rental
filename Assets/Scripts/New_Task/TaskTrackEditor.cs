@@ -17,7 +17,7 @@ public class TaskAssignEditor : Editor
 
         for(int i = 0; i < tlt.task_track.Count; i ++)
         {
-            GUILayout.Box(i + ". " + tlt.NametoNum[i].ToString() + ": " + tlt.task_track[i].ToString());
+            GUILayout.Box(i + ": " + tlt.task_track[i].ToString());
         }
         
     }

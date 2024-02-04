@@ -9,7 +9,7 @@ public class temp : MonoBehaviour
     public TMP_Text monologue;
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && CutSceneScript.talkedtoNPC)
+        if (other.CompareTag("Player")/* && CutSceneScript.talkedtoNPC*/)
         {
             CutSceneScript.enteredEndSequen = true;
             monologue.text = "You hear the delivery being made to each apartment who has a package. " +

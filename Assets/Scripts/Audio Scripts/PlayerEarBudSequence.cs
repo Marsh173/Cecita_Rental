@@ -72,10 +72,12 @@ public class PlayerEarBudSequence : MonoBehaviour
             Time.timeScale = 1;
         }
 
+        //detect if a clip has finished playing
         if (earBudVoice.isPlaying && audioTime <= earBudVoice.clip.length)
         {
-            audioTime ++;
+            audioTime = audioTime +  Time.deltaTime;
             Debug.Log("audioTime" + audioTime);
+
         }
     }
     

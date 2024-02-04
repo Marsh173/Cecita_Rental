@@ -27,7 +27,8 @@ public class InteractableItem : Interactable
     void Update()
     {
         //materialRenderer.material.color = Color.Lerp(originalColor, blinkColor, Mathf.PingPong(Time.time, blinkSpeed));
-        Debug.Log("rendering");
+        //Debug.Log("rendering");
+
         //LMB to open
         if (interacted)
         {

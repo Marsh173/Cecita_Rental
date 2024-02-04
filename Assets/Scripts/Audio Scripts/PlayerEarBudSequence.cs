@@ -6,13 +6,15 @@ using UnityEngine.SceneManagement;
 
 public class PlayerEarBudSequence : MonoBehaviour
 {
-    public AudioClip[] audioClips;
+    public List<AudioClip> audioClips = new List<AudioClip>();
     private AudioSource earBudVoice;
     public GameObject invisibleWall, tutorialMessageObj, inventory, interactiveDoor, UIPauseTutorial;
-    public TMP_Text tutoriaMessage;
+    private TMP_Text tutoriaMessage;
+    private float warningTimes, audioTime;
+    private int listCounter;
 
     private bool firstAudioPlayed, TabToOpen, FinishInventory;
-    private bool DelayedAlready;
+    private bool DelayedAlready, interrupted;
 
     [SerializeField] private float delay = 0.0f;
     void Start()
@@ -23,9 +25,17 @@ public class PlayerEarBudSequence : MonoBehaviour
         tutoriaMessage = tutorialMessageObj.GetComponent<TMP_Text>();
         earBudVoice = GetComponent<AudioSource>();
         DelayedAlready = firstAudioPlayed = FinishInventory = TabToOpen = false;
+        warningTimes = audioTime = 0;
+        interrupted = false;
 
+        audioClips.Add(Resources.Load<AudioClip>("Night 0/" + "Night 0 - Stop!"));
+        audioClips.Add(Resources.Load<AudioClip>("Night 0/" + "Night 0 - Follow music"));
+        audioClips.Add(Resources.Load<AudioClip>("Night 0/" + "Night 0 - stick to wall"));
 
-        Debug.Log(inventory.activeInHierarchy);
+        foreach (AudioClip element in audioClips)
+        {
+            Debug.Log(element);
+        }
     }
 
     void Update()
@@ -33,33 +43,39 @@ public class PlayerEarBudSequence : MonoBehaviour
         if (InventoryManager.EquipmentCollected && !firstAudioPlayed)
         {
             //taskPlaceholder1.SetActive(false);
-            StartCoroutine(AudioSequence());
+            StartCoroutine(AudioStartSequence());
             delay = 16f;
             firstAudioPlayed = true;
         }
         
-        if (DelayedAlready)
+        if (DelayedAlready && !TabToOpen)
         {
             tutorialMessageObj.SetActive(true);
 
-            if (inventory.activeInHierarchy)
+            if (inventory.transform.position.y == 540)
             {
                 TabToOpen = true;
                 tutorialMessageObj.SetActive(false);
                 tutoriaMessage.text = "";
             }
+        }
 
-            if (!inventory.activeInHierarchy && TabToOpen && !earBudVoice.isPlaying)
-            {
-                FinishInventory = true;
-            }
+        if (/*!inventory.activeInHierarchy*/inventory.transform.position.y != 540 && TabToOpen && !earBudVoice.isPlaying)
+        {
+            FinishInventory = true;
         }
 
         //UI tutorial screen
-        if(Input.GetKeyDown(KeyCode.F) && Time.timeScale == 0)
+        if (Input.GetKeyDown(KeyCode.F) && Time.timeScale == 0)
         {
             UIPauseTutorial.SetActive(false);
             Time.timeScale = 1;
+        }
+
+        if (earBudVoice.isPlaying && audioTime <= earBudVoice.clip.length)
+        {
+            audioTime ++;
+            Debug.Log("audioTime" + audioTime);
         }
     }
     
@@ -67,31 +83,55 @@ public class PlayerEarBudSequence : MonoBehaviour
     {
         if(InventoryManager.EquipmentCollected)
         {
-            if (other.CompareTag("EnterMonster"))
-            {
-                earBudVoice.clip = Resources.Load<AudioClip>("Night 0/" + "Night 0 - Stop!");
-                earBudVoice.PlayOneShot(earBudVoice.clip);
-                Destroy(other);
-            }
-
-            if (other.CompareTag("FollowMusicA"))
-            {
-                earBudVoice.clip = Resources.Load<AudioClip>("Night 0/" + "Night 0 - Follow music");
-                earBudVoice.PlayOneShot(earBudVoice.clip);
-                Destroy(other);
-            }
-
-            if (other.CompareTag("walker Trigger"))
-            {
-                earBudVoice.clip = Resources.Load<AudioClip>("Night 0/" + "Night 0 - stick to wall");
-                earBudVoice.PlayOneShot(earBudVoice.clip);
-                Destroy(other);
-            }
-
             if (other.CompareTag("Hallway"))
             {
                 Time.timeScale = 0;
                 UIPauseTutorial.SetActive(true);
+            }
+                if (other.CompareTag("EnterMonster") && !earBudVoice.isPlaying)
+            {
+                earBudVoice.clip = Resources.Load<AudioClip>("Night 0/" + "Night 0 - Stop!");
+                earBudVoice.PlayOneShot(earBudVoice.clip);
+                Destroy(other);
+                listCounter = 1;
+                audioTime = 0;
+            }
+
+            if (other.CompareTag("FollowMusicA") && !earBudVoice.isPlaying)
+            {
+                earBudVoice.clip = Resources.Load<AudioClip>("Night 0/" + "Night 0 - Follow music");
+                earBudVoice.PlayOneShot(earBudVoice.clip);
+                Destroy(other);
+                listCounter = 2;
+            }
+
+            if (other.CompareTag("walker Trigger") && !earBudVoice.isPlaying)
+            {
+                earBudVoice.clip = Resources.Load<AudioClip>("Night 0/" + "Night 0 - stick to wall");
+                earBudVoice.PlayOneShot(earBudVoice.clip);
+                Destroy(other);
+                listCounter = 3;
+            }
+
+            if(interrupted)
+            {
+                earBudVoice.Pause();
+            }
+
+            //tutorial warning about white noise
+            if (other.CompareTag("InFrontOfMonster") && warningTimes != 3)
+            {
+                if(earBudVoice.isPlaying)
+                {
+                    interrupted = true;
+                }
+                else
+                {
+                    interrupted = false;
+                }
+                earBudVoice.clip = Resources.Load<AudioClip>("Night 0/" + "Night 0 - In front of sth");
+                earBudVoice.PlayOneShot(earBudVoice.clip);
+                warningTimes++;
             }
         }
         else
@@ -101,7 +141,7 @@ public class PlayerEarBudSequence : MonoBehaviour
         
         
     }
-   IEnumerator AudioSequence()
+   IEnumerator AudioStartSequence()
     {
         earBudVoice.clip = Resources.Load<AudioClip>("Night 0/" + "Night 0 - Hi");
         earBudVoice.PlayOneShot(earBudVoice.clip);

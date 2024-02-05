@@ -203,8 +203,10 @@ MonoBehaviour:
   renderSettingsRenderDirMode: 3
   renderSettingsShowCheckerSettings: 0
   renderSettingsSamplesWarning: 1
+  renderSettingsSuppressPopups: 0
   renderSettingsPrefabWarning: 1
   renderSettingsSplitByScene: 0
+  renderSettingsSplitByTag: 0
   renderSettingsUVPaddingMax: 0
   renderSettingsPostPacking: 1
   renderSettingsHoleFilling: 0
@@ -225,12 +227,13 @@ MonoBehaviour:
   renderSettingsSector: {fileID: 0}
   renderSettingsRTPVExport: 1
   renderSettingsRTPVSceneView: 0
+  renderSettingsRTPVHDR: 0
   renderSettingsRTPVWidth: 640
   renderSettingsRTPVHeight: 360
   lastBakeTime: 56
   enlightenWarningShown: 0
   enlightenWarningShown2: 0
-  lightUIDs: 34f0fe343f2b3375
+  uniqueLights: []
   lights:
   - tform:
       e00: 1
@@ -262,6 +265,7 @@ MonoBehaviour:
     projMode: 0
     cookie: {fileID: 0}
     angle: 30
+    UID: 0
   - tform:
       e00: 1
       e01: 0
@@ -292,6 +296,7 @@ MonoBehaviour:
     projMode: 0
     cookie: {fileID: 8900000, guid: aebb94b7f3fb8ad43b235972de4325ae, type: 3}
     angle: 30
+    UID: 0
   implicitGroups:
   - {fileID: 1228496669}
   - {fileID: 1228496669}
@@ -348,7 +353,7 @@ MonoBehaviour:
   lmGroupLODMatrix: 
   serverGetFileList: []
   lightmapHasColor: 010101
-  lightmapHasMask: 000000
+  lightmapHasMask: 
   lightmapHasDir: 010101
   lightmapHasRNM: 000000
   modifiedAssetPathList: []
@@ -430,7 +435,7 @@ MonoBehaviour:
   bakedScaleOffsetTerrain: []
   assetList: []
   uvOverlapAssetList: 
-  idremap: 000000000100000002000000
+  idremap: 2d0000002e0000002f000000
   usesRealtimeGI: 0
   emptyDirectionTex: {fileID: 0}
   anyVolumes: 0
@@ -470,9 +475,7 @@ MonoBehaviour:
     - {fileID: 5326532535854513908}
     - {fileID: 4410407480533052898}
     - {fileID: 6322333960325237607}
-    bakedRenderersTerrain: []
     bakedIDs: 0000000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-    bakedIDsTerrain: 
     bakedScaleOffset:
     - {x: -0.05343768, y: -0.05343749, z: 0.963963, w: 0.092871815}
     - {x: -0.023783196, y: -0.023783, z: 0.9924001, w: 0.042439837}
@@ -491,7 +494,6 @@ MonoBehaviour:
     - {x: 1.0166434, y: 0.77648246, z: -0.06281239, w: 0.6259556}
     - {x: 0.8718461, y: 0.8715282, z: 0.0058615445, w: 0.0058615445}
     - {x: 0.35490832, y: 0.2738695, z: 0.0058615445, w: 0.70270014}
-    bakedScaleOffsetTerrain: []
     bakedVertexColorMesh:
     - {fileID: 0}
     - {fileID: 0}
@@ -510,6 +512,9 @@ MonoBehaviour:
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
+    bakedRenderersTerrain: []
+    bakedIDsTerrain: 
+    bakedScaleOffsetTerrain: []
     nonBakedRenderers: []
 --- !u!4 &82278441
 Transform:
@@ -1708,6 +1713,7 @@ MonoBehaviour:
   shadowSpread: 0.05
   cutoff: 10
   realisticFalloff: 0
+  legacySampling: 1
   samples: 8
   projMode: 0
   cookie: {fileID: 0}
@@ -1718,10 +1724,12 @@ MonoBehaviour:
   bitmask: 1
   bakeToIndirect: 0
   shadowmask: 0
+  shadowmaskFalloff: 0
   indirectIntensity: 1
   falloffMinRadius: 1
   shadowmaskGroupID: 0
   directionMode: 0
+  maskChannel: 0
 --- !u!4 &982394457
 Transform:
   m_ObjectHideFlags: 0
@@ -2012,7 +2020,9 @@ MonoBehaviour:
   totalVertexCount: 0
   vertexCounter: 0
   sceneLodLevel: -1
+  autoResolution: 0
   sceneName: 
+  tag: -1
   containsTerrains: 0
   probes: 0
   mode: 1
@@ -2359,7 +2369,7 @@ MonoBehaviour:
         editorAssetGUID: 7802eded624d4e94ab9045112112fdb7
         name: Day_General_System
         _path: Assets/Scenes/Day_Scenes/Day_General_System.unity
-      fullPath: /= SYSTEM/Canvas/Protagonist Monologue
+      fullPath: /= SYSTEM/Canvas/Protagonist item Monologue
       componentName: TMPro.TextMeshProUGUI, Unity.TextMeshPro, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
       componentIndex: 0
@@ -2640,7 +2650,9 @@ MonoBehaviour:
   totalVertexCount: 0
   vertexCounter: 0
   sceneLodLevel: -1
+  autoResolution: 0
   sceneName: 
+  tag: -1
   containsTerrains: 0
   probes: 0
   mode: 1
@@ -3128,7 +3140,9 @@ MonoBehaviour:
   totalVertexCount: 0
   vertexCounter: 0
   sceneLodLevel: -1
+  autoResolution: 0
   sceneName: 
+  tag: -1
   containsTerrains: 0
   probes: 0
   mode: 1

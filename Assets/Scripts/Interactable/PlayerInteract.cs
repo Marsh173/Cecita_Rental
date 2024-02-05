@@ -96,9 +96,9 @@ public class PlayerInteract : MonoBehaviour
                         //Turn on interactble item icon                                                     -Bryan's latest
                         itemIcon = hitInfo.collider.GetComponent<Interactable>().promptIcon;
                         itemIcon.SetActive(true);
+
                         //Turn off crosshair
                         if (crosshair != null && crosshair.activeSelf) crosshair.SetActive(false);
-
 
                         GameObject hitObject = hitInfo.collider.gameObject;
                         lastHitObject = hitObject;

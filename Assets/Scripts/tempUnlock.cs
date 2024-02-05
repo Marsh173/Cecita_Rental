@@ -8,6 +8,7 @@ public class tempUnlock : MonoBehaviour
     {
         if(InventoryManager.keyCollected)
         {
+            Debug.Log("Unlocked");
             Destroy(gameObject);
         }
     }

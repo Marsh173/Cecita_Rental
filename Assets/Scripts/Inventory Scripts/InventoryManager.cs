@@ -91,6 +91,11 @@ public class InventoryManager : MonoBehaviour
         {
             FindThirdFloorElevatorCard();
         }
+
+        if(!keyCollected)
+        {
+            TempKeyUnlock();
+        }
     }
 
     public void ListItems()
@@ -192,7 +197,7 @@ public class InventoryManager : MonoBehaviour
 
     public void TempKeyUnlock()
     {
-        if (NItems.Find(item => item.name == "Small Key"))
+        if (NItems.Find(item => item.name == "Night 2 Key"))
         {
             keyCollected = true;
         }

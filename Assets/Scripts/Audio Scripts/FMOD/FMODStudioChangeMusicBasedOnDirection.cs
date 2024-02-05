@@ -27,6 +27,8 @@ namespace FMODUnity
         float originalMinDistance = 1.0f;
         float originalMaxDistance = 20.0f;
 
+        public Walkers walkScript;
+
 
 
         void Start()
@@ -57,6 +59,15 @@ namespace FMODUnity
             {
                 SetAttenuationDistances(minDistance, maxDistance);
             }
+
+            if (walkScript.stopMusic)
+            {
+                beautiful_broadcast.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                awful_broadcast.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+               
+                Debug.Log("STOP ALL MUSIC...");
+            }
+
         }
 
         private void OnTriggerEnter(Collider other)

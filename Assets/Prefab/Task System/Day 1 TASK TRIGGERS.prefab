@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   assign: 1
   type: 1
-  task_name: Ask other tenants for possible clues (optional)
+  task_name: 'Ask other tenants for possible clues (Optional) '
   task_num_DONOTCHANGE: 16
   attach_to_number: 13
 --- !u!114 &1719387713400149145
@@ -195,71 +195,6 @@ MonoBehaviour:
   tm: {fileID: 0}
   tlt: {fileID: 0}
   task_num_DONOTCHANGE: 1
---- !u!1 &1719387713709546202
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1719387713709546213}
-  - component: {fileID: 1719387713709546215}
-  - component: {fileID: 1719387713709546212}
-  m_Layer: 0
-  m_Name: ask around
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1719387713709546213
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1719387713709546202}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1719387715059764679}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1719387713709546215
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1719387713709546202}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17196a51ba72cea4ea4346c84d1d493f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  assign: 1
-  type: 2
-  task_name: ask around
-  task_num_DONOTCHANGE: 7
-  attach_to_number: 6
---- !u!114 &1719387713709546212
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1719387713709546202}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 424a96822dd3e7f4a97455f8d2a08044, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fin: 0
-  tm: {fileID: 0}
-  tlt: {fileID: 0}
-  task_num_DONOTCHANGE: 7
 --- !u!1 &1719387713904533244
 GameObject:
   m_ObjectHideFlags: 0
@@ -337,7 +272,7 @@ GameObject:
   - component: {fileID: 1719387713984380681}
   - component: {fileID: 1719387713984380686}
   m_Layer: 0
-  m_Name: Ask the front desk about leaving the apartment
+  m_Name: Find a way to leave the apartment
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -353,7 +288,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 4099644824618772698}
   m_Father: {fileID: 1719387715007682420}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -369,10 +305,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17196a51ba72cea4ea4346c84d1d493f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  assign: 0
+  assign: 2
   type: 1
-  task_name: Ask the front desk about leaving the apartment
-  task_num_DONOTCHANGE: 8
+  task_name: Find a way to leave the apartment
+  task_num_DONOTCHANGE: 7
   attach_to_number: 5
 --- !u!114 &1719387713984380686
 MonoBehaviour:
@@ -386,7 +322,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 424a96822dd3e7f4a97455f8d2a08044, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fin: 0
+  fin: 2
   tm: {fileID: 0}
   tlt: {fileID: 0}
   task_num_DONOTCHANGE: 8
@@ -601,7 +537,7 @@ GameObject:
   - component: {fileID: 1719387714285152473}
   - component: {fileID: 1719387714285152472}
   m_Layer: 0
-  m_Name: = TASK TRIGGERS
+  m_Name: Day 1 TASK TRIGGERS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1132,7 +1068,7 @@ GameObject:
   - component: {fileID: 1719387715059764673}
   - component: {fileID: 1719387715059764678}
   m_Layer: 0
-  m_Name: Find a way to leave the apartment
+  m_Name: Ask the front desk about leaving the apartment
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1148,8 +1084,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1719387713709546213}
+  m_Children: []
   m_Father: {fileID: 1719387715007682420}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1165,9 +1100,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17196a51ba72cea4ea4346c84d1d493f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  assign: 1
+  assign: 0
   type: 1
-  task_name: Find a way to leave the apartment
+  task_name: Ask the front desk about leaving the apartment
   task_num_DONOTCHANGE: 6
   attach_to_number: 5
 --- !u!114 &1719387715059764678
@@ -1182,7 +1117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 424a96822dd3e7f4a97455f8d2a08044, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fin: 0
+  fin: 2
   tm: {fileID: 0}
   tlt: {fileID: 0}
   task_num_DONOTCHANGE: 6
@@ -1384,3 +1319,68 @@ MonoBehaviour:
   tm: {fileID: 0}
   tlt: {fileID: 0}
   task_num_DONOTCHANGE: 20
+--- !u!1 &1961796500381840362
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4099644824618772698}
+  - component: {fileID: 1358009361025576323}
+  - component: {fileID: 218026743853876201}
+  m_Layer: 0
+  m_Name: Ask around
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4099644824618772698
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1961796500381840362}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1719387713984380687}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1358009361025576323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1961796500381840362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17196a51ba72cea4ea4346c84d1d493f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  assign: 0
+  type: 2
+  task_name: Ask around
+  task_num_DONOTCHANGE: 8
+  attach_to_number: 5
+--- !u!114 &218026743853876201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1961796500381840362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 424a96822dd3e7f4a97455f8d2a08044, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fin: 0
+  tm: {fileID: 0}
+  tlt: {fileID: 0}
+  task_num_DONOTCHANGE: 8

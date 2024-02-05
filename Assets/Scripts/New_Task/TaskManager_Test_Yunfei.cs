@@ -87,19 +87,28 @@ public class TaskManager_Test_Yunfei : MonoBehaviour
 
         t.transform.SetParent(TaskOrigin.transform);
 
-        //get attached task
-        if(s == 1)
+        //get attached task && adjust font
+        /*if (s == 0)
         {
             //t.GetComponent<TextMesh>().fontStyle = FontStyle.Normal;
             t.GetComponentInChildren<TextMeshProUGUI>().fontStyle ^= FontStyles.Bold;
-            t.GetComponentInChildren<TextMeshProUGUI>().margin = new Vector4(0,0,100,-25);
+            t.GetComponentInChildren<TextMeshProUGUI>().fontSize = 25f;
+            t.GetComponentInChildren<TextMeshProUGUI>().margin = new Vector4(0, 0, 100, -25);
+
+        }*/
+        if (s == 1)
+        {
+            //t.GetComponent<TextMesh>().fontStyle = FontStyle.Normal;
+            t.GetComponentInChildren<TextMeshProUGUI>().fontSize = 20f;
+            t.GetComponentInChildren<TextMeshProUGUI>().margin = new Vector4(0, 0, 185, -25);
 
         }
         if (s == 2)
         {
             //t.GetComponent<TextMesh>().fontStyle = FontStyle.Italic;
             t.GetComponentInChildren<TextMeshProUGUI>().fontStyle = FontStyles.Italic;
-            t.GetComponentInChildren<TextMeshProUGUI>().margin = new Vector4(0, 0, 175, -25);
+            t.GetComponentInChildren<TextMeshProUGUI>().fontSize = 20f;
+            t.GetComponentInChildren<TextMeshProUGUI>().margin = new Vector4(0, 0, 185, -25);
         }
 
         RearrangeTasks();

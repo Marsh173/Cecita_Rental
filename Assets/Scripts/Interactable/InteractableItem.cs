@@ -9,6 +9,7 @@ public class InteractableItem : Interactable
     protected private bool interactedAndClicked = false;
     public NormalItems NItem;
     public PlaylistItems AItem;
+    public Documents Doc;
 
     //public Renderer materialRenderer;
     //public Color originalColor;
@@ -34,6 +35,7 @@ public class InteractableItem : Interactable
             if (Input.GetMouseButtonDown(0))
             {
                 PickupMe();
+                ReadMe();
                 interacted = false;
             }
         }
@@ -44,8 +46,14 @@ public class InteractableItem : Interactable
         Debug.Log("collected");
         if (!InventoryManager.Instance.NItems.Contains(NItem))
             InventoryManager.Instance.AddNormal(NItem);
-        //playlistManager.Instance.Add(NItem);
         Destroy(gameObject);
+    }
+
+    private void ReadMe()
+    {
+        Debug.Log("Read");
+        if (!InventoryManager.Instance.DItems.Contains(Doc))
+            InventoryManager.Instance.AddDocuments(Doc);
     }
 
     public void RecordMe()
@@ -53,8 +61,6 @@ public class InteractableItem : Interactable
         Debug.Log("Recorded");
         if (!RecorderInventoryManager.Instance.AItems.Contains(AItem))
             RecorderInventoryManager.Instance.AddPlaylist(AItem);
-        //playlistManager.Instance.Add(NItem);
-        //Destroy(gameObject);
     }
     protected override void Interact()
     {

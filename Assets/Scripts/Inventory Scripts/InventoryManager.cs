@@ -9,14 +9,15 @@ public class InventoryManager : MonoBehaviour
     public static InventoryManager Instance;
     public List<PlaylistItems> AItems = new List<PlaylistItems>();
     public List<NormalItems> NItems = new List<NormalItems>();
+    public List<Documents> DItems = new List<Documents>();
     //Audio list
     public AudioSource audioSource;
     public AudioClip[] soundArray;
     public AudioClip sound;
     public int audioIndex = 0;
 
-    public Transform PlaylistBroadcastContent, PlaylistMonsterContent, NormalItemContent;
-    public GameObject PlaylistItem, NormalItem;
+    public Transform PlaylistBroadcastContent, PlaylistMonsterContent, NormalItemContent, DocumentContent;
+    public GameObject PlaylistItem, NormalItem, DocumentItem;
     public KeyCode inventoryKey;
     public GameObject Inventory;
 
@@ -43,6 +44,11 @@ public class InventoryManager : MonoBehaviour
     public void AddNormal(NormalItems Item)
     {
         NItems.Add(Item);
+    }
+
+    public void AddDocuments(Documents Item)
+    {
+        DItems.Add(Item);
     }
 
     private void Update()
@@ -91,7 +97,7 @@ public class InventoryManager : MonoBehaviour
 
     public void ListItems()
     {
-        //clean inventory before listing the items
+        //clean audio inventory before listing the items
         foreach (Transform item in PlaylistBroadcastContent)
         {
             if (AItems.Find(item => item.name == item.name))
@@ -137,6 +143,29 @@ public class InventoryManager : MonoBehaviour
             {
                 Destroy(itemobj);
             }
+        }
+
+
+        foreach (Transform item in DocumentContent)
+        {
+            if (DItems.Find(item => item.name == item.name))
+            {
+                Destroy(item.gameObject);
+            }
+        }
+
+        foreach (var item in DItems)
+        {
+            //find the elemets in each item and replace inventory default
+            GameObject itemobj = Instantiate(DocumentItem, DocumentContent);
+            var itemName = itemobj.transform.Find("itemName").GetComponent<TMP_Text>();
+            //var itemTranscript = itemobj.transform.Find("transcript").GetComponent<TMP_Text>();
+            var itemIcon = itemobj.transform.Find("image").GetComponent<Image>();
+
+            //display name and image in inventory UI
+            itemName.text = item.displayName;
+            //itemTranscript.text = item.transcript;
+            itemIcon.sprite = item.image;
         }
     }
 

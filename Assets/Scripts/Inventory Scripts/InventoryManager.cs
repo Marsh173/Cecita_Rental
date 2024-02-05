@@ -22,10 +22,8 @@ public class InventoryManager : MonoBehaviour
     public GameObject Inventory;
 
     //Find Specific Item
-    public static bool EquipmentCollected = false;
-    public static bool EarbudsCollected = false;
-    public static bool RecorderCollected = false;
-    public static bool ThirdFloorElevatorCardCollected = false;
+    public static bool EquipmentCollected, RecorderCollected, EarbudsCollected = false;
+    public static bool ThirdFloorElevatorCardCollected, keyCollected = false;
 
     private void Awake()
     {
@@ -189,6 +187,14 @@ public class InventoryManager : MonoBehaviour
         {
             ThirdFloorElevatorCardCollected = true;
             //Debug.Log("Got Elevator card " + ThirdFloorElevatorCardCollected);
+        }
+    }
+
+    public void TempKeyUnlock()
+    {
+        if (NItems.Find(item => item.name == "Small Key"))
+        {
+            keyCollected = true;
         }
     }
 

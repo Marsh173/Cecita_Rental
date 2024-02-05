@@ -14,7 +14,6 @@ public class InteractableItem : Interactable
     //public Color originalColor;
     //public Color blinkColor = Color.red;
     //public float blinkSpeed = 1;
-    public TMP_Text monologue;
 
     private void Start()
     {

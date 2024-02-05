@@ -60,7 +60,7 @@ public class NoSightAllowed : MonoBehaviour
         TimerActive = true;
         countDownTime = 5f;
         eye_UI.image.sprite = Eye_Open;
-        FInstructionText.text = "Press F to close your eyes";
+        FInstructionText.text = "to close your eyes";
         anim.SetBool("isBegun", false);
 
         CurrentEyeBarAmount = 100f;
@@ -79,10 +79,10 @@ public class NoSightAllowed : MonoBehaviour
             EyeAnimation();
             Debug.Log("animation played");
             //eye_UI.onClick.Invoke();
-            FInstructionText.text = FInstructionText.text == "Press F to open your eyes" ? "Press F to close your eyes" : "Press F to open your eyes";
+            FInstructionText.text = FInstructionText.text == "to open your eyes" ? "to close your eyes" : "to open your eyes";
             
             //eye close recharge bar
-            if (FInstructionText.text == "Press F to open your eyes")
+            if (FInstructionText.text == "to open your eyes")
             {
                 //prevent several rechage running at the same time
                 if (rechargeC != null)
@@ -101,7 +101,7 @@ public class NoSightAllowed : MonoBehaviour
             }
         }
 
-        if (FInstructionText.text == "Press F to close your eyes")
+        if (FInstructionText.text == "to close your eyes")
         {
             //decrease when eye open
             if (TimerActive && CurrentEyeBarAmount != 0)
@@ -111,11 +111,11 @@ public class NoSightAllowed : MonoBehaviour
                 //Debug.Log("slider value " + slider.value);
             }
 
-            if (CurrentEyeBarAmount <= 0 && FInstructionText.text != "Press F to open your eyes")
+            if (CurrentEyeBarAmount <= 0 && FInstructionText.text != "to open your eyes")
             {
                 Debug.Log(CurrentEyeBarAmount);
                 //Respawn.dead = true;
-                FInstructionText.text = "Press F to open your eyes";
+                FInstructionText.text = "to open your eyes";
                 CloseEyeAnimation();
 
                 if (rechargeC != null)

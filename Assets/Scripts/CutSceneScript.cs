@@ -11,8 +11,8 @@ public class CutSceneScript : MonoBehaviour
     public AudioSource emailsound;
     public AudioClip emailNote;
     public static bool cutsceneEnd;
-    public GameObject taskList, taskTriggers, FirstPerson, startSceneObj, cutSceneCanvas, crosshair, dialoguemanager, endscneneObj;
-    public TMP_Text monologue;
+    public GameObject taskList, taskTriggers, FirstPerson, startSceneObj, crosshair, dialoguemanager, endscneneObj;
+    public TMP_Text cutSceneMonologue;
     public static bool talkedtoNPC, enteredEndSequen;
 
     private void Start()
@@ -20,6 +20,7 @@ public class CutSceneScript : MonoBehaviour
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = false;
 
+        cutSceneMonologue.text = "";
         cutsceneEnd = enteredEndSequen = false;
         talkedtoNPC = false;
         startcutscene = startSceneObj.GetComponent<PlayableDirector>();
@@ -40,6 +41,7 @@ public class CutSceneScript : MonoBehaviour
         endscnene = endscneneObj.GetComponent<PlayableDirector>();
         emailsound = GetComponent<AudioSource>();
 
+        startSceneObj.SetActive(true);
         startcutscene.Play();
         startcutscene.stopped += NextsStep;
     }
@@ -47,6 +49,9 @@ public class CutSceneScript : MonoBehaviour
     {
         if (enteredEndSequen)
         {
+            enteredEndSequen = false;
+            FirstPerson.SetActive(false);
+            crosshair.SetActive(false);
             endscneneObj.SetActive(true);
             endscnene.Play();
             endscnene.stopped += NexteStep;
@@ -61,10 +66,9 @@ public class CutSceneScript : MonoBehaviour
         taskTriggers.SetActive(true);
         FirstPerson.SetActive(true);
         startSceneObj.SetActive(false);
-        cutSceneCanvas.SetActive(false);
         crosshair.SetActive(true);
         dialoguemanager.SetActive(true);
-        monologue.text = "That's an email from the manager, I better check my laptop.";
+        cutSceneMonologue.text = "That's an email from the manager, I better check my laptop.";
         StartCoroutine(shoMonologue(5));
     }
 
@@ -73,9 +77,10 @@ public class CutSceneScript : MonoBehaviour
         endscneneObj.SetActive(false);
         SceneManager.LoadScene("Night_One");
     }
+
         public IEnumerator shoMonologue(int sec)
     {
         yield return new WaitForSeconds(sec);
-        monologue.text = "";
+        cutSceneMonologue.text = "";
     }
 }

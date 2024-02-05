@@ -112,7 +112,7 @@ public class InspectionCameraTransition : MonoBehaviour
         {
             this.GetComponent<Outline>().enabled = true;
         }
-        PlayerInteract.instnace.message.enabled = true;
+        PlayerInteract.instnace.pMessage.enabled = true;
         PlayerInteract.instnace.itemIcon.SetActive(true);
     }
 }

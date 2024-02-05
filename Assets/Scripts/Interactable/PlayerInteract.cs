@@ -13,7 +13,7 @@ public class PlayerInteract : MonoBehaviour
     public UnityEvent EventTurnOffInteraction;
 
     public Camera cam;
-    public TMP_Text message;
+    public TMP_Text pMessage, monologue;
     public GameObject itemIcon;
     private GameObject lastHitObject;
 
@@ -35,7 +35,8 @@ public class PlayerInteract : MonoBehaviour
         Time.timeScale = 1;
 
         instnace = this;
-        if (message.text != null) message.text = "";
+        if (pMessage.text != null) pMessage.text = "";
+        if (monologue.text != null) monologue.text = "";
 
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Confined;
@@ -89,7 +90,8 @@ public class PlayerInteract : MonoBehaviour
                     {
                         //Debug.Log(hitInfo.collider.GetComponent<Interactable>().promptMessage);
                         hitInfo.collider.GetComponent<Interactable>().BaseInteract();
-                        message.text = hitInfo.collider.GetComponent<Interactable>().promptMessage;
+                        pMessage.text = hitInfo.collider.GetComponent<Interactable>().promptMessage;
+                        monologue.text = hitInfo.collider.GetComponent<Interactable>().monologueText;
 
                         //Turn on interactble item icon                                                     -Bryan's latest
                         itemIcon = hitInfo.collider.GetComponent<Interactable>().promptIcon;
@@ -106,9 +108,10 @@ public class PlayerInteract : MonoBehaviour
             }
             else
             {
-                if (message.text != null) message.text = "";
+                if (pMessage.text != null) pMessage.text = "";
+                if (monologue.text != null) monologue.text = "";
 
-                if(itemIcon != null)
+                if (itemIcon != null)
                 {
                     //Turn off interactable item icon                                                   -Bryan's latest
                     itemIcon.SetActive(false);
@@ -121,7 +124,8 @@ public class PlayerInteract : MonoBehaviour
         }
         else
         {
-            if (message.text != null) message.text = "";
+            if (pMessage.text != null) pMessage.text = "";
+            if (monologue.text != null) monologue.text = "";
 
             //Turn off interactable item icon                                                       -Bryan's latest
             if (itemIcon != null)

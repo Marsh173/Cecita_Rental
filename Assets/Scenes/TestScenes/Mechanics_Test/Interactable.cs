@@ -5,6 +5,8 @@ using UnityEngine;
 public abstract class Interactable : MonoBehaviour
 {
     public string promptMessage;
+    [TextArea(5, 5)]
+    public string monologueText;
     public GameObject promptIcon;
 
     public void BaseInteract()

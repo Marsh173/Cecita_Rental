@@ -64,17 +64,16 @@ public class InventoryManager : MonoBehaviour
             }
             else if(Inventory.transform.position.y != 540)
             {
+                //show cursor when open inventory 
+                Cursor.lockState = CursorLockMode.Confined;
+                Cursor.visible = true;
+
                 Inventory.transform.position = new Vector2(960, 540);
                 FirstPersonAIO.instance.enableCameraMovement = false;
                 FirstPersonAIO.instance.playerCanMove = false;
 
-                
                 //List every item each time the inventory is opened
                 ListItems();
-
-                //show cursor when open inventory 
-                Cursor.lockState = CursorLockMode.Confined;
-                Cursor.visible = true;
             }
         }
 

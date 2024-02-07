@@ -38,8 +38,8 @@ public class InventoryCollapseController : MonoBehaviour
         if(catagory == "Audio")
         {
             audio_viewport.SetActive(true);
-            monster_title.GetComponent<RectTransform>().anchoredPosition = new Vector3(audio_t.anchoredPosition.x, audio_t.anchoredPosition.y - 100, 0);
-            monsterspe_t.anchoredPosition = new Vector3(audio_t.anchoredPosition.x, monster_t.anchoredPosition.y - 25, 0);
+            //monster_title.GetComponent<RectTransform>().anchoredPosition = new Vector3(audio_t.anchoredPosition.x, audio_t.anchoredPosition.y - 100, 0);
+            //monsterspe_t.anchoredPosition = new Vector3(audio_t.anchoredPosition.x, monster_t.anchoredPosition.y - 25, 0);
         }
         else if(catagory == "Monster")
         {

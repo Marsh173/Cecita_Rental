@@ -40,7 +40,7 @@ public class Elevator : InteractableItemWithEvent
             //Play button animation
             anim.SetBool("isPressed", true);
 
-            //Audio: Tenant in 303 is entering the elevator. 
+            //Audio: Tenant in 303 is accesing the elevator. 
 
 
             //play elevator open sequence
@@ -62,7 +62,7 @@ public class Elevator : InteractableItemWithEvent
     {
         anim.SetBool("isPressed", true);
 
-        //audio: elevator door is opening
+        //audio: elevator door opening
 
         //play elevator open sequence
         StartCoroutine(ElevatorDoorOpenSequence(outsideDoor, closeDoorPos.position.z, false));
@@ -129,37 +129,33 @@ public class Elevator : InteractableItemWithEvent
         // close the door automatically after opening
         if (isEnteringElevator) //player pressed button, wait for elevator to arrive. 
         {
-            Debug.Log("Am I inside?" + ElevatorController.isInsideElevator);
+            //yield return new WaitForSeconds(2f);
 
-            if (ElevatorController.isInsideElevator)
+            while (!ElevatorController.isInsideElevator)
             {
-                Debug.Log("Player inside, close door now");
-                StartCoroutine(ElevatorDoorCloseSequence(outsideDoor, openDoorPos.position.z, false));
-                StartCoroutine(ElevatorDoorCloseSequence(insideDoor, openDoorPos.position.z, true));
-                
+                yield return new WaitForSeconds(1f);
             }
-            else
-            {
-                yield return new WaitForSeconds(15f);
-            }
+
+            Debug.Log("Player inside, close door now");
+            Debug.Log("Am I inside?" + ElevatorController.isInsideElevator);
+            yield return new WaitForSeconds(1f);
+            StartCoroutine(ElevatorDoorCloseSequence(outsideDoor, openDoorPos.position.z, false));
+            StartCoroutine(ElevatorDoorCloseSequence(insideDoor, openDoorPos.position.z, true));
+
         }
         else //player took the elevator, reach destination
         {
+            while(ElevatorController.isInsideElevator)
+            {
+                yield return new WaitForSeconds(1f);
+            }
+
+            Debug.Log("Player outside, close door now");
             Debug.Log("Exit: am I still inside?" + ElevatorController.isInsideElevator);
+            yield return new WaitForSeconds(1f);
+            StartCoroutine(ElevatorDoorCloseSequence(outsideDoor, openDoorPos.position.z, false));
+            StartCoroutine(ElevatorDoorCloseSequence(insideDoor, openDoorPos.position.z, true));
 
-            //check if player is outside
-            if (!ElevatorController.isInsideElevator)
-            {
-                
-                Debug.Log("Player outside, close door now");
-                StartCoroutine(ElevatorDoorCloseSequence(outsideDoor, openDoorPos.position.z, false));
-                StartCoroutine(ElevatorDoorCloseSequence(insideDoor, openDoorPos.position.z, true));
-
-            }
-            else
-            {
-                yield return new WaitForSeconds(15f);
-            }
         }
 
        
@@ -258,7 +254,7 @@ public class Elevator : InteractableItemWithEvent
             UnavailableButtons();
         }
     }
-
+    
     public void FourthFloor()
     {
         UnavailableButtons();

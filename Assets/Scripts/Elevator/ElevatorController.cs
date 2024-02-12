@@ -95,13 +95,13 @@ public class ElevatorController : MonoBehaviour
         GameObject floorNumObj = floorNumTransform.gameObject;
 
         //get the two arrow images
-        Transform arrowDownTransform = floorNumTransform.GetChild(0);
+        Transform arrowDownTransform = floorNumTransform.GetChild(2);
         GameObject downObj = arrowDownTransform.gameObject;
 
         outer_down_sign = downObj.GetComponent<Image>();
         outer_down_sign.enabled = false;
 
-        Transform arrowUpTransform = floorNumTransform.GetChild(1);
+        Transform arrowUpTransform = floorNumTransform.GetChild(3);
         GameObject upObj = arrowUpTransform.gameObject;
 
         outer_up_sign = upObj.GetComponent<Image>();
@@ -173,25 +173,29 @@ public class ElevatorController : MonoBehaviour
         //elevator moving sequence
         CoroutineManager.StartStaticCoroutine(ElevatorMove(start, 1));
 
-
-        //update scene list.
         if (!isSceneLoaded)
         {
-            foreach (Scene scene in loadedScenes)
-            {
-                if (scene.name != "Day_General_System" && scene.name != "Elevator")
-                {
-                    SceneManager.UnloadSceneAsync(scene);
-                    Debug.Log("Unloaded Scene: " + scene.name);
-                }
-            }
-
-            SceneManager.LoadScene("Lobby", LoadSceneMode.Additive);
-
-            CoroutineManager.StartStaticCoroutine(UpdateListAfterUnload());
+            CoroutineManager.StartStaticCoroutine(UpdateSceneListAndLoadLobby());
         }
-      
-       
+    }
+
+    private static IEnumerator UpdateSceneListAndLoadLobby()
+    {
+        // Unload scenes asynchronously
+        foreach (Scene scene in loadedScenes)
+        {
+            if (scene.name != "Day_General_System" && scene.name != "Elevator")
+            {
+                yield return SceneManager.UnloadSceneAsync(scene);
+                Debug.Log("Unloaded Scene: " + scene.name);
+            }
+        }
+
+        // Load lobby scene additively asynchronously
+        yield return SceneManager.LoadSceneAsync("Lobby", LoadSceneMode.Additive);
+
+        // Start another coroutine for additional tasks after unloading and loading scenes
+        CoroutineManager.StartStaticCoroutine(UpdateListAfterUnload());
     }
 
     public static void GotoThirdFloor()
@@ -286,6 +290,7 @@ public class ElevatorController : MonoBehaviour
         }
     }
 
+
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -334,7 +339,7 @@ public class ElevatorController : MonoBehaviour
             }
 
 
-            yield return new WaitForSeconds(1.0f);
+            yield return new WaitForSeconds(3.0f);
             inner_down_sign.enabled = false;
             inner_floor_indicator.text = "";
             anim.SetBool("isBright", false);
@@ -357,14 +362,17 @@ public class ElevatorController : MonoBehaviour
                 inner_floor_indicator.text = start.ToString();
             }
 
-            yield return new WaitForSeconds(1.0f);
+            yield return new WaitForSeconds(3.0f);
             inner_up_sign.enabled = false;
             inner_floor_indicator.text = "";
             anim.SetBool("isBright", false);
         }
 
         finishMoving = true;
-        
+        Debug.Log("has finished moving? " + finishMoving);
+
+        yield return new WaitForSeconds(1f);
+
     }
 
 

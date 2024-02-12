@@ -7078,6 +7078,17 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &470631826 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7074337523325829901, guid: 8165256db8ad1ec44929f67b7fe66ca9, type: 3}
+  m_PrefabInstance: {fileID: 1782095295}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c44e6c300a62284409904b905a4cc2e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!65 &478451749
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -25625,6 +25636,10 @@ PrefabInstance:
       value: 1678950954
       objectReference: {fileID: 0}
     - target: {fileID: 3930435666512660772, guid: 8165256db8ad1ec44929f67b7fe66ca9, type: 3}
+      propertyPath: walkScript
+      value: 
+      objectReference: {fileID: 1327212128}
+    - target: {fileID: 3930435666512660772, guid: 8165256db8ad1ec44929f67b7fe66ca9, type: 3}
       propertyPath: maxDistance
       value: 25
       objectReference: {fileID: 0}
@@ -25638,43 +25653,43 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3930435666512660772, guid: 8165256db8ad1ec44929f67b7fe66ca9, type: 3}
       propertyPath: AwfulBroadcastEventPath.Path
-      value: event:/Monsters/Walker--Boots_Muffled
+      value: event:/Monsters/Walker-HighHeel_Muffled
       objectReference: {fileID: 0}
     - target: {fileID: 3930435666512660772, guid: 8165256db8ad1ec44929f67b7fe66ca9, type: 3}
       propertyPath: BeautifulBroadcastEventPath.Path
-      value: event:/Monsters/Walker--Boots
+      value: event:/Monsters/Walker-HighHeel
       objectReference: {fileID: 0}
     - target: {fileID: 3930435666512660772, guid: 8165256db8ad1ec44929f67b7fe66ca9, type: 3}
       propertyPath: AwfulBroadcastEventPath.Guid.Data1
-      value: -1083594218
+      value: 939871151
       objectReference: {fileID: 0}
     - target: {fileID: 3930435666512660772, guid: 8165256db8ad1ec44929f67b7fe66ca9, type: 3}
       propertyPath: AwfulBroadcastEventPath.Guid.Data2
-      value: 1146379755
+      value: 1317348166
       objectReference: {fileID: 0}
     - target: {fileID: 3930435666512660772, guid: 8165256db8ad1ec44929f67b7fe66ca9, type: 3}
       propertyPath: AwfulBroadcastEventPath.Guid.Data3
-      value: -383454060
+      value: -565389177
       objectReference: {fileID: 0}
     - target: {fileID: 3930435666512660772, guid: 8165256db8ad1ec44929f67b7fe66ca9, type: 3}
       propertyPath: AwfulBroadcastEventPath.Guid.Data4
-      value: -718397903
+      value: 1041614947
       objectReference: {fileID: 0}
     - target: {fileID: 3930435666512660772, guid: 8165256db8ad1ec44929f67b7fe66ca9, type: 3}
       propertyPath: BeautifulBroadcastEventPath.Guid.Data1
-      value: -942400078
+      value: -811906022
       objectReference: {fileID: 0}
     - target: {fileID: 3930435666512660772, guid: 8165256db8ad1ec44929f67b7fe66ca9, type: 3}
       propertyPath: BeautifulBroadcastEventPath.Guid.Data2
-      value: 1111312006
+      value: 1112828830
       objectReference: {fileID: 0}
     - target: {fileID: 3930435666512660772, guid: 8165256db8ad1ec44929f67b7fe66ca9, type: 3}
       propertyPath: BeautifulBroadcastEventPath.Guid.Data3
-      value: 234756015
+      value: -401904753
       objectReference: {fileID: 0}
     - target: {fileID: 3930435666512660772, guid: 8165256db8ad1ec44929f67b7fe66ca9, type: 3}
       propertyPath: BeautifulBroadcastEventPath.Guid.Data4
-      value: 1678950954
+      value: -2139386136
       objectReference: {fileID: 0}
     - target: {fileID: 3993299752107274871, guid: 8165256db8ad1ec44929f67b7fe66ca9, type: 3}
       propertyPath: OverrideAttenuation
@@ -33983,6 +33998,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2842972356422183678, guid: 8ee4ee59e2b667b49bd084970ee47abd, type: 3}
   m_PrefabInstance: {fileID: 1309417849}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1327212128 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7074337523325829901, guid: 8165256db8ad1ec44929f67b7fe66ca9, type: 3}
+  m_PrefabInstance: {fileID: 798215674}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c44e6c300a62284409904b905a4cc2e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1329408188
 GameObject:
   m_ObjectHideFlags: 0
@@ -36029,11 +36055,11 @@ MonoBehaviour:
   CollisionTag: 
   EventReference:
     Guid:
-      Data1: -141988667
-      Data2: 1174051943
-      Data3: -764316230
-      Data4: -775299058
-    Path: event:/Saferoom/Saferoom_1
+      Data1: -826212589
+      Data2: 1125575318
+      Data3: -260697954
+      Data4: -2036327968
+    Path: event:/Saferoom/Saferoom_2
   Event: 
   PlayEvent: 1
   StopEvent: 2
@@ -39167,6 +39193,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1676159861}
   m_CullTransparentMesh: 1
+--- !u!114 &1679762104 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7074337523325829901, guid: 8165256db8ad1ec44929f67b7fe66ca9, type: 3}
+  m_PrefabInstance: {fileID: 1777098198}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c44e6c300a62284409904b905a4cc2e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1682219202 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7074337523019683464, guid: 8165256db8ad1ec44929f67b7fe66ca9, type: 3}
@@ -40752,6 +40789,10 @@ PrefabInstance:
       value: 1678950954
       objectReference: {fileID: 0}
     - target: {fileID: 3930435666512660772, guid: 8165256db8ad1ec44929f67b7fe66ca9, type: 3}
+      propertyPath: walkScript
+      value: 
+      objectReference: {fileID: 1679762104}
+    - target: {fileID: 3930435666512660772, guid: 8165256db8ad1ec44929f67b7fe66ca9, type: 3}
       propertyPath: maxDistance
       value: 25
       objectReference: {fileID: 0}
@@ -40765,43 +40806,43 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3930435666512660772, guid: 8165256db8ad1ec44929f67b7fe66ca9, type: 3}
       propertyPath: AwfulBroadcastEventPath.Path
-      value: event:/Monsters/Walker--Boots_Muffled
+      value: event:/Monsters/Walker-Sneaker_Muffled
       objectReference: {fileID: 0}
     - target: {fileID: 3930435666512660772, guid: 8165256db8ad1ec44929f67b7fe66ca9, type: 3}
       propertyPath: BeautifulBroadcastEventPath.Path
-      value: event:/Monsters/Walker--Boots
+      value: event:/Monsters/Walker-Sneaker
       objectReference: {fileID: 0}
     - target: {fileID: 3930435666512660772, guid: 8165256db8ad1ec44929f67b7fe66ca9, type: 3}
       propertyPath: AwfulBroadcastEventPath.Guid.Data1
-      value: -1083594218
+      value: -454623184
       objectReference: {fileID: 0}
     - target: {fileID: 3930435666512660772, guid: 8165256db8ad1ec44929f67b7fe66ca9, type: 3}
       propertyPath: AwfulBroadcastEventPath.Guid.Data2
-      value: 1146379755
+      value: 1160109190
       objectReference: {fileID: 0}
     - target: {fileID: 3930435666512660772, guid: 8165256db8ad1ec44929f67b7fe66ca9, type: 3}
       propertyPath: AwfulBroadcastEventPath.Guid.Data3
-      value: -383454060
+      value: -1496115053
       objectReference: {fileID: 0}
     - target: {fileID: 3930435666512660772, guid: 8165256db8ad1ec44929f67b7fe66ca9, type: 3}
       propertyPath: AwfulBroadcastEventPath.Guid.Data4
-      value: -718397903
+      value: -1502836374
       objectReference: {fileID: 0}
     - target: {fileID: 3930435666512660772, guid: 8165256db8ad1ec44929f67b7fe66ca9, type: 3}
       propertyPath: BeautifulBroadcastEventPath.Guid.Data1
-      value: -942400078
+      value: -395912966
       objectReference: {fileID: 0}
     - target: {fileID: 3930435666512660772, guid: 8165256db8ad1ec44929f67b7fe66ca9, type: 3}
       propertyPath: BeautifulBroadcastEventPath.Guid.Data2
-      value: 1111312006
+      value: 1203816264
       objectReference: {fileID: 0}
     - target: {fileID: 3930435666512660772, guid: 8165256db8ad1ec44929f67b7fe66ca9, type: 3}
       propertyPath: BeautifulBroadcastEventPath.Guid.Data3
-      value: 234756015
+      value: -599826794
       objectReference: {fileID: 0}
     - target: {fileID: 3930435666512660772, guid: 8165256db8ad1ec44929f67b7fe66ca9, type: 3}
       propertyPath: BeautifulBroadcastEventPath.Guid.Data4
-      value: 1678950954
+      value: -691091645
       objectReference: {fileID: 0}
     - target: {fileID: 3993299752107274871, guid: 8165256db8ad1ec44929f67b7fe66ca9, type: 3}
       propertyPath: OverrideAttenuation
@@ -41054,6 +41095,10 @@ PrefabInstance:
       propertyPath: EventReference.Guid.Data4
       value: 1545233173
       objectReference: {fileID: 0}
+    - target: {fileID: 3930435666512660772, guid: 8165256db8ad1ec44929f67b7fe66ca9, type: 3}
+      propertyPath: walkScript
+      value: 
+      objectReference: {fileID: 470631826}
     - target: {fileID: 3930435666512660772, guid: 8165256db8ad1ec44929f67b7fe66ca9, type: 3}
       propertyPath: maxDistance
       value: 30
@@ -50796,22 +50841,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BeautifulBroadcastEventPath:
     Guid:
-      Data1: 2138642483
-      Data2: 1077793942
-      Data3: 412312992
-      Data4: 1496375038
-    Path: event:/Monsters/Walker-Barefeet
+      Data1: 1657163875
+      Data2: 1193576967
+      Data3: 853722559
+      Data4: -2104242098
+    Path: event:/Monsters/Walker-Kid
   AwfulBroadcastEventPath:
     Guid:
-      Data1: -1091536775
-      Data2: 1152296732
-      Data3: -1784546652
-      Data4: -939202820
-    Path: event:/Monsters/Walker-Barefeet_Muffled
+      Data1: 1070299297
+      Data2: 1139891877
+      Data3: 2125585599
+      Data4: 1780329986
+    Path: event:/Monsters/Walker-Kid_Muffled
   OverrideAttenuation: 1
   minDistance: 3
   maxDistance: 30
-  walkScript: {fileID: 0}
+  walkScript: {fileID: 7074337522901254138}
 --- !u!114 &3930435667708183557
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50826,22 +50871,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BeautifulBroadcastEventPath:
     Guid:
-      Data1: 2138642483
-      Data2: 1077793942
-      Data3: 412312992
-      Data4: 1496375038
-    Path: event:/Monsters/Walker-Barefeet
+      Data1: 1657163875
+      Data2: 1193576967
+      Data3: 853722559
+      Data4: -2104242098
+    Path: event:/Monsters/Walker-Kid
   AwfulBroadcastEventPath:
     Guid:
-      Data1: -1091536775
-      Data2: 1152296732
-      Data3: -1784546652
-      Data4: -939202820
-    Path: event:/Monsters/Walker-Barefeet_Muffled
+      Data1: 1070299297
+      Data2: 1139891877
+      Data3: 2125585599
+      Data4: 1780329986
+    Path: event:/Monsters/Walker-Kid_Muffled
   OverrideAttenuation: 1
   minDistance: 3
   maxDistance: 30
-  walkScript: {fileID: 0}
+  walkScript: {fileID: 7074337522105142828}
 --- !u!33 &3954378035383791730
 MeshFilter:
   m_ObjectHideFlags: 0

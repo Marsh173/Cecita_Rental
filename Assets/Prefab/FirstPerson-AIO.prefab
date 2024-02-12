@@ -375,6 +375,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf1a5ad4f9ffb154ca7813fdad11017a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enableFOVShift: 1
   controllerPauseState: 0
   enableCameraMovement: 1
   mouseInputInversion: 0
@@ -536,6 +537,9 @@ MonoBehaviour:
   MaterialTypes:
   - wood
   - carpet
+  - metal
+  - marble
+  - concrete
   DefulatMaterialValue: 0
 --- !u!114 &853425280604392184
 MonoBehaviour:
@@ -585,7 +589,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2884dcd01bf3064db3b94b85f73d1ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hasRecorderTurnedOn: 0
   EventTurnOnInteraction:
     m_PersistentCalls:
       m_Calls:
@@ -617,7 +620,8 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   cam: {fileID: 1768997895139496567}
-  message: {fileID: 0}
+  pMessage: {fileID: 0}
+  monologue: {fileID: 0}
   itemIcon: {fileID: 0}
   distance: 2
   mask:
@@ -694,8 +698,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   length: 0
+  UIFadeRate: 0
   ForwardWallHitUI: {fileID: 0}
-  BackWallHitUI: {fileID: 0}
   RightWallHitUI: {fileID: 0}
   LeftWallHitUI: {fileID: 0}
 --- !u!114 &5326717526596135503
@@ -711,6 +715,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   checkpoint: {fileID: 0}
+  placeholderDeathText: {fileID: 0}
 --- !u!1 &1784866649624928378
 GameObject:
   m_ObjectHideFlags: 0

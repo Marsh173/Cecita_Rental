@@ -27,7 +27,7 @@ public class TriggerEye : MonoBehaviour
         }
 
         //tutorial warning about eye amount
-        if (!firstEyeWarning && NoSightAllowed.CurrentEyeBarAmount <= 25f && eyeIcon.active && InventoryManager.EquipmentCollected)
+        if (!firstEyeWarning && NoSightAllowed.CurrentEyeBarAmount <= 25f && eyeIcon.activeSelf && InventoryManager.EquipmentCollected)
         {
             earBudVoice.Stop();
             earBudVoice.clip = Resources.Load<AudioClip>("Night 0/" + "Night 0 - Close!");

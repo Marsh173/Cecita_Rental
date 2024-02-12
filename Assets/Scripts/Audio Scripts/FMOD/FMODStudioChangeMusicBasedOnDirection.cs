@@ -4,7 +4,10 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-
+/***
+ * Monster Body
+ * 
+ */
 namespace FMODUnity
 {
     public class FMODStudioChangeMusicBasedOnDirection : MonoBehaviour
@@ -62,10 +65,36 @@ namespace FMODUnity
 
             if (walkScript.stopMusic)
             {
-                beautiful_broadcast.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-                awful_broadcast.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-               
-                Debug.Log("STOP ALL MUSIC...");
+                FMOD.Studio.PLAYBACK_STATE fmodPbState;
+                beautiful_broadcast.getPlaybackState(out fmodPbState);
+
+                if (fmodPbState == FMOD.Studio.PLAYBACK_STATE.PLAYING)
+                {
+                    beautiful_broadcast.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                    Debug.Log("STOP ALL MUSIC...");
+                }
+
+                FMOD.Studio.PLAYBACK_STATE fmodPbState1;
+                awful_broadcast.getPlaybackState(out fmodPbState1);
+
+                if (fmodPbState1 == FMOD.Studio.PLAYBACK_STATE.PLAYING)
+                {
+                    awful_broadcast.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                    Debug.Log("STOP ALL MUSIC...");
+                }
+
+
+                //Debug.Log("STOP ALL MUSIC...");
+            }
+            else
+            {
+                FMOD.Studio.PLAYBACK_STATE fmodPbState;
+                beautiful_broadcast.getPlaybackState(out fmodPbState);
+
+                if (fmodPbState != FMOD.Studio.PLAYBACK_STATE.PLAYING)
+                {
+                    beautiful_broadcast.start();
+                }
             }
 
         }

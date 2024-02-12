@@ -43,6 +43,7 @@ public class Walkers : MonoBehaviour
         {
             trigger = false;
             walker.transform.position = initialPosition;
+            stopMusic = true;
         }
 
         if (trigger && !stalker)
@@ -72,7 +73,7 @@ public class Walkers : MonoBehaviour
         {
             if (walker.transform.position == stop.position || walker.transform.position == patrolPoints[currentPointIndex].position)
             {
-                Debug.Log("stopped");
+                //Debug.Log("stopped");
                 stopMusic = true;
                 //walker.SetActive(false);
             }

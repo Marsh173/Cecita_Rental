@@ -43,6 +43,7 @@ public class Walkers : MonoBehaviour
         {
             trigger = false;
             walker.transform.position = initialPosition;
+            stopMusic = true;
         }
 
         if (trigger && !stalker)
@@ -67,10 +68,12 @@ public class Walkers : MonoBehaviour
    
         }
 
+        float threshold = 0.005f;
 
-        if(patrolPoints.Length != 0)
+        if (patrolPoints.Length != 0)
         {
-            if (walker.transform.position == stop.position || walker.transform.position == patrolPoints[currentPointIndex].position)
+            
+            if (Vector3.Distance(walker.transform.position, stop.position) < threshold || walker.transform.position == patrolPoints[currentPointIndex].position)
             {
                 Debug.Log("stopped");
                 stopMusic = true;

@@ -11,8 +11,8 @@ using UnityEngine.UI;
  */
 public class ElevatorController : MonoBehaviour
 {
-    
-    public static List<Scene> loadedScenes = new List<Scene>();
+    public Elevator elevator;
+    public List<Scene> loadedScenes = new List<Scene>();
     private int sceneCount;
 
     //buttons
@@ -22,22 +22,22 @@ public class ElevatorController : MonoBehaviour
     private bool elevatorWasMoving = false;
 
     [Header("Inner Elevator Floor Indicator")]
-    private static TextMeshProUGUI inner_floor_indicator;
-    private static Image inner_down_sign;
-    private static Image inner_up_sign;
-    private static bool finishMoving = false;
+    private TextMeshProUGUI inner_floor_indicator;
+    private Image inner_down_sign;
+    private Image inner_up_sign;
+    private bool finishMoving = false;
 
-    private static GameObject down_button;
-    private static GameObject up_button;
+    private GameObject down_button;
+    private GameObject up_button;
 
 
     [Header("Outer Elevator Floor Indicator")]
-    private static Image outer_down_sign;
-    private static Image outer_up_sign;
-    private static bool finishArrival = false;
+    private Image outer_down_sign;
+    private Image outer_up_sign;
+    private bool finishArrival = false;
 
 
-    public static bool isInsideElevator = false;
+    public bool isInsideElevator = false;
 
 
     private void Start()
@@ -120,7 +120,7 @@ public class ElevatorController : MonoBehaviour
 
     private void Update()
     {
-        bool elevatorIsMovingNow = Elevator.elevatorIsMoving;
+        bool elevatorIsMovingNow = elevator.elevatorIsMoving;
 
         if (elevatorIsMovingNow != elevatorWasMoving)
         {
@@ -139,7 +139,7 @@ public class ElevatorController : MonoBehaviour
         }
     }
 
-    public static void GotoLobby()
+    public void GotoLobby()
     {
         int start = 0;
 
@@ -171,15 +171,15 @@ public class ElevatorController : MonoBehaviour
 
 
         //elevator moving sequence
-        CoroutineManager.StartStaticCoroutine(ElevatorMove(start, 1));
+        StartCoroutine(ElevatorMove(start, 1));
 
         if (!isSceneLoaded)
         {
-            CoroutineManager.StartStaticCoroutine(UpdateSceneListAndLoadLobby());
+            StartCoroutine(UpdateSceneListAndLoadLobby()); 
         }
     }
 
-    private static IEnumerator UpdateSceneListAndLoadLobby()
+    IEnumerator UpdateSceneListAndLoadLobby()
     {
         // Unload scenes asynchronously
         foreach (Scene scene in loadedScenes)
@@ -195,10 +195,10 @@ public class ElevatorController : MonoBehaviour
         yield return SceneManager.LoadSceneAsync("Lobby", LoadSceneMode.Additive);
 
         // Start another coroutine for additional tasks after unloading and loading scenes
-        CoroutineManager.StartStaticCoroutine(UpdateListAfterUnload());
+        StartCoroutine(UpdateListAfterUnload());
     }
 
-    public static void GotoThirdFloor()
+    public void GotoThirdFloor()
     {
         //check if it is the current scene
         //if it is, do nothing. 
@@ -230,7 +230,7 @@ public class ElevatorController : MonoBehaviour
         }
 
         //elevator moving sequence
-        CoroutineManager.StartStaticCoroutine(ElevatorMove(start, 3));
+        StartCoroutine(ElevatorMove(start, 3));
 
 
         if (!isSceneLoaded)
@@ -249,13 +249,13 @@ public class ElevatorController : MonoBehaviour
             SceneManager.LoadScene("Protagonist_Room", LoadSceneMode.Additive);
 
             // Update the list after loading the scenes
-            CoroutineManager.StartStaticCoroutine(UpdateListAfterUnload());
+            StartCoroutine(UpdateListAfterUnload());
         }
        
     }
 
 
-    private static IEnumerator UpdateListAfterUnload()
+    IEnumerator UpdateListAfterUnload()
     {
         // Wait for the next frame
         yield return null;
@@ -306,7 +306,7 @@ public class ElevatorController : MonoBehaviour
         anim.SetBool("isBright", true);
     }
 
-    public static IEnumerator ElevatorMove(int start, int dest)
+    IEnumerator ElevatorMove(int start, int dest)
     {
         finishMoving = false;
 
@@ -376,7 +376,7 @@ public class ElevatorController : MonoBehaviour
     }
 
 
-    public static IEnumerator ElevatorArrive()
+    public IEnumerator ElevatorArrive()
     {
         finishArrival = false;
 
@@ -467,12 +467,12 @@ public class ElevatorController : MonoBehaviour
     }
 
 
-    public static bool FinishArrival()
+    public bool FinishArrival()
     {
         return finishArrival;
     }
 
-    public static bool FinishMoving()
+    public bool FinishMoving()
     {
         return finishMoving;
     }

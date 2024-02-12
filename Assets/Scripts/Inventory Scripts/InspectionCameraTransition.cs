@@ -28,8 +28,9 @@ public class InspectionCameraTransition : MonoBehaviour
         playercam = FirstPersonAIO.instance.gameObject.GetComponentInChildren<Camera>();
         originalCamPosition = playercam.transform;
         inspectionButton.SetActive(false);
-        PlayBody = FirstPersonAIO.instance.transform.GetChild(1).gameObject;
+        PlayBody = FirstPersonAIO.instance.transform.GetChild(1).GetChild(0).gameObject;
         initialFOV = playercam.fieldOfView;
+        FOVOnInteraction = initialFOV = 60f;
     }
 
     private void Update()
@@ -84,7 +85,7 @@ public class InspectionCameraTransition : MonoBehaviour
         {
             inspectionButton.SetActive(true);
         }
-        PlayBody.GetComponent<MeshRenderer>().enabled = false;
+        PlayBody.GetComponent<SkinnedMeshRenderer>().enabled = false;
 
         //outline + prompt message hide
         if (this.GetComponent<Outline>() != null)
@@ -106,7 +107,7 @@ public class InspectionCameraTransition : MonoBehaviour
             inspectionButton.SetActive(false);
         }
         inspectionWindow.SetActive(false);
-        PlayBody.GetComponent<MeshRenderer>().enabled = true;
+        PlayBody.GetComponent<SkinnedMeshRenderer>().enabled = true;
         //outline + prompt message show
         if (this.GetComponent<Outline>() != null)
         {

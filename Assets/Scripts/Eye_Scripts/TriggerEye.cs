@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TriggerEye : MonoBehaviour
 {
-    [SerializeField] private GameObject eyeIcon, MonsterZone, DeadEndZone;
+    [SerializeField] private GameObject eyeIcon, MonsterZone;
 
     private AudioSource earBudVoice;
 

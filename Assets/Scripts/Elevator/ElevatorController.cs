@@ -11,7 +11,7 @@ using UnityEngine.UI;
  */
 public class ElevatorController : MonoBehaviour
 {
-    public Elevator elevator;
+    
     public List<Scene> loadedScenes = new List<Scene>();
     private int sceneCount;
 
@@ -38,6 +38,9 @@ public class ElevatorController : MonoBehaviour
 
 
     public bool isInsideElevator = false;
+
+    public int currentFloor = 3;
+    public int targetFloor = 1;
 
 
     private void Start()
@@ -109,7 +112,7 @@ public class ElevatorController : MonoBehaviour
     }
 
 
-    private void setDownUpButtons()
+    public void setDownUpButtons()
     {
         Transform down_transform = this.transform.GetChild(1);
         down_button = down_transform.gameObject;
@@ -118,9 +121,9 @@ public class ElevatorController : MonoBehaviour
         up_button = up_transform.gameObject;
     }
 
-    private void Update()
+    public void Update()
     {
-        bool elevatorIsMovingNow = elevator.elevatorIsMoving;
+        bool elevatorIsMovingNow = Elevator.elevatorIsMoving;
 
         if (elevatorIsMovingNow != elevatorWasMoving)
         {
@@ -131,7 +134,7 @@ public class ElevatorController : MonoBehaviour
             elevatorWasMoving = elevatorIsMovingNow;
         }
     }
-    private void UpdateButtonLayers(bool elevatorIsMoving)
+    public void UpdateButtonLayers(bool elevatorIsMoving)
     {
         foreach (GameObject button in buttons)
         {
@@ -141,7 +144,7 @@ public class ElevatorController : MonoBehaviour
 
     public void GotoLobby()
     {
-        int start = 0;
+        targetFloor = 1;
 
         //check if lobby is the current scene
         bool isSceneLoaded = false;
@@ -151,12 +154,12 @@ public class ElevatorController : MonoBehaviour
             {
                 case "lobby":
                     isSceneLoaded = true;
-                    start = 1;
+                    currentFloor = 1;
                     
                     break;
 
                 case "Third_Floor":
-                    start = 3;
+                    currentFloor = 3;
                     break;
 
                 default:
@@ -171,7 +174,7 @@ public class ElevatorController : MonoBehaviour
 
 
         //elevator moving sequence
-        StartCoroutine(ElevatorMove(start, 1));
+        StartCoroutine(ElevatorMove(currentFloor, targetFloor));
 
         if (!isSceneLoaded)
         {
@@ -179,7 +182,7 @@ public class ElevatorController : MonoBehaviour
         }
     }
 
-    IEnumerator UpdateSceneListAndLoadLobby()
+    public IEnumerator UpdateSceneListAndLoadLobby()
     {
         // Unload scenes asynchronously
         foreach (Scene scene in loadedScenes)
@@ -193,6 +196,7 @@ public class ElevatorController : MonoBehaviour
 
         // Load lobby scene additively asynchronously
         yield return SceneManager.LoadSceneAsync("Lobby", LoadSceneMode.Additive);
+        currentFloor = targetFloor;
 
         // Start another coroutine for additional tasks after unloading and loading scenes
         StartCoroutine(UpdateListAfterUnload());
@@ -204,18 +208,19 @@ public class ElevatorController : MonoBehaviour
         //if it is, do nothing. 
         //else: unload then load scene.
 
-        int start = 0;
+        targetFloor = 3;
+        
         bool isSceneLoaded = false;
         foreach (Scene scene in loadedScenes)
         {
             switch (scene.name)
             {
                 case "lobby":
-                    start = 1;
+                    currentFloor = 1;
                     break;
 
                 case "Third_Floor":
-                    start = 3;
+                    currentFloor = 3;
                     isSceneLoaded = true;
                     break;
 
@@ -230,7 +235,7 @@ public class ElevatorController : MonoBehaviour
         }
 
         //elevator moving sequence
-        StartCoroutine(ElevatorMove(start, 3));
+        StartCoroutine(ElevatorMove(currentFloor, targetFloor));
 
 
         if (!isSceneLoaded)
@@ -248,6 +253,8 @@ public class ElevatorController : MonoBehaviour
             SceneManager.LoadScene("Third_Floor", LoadSceneMode.Additive);
             SceneManager.LoadScene("Protagonist_Room", LoadSceneMode.Additive);
 
+            currentFloor = targetFloor;
+
             // Update the list after loading the scenes
             StartCoroutine(UpdateListAfterUnload());
         }
@@ -255,7 +262,7 @@ public class ElevatorController : MonoBehaviour
     }
 
 
-    IEnumerator UpdateListAfterUnload()
+    public IEnumerator UpdateListAfterUnload()
     {
         // Wait for the next frame
         yield return null;
@@ -298,6 +305,14 @@ public class ElevatorController : MonoBehaviour
             Debug.Log("Player existed the elevator");
             isInsideElevator = false;
         }
+
+        StartCoroutine(ChangeTargetFloor());
+    }
+
+    public IEnumerator ChangeTargetFloor()
+    {
+        yield return new WaitForSeconds(Random.Range(3, 8));
+        targetFloor = Random.Range(1, 7);
     }
 
     private void ChangeButtonMaterial(int buttonIndex)
@@ -306,7 +321,7 @@ public class ElevatorController : MonoBehaviour
         anim.SetBool("isBright", true);
     }
 
-    IEnumerator ElevatorMove(int start, int dest)
+    public IEnumerator ElevatorMove(int start, int dest)
     {
         finishMoving = false;
 
@@ -382,8 +397,10 @@ public class ElevatorController : MonoBehaviour
 
         //elevator arrive sound
 
-
         //get the current floor
+        Debug.Log("The current target floor?" + currentFloor + " or " + targetFloor);
+
+
         int dest = 0;
         bool finishCheck = false;
         foreach (Scene scene in loadedScenes)
@@ -412,8 +429,16 @@ public class ElevatorController : MonoBehaviour
 
 
         //get a random number from 1 - 6, this is the elevator floor
-        int start = Random.Range(1, 7);
-
+        int start = 0;
+        if(currentFloor == targetFloor)
+        {
+            start = currentFloor;
+        }
+        else
+        {
+            start = Random.Range(1, 7);
+        }
+        
         Debug.Log("Elevator is coming from floor " + start);
 
         //get the current floor, get the destination floor
@@ -425,8 +450,6 @@ public class ElevatorController : MonoBehaviour
         else if (start > dest)
         {
             Debug.Log("Coming down");
-
-            
             outer_down_sign.enabled = true;
 
             while (start > dest)
@@ -436,17 +459,12 @@ public class ElevatorController : MonoBehaviour
                 
             }
 
-            
             yield return new WaitForSeconds(1.0f);
             outer_down_sign.enabled = false;
-
-
         }
         else
         {
             Debug.Log("Coming up");
-
-        
             outer_up_sign.enabled = true;
 
             while (start < dest)

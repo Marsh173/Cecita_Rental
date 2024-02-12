@@ -20,12 +20,12 @@ public class Elevator : InteractableItemWithEvent
 
     //button
     private Animator anim;
-    public bool elevatorIsMoving;
+    public static bool elevatorIsMoving;
     private string activeButtonName;
 
     private bool isEnteringElevator = false;
 
-    private ElevatorController elevatorController;
+    public ElevatorController elevatorController;
 
     private void Start()
     {
@@ -82,7 +82,7 @@ public class Elevator : InteractableItemWithEvent
         StartCoroutine(ElevatorDoorCloseSequence(insideDoor, openDoorPos.position.z, true));
     }
 
-    IEnumerator ElevatorArrivalSequence()
+    public IEnumerator ElevatorArrivalSequence()
     {
 
         StartCoroutine(elevatorController.ElevatorArrive());

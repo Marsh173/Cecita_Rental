@@ -1003,7 +1003,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.14117648}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1038,8 +1038,8 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 601910418174445859}
-          m_TargetAssemblyTypeName: HoverCollider, Assembly-CSharp
-          m_MethodName: hidetext
+          m_TargetAssemblyTypeName: HoverInventory, Assembly-CSharp
+          m_MethodName: hidehovertext
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -1054,8 +1054,8 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 601910418174445859}
-          m_TargetAssemblyTypeName: HoverCollider, Assembly-CSharp
-          m_MethodName: showtext
+          m_TargetAssemblyTypeName: HoverInventory, Assembly-CSharp
+          m_MethodName: showhovertext
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -1087,9 +1087,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4878852002872683253}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f079de645f839e459e22b3d54f630c5, type: 3}
+  m_Script: {fileID: 11500000, guid: aeb1b98a31928524bbb94c1ed88816e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hovertext: {fileID: 0}
 --- !u!1 &5876037738252374895
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,7 +12,7 @@ public class InventoryViewItem : MonoBehaviour
     [SerializeField] int index;
     [SerializeField] GameObject vig;
 
-    public NormalItems NItem;
+    public NormalItems NItems;
 
     private void Awake()
     {
@@ -30,8 +30,19 @@ public class InventoryViewItem : MonoBehaviour
             vig.transform.GetChild(0).gameObject.SetActive(true);
             vig.GetComponentInChildren<UIInspectCamController>().index_obj = index;
             vig.GetComponentInChildren<UIInspectCamController>().changeOBJ();
+        /*foreach (var item in NItems)
+        {
+            //find the elemets in each item and replace inventory default
+            GameObject itemobj = Instantiate(NormalItem, NormalItemContent);
+            var itemName = itemobj.transform.Find("itemName").GetComponent<TMP_Text>();
+
+            //display name and image in inventory UI
+            iconname.text = item.displayName;
+            icon_Description = item.descriptions;
+        }*/
             vig.transform.GetChild(0).GetChild(1).GetChild(1).gameObject.GetComponent<TMP_Text>().text = iconname.text;
-            vig.transform.GetChild(0).GetChild(2).GetChild(0).gameObject.GetComponent<TMP_Text>().text = icon_Description;
+            vig.transform.GetChild(0).GetChild(1).GetChild(1).gameObject.GetComponent<TMP_Text>().text = icon_Description;
+        vig.transform.GetChild(0).GetChild(2).GetChild(0).gameObject.GetComponent<TMP_Text>().text = icon_Description;
         //}
     }
 }

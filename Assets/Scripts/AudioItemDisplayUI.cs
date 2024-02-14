@@ -30,7 +30,14 @@ public class AudioItemDisplayUI : MonoBehaviour
             var timestamp = Mathf.RoundToInt(a.clip.length * (1 - progress));
             string min = Mathf.FloorToInt(timestamp / 60).ToString();
             int sec = timestamp % 60;
-            audiolength.text = min + " : " + sec.ToString();
+            string second = "";
+
+            if (min.Length < 2) min = "0" + min;
+            if (sec < 10) second = "0" + sec;
+            else second = sec.ToString();
+            
+
+            audiolength.text = min + " : " + second;
 
         }
        

@@ -100,7 +100,7 @@ public class TaskManager_Test_Yunfei : MonoBehaviour
         {
             //t.GetComponent<TextMesh>().fontStyle = FontStyle.Normal;
             t.GetComponentInChildren<TextMeshProUGUI>().fontSize = 20f;
-            t.GetComponentInChildren<TextMeshProUGUI>().margin = new Vector4(0, 0, 185, -25);
+            //t.GetComponentInChildren<TextMeshProUGUI>().margin = new Vector4(0, 0, 185, -25);
 
         }
         if (s == 2)
@@ -108,7 +108,7 @@ public class TaskManager_Test_Yunfei : MonoBehaviour
             //t.GetComponent<TextMesh>().fontStyle = FontStyle.Italic;
             t.GetComponentInChildren<TextMeshProUGUI>().fontStyle = FontStyles.Italic;
             t.GetComponentInChildren<TextMeshProUGUI>().fontSize = 20f;
-            t.GetComponentInChildren<TextMeshProUGUI>().margin = new Vector4(0, 0, 185, -25);
+           // t.GetComponentInChildren<TextMeshProUGUI>().margin = new Vector4(0, 0, 185 , -25);
         }
 
         RearrangeTasks();

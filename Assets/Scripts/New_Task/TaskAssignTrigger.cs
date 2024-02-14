@@ -11,6 +11,8 @@ public class TaskAssignTrigger : MonoBehaviour
     public int task_num_DONOTCHANGE = 0;
     public int attach_to_number = 0;
 
+    public float setafterawake = 0;
+
     private TaskManager_Test_Yunfei tm;
 
     private void Start()
@@ -19,7 +21,9 @@ public class TaskAssignTrigger : MonoBehaviour
 
         if (assign == AssignTask_By.add_when_awake)
         {
-            Set_Tasks();
+            if (setafterawake != 0) StartCoroutine(delay(setafterawake));
+            else
+                Set_Tasks();
         }
     }
 
@@ -36,6 +40,12 @@ public class TaskAssignTrigger : MonoBehaviour
     public enum Task_Type
     {
         Main_Task,Sub_Task, Sub_Sub_Task,none
+    }
+
+    public IEnumerator delay(float t)
+    {
+        yield return new WaitForSeconds(t);
+        Set_Tasks();
     }
 
     public void Set_Tasks()

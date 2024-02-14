@@ -23,12 +23,12 @@ public class InventoryCollapseController : MonoBehaviour
     //trigger recorder and earbud display to be true
     private void Update()
     {
-        if (!EarbudsImage.active && InventoryManager.EarbudsCollected)
+        if (!EarbudsImage.activeSelf && InventoryManager.EarbudsCollected)
         {
             EarbudsImage.SetActive(true);
         }
 
-        if(!RecorderImage.active && InventoryManager.RecorderCollected)
+        if(!RecorderImage.activeSelf && InventoryManager.RecorderCollected)
         {
             RecorderImage.SetActive(true);
         }

@@ -5,7 +5,8 @@ using UnityEngine.SceneManagement;
 using TMPro;
 
 public class temp : MonoBehaviour
-{
+{   
+    public ElevatorController ElevatorController;
     public void EnterEndCutScene()
     {
         foreach (Scene scene in ElevatorController.loadedScenes)

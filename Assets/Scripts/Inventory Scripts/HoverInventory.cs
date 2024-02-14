@@ -2,21 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class HoverInventory : MonoBehaviour
 {
     public GameObject hovertext;
-    [SerializeField] private float yPos;
+    //[SerializeField] private float yPos;
 
     private void Start()
     {
         hidehovertext();
-        yPos = 0;
+        //yPos = 0;
     }
 
     private void Update()
     {
-        hovertext.GetComponent<RectTransform>().anchoredPosition = new Vector3(Input.mousePosition.x - Screen.width/2, Input.mousePosition.y - Screen.height/2 + yPos, 0);
+        //hovertext.GetComponent<RectTransform>().anchoredPosition = new Vector3(Input.mousePosition.x - Screen.width/2, Input.mousePosition.y - Screen.height/2 + yPos, 0);
     }
     public void showhovertext()
     {
@@ -26,5 +27,10 @@ public class HoverInventory : MonoBehaviour
     public void hidehovertext()
     {
         hovertext.SetActive(false);
+    }
+
+    public void setText(PlaylistItems p)
+    {
+        hovertext.GetComponent<TextMeshProUGUI>().text = p.Atranscript;
     }
 }

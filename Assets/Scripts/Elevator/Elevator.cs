@@ -25,6 +25,8 @@ public class Elevator : InteractableItemWithEvent
 
     private bool isEnteringElevator = false;
 
+    public ElevatorController elevatorController;
+
     private void Start()
     {
         anim = this.GetComponent<Animator>();
@@ -80,12 +82,12 @@ public class Elevator : InteractableItemWithEvent
         StartCoroutine(ElevatorDoorCloseSequence(insideDoor, openDoorPos.position.z, true));
     }
 
-    IEnumerator ElevatorArrivalSequence()
+    public IEnumerator ElevatorArrivalSequence()
     {
 
-        CoroutineManager.StartStaticCoroutine(ElevatorController.ElevatorArrive());
+        StartCoroutine(elevatorController.ElevatorArrive());
 
-        while (!ElevatorController.FinishArrival())
+        while (!elevatorController.FinishArrival())
         {
             yield return null;
         }
@@ -131,13 +133,13 @@ public class Elevator : InteractableItemWithEvent
         {
             //yield return new WaitForSeconds(2f);
 
-            while (!ElevatorController.isInsideElevator)
+            while (!elevatorController.isInsideElevator)
             {
                 yield return new WaitForSeconds(1f);
             }
 
             Debug.Log("Player inside, close door now");
-            Debug.Log("Am I inside?" + ElevatorController.isInsideElevator);
+            Debug.Log("Am I inside?" + elevatorController.isInsideElevator);
             yield return new WaitForSeconds(1f);
             StartCoroutine(ElevatorDoorCloseSequence(outsideDoor, openDoorPos.position.z, false));
             StartCoroutine(ElevatorDoorCloseSequence(insideDoor, openDoorPos.position.z, true));
@@ -145,13 +147,13 @@ public class Elevator : InteractableItemWithEvent
         }
         else //player took the elevator, reach destination
         {
-            while(ElevatorController.isInsideElevator)
+            while(elevatorController.isInsideElevator)
             {
                 yield return new WaitForSeconds(1f);
             }
 
             Debug.Log("Player outside, close door now");
-            Debug.Log("Exit: am I still inside?" + ElevatorController.isInsideElevator);
+            Debug.Log("Exit: am I still inside?" + elevatorController.isInsideElevator);
             yield return new WaitForSeconds(1f);
             StartCoroutine(ElevatorDoorCloseSequence(outsideDoor, openDoorPos.position.z, false));
             StartCoroutine(ElevatorDoorCloseSequence(insideDoor, openDoorPos.position.z, true));
@@ -301,20 +303,20 @@ public class Elevator : InteractableItemWithEvent
         {
             case "lobby":
                 Debug.Log("Going to Lobby");
-                ElevatorController.GotoLobby();
+                elevatorController.GotoLobby();
                 
                 break;
 
             case "Third_Floor":
                 Debug.Log("Going to Third Floor");
-                ElevatorController.GotoThirdFloor();
+                elevatorController.GotoThirdFloor();
                 break;
             default:
                 break;
         }
 
 
-        while (!ElevatorController.FinishMoving())
+        while (!elevatorController.FinishMoving())
         {
             yield return null;
         }

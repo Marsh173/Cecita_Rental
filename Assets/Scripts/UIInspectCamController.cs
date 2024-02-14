@@ -41,15 +41,18 @@ public class UIInspectCamController : MonoBehaviour
 
     public void changeOBJ()
     {
-        for (int i = 0; i < selectedObject.transform.childCount; i ++ )
+        if (selectedObject != null)
         {
-            if(i == index_obj)
+            for (int i = 0; i < selectedObject.transform.childCount; i++)
             {
-                selectedObject.transform.GetChild(i).gameObject.SetActive(true);
-            }
-            else
-            {
-                selectedObject.transform.GetChild(i).gameObject.SetActive(false);
+                if (i == index_obj)
+                {
+                    selectedObject.transform.GetChild(i).gameObject.SetActive(true);
+                }
+                else
+                {
+                    selectedObject.transform.GetChild(i).gameObject.SetActive(false);
+                }
             }
         }
     }
@@ -58,7 +61,10 @@ public class UIInspectCamController : MonoBehaviour
 
     public void resetRot()
     {
-        selectedObject.transform.rotation = originalrot;
+        if (selectedObject != null)
+        {
+            selectedObject.transform.rotation = originalrot;
+        }
     }
 
 }

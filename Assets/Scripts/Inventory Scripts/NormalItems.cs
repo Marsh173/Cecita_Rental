@@ -7,6 +7,7 @@ public class NormalItems : ScriptableObject
 {
     public string itemName;
     public string displayName;
+    [TextArea(5,5)]
     public string descriptions;
     public Sprite icon;
 }

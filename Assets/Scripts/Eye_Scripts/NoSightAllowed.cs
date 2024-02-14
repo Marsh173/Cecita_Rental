@@ -17,7 +17,7 @@ public class NoSightAllowed : MonoBehaviour
 
     //timer
     [SerializeField] private float openedTimes, countDownTime = 5f;
-    private TMP_Text FInstructionText;
+    public TMP_Text FInstructionText;
     bool TimerActive;
 
     //warning bar

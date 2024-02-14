@@ -10,6 +10,7 @@ public class InventoryManager : MonoBehaviour
     public List<PlaylistItems> AItems = new List<PlaylistItems>();
     public List<NormalItems> NItems = new List<NormalItems>();
     public List<Documents> DItems = new List<Documents>();
+    
     //Audio list
     public AudioSource audioSource;
     public AudioClip[] soundArray;
@@ -25,6 +26,8 @@ public class InventoryManager : MonoBehaviour
     public static bool EquipmentCollected, RecorderCollected, EarbudsCollected = false;
     public static bool ThirdFloorElevatorCardCollected, keyCollected = false;
 
+    private  InspectionCameraTransition inspectScript;
+    public GameObject inspectionScreen;
     private void Awake()
     {
         Inventory.transform.position = new Vector2(960, -2000);
@@ -56,11 +59,20 @@ public class InventoryManager : MonoBehaviour
             if(Inventory.transform.position.y == 540)
             {
                 Inventory.transform.position = new Vector2(960, -1000);
-                FirstPersonAIO.instance.enableCameraMovement = true;
-                FirstPersonAIO.instance.playerCanMove = true;
 
-                //hide cursor when close inventory 
-                Cursor.visible = false;
+                if(!inspectScript.isInCam)
+                {
+                    FirstPersonAIO.instance.enableCameraMovement = true;
+                    FirstPersonAIO.instance.playerCanMove = true;
+
+                    //hide cursor when close inventory 
+                    Cursor.visible = false;
+                }
+                else
+                {
+                    //disable inspection screen when opening inventory in inspection cam
+                    inspectionScreen.SetActive(true);
+                }
             }
             else if(Inventory.transform.position.y != 540)
             {
@@ -74,6 +86,13 @@ public class InventoryManager : MonoBehaviour
 
                 //List every item each time the inventory is opened
                 ListItems();
+
+                //disable inspection screen when opening inventory in inspection cam
+                if (inspectScript.isInCam)
+                {
+                    inspectionScreen.SetActive(false);
+                }
+
             }
         }
 

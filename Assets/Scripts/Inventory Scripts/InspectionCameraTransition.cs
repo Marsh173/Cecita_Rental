@@ -17,17 +17,15 @@ public class InspectionCameraTransition : MonoBehaviour
     private Vector3 originalPos, originalAngle;
     public bool isInCam;
 
-    public GameObject inspectionButton; //for adding transcript overlay
-    public GameObject inspectionWindow;
+    public GameObject inspectionButtonW, transcriptWindow, inspectionScreen; //for adding transcript overlay
     private GameObject PlayBody;
-
 
     private void Start()
     {
         instance = this;
         playercam = FirstPersonAIO.instance.gameObject.GetComponentInChildren<Camera>();
         originalCamPosition = playercam.transform;
-        inspectionButton.SetActive(false);
+        inspectionButtonW.SetActive(false);
         PlayBody = FirstPersonAIO.instance.transform.GetChild(1).GetChild(0).gameObject;
         initialFOV = playercam.fieldOfView;
         FOVOnInteraction = initialFOV = 60f;
@@ -61,7 +59,7 @@ public class InspectionCameraTransition : MonoBehaviour
     }
 
     public void TransitCamToInspectionPos()
-    {
+    { 
         Debug.Log("In cam?"+isInCam);
 
         originalCamPosition = playercam.transform;
@@ -81,9 +79,10 @@ public class InspectionCameraTransition : MonoBehaviour
         FirstPersonAIO.instance.playerCanMove = false;
         Cursor.visible = true;
         isInCam = true;
-        if(inspectionButton != null)
+        if(inspectionScreen != null)
         {
-            inspectionButton.SetActive(true);
+            inspectionScreen.SetActive(true);
+            inspectionButtonW.SetActive(true);
         }
         PlayBody.GetComponent<SkinnedMeshRenderer>().enabled = false;
 
@@ -102,11 +101,14 @@ public class InspectionCameraTransition : MonoBehaviour
         FirstPersonAIO.instance.playerCanMove = true;
 
         Cursor.visible = false;
-        if (inspectionButton != null)
+        if (inspectionButtonW != null)
         {
-            inspectionButton.SetActive(false);
+            inspectionScreen.SetActive(false);
+            inspectionButtonW.SetActive(false);
         }
-        inspectionWindow.SetActive(false);
+
+        transcriptWindow.SetActive(false);
+
         PlayBody.GetComponent<SkinnedMeshRenderer>().enabled = true;
         //outline + prompt message show
         if (this.GetComponent<Outline>() != null)

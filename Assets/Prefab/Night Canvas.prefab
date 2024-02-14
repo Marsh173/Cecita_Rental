@@ -2123,7 +2123,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 953742938573016777}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aeb1b98a31928524bbb94c1ed88816e1, type: 3}
   m_Name: 
@@ -3507,7 +3507,8 @@ MonoBehaviour:
     entities, this device is more than just a tool \u2014 it's the key to understanding
     the unknown. "
   index: 2
-  NItem: {fileID: 0}
+  vig: {fileID: 0}
+  NItems: {fileID: 0}
 --- !u!1 &2279891391015797926
 GameObject:
   m_ObjectHideFlags: 0
@@ -8532,7 +8533,8 @@ MonoBehaviour:
     Listen closely to evade lurking horrors and find your way to safety. You never
     want to take them off."
   index: 1
-  NItem: {fileID: 0}
+  vig: {fileID: 0}
+  NItems: {fileID: 0}
 --- !u!1 &4781861504863123946
 GameObject:
   m_ObjectHideFlags: 0
@@ -9634,7 +9636,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audio_viewport: {fileID: 6561419314668933621}
-  monster_viewport: {fileID: 0}
+  monster_viewport: {fileID: 3376344058221198284}
   audio_title: {fileID: 7503179576155344765}
   monster_title: {fileID: 2717723773080988205}
   monsterspe_title: {fileID: 2421292051571134911}
@@ -17090,14 +17092,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9d22fc56e09fd24478ddbf9068c172a9, type: 3}
---- !u!224 &7011690088231326255 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 4789613152968150272, guid: 9d22fc56e09fd24478ddbf9068c172a9, type: 3}
-  m_PrefabInstance: {fileID: 2537383893419646767}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &7011690088231326240 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4789613152968150287, guid: 9d22fc56e09fd24478ddbf9068c172a9, type: 3}
+  m_PrefabInstance: {fileID: 2537383893419646767}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &7011690088231326255 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 4789613152968150272, guid: 9d22fc56e09fd24478ddbf9068c172a9, type: 3}
   m_PrefabInstance: {fileID: 2537383893419646767}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3292767096975226562
@@ -18319,14 +18321,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 61054d4942814e54cbf031a3be4b305a, type: 3}
---- !u!1 &5723842071835577212 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 302162671290387368, guid: 61054d4942814e54cbf031a3be4b305a, type: 3}
-  m_PrefabInstance: {fileID: 5430869807955673300}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &5723842071835577213 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 302162671290387369, guid: 61054d4942814e54cbf031a3be4b305a, type: 3}
+  m_PrefabInstance: {fileID: 5430869807955673300}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5723842071835577212 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 302162671290387368, guid: 61054d4942814e54cbf031a3be4b305a, type: 3}
   m_PrefabInstance: {fileID: 5430869807955673300}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5612447524368806205
@@ -19706,6 +19708,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6561419313488805887}
     - target: {fileID: 254446210889785142, guid: baa45a6adc565eb4d95dd7617b45c679, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 254446210889785142, guid: baa45a6adc565eb4d95dd7617b45c679, type: 3}
       propertyPath: audioSource
       value: 
       objectReference: {fileID: 0}
@@ -19744,7 +19750,7 @@ PrefabInstance:
     - target: {fileID: 254446210889785142, guid: baa45a6adc565eb4d95dd7617b45c679, type: 3}
       propertyPath: NItems.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: 971ac7aabf3ecb9438918b9629c67891, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 254446210889785142, guid: baa45a6adc565eb4d95dd7617b45c679, type: 3}
       propertyPath: NItems.Array.data[1]
       value: 

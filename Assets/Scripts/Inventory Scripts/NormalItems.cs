@@ -11,3 +11,4 @@ public class NormalItems : ScriptableObject
     public string descriptions;
     public Sprite icon;
 }
+

@@ -9,6 +9,7 @@ public class InventoryManager : MonoBehaviour
     public static InventoryManager Instance;
     public List<PlaylistItems> AItems = new List<PlaylistItems>();
     public List<NormalItems> NItems = new List<NormalItems>();
+    public List<GameObject> NItemDisplayObjs = new List<GameObject>();
     public List<Documents> DItems = new List<Documents>();
     
     //Audio list
@@ -31,6 +32,12 @@ public class InventoryManager : MonoBehaviour
     private void Awake()
     {
         Inventory.transform.position = new Vector2(960, -2000);
+
+        //add all pre-made display into a list for further reference
+        /*foreach (Transform child in NormalItemContent.transform)
+        {
+            NItemDisplayObjs.Add(child.gameObject);
+        }*/
 
         Instance = this;
         //hide cursor at game start
@@ -155,9 +162,11 @@ public class InventoryManager : MonoBehaviour
             GameObject itemobj = Instantiate(NormalItem, NormalItemContent);
             var itemName = itemobj.transform.Find("itemName").GetComponent<TMP_Text>();
             var itemIcon = itemobj.transform.Find("icon").GetComponent<Image>();
+            var itemButton = itemobj.transform.Find("Button").GetComponent<InventoryViewItem>();
 
             //display name and image in inventory UI
-            itemName.text = item.displayName;
+            itemButton.iconname.text =  itemName.text = item.displayName;
+            itemButton.icon_Description = item.descriptions;
             itemIcon.sprite = item.icon;
 
             if(itemName.text == "Bluetooth Earbuds" || itemName.text == "Recorder")

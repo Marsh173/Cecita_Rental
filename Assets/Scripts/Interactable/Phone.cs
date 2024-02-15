@@ -19,8 +19,8 @@ public class Phone : MonoBehaviour
     public Transform PhoneCamTrans;
     public void PhoneInteract()
     {
-        PhoneCam.enabled = true;
-        PhoneCam.DOFade(1, 1.2f);
+        //PhoneCam.enabled = true;
+        //PhoneCam.DOFade(1, 1.2f);
         FirstPersonAIO.instance.enableCameraMovement = false;
         FirstPersonAIO.instance.playerCanMove = false;
         isInCam = true;
@@ -49,8 +49,8 @@ public class Phone : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Mouse1))
             {
                 Debug.Log("esc");
-                PhoneCam.enabled = false;                           //IMPORTANT: ALWAYS TURN OFF ITEM CAMERAS ON EXITING ITEM INTERACTION
-                PhoneCam.DOFade(0, 1.2f);
+                //PhoneCam.enabled = false;                           //IMPORTANT: ALWAYS TURN OFF ITEM CAMERAS ON EXITING ITEM INTERACTION
+                //PhoneCam.DOFade(0, 1.2f);
                 //FirstPersonAIO.instance.enableCameraMovement = true;
                 //FirstPersonAIO.instance.playerCanMove = true;
                 Cursor.visible = false;

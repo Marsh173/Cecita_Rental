@@ -3453,7 +3453,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh159852
+  m_Name: pb_Mesh540522
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4042,10 +4042,9 @@ Transform:
   m_LocalPosition: {x: -7.081, y: 3.215092, z: -18.595726}
   m_LocalScale: {x: 0.26122007, y: 0.1, z: 0.014397002}
   m_Children:
-  - {fileID: 547958394}
   - {fileID: 165365211}
   m_Father: {fileID: 1021139578}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &64211964
 MonoBehaviour:
@@ -4103,8 +4102,10 @@ MonoBehaviour:
   FOVOnInteraction: 60
   originalCamPosition: {fileID: 0}
   isInCam: 0
-  inspectionButton: {fileID: 0}
-  inspectionWindow: {fileID: 0}
+  inspectionScreen: {fileID: 0}
+  inspectionButtonW: {fileID: 0}
+  transcriptWindow: {fileID: 0}
+  taskmanager: {fileID: 0}
 --- !u!1 &66016376
 GameObject:
   m_ObjectHideFlags: 0
@@ -4647,7 +4648,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &165365208
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4663,7 +4664,7 @@ MonoBehaviour:
   m_RenderShadows: 1
   m_RequiresDepthTextureOption: 2
   m_RequiresOpaqueTextureOption: 2
-  m_CameraType: 0
+  m_CameraType: 1
   m_Cameras: []
   m_RendererIndex: -1
   m_VolumeLayerMask:
@@ -4743,7 +4744,7 @@ Transform:
   m_LocalScale: {x: 3.8281896, y: 10, z: 69.45891}
   m_Children: []
   m_Father: {fileID: 64211963}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &179617510
 GameObject:
@@ -4778,7 +4779,7 @@ RectTransform:
   m_Children:
   - {fileID: 1423636582}
   m_Father: {fileID: 1021139578}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -6871,16 +6872,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 547958393}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.9}
-  m_LocalScale: {x: 0.53594655, y: 1.2126604, z: 2.4120996}
+  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: -20.189169}
+  m_LocalScale: {x: 0.14, y: 0.121266045, z: 0.034727003}
   m_Children: []
-  m_Father: {fileID: 64211963}
-  m_RootOrder: 0
+  m_Father: {fileID: 1021139578}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 6.1, y: -2.5560446}
+  m_AnchoredPosition: {x: -7.068043, y: 2.9594874}
   m_SizeDelta: {x: 20, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &547958395
@@ -8279,6 +8280,7 @@ Transform:
   - {fileID: 541983732}
   - {fileID: 746428139}
   - {fileID: 1899999937}
+  - {fileID: 547958394}
   - {fileID: 64211963}
   - {fileID: 1501550574}
   - {fileID: 179617511}
@@ -9768,7 +9770,7 @@ RectTransform:
   m_Children:
   - {fileID: 156717848}
   m_Father: {fileID: 1021139578}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -10531,7 +10533,7 @@ RectTransform:
   m_Children:
   - {fileID: 1519945572}
   m_Father: {fileID: 1021139578}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -10895,7 +10897,7 @@ MonoBehaviour:
         editorAssetGUID: 7802eded624d4e94ab9045112112fdb7
         name: Day_General_System
         _path: Assets/Scenes/Day_Scenes/Day_General_System.unity
-      fullPath: /= SYSTEM/Day Canvas/crosshair stuff/ItemPrompt/Inspector Icon
+      fullPath: /= SYSTEM/Day Canvas/item icon and text/ItemPrompt/Inspector Icon
       componentName: 
       componentIndex: 0
       editorLocalId: 1936583223
@@ -10975,7 +10977,7 @@ MonoBehaviour:
         editorAssetGUID: 7802eded624d4e94ab9045112112fdb7
         name: Day_General_System
         _path: Assets/Scenes/Day_Scenes/Day_General_System.unity
-      fullPath: /= SYSTEM/Day Canvas/crosshair stuff/ItemPrompt/Pick Icon
+      fullPath: /= SYSTEM/Day Canvas/item icon and text/ItemPrompt/Pick Icon
       componentName: 
       componentIndex: 0
       editorLocalId: 1764735267
@@ -11082,7 +11084,7 @@ MonoBehaviour:
         editorAssetGUID: 7802eded624d4e94ab9045112112fdb7
         name: Day_General_System
         _path: Assets/Scenes/Day_Scenes/Day_General_System.unity
-      fullPath: /= SYSTEM/Day Canvas/crosshair stuff/ItemPrompt/Pick Icon
+      fullPath: /= SYSTEM/Day Canvas/item icon and text/ItemPrompt/Pick Icon
       componentName: 
       componentIndex: 0
       editorLocalId: 1764735267
@@ -11091,7 +11093,7 @@ MonoBehaviour:
     _data:
       data: []
   - _sourceObject: {fileID: 64211965}
-    _sourceField: inspectionWindow
+    _sourceField: taskmanager
     DEPRECATED_fromObject:
       scene:
         editorAssetGUID: 
@@ -11108,16 +11110,16 @@ MonoBehaviour:
         editorAssetGUID: 7802eded624d4e94ab9045112112fdb7
         name: Day_General_System
         _path: Assets/Scenes/Day_Scenes/Day_General_System.unity
-      fullPath: /= SYSTEM/Day Canvas/InspectionWindow
+      fullPath: /= SYSTEM/Day Canvas/TaskManager
       componentName: 
       componentIndex: 0
-      editorLocalId: 1042000669
+      editorLocalId: 1362087528
       editorPrefabRelativePath: 
       version: 1
     _data:
       data: []
   - _sourceObject: {fileID: 64211965}
-    _sourceField: inspectionButton
+    _sourceField: transcriptWindow
     DEPRECATED_fromObject:
       scene:
         editorAssetGUID: 
@@ -11134,10 +11136,63 @@ MonoBehaviour:
         editorAssetGUID: 7802eded624d4e94ab9045112112fdb7
         name: Day_General_System
         _path: Assets/Scenes/Day_Scenes/Day_General_System.unity
-      fullPath: /= SYSTEM/Day Canvas/InspectionButtonScreen
+      fullPath: /= SYSTEM/Day Canvas/Document Inspection Screen/Transcript Window
       componentName: 
       componentIndex: 0
-      editorLocalId: 505557755
+      editorLocalId: 647526843
+      editorPrefabRelativePath: 
+      version: 1
+    _data:
+      data: []
+  - _sourceObject: {fileID: 64211965}
+    _sourceField: inspectionButtonW
+    DEPRECATED_fromObject:
+      scene:
+        editorAssetGUID: 
+        name: 
+        _path: 
+      fullPath: 
+      componentName: 
+      componentIndex: 0
+      editorLocalId: 0
+      editorPrefabRelativePath: 
+      version: 0
+    _toObject:
+      scene:
+        editorAssetGUID: 7802eded624d4e94ab9045112112fdb7
+        name: Day_General_System
+        _path: Assets/Scenes/Day_Scenes/Day_General_System.unity
+      fullPath: /= SYSTEM/Day Canvas/Document Inspection Screen/DocInspect Screen
+        with Button
+      componentName: 
+      componentIndex: 0
+      editorLocalId: 1365826092
+      editorPrefabRelativePath: 
+      version: 1
+    _data:
+      data: []
+  - _sourceObject: {fileID: 64211965}
+    _sourceField: inspectionScreen
+    DEPRECATED_fromObject:
+      scene:
+        editorAssetGUID: 
+        name: 
+        _path: 
+      fullPath: 
+      componentName: 
+      componentIndex: 0
+      editorLocalId: 0
+      editorPrefabRelativePath: 
+      version: 0
+    _toObject:
+      scene:
+        editorAssetGUID: 7802eded624d4e94ab9045112112fdb7
+        name: Day_General_System
+        _path: Assets/Scenes/Day_Scenes/Day_General_System.unity
+      fullPath: /= SYSTEM/Day Canvas/Document Inspection Screen
+      componentName: 
+      componentIndex: 0
+      editorLocalId: 1356750878
       editorPrefabRelativePath: 
       version: 1
     _data:
@@ -11187,7 +11242,7 @@ MonoBehaviour:
         editorAssetGUID: 7802eded624d4e94ab9045112112fdb7
         name: Day_General_System
         _path: Assets/Scenes/Day_Scenes/Day_General_System.unity
-      fullPath: /= SYSTEM/Day Canvas/crosshair stuff/ItemPrompt/Inspector Icon
+      fullPath: /= SYSTEM/Day Canvas/item icon and text/ItemPrompt/Inspector Icon
       componentName: 
       componentIndex: 0
       editorLocalId: 1936583223

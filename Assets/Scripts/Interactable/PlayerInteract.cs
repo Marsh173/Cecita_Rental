@@ -80,11 +80,11 @@ public class PlayerInteract : MonoBehaviour
             if (crosshair != null && !crosshair.activeSelf) crosshair.SetActive(true);
         }
 
-        if (Physics.Raycast(ray, out hitInfo, distance, mask))
+        if (Physics.Raycast(ray, out hitInfo, distance, mask) && hitInfo.collider.GetComponent<Interactable>() != null)
         {
             if (hitInfo.collider.GetComponent<Interactable>() != null)
             {
-                if (lastHitObject == null)                                                                  //Make sure overlapped interactable objects remove outlines as intended
+                if (lastHitObject == null)         //Make sure overlapped interactable objects remove outlines as intended
                 {
                     if (hitInfo.collider.gameObject.GetComponent<Outline>() == null)
                     {
@@ -108,6 +108,9 @@ public class PlayerInteract : MonoBehaviour
             }
             else
             {
+                //Turn on crosshair
+                if (crosshair != null && !crosshair.activeSelf) crosshair.SetActive(true);
+
                 if (pMessage.text != null) pMessage.text = "";
                 if (monologue.text != null) monologue.text = "";
 
@@ -118,8 +121,7 @@ public class PlayerInteract : MonoBehaviour
                     itemIcon = null;
                 }
 
-                //Turn on crosshair
-                if (crosshair != null && !crosshair.activeSelf) crosshair.SetActive(true);
+                
             }
         }
         else

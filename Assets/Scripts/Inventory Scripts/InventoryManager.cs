@@ -9,7 +9,6 @@ public class InventoryManager : MonoBehaviour
     public static InventoryManager Instance;
     public List<PlaylistItems> AItems = new List<PlaylistItems>();
     public List<NormalItems> NItems = new List<NormalItems>();
-    public List<GameObject> NItemDisplayObjs = new List<GameObject>();
     public List<Documents> DItems = new List<Documents>();
     
     //Audio list
@@ -67,21 +66,32 @@ public class InventoryManager : MonoBehaviour
             {
                 Inventory.transform.position = new Vector2(960, -1000);
 
-                if(!inspectScript.isInCam)
+                //if inspect script is in scene, check the state of it first
+                if(inspectScript != null)
+                {
+                    if (!inspectScript.isInCam)
+                    {
+                        FirstPersonAIO.instance.enableCameraMovement = true;
+                        FirstPersonAIO.instance.playerCanMove = true;
+
+                        //hide cursor when close inventory 
+                        Cursor.visible = false;
+                    }
+                    else
+                    {
+                        //disable inspection screen when opening inventory in inspection cam
+                        inspectionScreen.SetActive(true);
+                    }
+                }
+                //if inspect script is not in scene, do it normally
+                else
                 {
                     FirstPersonAIO.instance.enableCameraMovement = true;
                     FirstPersonAIO.instance.playerCanMove = true;
-
-                    //hide cursor when close inventory 
                     Cursor.visible = false;
                 }
-                else
-                {
-                    //disable inspection screen when opening inventory in inspection cam
-                    inspectionScreen.SetActive(true);
-                }
             }
-            else if(Inventory.transform.position.y != 540)
+            else
             {
                 //show cursor when open inventory 
                 Cursor.lockState = CursorLockMode.Confined;
@@ -95,11 +105,13 @@ public class InventoryManager : MonoBehaviour
                 ListItems();
 
                 //disable inspection screen when opening inventory in inspection cam
-                if (inspectScript.isInCam)
+                if (inspectScript != null)
                 {
-                    inspectionScreen.SetActive(false);
+                    if (inspectScript.isInCam)
+                    {
+                        inspectionScreen.SetActive(false);
+                    }
                 }
-
             }
         }
 
@@ -148,6 +160,8 @@ public class InventoryManager : MonoBehaviour
             itemLength.text = item.audioLength;
             itemIcon.sprite = item.icon;
             itemAudio.clip = item.audio;
+
+            itemobj.GetComponentInChildren<HoverInventory>().transcript = item.Atranscript;
         }
 
 
@@ -168,6 +182,8 @@ public class InventoryManager : MonoBehaviour
             itemButton.iconname.text =  itemName.text = item.displayName;
             itemButton.icon_Description = item.descriptions;
             itemIcon.sprite = item.icon;
+
+            
 
             if(itemName.text == "Bluetooth Earbuds" || itemName.text == "Recorder")
             {

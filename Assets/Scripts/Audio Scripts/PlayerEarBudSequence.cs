@@ -40,7 +40,7 @@ public class PlayerEarBudSequence : MonoBehaviour
     void Update()
     {
         //LMB to interact tutorial
-        if(!crosshair.activeSelf/* && interactCounter <= 3*/)
+        if (!crosshair.activeSelf/* && interactCounter <= 3*/)
         {
             interactTutorialObj.SetActive(true);
             //interactCounter++;
@@ -172,7 +172,8 @@ public class PlayerEarBudSequence : MonoBehaviour
         {
             yield return null;
         }
-        Debug.Log(inventory.activeInHierarchy);
+
+        Debug.Log("Inventory state: " + inventory.activeInHierarchy + "Finish invenTutor?: " + FinishInventory);
         earBudVoice.clip = Resources.Load<AudioClip>("Night 0/" + "Night 0 - Hallway");
         earBudVoice.PlayOneShot(earBudVoice.clip);
         interactiveDoor.layer = 7; //set door to be interactble layer

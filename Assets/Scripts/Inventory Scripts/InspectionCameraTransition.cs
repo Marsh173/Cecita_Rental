@@ -17,18 +17,20 @@ public class InspectionCameraTransition : MonoBehaviour
     private Vector3 originalPos, originalAngle;
     public bool isInCam;
 
-    public GameObject inspectionButtonW, transcriptWindow, inspectionScreen; //for adding transcript overlay
+    public GameObject inspectionScreen, inspectionButtonW, transcriptWindow, taskmanager; //for adding transcript overlay
     private GameObject PlayBody;
 
     private void Start()
     {
+        InspectionCam = GetComponentInChildren<Camera>().transform;
+        taskmanager = GameObject.FindWithTag("TaskManager");
         instance = this;
         playercam = FirstPersonAIO.instance.gameObject.GetComponentInChildren<Camera>();
         originalCamPosition = playercam.transform;
-        inspectionButtonW.SetActive(false);
         PlayBody = FirstPersonAIO.instance.transform.GetChild(1).GetChild(0).gameObject;
         initialFOV = playercam.fieldOfView;
-        FOVOnInteraction = initialFOV = 60f;
+        FOVOnInteraction = GetComponentInChildren<Camera>().fieldOfView;
+        initialFOV = 60f;
     }
 
     private void Update()
@@ -79,10 +81,16 @@ public class InspectionCameraTransition : MonoBehaviour
         FirstPersonAIO.instance.playerCanMove = false;
         Cursor.visible = true;
         isInCam = true;
-        if(inspectionScreen != null)
+        taskmanager.SetActive(false);
+
+        if (inspectionScreen != null)
         {
             inspectionScreen.SetActive(true);
-            inspectionButtonW.SetActive(true);
+
+            if (inspectionButtonW != null)
+            {
+                inspectionButtonW.SetActive(true);
+            }
         }
         PlayBody.GetComponent<SkinnedMeshRenderer>().enabled = false;
 
@@ -101,10 +109,16 @@ public class InspectionCameraTransition : MonoBehaviour
         FirstPersonAIO.instance.playerCanMove = true;
 
         Cursor.visible = false;
-        if (inspectionButtonW != null)
+        taskmanager.SetActive(true);
+
+        if (inspectionScreen != null)
         {
             inspectionScreen.SetActive(false);
-            inspectionButtonW.SetActive(false);
+
+            if (inspectionButtonW != null)
+            {
+                inspectionButtonW.SetActive(false);
+            }
         }
 
         transcriptWindow.SetActive(false);

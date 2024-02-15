@@ -11,6 +11,7 @@ public class HoverInventory : MonoBehaviour
 
     private void Start()
     {
+        hovertext = GameObject.FindGameObjectWithTag("HoverText");
         hidehovertext();
         //yPos = 0;
     }
@@ -27,10 +28,5 @@ public class HoverInventory : MonoBehaviour
     public void hidehovertext()
     {
         hovertext.SetActive(false);
-    }
-
-    public void setText(PlaylistItems p)
-    {
-        hovertext.GetComponent<TextMeshProUGUI>().text = p.Atranscript;
     }
 }

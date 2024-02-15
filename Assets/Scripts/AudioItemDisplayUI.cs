@@ -22,7 +22,7 @@ public class AudioItemDisplayUI : MonoBehaviour
     }
     private void Update()
     {
-        if(a.clip != null && a.isPlaying)
+        if(a.clip != null)
         {
             progress = a.time / a.clip.length;
             t.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, progress * maxLength);

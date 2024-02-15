@@ -148,6 +148,8 @@ public class InventoryManager : MonoBehaviour
             itemLength.text = item.audioLength;
             itemIcon.sprite = item.icon;
             itemAudio.clip = item.audio;
+
+            itemobj.GetComponentInChildren<HoverInventory>().transcript = item.Atranscript;
         }
 
 
@@ -168,6 +170,8 @@ public class InventoryManager : MonoBehaviour
             itemButton.iconname.text =  itemName.text = item.displayName;
             itemButton.icon_Description = item.descriptions;
             itemIcon.sprite = item.icon;
+
+            
 
             if(itemName.text == "Bluetooth Earbuds" || itemName.text == "Recorder")
             {

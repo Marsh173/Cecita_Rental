@@ -7,6 +7,7 @@ using TMPro;
 public class HoverInventory : MonoBehaviour
 {
     public GameObject hovertext;
+    [SerializeField] public string transcript;
     //[SerializeField] private float yPos;
 
     private void Start()
@@ -22,11 +23,22 @@ public class HoverInventory : MonoBehaviour
     }
     public void showhovertext()
     {
-        hovertext.SetActive(true);
+        hovertext = GameObject.FindGameObjectWithTag("HoverText");
+        if (hovertext != null)
+        {
+            hovertext.transform.GetChild(0).gameObject.SetActive(true);
+            hovertext.GetComponentInChildren<TMP_Text>().text = transcript;
+        }
     }
 
     public void hidehovertext()
     {
-        hovertext.SetActive(false);
+        hovertext = GameObject.FindGameObjectWithTag("HoverText");
+        if (hovertext != null)
+        {
+            hovertext.GetComponentInChildren<TMP_Text>().text = "";
+            hovertext.transform.GetChild(0).gameObject.SetActive(false);
+            
+        }
     }
 }

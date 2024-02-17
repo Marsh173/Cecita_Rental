@@ -46,11 +46,11 @@ public class TriggerDoorController : MonoBehaviour
         //get first child - door
         //get first child - door_handle that has the script attached
         Transform door_handle_transform = this.transform.parent.gameObject.transform.GetChild(0).gameObject.transform.GetChild(0);
-        Debug.Log("Get the sibling: " + door_handle_transform.gameObject.name);
+        //Debug.Log("Get the sibling: " + door_handle_transform.gameObject.name);
         try
         {
             loungeDoor = door_handle_transform.gameObject.GetComponent<Door>();
-            Debug.Log("Door script?" + loungeDoor);
+            //Debug.Log("Door script?" + loungeDoor);
         }
         catch(NullReferenceException e)
         {

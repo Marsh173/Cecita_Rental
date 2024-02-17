@@ -15,7 +15,7 @@ public class EnclosedRoomDetector : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             // Trigger the custom event when player enters the room
-            Debug.Log("In enclosed space!");
+            //Debug.Log("In enclosed space!");
             onPlayerEnteredRoom.Invoke(gameObject);
         }
     }

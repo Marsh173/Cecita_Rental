@@ -9,8 +9,8 @@ public class DoorKnockEvent : MonoBehaviour
     public float TriggerAfterXSeconds = 10f;
     private Door door_script;
 
-    [SerializeField] private float minTimeBetweenKnocks = 5f;
-    [SerializeField] private float maxTimeBetweenKnocks = 15f;
+    [SerializeField] private float minTimeBetweenKnocks = 10f;
+    [SerializeField] private float maxTimeBetweenKnocks = 20f;
     private bool playerInsideTrigger = false;
     public bool playerOpenedDoor = false;
 
@@ -118,12 +118,12 @@ public class DoorKnockEvent : MonoBehaviour
             // End of knock event
             knockAudio.SetActive(false);
             playerOpenedDoor = false;
+            Respawn.dead = false;
 
             // Randomize time before the next knock event
             float randomDelay = Random.Range(minTimeBetweenKnocks, maxTimeBetweenKnocks);
             yield return new WaitForSeconds(randomDelay);
         }
     }
-
 
 }

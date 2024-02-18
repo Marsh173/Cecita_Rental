@@ -19,7 +19,7 @@ public class PlayerInteract : MonoBehaviour
 
     [SerializeField]
     private float distance = 6f;
-    private float wallHitDistance = 6f;
+    //private float wallHitDistance = 6f;
 
     [SerializeField]
     private LayerMask mask;

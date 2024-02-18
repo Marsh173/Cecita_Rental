@@ -10,9 +10,9 @@ public class TriggerDoorController : MonoBehaviour
 {
     [SerializeField] private Animator myDoorAnimator;
     [SerializeField] public bool openTrigger = false, closeTrigger = false, playedOpen = false;
-    private string doorOpen = "DoorOpen";
-    private string doorClose = "DoorClose";
-    private string Idle = "Idle";
+    //private string doorOpen = "DoorOpen";
+    //private string doorClose = "DoorClose";
+    //private string Idle = "Idle";
     public static bool playedCloseAnim = false;
     private Door loungeDoor;
 
@@ -52,10 +52,8 @@ public class TriggerDoorController : MonoBehaviour
             loungeDoor = door_handle_transform.gameObject.GetComponent<Door>();
             //Debug.Log("Door script?" + loungeDoor);
         }
-        catch(NullReferenceException e)
-        {
-            
-        }
+        catch { }
+        
 
     }
 

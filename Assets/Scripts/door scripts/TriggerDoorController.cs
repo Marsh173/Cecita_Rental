@@ -45,7 +45,7 @@ public class TriggerDoorController : MonoBehaviour
         //get parent - interactive door
         //get first child - door
         //get first child - door_handle that has the script attached
-        Transform door_handle_transform = this.transform.parent.gameObject.transform.GetChild(0).gameObject.transform.GetChild(0);
+        Transform door_handle_transform = this.transform.parent.gameObject.transform.GetChild(0).GetChild(0);
         //Debug.Log("Get the sibling: " + door_handle_transform.gameObject.name);
         try
         {
@@ -109,7 +109,7 @@ public class TriggerDoorController : MonoBehaviour
                     GameObject taggedObject = GameObject.FindWithTag("LoungeDoor");
                     if (taggedObject != null)
                     {
-                        Debug.Log("change to Close trigger!");
+                        //Debug.Log("change to Close trigger!");
                         TriggerDoorController trigScript = taggedObject.GetComponent<TriggerDoorController>();
 
                         if (trigScript == null) Debug.Log("more than one object has this LoungeDoor tag");

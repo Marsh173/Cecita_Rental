@@ -74,7 +74,7 @@ namespace FMODUnity
 
         private void PlayerEnteredRoomHandler(GameObject roomObject)
         {
-            Debug.Log("Event triggered at " + roomObject.name);
+            //Debug.Log("Event triggered at " + roomObject.name);
 
             if (roomObject.name == "startroom")
             {
@@ -82,7 +82,7 @@ namespace FMODUnity
                 if (gameObject.CompareTag("Broadcast-Startroom") || gameObject.CompareTag("Broadcast-Saferoom1") || gameObject.CompareTag("Broadcast-Saferoom2"))
                 {
                     // Activate the speaker
-                    Debug.Log("reset broadcast for checkpoint room");
+                    //Debug.Log("reset broadcast for checkpoint room");
                     FMOD.Studio.PLAYBACK_STATE fmodPbState;
                     beautiful_broadcast.getPlaybackState(out fmodPbState);
 
@@ -102,7 +102,7 @@ namespace FMODUnity
                 if (gameObject.CompareTag("Broadcast-Saferoom1") || gameObject.CompareTag("Broadcast-Saferoom2"))
                 {
                     // Activate the speaker
-                    Debug.Log("reset broadcast for checkpoint room");
+                    //Debug.Log("reset broadcast for checkpoint room");
                     FMOD.Studio.PLAYBACK_STATE fmodPbState;
                     beautiful_broadcast.getPlaybackState(out fmodPbState);
 
@@ -121,7 +121,7 @@ namespace FMODUnity
                 if (gameObject.CompareTag("Broadcast-Saferoom2"))
                 {
                     // Activate the speaker
-                    Debug.Log("reset broadcast for checkpoint room");
+                    //Debug.Log("reset broadcast for checkpoint room");
                     FMOD.Studio.PLAYBACK_STATE fmodPbState;
                     beautiful_broadcast.getPlaybackState(out fmodPbState);
 

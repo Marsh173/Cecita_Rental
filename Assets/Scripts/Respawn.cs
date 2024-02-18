@@ -14,6 +14,7 @@ public class Respawn : MonoBehaviour
     void Start()
     {
         dead = restarted = false;
+        placeholderDeathText.SetActive(false);
         playerPos = GetComponent<Transform>();
     }
 
@@ -40,18 +41,21 @@ public class Respawn : MonoBehaviour
             restarted = false;
             if (SceneManager.GetActiveScene().name == "TutorialLevel")
             {
-                StartCoroutine(RespawnRoutiine());
+                StartCoroutine(RespawnRoutine());
             }
             //else SceneManager.LoadScene("Death");
-            StartCoroutine(RespawnRoutiine());
+            StartCoroutine(RespawnRoutine());
         }
 
     }
-    IEnumerator RespawnRoutiine()
+    IEnumerator RespawnRoutine()
     {
         yield return new WaitForSeconds(0.01f);
         dead = false;
         yield return new WaitForSeconds(0.05f);
+
+        //play death cutscene
+
         if(checkpoint != null)
         {
             playerPos.SetPositionAndRotation(checkpoint.transform.position, checkpoint.transform.rotation);
@@ -69,5 +73,8 @@ public class Respawn : MonoBehaviour
             }
         }
         restarted = true;
+
+        yield return new WaitForSeconds(10f);
+        placeholderDeathText.SetActive(false);
     }
 }

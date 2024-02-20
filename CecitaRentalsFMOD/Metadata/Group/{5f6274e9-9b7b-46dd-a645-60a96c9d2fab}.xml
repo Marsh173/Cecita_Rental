@@ -19,6 +19,7 @@
 			<destination>{0adfd443-3070-43d0-a9d4-774166e29894}</destination>
 			<destination>{870eee68-1bc5-4fc2-9d81-bf59ffa4ccd6}</destination>
 			<destination>{d9bcefd6-05be-4862-b76a-7771b520caf5}</destination>
+			<destination>{29dce223-8d77-4c61-9f77-0ab132994364}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{6a98ab3a-fc39-4344-8984-7c96f3212a9a}" />
@@ -41,5 +42,16 @@
 		<property name="level">
 			<value>2</value>
 		</property>
+	</object>
+	<object class="CompressorEffect" id="{29dce223-8d77-4c61-9f77-0ab132994364}">
+		<property name="threshold">
+			<value>-15</value>
+		</property>
+		<property name="ratio">
+			<value>3.79999995</value>
+		</property>
+		<relationship name="sidechains">
+			<destination>{2cdc86b0-394c-406a-aa1d-ef344d4a9f17}</destination>
+		</relationship>
 	</object>
 </objects>

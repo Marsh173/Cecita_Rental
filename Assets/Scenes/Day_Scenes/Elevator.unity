@@ -123,6 +123,49 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &10315944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec0b4dd729a12d046982652f834580a2, type: 3}
+  m_Name: Third_Floor_LMA2
+  m_EditorClassIdentifier: 
+  resolution: 2048
+  bitmask: 1
+  id: 2
+  sortingID: 2
+  isImplicit: 1
+  area: 0
+  totalVertexCount: 0
+  vertexCounter: 0
+  sceneLodLevel: -1
+  autoResolution: 0
+  sceneName: 
+  tag: -1
+  containsTerrains: 0
+  probes: 0
+  mode: 1
+  renderMode: 1000
+  renderDirMode: 1000
+  atlasPacker: 1000
+  computeSSS: 0
+  sssSamples: 16
+  sssDensity: 10
+  sssColor: {r: 1, g: 1, b: 1, a: 1}
+  sssScale: 1
+  fakeShadowBias: 0
+  transparentSelfShadow: 0
+  flipNormal: 0
+  parentName: 
+  overridePath: 
+  fixPos3D: 0
+  voxelSize: {x: 1, y: 1, z: 1}
+  passedFilter: 0
 --- !u!1 &82278439
 GameObject:
   m_ObjectHideFlags: 1
@@ -233,30 +276,34 @@ MonoBehaviour:
   lastBakeTime: 56
   enlightenWarningShown: 0
   enlightenWarningShown2: 0
-  uniqueLights: []
+  uniqueLights:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 984418846}
+  - {fileID: 982394455}
   lights:
   - tform:
-      e00: 1
+      e00: 0
       e01: 0
       e02: 0
-      e03: 8.51
+      e03: 0
       e10: 0
-      e11: 1
+      e11: 0
       e12: 0
-      e13: 2.55
+      e13: 0
       e20: 0
       e21: 0
-      e22: 1
-      e23: 17.29
+      e22: 0
+      e23: 0
       e30: 0
       e31: 0
       e32: 0
-      e33: 1
-    color: {r: 1, g: 1, b: 1, a: 1}
-    intensity: 2
-    range: 10
-    radius: 0.05
-    samples: 8
+      e33: 0
+    color: {r: 0, g: 0, b: 0, a: 0}
+    intensity: 0
+    range: 0
+    radius: 0
+    samples: 0
     samples2: 0
     bitmask: 0
     bakeToIndirect: 0
@@ -265,7 +312,38 @@ MonoBehaviour:
     projMode: 0
     cookie: {fileID: 0}
     angle: 30
-    UID: 0
+    UID: 1
+  - tform:
+      e00: 0
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 0
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 0
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 0
+    color: {r: 0, g: 0, b: 0, a: 0}
+    intensity: 0
+    range: 0
+    radius: 0
+    samples: 0
+    samples2: 0
+    bitmask: 0
+    bakeToIndirect: 0
+    selfShadow: 0
+    realisticFalloff: 0
+    projMode: 0
+    cookie: {fileID: 0}
+    angle: 30
+    UID: 2
   - tform:
       e00: 1
       e01: 0
@@ -296,25 +374,56 @@ MonoBehaviour:
     projMode: 0
     cookie: {fileID: 8900000, guid: aebb94b7f3fb8ad43b235972de4325ae, type: 3}
     angle: 30
-    UID: 0
+    UID: 3
+  - tform:
+      e00: 1
+      e01: 0
+      e02: 0
+      e03: 8.51
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 2.55
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 17.29
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    color: {r: 1, g: 1, b: 1, a: 1}
+    intensity: 2
+    range: 10
+    radius: 0.05
+    samples: 8
+    samples2: 0
+    bitmask: 0
+    bakeToIndirect: 0
+    selfShadow: 0
+    realisticFalloff: 0
+    projMode: 0
+    cookie: {fileID: 0}
+    angle: 30
+    UID: 4
   implicitGroups:
-  - {fileID: 1228496669}
-  - {fileID: 1228496669}
-  - {fileID: 1960237634}
-  - {fileID: 1228496669}
-  - {fileID: 1717328059}
-  - {fileID: 1228496669}
-  - {fileID: 1717328059}
-  - {fileID: 1228496669}
-  - {fileID: 1228496669}
-  - {fileID: 1228496669}
-  - {fileID: 1228496669}
-  - {fileID: 1228496669}
-  - {fileID: 1228496669}
-  - {fileID: 1228496669}
-  - {fileID: 1717328059}
-  - {fileID: 1228496669}
-  - {fileID: 1717328059}
+  - {fileID: 1749609685}
+  - {fileID: 1749609685}
+  - {fileID: 10315944}
+  - {fileID: 1749609685}
+  - {fileID: 506328216}
+  - {fileID: 1749609685}
+  - {fileID: 506328216}
+  - {fileID: 1749609685}
+  - {fileID: 1749609685}
+  - {fileID: 1749609685}
+  - {fileID: 1749609685}
+  - {fileID: 1749609685}
+  - {fileID: 1749609685}
+  - {fileID: 1749609685}
+  - {fileID: 506328216}
+  - {fileID: 1749609685}
+  - {fileID: 506328216}
   implicitGroupedObjects:
   - {fileID: 160952345}
   - {fileID: 707657570}
@@ -334,12 +443,12 @@ MonoBehaviour:
   - {fileID: 8020437517775270338}
   - {fileID: 8474940714063749565}
   bounds:
-  - m_Center: {x: -16.801392, y: 3.25865, z: -10.957188}
-    m_Extent: {x: 28.457417, y: 3.7413518, z: 33.14327}
-  - m_Center: {x: -24.687363, y: 3.25865, z: -9.81649}
-    m_Extent: {x: 30.312916, y: 3.7413518, z: 38.183784}
-  - m_Center: {x: -19.916487, y: 2.928635, z: -11.128727}
-    m_Extent: {x: 25.31391, y: 4.093132, z: 33.128735}
+  - m_Center: {x: -16.801392, y: 3.25865, z: -11.050228}
+    m_Extent: {x: 28.457417, y: 3.7413518, z: 33.05023}
+  - m_Center: {x: -19.80209, y: 3.2695324, z: -9.758205}
+    m_Extent: {x: 25.427639, y: 3.7522342, z: 38.241795}
+  - m_Center: {x: -19.674013, y: 2.9177525, z: -11.128731}
+    m_Extent: {x: 25.071436, y: 4.0822496, z: 33.12873}
   hasEmissive: 010101
   uvBuffOffsets: 
   uvBuffLengths: 
@@ -353,8 +462,8 @@ MonoBehaviour:
   lmGroupLODMatrix: 
   serverGetFileList: []
   lightmapHasColor: 010101
-  lightmapHasMask: 
-  lightmapHasDir: 010101
+  lightmapHasMask: 000000000000000000000000
+  lightmapHasDir: 000000
   lightmapHasRNM: 000000
   modifiedAssetPathList: []
   modifiedAssets: []
@@ -363,10 +472,7 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 486b60883927fbb45b8c62acced91b1e, type: 3}
   - {fileID: 2800000, guid: 8f6c7adc458c6fa4ebfb57ccd87af23a, type: 3}
   masks: []
-  dirMaps:
-  - {fileID: 2800000, guid: f3a8c1615cea144408dcd648100b3f55, type: 3}
-  - {fileID: 2800000, guid: 32f38f74df9ff144086ffd4667d9e19c, type: 3}
-  - {fileID: 2800000, guid: 463421ec66e51214a89240d7dcdac818, type: 3}
+  dirMaps: []
   rnmMaps0: []
   rnmMaps1: []
   rnmMaps2: []
@@ -391,23 +497,23 @@ MonoBehaviour:
   - {fileID: 6322333960325237607}
   bakedIDs: 0000000000000000020000000000000001000000000000000100000000000000000000000000000000000000000000000000000000000000010000000000000001000000
   bakedScaleOffset:
-  - {x: -0.01335466, y: -0.0133546125, z: 1.0000103, w: 0.10945256}
-  - {x: -0.0059436806, y: -0.0059436313, z: 0.9993596, w: 0.08360521}
-  - {x: 0.31843928, y: 0.32254595, z: 0.24616756, w: 0.65052205}
-  - {x: -0.013354665, y: -0.013354654, z: 1.0044247, w: 0.11687583}
-  - {x: 0.12237173, y: 0.08787577, z: 0.5878091, w: 0.13283613}
-  - {x: -0.008305874, y: -0.008303202, z: 0.99887383, w: 0.12322839}
-  - {x: 0.072846666, y: 0.06225331, z: 0.8676088, w: 0.117548704}
-  - {x: -0.013354601, y: -0.013354668, z: 1.0000103, w: 0.11404532}
-  - {x: -0.013354665, y: -0.013354654, z: 1.0044247, w: 0.12020184}
-  - {x: -0.013354668, y: -0.01335465, z: 1.0109082, w: 0.12262772}
-  - {x: -0.013354541, y: -0.013354694, z: 0.9992516, w: 0.1242154}
-  - {x: -0.01335466, y: -0.0133546125, z: 1.0000103, w: 0.11943061}
-  - {x: -0.013354626, y: -0.013354668, z: 1.0005621, w: 0.11422605}
-  - {x: 0.011833767, y: 0.027995419, z: 0.986669, w: 0.16625103}
-  - {x: 0.25408256, y: 0.19406083, z: 0.24313655, w: 0.09999517}
-  - {x: 0.21788386, y: 0.21780442, z: 0.001464864, w: 0.38145208}
-  - {x: 0.08869976, y: 0.0684463, z: 0.3060789, w: 0.10889915}
+  - {x: -0.013354597, y: -0.013354549, z: 1.0000055, w: 0.12468558}
+  - {x: -0.0059436522, y: -0.0059436033, z: 0.99935484, w: 0.08360481}
+  - {x: 0.3184545, y: 0.32256138, z: 0.8749094, w: 0.0014637713}
+  - {x: -0.013354601, y: -0.013354591, z: 1.0044198, w: 0.106732145}
+  - {x: 0.12237889, y: 0.08788091, z: 0.65830034, w: 0.13284396}
+  - {x: -0.008305835, y: -0.008303163, z: 0.99886906, w: 0.13014634}
+  - {x: 0.072850935, y: 0.062256955, z: 0.29396626, w: 0.9475574}
+  - {x: -0.013354538, y: -0.013354605, z: 1.0000055, w: 0.12761532}
+  - {x: -0.013354601, y: -0.013354591, z: 1.0044198, w: 0.12878281}
+  - {x: -0.013354605, y: -0.013354586, z: 1.0109035, w: 0.12788267}
+  - {x: -0.0133544775, y: -0.01335463, z: 0.99924684, w: 0.11240868}
+  - {x: -0.013354597, y: -0.013354549, z: 1.0000055, w: 0.10429791}
+  - {x: -0.013354562, y: -0.013354605, z: 1.0005573, w: 0.10907138}
+  - {x: 0.011833711, y: 0.027995285, z: 0.9851657, w: 0.90603435}
+  - {x: 0.25409743, y: 0.1940722, z: 0.36056545, w: 0.098662086}
+  - {x: 0.21788281, y: 0.21780337, z: 0.001464857, w: 0.38145027}
+  - {x: 0.08870495, y: 0.0684503, z: 0.4348175, w: 0.108905524}
   bakedVertexOffset: ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
   bakedVertexColorMesh:
   - {fileID: 0}
@@ -435,7 +541,7 @@ MonoBehaviour:
   bakedScaleOffsetTerrain: []
   assetList: []
   uvOverlapAssetList: 
-  idremap: 2d0000002e0000002f000000
+  idremap: 000000000100000002000000
   usesRealtimeGI: 0
   emptyDirectionTex: {fileID: 2800000, guid: 04afea73344b7d049b5b7ac5ae315dd5, type: 3}
   anyVolumes: 0
@@ -443,20 +549,15 @@ MonoBehaviour:
   sectors:
   - name: $G
     maps:
-    - {fileID: 2800000, guid: 021e4d278e611564c94e4520ddca0ccd, type: 3}
-    - {fileID: 2800000, guid: dca13ff6c32ba984ea9c1ffde205bf5b, type: 3}
+    - {fileID: 2800000, guid: 69d217b1ab720624ebedd90bea052cd5, type: 3}
+    - {fileID: 2800000, guid: 486b60883927fbb45b8c62acced91b1e, type: 3}
+    - {fileID: 2800000, guid: 8f6c7adc458c6fa4ebfb57ccd87af23a, type: 3}
     masks: []
     dirMaps: []
-    rnmMaps0:
-    - {fileID: 2800000, guid: 021e4d278e611564c94e4520ddca0ccd, type: 3}
-    - {fileID: 2800000, guid: dca13ff6c32ba984ea9c1ffde205bf5b, type: 3}
-    rnmMaps1:
-    - {fileID: 2800000, guid: 3bb7f03a55bb8c24398a40eb9f679aaa, type: 3}
-    - {fileID: 2800000, guid: e2c0476aebe22884a8d4241dfb348fae, type: 3}
-    rnmMaps2:
-    - {fileID: 2800000, guid: 5a9d1a81bc186fe40b10d4cc381f7658, type: 3}
-    - {fileID: 2800000, guid: 1f8a33dd81400e346bcd3ab1f15e54ce, type: 3}
-    mapsMode: 0200000002000000
+    rnmMaps0: []
+    rnmMaps1: []
+    rnmMaps2: []
+    mapsMode: 
     bakedRenderers:
     - {fileID: 160952347}
     - {fileID: 707657572}
@@ -475,25 +576,25 @@ MonoBehaviour:
     - {fileID: 5326532535854513908}
     - {fileID: 4410407480533052898}
     - {fileID: 6322333960325237607}
-    bakedIDs: 0000000000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+    bakedIDs: 0000000000000000020000000000000001000000000000000000000000000000000000000000000000000000000000000000000000000000010000000000000001000000
     bakedScaleOffset:
-    - {x: -0.05343768, y: -0.05343749, z: 0.963963, w: 0.092871815}
-    - {x: -0.023783196, y: -0.023783, z: 0.9924001, w: 0.042439837}
-    - {x: 4.1437407, y: 2.7585857, z: 0.005859375, w: 0.0058479398}
-    - {x: -0.0534377, y: -0.053437658, z: 0.9816267, w: 0.10926668}
-    - {x: 0.4896377, y: 0.35161135, z: 0.77366865, w: -0.054982595}
-    - {x: -0.033235338, y: -0.033224646, z: 0.96606976, w: 0.088105164}
-    - {x: 0.29147643, y: 0.24908994, z: 0.8051274, w: -0.15463784}
-    - {x: -0.053437445, y: -0.053437714, z: 0.97061735, w: 0.0779774}
-    - {x: -0.0534377, y: -0.053437658, z: 0.9816267, w: 0.095957875}
-    - {x: -0.053437714, y: -0.05343764, z: 1.0075701, w: 0.10566481}
-    - {x: -0.053437203, y: -0.053437814, z: 0.97423583, w: 0.09870902}
-    - {x: -0.05343768, y: -0.05343749, z: 1.0016582, w: 0.062531084}
-    - {x: -0.053437542, y: -0.053437714, z: 0.9972117, w: 0.08828625}
-    - {x: 0.04735194, y: 0.11202159, z: 0.94696885, w: -0.04348406}
-    - {x: 1.0166434, y: 0.77648246, z: -0.06281239, w: 0.6259556}
-    - {x: 0.8718461, y: 0.8715282, z: 0.0058615445, w: 0.0058615445}
-    - {x: 0.35490832, y: 0.2738695, z: 0.0058615445, w: 0.70270014}
+    - {x: -0.013354566, y: -0.013354518, z: 1.0000032, w: 0.107789256}
+    - {x: -0.0059436387, y: -0.00594359, z: 0.9993526, w: 0.08360462}
+    - {x: 0.31890735, y: 0.32302007, z: 0.5902576, w: 0.13979402}
+    - {x: -0.013354571, y: -0.01335456, z: 1.0044175, w: 0.11687547}
+    - {x: 0.12236879, y: 0.08787365, z: 0.5630474, w: 0.13283299}
+    - {x: -0.008305816, y: -0.008303144, z: 0.9988668, w: 0.12322798}
+    - {x: 0.07284263, y: 0.06224986, z: 0.7685122, w: 0.9464381}
+    - {x: -0.013354507, y: -0.013354574, z: 1.0000032, w: 0.11570798}
+    - {x: -0.013354571, y: -0.01335456, z: 1.0044175, w: 0.12186445}
+    - {x: -0.013354574, y: -0.013354556, z: 1.0109012, w: 0.12429031}
+    - {x: -0.013354447, y: -0.0133545995, z: 0.9992446, w: 0.11590001}
+    - {x: -0.013354566, y: -0.013354518, z: 1.0000032, w: 0.11943023}
+    - {x: -0.0133545315, y: -0.013354574, z: 1.000555, w: 0.1192147}
+    - {x: 0.011833684, y: 0.027995221, z: 0.98666203, w: 0.16624987}
+    - {x: 0.25407645, y: 0.19405617, z: 0.25908017, w: 0.098653935}
+    - {x: 0.21788232, y: 0.21780288, z: 0.0014648538, w: 0.3814494}
+    - {x: 0.08869762, y: 0.06844465, z: 0.32202098, w: 0.1075577}
     bakedVertexColorMesh:
     - {fileID: 0}
     - {fileID: 0}
@@ -1230,6 +1331,49 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e93c1ca61dc7df944b51e74780afdec5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &506328216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec0b4dd729a12d046982652f834580a2, type: 3}
+  m_Name: Protagonist_Room_LMA1
+  m_EditorClassIdentifier: 
+  resolution: 2048
+  bitmask: 1
+  id: 1
+  sortingID: 1
+  isImplicit: 1
+  area: 0
+  totalVertexCount: 0
+  vertexCounter: 0
+  sceneLodLevel: -1
+  autoResolution: 0
+  sceneName: 
+  tag: -1
+  containsTerrains: 0
+  probes: 0
+  mode: 1
+  renderMode: 1000
+  renderDirMode: 1000
+  atlasPacker: 1000
+  computeSSS: 0
+  sssSamples: 16
+  sssDensity: 10
+  sssColor: {r: 1, g: 1, b: 1, a: 1}
+  sssScale: 1
+  fakeShadowBias: 0
+  transparentSelfShadow: 0
+  flipNormal: 0
+  parentName: 
+  overridePath: 
+  fixPos3D: 0
+  voxelSize: {x: 1, y: 1, z: 1}
+  passedFilter: 0
 --- !u!1001 &542469663
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1726,7 +1870,7 @@ MonoBehaviour:
   falloffMinRadius: 1
   shadowmaskGroupID: 0
   directionMode: 0
-  maskChannel: 0
+  maskChannel: -1
 --- !u!4 &982394457
 Transform:
   m_ObjectHideFlags: 0
@@ -2124,49 +2268,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 8.521118, y: 431.2911, z: 139.29982}
   m_Center: {x: -0.6470643, y: 215.68364, z: 72.49235}
---- !u!114 &1228496669
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec0b4dd729a12d046982652f834580a2, type: 3}
-  m_Name: Protagonist_Room_LM0
-  m_EditorClassIdentifier: 
-  resolution: 2048
-  bitmask: 1
-  id: 0
-  sortingID: 0
-  isImplicit: 1
-  area: 21958.938
-  totalVertexCount: 0
-  vertexCounter: 0
-  sceneLodLevel: -1
-  autoResolution: 0
-  sceneName: 
-  tag: -1
-  containsTerrains: 0
-  probes: 0
-  mode: 1
-  renderMode: 1000
-  renderDirMode: 1000
-  atlasPacker: 1000
-  computeSSS: 0
-  sssSamples: 16
-  sssDensity: 10
-  sssColor: {r: 1, g: 1, b: 1, a: 1}
-  sssScale: 1
-  fakeShadowBias: 0
-  transparentSelfShadow: 0
-  flipNormal: 0
-  parentName: 
-  overridePath: 
-  fixPos3D: 0
-  voxelSize: {x: 1, y: 1, z: 1}
-  passedFilter: 0
 --- !u!1001 &1311222155
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2328,7 +2429,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _version: 2
   _crossSceneReferences:
-  - _sourceObject: {fileID: 583121422}
+  - _sourceObject: {fileID: 1930927294}
     _sourceField: elevatorController
     DEPRECATED_fromObject:
       scene:
@@ -2355,7 +2456,7 @@ MonoBehaviour:
       version: 1
     _data:
       data: []
-  - _sourceObject: {fileID: 583121422}
+  - _sourceObject: {fileID: 1930927294}
     _sourceField: monologue
     DEPRECATED_fromObject:
       scene:
@@ -2382,7 +2483,7 @@ MonoBehaviour:
       version: 1
     _data:
       data: []
-  - _sourceObject: {fileID: 583121422}
+  - _sourceObject: {fileID: 1930927294}
     _sourceField: promptIcon
     DEPRECATED_fromObject:
       scene:
@@ -2400,567 +2501,7 @@ MonoBehaviour:
         editorAssetGUID: 7802eded624d4e94ab9045112112fdb7
         name: Day_General_System
         _path: Assets/Scenes/Day_Scenes/Day_General_System.unity
-      fullPath: /= SYSTEM/Day Canvas/crosshair stuff/ItemPrompt/Press Icon
-      componentName: 
-      componentIndex: 0
-      editorLocalId: 1099961952
-      editorPrefabRelativePath: 
-      version: 1
-    _data:
-      data: []
-  - _sourceObject: {fileID: 220895012}
-    _sourceField: elevatorController
-    DEPRECATED_fromObject:
-      scene:
-        editorAssetGUID: 
-        name: 
-        _path: 
-      fullPath: 
-      componentName: 
-      componentIndex: 0
-      editorLocalId: 0
-      editorPrefabRelativePath: 
-      version: 0
-    _toObject:
-      scene:
-        editorAssetGUID: 7802eded624d4e94ab9045112112fdb7
-        name: Day_General_System
-        _path: Assets/Scenes/Day_Scenes/Day_General_System.unity
-      fullPath: /= SYSTEM/Elevator Manager/Elevator Controller
-      componentName: ElevatorController, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
-      componentIndex: 0
-      editorLocalId: 818478009
-      editorPrefabRelativePath: 
-      version: 1
-    _data:
-      data: []
-  - _sourceObject: {fileID: 220895012}
-    _sourceField: monologue
-    DEPRECATED_fromObject:
-      scene:
-        editorAssetGUID: 
-        name: 
-        _path: 
-      fullPath: 
-      componentName: 
-      componentIndex: 0
-      editorLocalId: 0
-      editorPrefabRelativePath: 
-      version: 0
-    _toObject:
-      scene:
-        editorAssetGUID: 7802eded624d4e94ab9045112112fdb7
-        name: Day_General_System
-        _path: Assets/Scenes/Day_Scenes/Day_General_System.unity
-      fullPath: /= SYSTEM/Day Canvas/Protagonist item Monologue
-      componentName: TMPro.TextMeshProUGUI, Unity.TextMeshPro, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
-      componentIndex: 0
-      editorLocalId: 1429556762
-      editorPrefabRelativePath: 
-      version: 1
-    _data:
-      data: []
-  - _sourceObject: {fileID: 220895012}
-    _sourceField: promptIcon
-    DEPRECATED_fromObject:
-      scene:
-        editorAssetGUID: 
-        name: 
-        _path: 
-      fullPath: 
-      componentName: 
-      componentIndex: 0
-      editorLocalId: 0
-      editorPrefabRelativePath: 
-      version: 0
-    _toObject:
-      scene:
-        editorAssetGUID: 7802eded624d4e94ab9045112112fdb7
-        name: Day_General_System
-        _path: Assets/Scenes/Day_Scenes/Day_General_System.unity
-      fullPath: /= SYSTEM/Day Canvas/crosshair stuff/ItemPrompt/Press Icon
-      componentName: 
-      componentIndex: 0
-      editorLocalId: 1099961952
-      editorPrefabRelativePath: 
-      version: 1
-    _data:
-      data: []
-  - _sourceObject: {fileID: 291055384}
-    _sourceField: elevatorController
-    DEPRECATED_fromObject:
-      scene:
-        editorAssetGUID: 
-        name: 
-        _path: 
-      fullPath: 
-      componentName: 
-      componentIndex: 0
-      editorLocalId: 0
-      editorPrefabRelativePath: 
-      version: 0
-    _toObject:
-      scene:
-        editorAssetGUID: 7802eded624d4e94ab9045112112fdb7
-        name: Day_General_System
-        _path: Assets/Scenes/Day_Scenes/Day_General_System.unity
-      fullPath: /= SYSTEM/Elevator Manager/Elevator Controller
-      componentName: ElevatorController, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
-      componentIndex: 0
-      editorLocalId: 818478009
-      editorPrefabRelativePath: 
-      version: 1
-    _data:
-      data: []
-  - _sourceObject: {fileID: 291055384}
-    _sourceField: monologue
-    DEPRECATED_fromObject:
-      scene:
-        editorAssetGUID: 
-        name: 
-        _path: 
-      fullPath: 
-      componentName: 
-      componentIndex: 0
-      editorLocalId: 0
-      editorPrefabRelativePath: 
-      version: 0
-    _toObject:
-      scene:
-        editorAssetGUID: 7802eded624d4e94ab9045112112fdb7
-        name: Day_General_System
-        _path: Assets/Scenes/Day_Scenes/Day_General_System.unity
-      fullPath: /= SYSTEM/Day Canvas/Protagonist item Monologue
-      componentName: TMPro.TextMeshProUGUI, Unity.TextMeshPro, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
-      componentIndex: 0
-      editorLocalId: 1429556762
-      editorPrefabRelativePath: 
-      version: 1
-    _data:
-      data: []
-  - _sourceObject: {fileID: 291055384}
-    _sourceField: promptIcon
-    DEPRECATED_fromObject:
-      scene:
-        editorAssetGUID: 
-        name: 
-        _path: 
-      fullPath: 
-      componentName: 
-      componentIndex: 0
-      editorLocalId: 0
-      editorPrefabRelativePath: 
-      version: 0
-    _toObject:
-      scene:
-        editorAssetGUID: 7802eded624d4e94ab9045112112fdb7
-        name: Day_General_System
-        _path: Assets/Scenes/Day_Scenes/Day_General_System.unity
-      fullPath: /= SYSTEM/Day Canvas/crosshair stuff/ItemPrompt/Press Icon
-      componentName: 
-      componentIndex: 0
-      editorLocalId: 1099961952
-      editorPrefabRelativePath: 
-      version: 1
-    _data:
-      data: []
-  - _sourceObject: {fileID: 542469665}
-    _sourceField: elevatorController
-    DEPRECATED_fromObject:
-      scene:
-        editorAssetGUID: 
-        name: 
-        _path: 
-      fullPath: 
-      componentName: 
-      componentIndex: 0
-      editorLocalId: 0
-      editorPrefabRelativePath: 
-      version: 0
-    _toObject:
-      scene:
-        editorAssetGUID: 7802eded624d4e94ab9045112112fdb7
-        name: Day_General_System
-        _path: Assets/Scenes/Day_Scenes/Day_General_System.unity
-      fullPath: /= SYSTEM/Elevator Manager/Elevator Controller
-      componentName: ElevatorController, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
-      componentIndex: 0
-      editorLocalId: 818478009
-      editorPrefabRelativePath: 
-      version: 1
-    _data:
-      data: []
-  - _sourceObject: {fileID: 542469665}
-    _sourceField: monologue
-    DEPRECATED_fromObject:
-      scene:
-        editorAssetGUID: 
-        name: 
-        _path: 
-      fullPath: 
-      componentName: 
-      componentIndex: 0
-      editorLocalId: 0
-      editorPrefabRelativePath: 
-      version: 0
-    _toObject:
-      scene:
-        editorAssetGUID: 7802eded624d4e94ab9045112112fdb7
-        name: Day_General_System
-        _path: Assets/Scenes/Day_Scenes/Day_General_System.unity
-      fullPath: /= SYSTEM/Day Canvas/Protagonist item Monologue
-      componentName: TMPro.TextMeshProUGUI, Unity.TextMeshPro, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
-      componentIndex: 0
-      editorLocalId: 1429556762
-      editorPrefabRelativePath: 
-      version: 1
-    _data:
-      data: []
-  - _sourceObject: {fileID: 542469665}
-    _sourceField: promptIcon
-    DEPRECATED_fromObject:
-      scene:
-        editorAssetGUID: 
-        name: 
-        _path: 
-      fullPath: 
-      componentName: 
-      componentIndex: 0
-      editorLocalId: 0
-      editorPrefabRelativePath: 
-      version: 0
-    _toObject:
-      scene:
-        editorAssetGUID: 7802eded624d4e94ab9045112112fdb7
-        name: Day_General_System
-        _path: Assets/Scenes/Day_Scenes/Day_General_System.unity
-      fullPath: /= SYSTEM/Day Canvas/crosshair stuff/ItemPrompt/Press Icon
-      componentName: 
-      componentIndex: 0
-      editorLocalId: 1099961952
-      editorPrefabRelativePath: 
-      version: 1
-    _data:
-      data: []
-  - _sourceObject: {fileID: 598170757}
-    _sourceField: elevatorController
-    DEPRECATED_fromObject:
-      scene:
-        editorAssetGUID: 
-        name: 
-        _path: 
-      fullPath: 
-      componentName: 
-      componentIndex: 0
-      editorLocalId: 0
-      editorPrefabRelativePath: 
-      version: 0
-    _toObject:
-      scene:
-        editorAssetGUID: 7802eded624d4e94ab9045112112fdb7
-        name: Day_General_System
-        _path: Assets/Scenes/Day_Scenes/Day_General_System.unity
-      fullPath: /= SYSTEM/Elevator Manager/Elevator Controller
-      componentName: ElevatorController, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
-      componentIndex: 0
-      editorLocalId: 818478009
-      editorPrefabRelativePath: 
-      version: 1
-    _data:
-      data: []
-  - _sourceObject: {fileID: 598170757}
-    _sourceField: monologue
-    DEPRECATED_fromObject:
-      scene:
-        editorAssetGUID: 
-        name: 
-        _path: 
-      fullPath: 
-      componentName: 
-      componentIndex: 0
-      editorLocalId: 0
-      editorPrefabRelativePath: 
-      version: 0
-    _toObject:
-      scene:
-        editorAssetGUID: 7802eded624d4e94ab9045112112fdb7
-        name: Day_General_System
-        _path: Assets/Scenes/Day_Scenes/Day_General_System.unity
-      fullPath: /= SYSTEM/Day Canvas/Protagonist item Monologue
-      componentName: TMPro.TextMeshProUGUI, Unity.TextMeshPro, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
-      componentIndex: 0
-      editorLocalId: 1429556762
-      editorPrefabRelativePath: 
-      version: 1
-    _data:
-      data: []
-  - _sourceObject: {fileID: 598170757}
-    _sourceField: promptIcon
-    DEPRECATED_fromObject:
-      scene:
-        editorAssetGUID: 
-        name: 
-        _path: 
-      fullPath: 
-      componentName: 
-      componentIndex: 0
-      editorLocalId: 0
-      editorPrefabRelativePath: 
-      version: 0
-    _toObject:
-      scene:
-        editorAssetGUID: 7802eded624d4e94ab9045112112fdb7
-        name: Day_General_System
-        _path: Assets/Scenes/Day_Scenes/Day_General_System.unity
-      fullPath: /= SYSTEM/Day Canvas/crosshair stuff/ItemPrompt/Press Icon
-      componentName: 
-      componentIndex: 0
-      editorLocalId: 1099961952
-      editorPrefabRelativePath: 
-      version: 1
-    _data:
-      data: []
-  - _sourceObject: {fileID: 1000169081}
-    _sourceField: elevatorController
-    DEPRECATED_fromObject:
-      scene:
-        editorAssetGUID: 
-        name: 
-        _path: 
-      fullPath: 
-      componentName: 
-      componentIndex: 0
-      editorLocalId: 0
-      editorPrefabRelativePath: 
-      version: 0
-    _toObject:
-      scene:
-        editorAssetGUID: 7802eded624d4e94ab9045112112fdb7
-        name: Day_General_System
-        _path: Assets/Scenes/Day_Scenes/Day_General_System.unity
-      fullPath: /= SYSTEM/Elevator Manager/Elevator Controller
-      componentName: ElevatorController, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
-      componentIndex: 0
-      editorLocalId: 818478009
-      editorPrefabRelativePath: 
-      version: 1
-    _data:
-      data: []
-  - _sourceObject: {fileID: 1000169081}
-    _sourceField: monologue
-    DEPRECATED_fromObject:
-      scene:
-        editorAssetGUID: 
-        name: 
-        _path: 
-      fullPath: 
-      componentName: 
-      componentIndex: 0
-      editorLocalId: 0
-      editorPrefabRelativePath: 
-      version: 0
-    _toObject:
-      scene:
-        editorAssetGUID: 7802eded624d4e94ab9045112112fdb7
-        name: Day_General_System
-        _path: Assets/Scenes/Day_Scenes/Day_General_System.unity
-      fullPath: /= SYSTEM/Day Canvas/Protagonist item Monologue
-      componentName: TMPro.TextMeshProUGUI, Unity.TextMeshPro, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
-      componentIndex: 0
-      editorLocalId: 1429556762
-      editorPrefabRelativePath: 
-      version: 1
-    _data:
-      data: []
-  - _sourceObject: {fileID: 1000169081}
-    _sourceField: promptIcon
-    DEPRECATED_fromObject:
-      scene:
-        editorAssetGUID: 
-        name: 
-        _path: 
-      fullPath: 
-      componentName: 
-      componentIndex: 0
-      editorLocalId: 0
-      editorPrefabRelativePath: 
-      version: 0
-    _toObject:
-      scene:
-        editorAssetGUID: 7802eded624d4e94ab9045112112fdb7
-        name: Day_General_System
-        _path: Assets/Scenes/Day_Scenes/Day_General_System.unity
-      fullPath: /= SYSTEM/Day Canvas/crosshair stuff/ItemPrompt/Press Icon
-      componentName: 
-      componentIndex: 0
-      editorLocalId: 1099961952
-      editorPrefabRelativePath: 
-      version: 1
-    _data:
-      data: []
-  - _sourceObject: {fileID: 1311222157}
-    _sourceField: elevatorController
-    DEPRECATED_fromObject:
-      scene:
-        editorAssetGUID: 
-        name: 
-        _path: 
-      fullPath: 
-      componentName: 
-      componentIndex: 0
-      editorLocalId: 0
-      editorPrefabRelativePath: 
-      version: 0
-    _toObject:
-      scene:
-        editorAssetGUID: 7802eded624d4e94ab9045112112fdb7
-        name: Day_General_System
-        _path: Assets/Scenes/Day_Scenes/Day_General_System.unity
-      fullPath: /= SYSTEM/Elevator Manager/Elevator Controller
-      componentName: ElevatorController, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
-      componentIndex: 0
-      editorLocalId: 818478009
-      editorPrefabRelativePath: 
-      version: 1
-    _data:
-      data: []
-  - _sourceObject: {fileID: 1311222157}
-    _sourceField: monologue
-    DEPRECATED_fromObject:
-      scene:
-        editorAssetGUID: 
-        name: 
-        _path: 
-      fullPath: 
-      componentName: 
-      componentIndex: 0
-      editorLocalId: 0
-      editorPrefabRelativePath: 
-      version: 0
-    _toObject:
-      scene:
-        editorAssetGUID: 7802eded624d4e94ab9045112112fdb7
-        name: Day_General_System
-        _path: Assets/Scenes/Day_Scenes/Day_General_System.unity
-      fullPath: /= SYSTEM/Day Canvas/Protagonist item Monologue
-      componentName: TMPro.TextMeshProUGUI, Unity.TextMeshPro, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
-      componentIndex: 0
-      editorLocalId: 1429556762
-      editorPrefabRelativePath: 
-      version: 1
-    _data:
-      data: []
-  - _sourceObject: {fileID: 1311222157}
-    _sourceField: promptIcon
-    DEPRECATED_fromObject:
-      scene:
-        editorAssetGUID: 
-        name: 
-        _path: 
-      fullPath: 
-      componentName: 
-      componentIndex: 0
-      editorLocalId: 0
-      editorPrefabRelativePath: 
-      version: 0
-    _toObject:
-      scene:
-        editorAssetGUID: 7802eded624d4e94ab9045112112fdb7
-        name: Day_General_System
-        _path: Assets/Scenes/Day_Scenes/Day_General_System.unity
-      fullPath: /= SYSTEM/Day Canvas/crosshair stuff/ItemPrompt/Press Icon
-      componentName: 
-      componentIndex: 0
-      editorLocalId: 1099961952
-      editorPrefabRelativePath: 
-      version: 1
-    _data:
-      data: []
-  - _sourceObject: {fileID: 1822208469}
-    _sourceField: elevatorController
-    DEPRECATED_fromObject:
-      scene:
-        editorAssetGUID: 
-        name: 
-        _path: 
-      fullPath: 
-      componentName: 
-      componentIndex: 0
-      editorLocalId: 0
-      editorPrefabRelativePath: 
-      version: 0
-    _toObject:
-      scene:
-        editorAssetGUID: 7802eded624d4e94ab9045112112fdb7
-        name: Day_General_System
-        _path: Assets/Scenes/Day_Scenes/Day_General_System.unity
-      fullPath: /= SYSTEM/Elevator Manager/Elevator Controller
-      componentName: ElevatorController, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
-      componentIndex: 0
-      editorLocalId: 818478009
-      editorPrefabRelativePath: 
-      version: 1
-    _data:
-      data: []
-  - _sourceObject: {fileID: 1822208469}
-    _sourceField: monologue
-    DEPRECATED_fromObject:
-      scene:
-        editorAssetGUID: 
-        name: 
-        _path: 
-      fullPath: 
-      componentName: 
-      componentIndex: 0
-      editorLocalId: 0
-      editorPrefabRelativePath: 
-      version: 0
-    _toObject:
-      scene:
-        editorAssetGUID: 7802eded624d4e94ab9045112112fdb7
-        name: Day_General_System
-        _path: Assets/Scenes/Day_Scenes/Day_General_System.unity
-      fullPath: /= SYSTEM/Day Canvas/Protagonist item Monologue
-      componentName: TMPro.TextMeshProUGUI, Unity.TextMeshPro, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
-      componentIndex: 0
-      editorLocalId: 1429556762
-      editorPrefabRelativePath: 
-      version: 1
-    _data:
-      data: []
-  - _sourceObject: {fileID: 1822208469}
-    _sourceField: promptIcon
-    DEPRECATED_fromObject:
-      scene:
-        editorAssetGUID: 
-        name: 
-        _path: 
-      fullPath: 
-      componentName: 
-      componentIndex: 0
-      editorLocalId: 0
-      editorPrefabRelativePath: 
-      version: 0
-    _toObject:
-      scene:
-        editorAssetGUID: 7802eded624d4e94ab9045112112fdb7
-        name: Day_General_System
-        _path: Assets/Scenes/Day_Scenes/Day_General_System.unity
-      fullPath: /= SYSTEM/Day Canvas/crosshair stuff/ItemPrompt/Press Icon
+      fullPath: /= SYSTEM/Day Canvas/item icon and text/ItemPrompt/Press Icon
       componentName: 
       componentIndex: 0
       editorLocalId: 1099961952
@@ -3040,7 +2581,7 @@ MonoBehaviour:
         editorAssetGUID: 7802eded624d4e94ab9045112112fdb7
         name: Day_General_System
         _path: Assets/Scenes/Day_Scenes/Day_General_System.unity
-      fullPath: /= SYSTEM/Day Canvas/crosshair stuff/ItemPrompt/Press Icon
+      fullPath: /= SYSTEM/Day Canvas/item icon and text/ItemPrompt/Press Icon
       componentName: 
       componentIndex: 0
       editorLocalId: 1099961952
@@ -3048,7 +2589,7 @@ MonoBehaviour:
       version: 1
     _data:
       data: []
-  - _sourceObject: {fileID: 1930927294}
+  - _sourceObject: {fileID: 1822208469}
     _sourceField: elevatorController
     DEPRECATED_fromObject:
       scene:
@@ -3075,7 +2616,7 @@ MonoBehaviour:
       version: 1
     _data:
       data: []
-  - _sourceObject: {fileID: 1930927294}
+  - _sourceObject: {fileID: 1822208469}
     _sourceField: monologue
     DEPRECATED_fromObject:
       scene:
@@ -3102,7 +2643,7 @@ MonoBehaviour:
       version: 1
     _data:
       data: []
-  - _sourceObject: {fileID: 1930927294}
+  - _sourceObject: {fileID: 1822208469}
     _sourceField: promptIcon
     DEPRECATED_fromObject:
       scene:
@@ -3120,10 +2661,622 @@ MonoBehaviour:
         editorAssetGUID: 7802eded624d4e94ab9045112112fdb7
         name: Day_General_System
         _path: Assets/Scenes/Day_Scenes/Day_General_System.unity
-      fullPath: /= SYSTEM/Day Canvas/crosshair stuff/ItemPrompt/Press Icon
+      fullPath: /= SYSTEM/Day Canvas/item icon and text/ItemPrompt/Press Icon
       componentName: 
       componentIndex: 0
       editorLocalId: 1099961952
+      editorPrefabRelativePath: 
+      version: 1
+    _data:
+      data: []
+  - _sourceObject: {fileID: 1311222157}
+    _sourceField: elevatorController
+    DEPRECATED_fromObject:
+      scene:
+        editorAssetGUID: 
+        name: 
+        _path: 
+      fullPath: 
+      componentName: 
+      componentIndex: 0
+      editorLocalId: 0
+      editorPrefabRelativePath: 
+      version: 0
+    _toObject:
+      scene:
+        editorAssetGUID: 7802eded624d4e94ab9045112112fdb7
+        name: Day_General_System
+        _path: Assets/Scenes/Day_Scenes/Day_General_System.unity
+      fullPath: /= SYSTEM/Elevator Manager/Elevator Controller
+      componentName: ElevatorController, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      componentIndex: 0
+      editorLocalId: 818478009
+      editorPrefabRelativePath: 
+      version: 1
+    _data:
+      data: []
+  - _sourceObject: {fileID: 1311222157}
+    _sourceField: monologue
+    DEPRECATED_fromObject:
+      scene:
+        editorAssetGUID: 
+        name: 
+        _path: 
+      fullPath: 
+      componentName: 
+      componentIndex: 0
+      editorLocalId: 0
+      editorPrefabRelativePath: 
+      version: 0
+    _toObject:
+      scene:
+        editorAssetGUID: 7802eded624d4e94ab9045112112fdb7
+        name: Day_General_System
+        _path: Assets/Scenes/Day_Scenes/Day_General_System.unity
+      fullPath: /= SYSTEM/Day Canvas/Protagonist item Monologue
+      componentName: TMPro.TextMeshProUGUI, Unity.TextMeshPro, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      componentIndex: 0
+      editorLocalId: 1429556762
+      editorPrefabRelativePath: 
+      version: 1
+    _data:
+      data: []
+  - _sourceObject: {fileID: 1311222157}
+    _sourceField: promptIcon
+    DEPRECATED_fromObject:
+      scene:
+        editorAssetGUID: 
+        name: 
+        _path: 
+      fullPath: 
+      componentName: 
+      componentIndex: 0
+      editorLocalId: 0
+      editorPrefabRelativePath: 
+      version: 0
+    _toObject:
+      scene:
+        editorAssetGUID: 7802eded624d4e94ab9045112112fdb7
+        name: Day_General_System
+        _path: Assets/Scenes/Day_Scenes/Day_General_System.unity
+      fullPath: /= SYSTEM/Day Canvas/item icon and text/ItemPrompt/Press Icon
+      componentName: 
+      componentIndex: 0
+      editorLocalId: 1099961952
+      editorPrefabRelativePath: 
+      version: 1
+    _data:
+      data: []
+  - _sourceObject: {fileID: 1000169081}
+    _sourceField: elevatorController
+    DEPRECATED_fromObject:
+      scene:
+        editorAssetGUID: 
+        name: 
+        _path: 
+      fullPath: 
+      componentName: 
+      componentIndex: 0
+      editorLocalId: 0
+      editorPrefabRelativePath: 
+      version: 0
+    _toObject:
+      scene:
+        editorAssetGUID: 7802eded624d4e94ab9045112112fdb7
+        name: Day_General_System
+        _path: Assets/Scenes/Day_Scenes/Day_General_System.unity
+      fullPath: /= SYSTEM/Elevator Manager/Elevator Controller
+      componentName: ElevatorController, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      componentIndex: 0
+      editorLocalId: 818478009
+      editorPrefabRelativePath: 
+      version: 1
+    _data:
+      data: []
+  - _sourceObject: {fileID: 1000169081}
+    _sourceField: monologue
+    DEPRECATED_fromObject:
+      scene:
+        editorAssetGUID: 
+        name: 
+        _path: 
+      fullPath: 
+      componentName: 
+      componentIndex: 0
+      editorLocalId: 0
+      editorPrefabRelativePath: 
+      version: 0
+    _toObject:
+      scene:
+        editorAssetGUID: 7802eded624d4e94ab9045112112fdb7
+        name: Day_General_System
+        _path: Assets/Scenes/Day_Scenes/Day_General_System.unity
+      fullPath: /= SYSTEM/Day Canvas/Protagonist item Monologue
+      componentName: TMPro.TextMeshProUGUI, Unity.TextMeshPro, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      componentIndex: 0
+      editorLocalId: 1429556762
+      editorPrefabRelativePath: 
+      version: 1
+    _data:
+      data: []
+  - _sourceObject: {fileID: 1000169081}
+    _sourceField: promptIcon
+    DEPRECATED_fromObject:
+      scene:
+        editorAssetGUID: 
+        name: 
+        _path: 
+      fullPath: 
+      componentName: 
+      componentIndex: 0
+      editorLocalId: 0
+      editorPrefabRelativePath: 
+      version: 0
+    _toObject:
+      scene:
+        editorAssetGUID: 7802eded624d4e94ab9045112112fdb7
+        name: Day_General_System
+        _path: Assets/Scenes/Day_Scenes/Day_General_System.unity
+      fullPath: /= SYSTEM/Day Canvas/item icon and text/ItemPrompt/Press Icon
+      componentName: 
+      componentIndex: 0
+      editorLocalId: 1099961952
+      editorPrefabRelativePath: 
+      version: 1
+    _data:
+      data: []
+  - _sourceObject: {fileID: 598170757}
+    _sourceField: elevatorController
+    DEPRECATED_fromObject:
+      scene:
+        editorAssetGUID: 
+        name: 
+        _path: 
+      fullPath: 
+      componentName: 
+      componentIndex: 0
+      editorLocalId: 0
+      editorPrefabRelativePath: 
+      version: 0
+    _toObject:
+      scene:
+        editorAssetGUID: 7802eded624d4e94ab9045112112fdb7
+        name: Day_General_System
+        _path: Assets/Scenes/Day_Scenes/Day_General_System.unity
+      fullPath: /= SYSTEM/Elevator Manager/Elevator Controller
+      componentName: ElevatorController, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      componentIndex: 0
+      editorLocalId: 818478009
+      editorPrefabRelativePath: 
+      version: 1
+    _data:
+      data: []
+  - _sourceObject: {fileID: 598170757}
+    _sourceField: monologue
+    DEPRECATED_fromObject:
+      scene:
+        editorAssetGUID: 
+        name: 
+        _path: 
+      fullPath: 
+      componentName: 
+      componentIndex: 0
+      editorLocalId: 0
+      editorPrefabRelativePath: 
+      version: 0
+    _toObject:
+      scene:
+        editorAssetGUID: 7802eded624d4e94ab9045112112fdb7
+        name: Day_General_System
+        _path: Assets/Scenes/Day_Scenes/Day_General_System.unity
+      fullPath: /= SYSTEM/Day Canvas/Protagonist item Monologue
+      componentName: TMPro.TextMeshProUGUI, Unity.TextMeshPro, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      componentIndex: 0
+      editorLocalId: 1429556762
+      editorPrefabRelativePath: 
+      version: 1
+    _data:
+      data: []
+  - _sourceObject: {fileID: 598170757}
+    _sourceField: promptIcon
+    DEPRECATED_fromObject:
+      scene:
+        editorAssetGUID: 
+        name: 
+        _path: 
+      fullPath: 
+      componentName: 
+      componentIndex: 0
+      editorLocalId: 0
+      editorPrefabRelativePath: 
+      version: 0
+    _toObject:
+      scene:
+        editorAssetGUID: 7802eded624d4e94ab9045112112fdb7
+        name: Day_General_System
+        _path: Assets/Scenes/Day_Scenes/Day_General_System.unity
+      fullPath: /= SYSTEM/Day Canvas/item icon and text/ItemPrompt/Press Icon
+      componentName: 
+      componentIndex: 0
+      editorLocalId: 1099961952
+      editorPrefabRelativePath: 
+      version: 1
+    _data:
+      data: []
+  - _sourceObject: {fileID: 583121422}
+    _sourceField: elevatorController
+    DEPRECATED_fromObject:
+      scene:
+        editorAssetGUID: 
+        name: 
+        _path: 
+      fullPath: 
+      componentName: 
+      componentIndex: 0
+      editorLocalId: 0
+      editorPrefabRelativePath: 
+      version: 0
+    _toObject:
+      scene:
+        editorAssetGUID: 7802eded624d4e94ab9045112112fdb7
+        name: Day_General_System
+        _path: Assets/Scenes/Day_Scenes/Day_General_System.unity
+      fullPath: /= SYSTEM/Elevator Manager/Elevator Controller
+      componentName: ElevatorController, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      componentIndex: 0
+      editorLocalId: 818478009
+      editorPrefabRelativePath: 
+      version: 1
+    _data:
+      data: []
+  - _sourceObject: {fileID: 583121422}
+    _sourceField: monologue
+    DEPRECATED_fromObject:
+      scene:
+        editorAssetGUID: 
+        name: 
+        _path: 
+      fullPath: 
+      componentName: 
+      componentIndex: 0
+      editorLocalId: 0
+      editorPrefabRelativePath: 
+      version: 0
+    _toObject:
+      scene:
+        editorAssetGUID: 7802eded624d4e94ab9045112112fdb7
+        name: Day_General_System
+        _path: Assets/Scenes/Day_Scenes/Day_General_System.unity
+      fullPath: /= SYSTEM/Day Canvas/Protagonist item Monologue
+      componentName: TMPro.TextMeshProUGUI, Unity.TextMeshPro, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      componentIndex: 0
+      editorLocalId: 1429556762
+      editorPrefabRelativePath: 
+      version: 1
+    _data:
+      data: []
+  - _sourceObject: {fileID: 583121422}
+    _sourceField: promptIcon
+    DEPRECATED_fromObject:
+      scene:
+        editorAssetGUID: 
+        name: 
+        _path: 
+      fullPath: 
+      componentName: 
+      componentIndex: 0
+      editorLocalId: 0
+      editorPrefabRelativePath: 
+      version: 0
+    _toObject:
+      scene:
+        editorAssetGUID: 7802eded624d4e94ab9045112112fdb7
+        name: Day_General_System
+        _path: Assets/Scenes/Day_Scenes/Day_General_System.unity
+      fullPath: /= SYSTEM/Day Canvas/item icon and text/ItemPrompt/Press Icon
+      componentName: 
+      componentIndex: 0
+      editorLocalId: 1099961952
+      editorPrefabRelativePath: 
+      version: 1
+    _data:
+      data: []
+  - _sourceObject: {fileID: 542469665}
+    _sourceField: elevatorController
+    DEPRECATED_fromObject:
+      scene:
+        editorAssetGUID: 
+        name: 
+        _path: 
+      fullPath: 
+      componentName: 
+      componentIndex: 0
+      editorLocalId: 0
+      editorPrefabRelativePath: 
+      version: 0
+    _toObject:
+      scene:
+        editorAssetGUID: 7802eded624d4e94ab9045112112fdb7
+        name: Day_General_System
+        _path: Assets/Scenes/Day_Scenes/Day_General_System.unity
+      fullPath: /= SYSTEM/Elevator Manager/Elevator Controller
+      componentName: ElevatorController, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      componentIndex: 0
+      editorLocalId: 818478009
+      editorPrefabRelativePath: 
+      version: 1
+    _data:
+      data: []
+  - _sourceObject: {fileID: 542469665}
+    _sourceField: monologue
+    DEPRECATED_fromObject:
+      scene:
+        editorAssetGUID: 
+        name: 
+        _path: 
+      fullPath: 
+      componentName: 
+      componentIndex: 0
+      editorLocalId: 0
+      editorPrefabRelativePath: 
+      version: 0
+    _toObject:
+      scene:
+        editorAssetGUID: 7802eded624d4e94ab9045112112fdb7
+        name: Day_General_System
+        _path: Assets/Scenes/Day_Scenes/Day_General_System.unity
+      fullPath: /= SYSTEM/Day Canvas/Protagonist item Monologue
+      componentName: TMPro.TextMeshProUGUI, Unity.TextMeshPro, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      componentIndex: 0
+      editorLocalId: 1429556762
+      editorPrefabRelativePath: 
+      version: 1
+    _data:
+      data: []
+  - _sourceObject: {fileID: 542469665}
+    _sourceField: promptIcon
+    DEPRECATED_fromObject:
+      scene:
+        editorAssetGUID: 
+        name: 
+        _path: 
+      fullPath: 
+      componentName: 
+      componentIndex: 0
+      editorLocalId: 0
+      editorPrefabRelativePath: 
+      version: 0
+    _toObject:
+      scene:
+        editorAssetGUID: 7802eded624d4e94ab9045112112fdb7
+        name: Day_General_System
+        _path: Assets/Scenes/Day_Scenes/Day_General_System.unity
+      fullPath: /= SYSTEM/Day Canvas/item icon and text/ItemPrompt/Press Icon
+      componentName: 
+      componentIndex: 0
+      editorLocalId: 1099961952
+      editorPrefabRelativePath: 
+      version: 1
+    _data:
+      data: []
+  - _sourceObject: {fileID: 291055384}
+    _sourceField: elevatorController
+    DEPRECATED_fromObject:
+      scene:
+        editorAssetGUID: 
+        name: 
+        _path: 
+      fullPath: 
+      componentName: 
+      componentIndex: 0
+      editorLocalId: 0
+      editorPrefabRelativePath: 
+      version: 0
+    _toObject:
+      scene:
+        editorAssetGUID: 7802eded624d4e94ab9045112112fdb7
+        name: Day_General_System
+        _path: Assets/Scenes/Day_Scenes/Day_General_System.unity
+      fullPath: /= SYSTEM/Elevator Manager/Elevator Controller
+      componentName: ElevatorController, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      componentIndex: 0
+      editorLocalId: 818478009
+      editorPrefabRelativePath: 
+      version: 1
+    _data:
+      data: []
+  - _sourceObject: {fileID: 291055384}
+    _sourceField: monologue
+    DEPRECATED_fromObject:
+      scene:
+        editorAssetGUID: 
+        name: 
+        _path: 
+      fullPath: 
+      componentName: 
+      componentIndex: 0
+      editorLocalId: 0
+      editorPrefabRelativePath: 
+      version: 0
+    _toObject:
+      scene:
+        editorAssetGUID: 7802eded624d4e94ab9045112112fdb7
+        name: Day_General_System
+        _path: Assets/Scenes/Day_Scenes/Day_General_System.unity
+      fullPath: /= SYSTEM/Day Canvas/Protagonist item Monologue
+      componentName: TMPro.TextMeshProUGUI, Unity.TextMeshPro, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      componentIndex: 0
+      editorLocalId: 1429556762
+      editorPrefabRelativePath: 
+      version: 1
+    _data:
+      data: []
+  - _sourceObject: {fileID: 291055384}
+    _sourceField: promptIcon
+    DEPRECATED_fromObject:
+      scene:
+        editorAssetGUID: 
+        name: 
+        _path: 
+      fullPath: 
+      componentName: 
+      componentIndex: 0
+      editorLocalId: 0
+      editorPrefabRelativePath: 
+      version: 0
+    _toObject:
+      scene:
+        editorAssetGUID: 7802eded624d4e94ab9045112112fdb7
+        name: Day_General_System
+        _path: Assets/Scenes/Day_Scenes/Day_General_System.unity
+      fullPath: /= SYSTEM/Day Canvas/item icon and text/ItemPrompt/Press Icon
+      componentName: 
+      componentIndex: 0
+      editorLocalId: 1099961952
+      editorPrefabRelativePath: 
+      version: 1
+    _data:
+      data: []
+  - _sourceObject: {fileID: 220895012}
+    _sourceField: elevatorController
+    DEPRECATED_fromObject:
+      scene:
+        editorAssetGUID: 
+        name: 
+        _path: 
+      fullPath: 
+      componentName: 
+      componentIndex: 0
+      editorLocalId: 0
+      editorPrefabRelativePath: 
+      version: 0
+    _toObject:
+      scene:
+        editorAssetGUID: 7802eded624d4e94ab9045112112fdb7
+        name: Day_General_System
+        _path: Assets/Scenes/Day_Scenes/Day_General_System.unity
+      fullPath: /= SYSTEM/Elevator Manager/Elevator Controller
+      componentName: ElevatorController, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      componentIndex: 0
+      editorLocalId: 818478009
+      editorPrefabRelativePath: 
+      version: 1
+    _data:
+      data: []
+  - _sourceObject: {fileID: 220895012}
+    _sourceField: monologue
+    DEPRECATED_fromObject:
+      scene:
+        editorAssetGUID: 
+        name: 
+        _path: 
+      fullPath: 
+      componentName: 
+      componentIndex: 0
+      editorLocalId: 0
+      editorPrefabRelativePath: 
+      version: 0
+    _toObject:
+      scene:
+        editorAssetGUID: 7802eded624d4e94ab9045112112fdb7
+        name: Day_General_System
+        _path: Assets/Scenes/Day_Scenes/Day_General_System.unity
+      fullPath: /= SYSTEM/Day Canvas/Protagonist item Monologue
+      componentName: TMPro.TextMeshProUGUI, Unity.TextMeshPro, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+      componentIndex: 0
+      editorLocalId: 1429556762
+      editorPrefabRelativePath: 
+      version: 1
+    _data:
+      data: []
+  - _sourceObject: {fileID: 220895012}
+    _sourceField: promptIcon
+    DEPRECATED_fromObject:
+      scene:
+        editorAssetGUID: 
+        name: 
+        _path: 
+      fullPath: 
+      componentName: 
+      componentIndex: 0
+      editorLocalId: 0
+      editorPrefabRelativePath: 
+      version: 0
+    _toObject:
+      scene:
+        editorAssetGUID: 7802eded624d4e94ab9045112112fdb7
+        name: Day_General_System
+        _path: Assets/Scenes/Day_Scenes/Day_General_System.unity
+      fullPath: /= SYSTEM/Day Canvas/item icon and text/ItemPrompt/Press Icon
+      componentName: 
+      componentIndex: 0
+      editorLocalId: 1099961952
+      editorPrefabRelativePath: 
+      version: 1
+    _data:
+      data: []
+  - _sourceObject: {fileID: 82278440}
+    _sourceField: uniqueLights,1
+    DEPRECATED_fromObject:
+      scene:
+        editorAssetGUID: 
+        name: 
+        _path: 
+      fullPath: 
+      componentName: 
+      componentIndex: 0
+      editorLocalId: 0
+      editorPrefabRelativePath: 
+      version: 0
+    _toObject:
+      scene:
+        editorAssetGUID: 6a68bbe3aa7880e409e20cf93bac4cca
+        name: Third_Floor
+        _path: Assets/Scenes/Day_Scenes/Third_Floor.unity
+      fullPath: /= Lighting/Skylight (2)
+      componentName: 
+      componentIndex: 0
+      editorLocalId: 1946170303
+      editorPrefabRelativePath: 
+      version: 1
+    _data:
+      data: []
+  - _sourceObject: {fileID: 82278440}
+    _sourceField: uniqueLights,0
+    DEPRECATED_fromObject:
+      scene:
+        editorAssetGUID: 
+        name: 
+        _path: 
+      fullPath: 
+      componentName: 
+      componentIndex: 0
+      editorLocalId: 0
+      editorPrefabRelativePath: 
+      version: 0
+    _toObject:
+      scene:
+        editorAssetGUID: d8d6aad72831516449a0ce2968d88960
+        name: Protagonist_Room
+        _path: Assets/Scenes/Day_Scenes/Protagonist_Room.unity
+      fullPath: /= LIGHTING/Skylight (1)
+      componentName: 
+      componentIndex: 0
+      editorLocalId: 333081734
       editorPrefabRelativePath: 
       version: 1
     _data:
@@ -3264,7 +3417,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6429483277891773776, guid: 170a163f784b97b48b57b77337e27610, type: 3}
   m_PrefabInstance: {fileID: 1822208468}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1717328059
+--- !u!114 &1749609685
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3274,14 +3427,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ec0b4dd729a12d046982652f834580a2, type: 3}
-  m_Name: Protagonist_Room_LMA1
+  m_Name: Protagonist_Room_LM0
   m_EditorClassIdentifier: 
   resolution: 2048
   bitmask: 1
-  id: 1
-  sortingID: 1
+  id: 0
+  sortingID: 0
   isImplicit: 1
-  area: 0
+  area: 21844.57
   totalVertexCount: 0
   vertexCounter: 0
   sceneLodLevel: -1
@@ -3800,56 +3953,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e93c1ca61dc7df944b51e74780afdec5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1960237634
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec0b4dd729a12d046982652f834580a2, type: 3}
-  m_Name: Third_Floor_LMA2
-  m_EditorClassIdentifier: 
-  resolution: 2048
-  bitmask: 1
-  id: 2
-  sortingID: 2
-  isImplicit: 1
-  area: 0
-  totalVertexCount: 0
-  vertexCounter: 0
-  sceneLodLevel: -1
-  autoResolution: 0
-  sceneName: 
-  tag: -1
-  containsTerrains: 0
-  probes: 0
-  mode: 1
-  renderMode: 1000
-  renderDirMode: 1000
-  atlasPacker: 1000
-  computeSSS: 0
-  sssSamples: 16
-  sssDensity: 10
-  sssColor: {r: 1, g: 1, b: 1, a: 1}
-  sssScale: 1
-  fakeShadowBias: 0
-  transparentSelfShadow: 0
-  flipNormal: 0
-  parentName: 
-  overridePath: 
-  fixPos3D: 0
-  voxelSize: {x: 1, y: 1, z: 1}
-  passedFilter: 0
 --- !u!43 &1976920831
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh78308
+  m_Name: pb_Mesh743472
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2

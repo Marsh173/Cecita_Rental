@@ -10,9 +10,9 @@ public class TriggerDoorController : MonoBehaviour
 {
     [SerializeField] private Animator myDoorAnimator;
     [SerializeField] public bool openTrigger = false, closeTrigger = false, playedOpen = false;
-    private string doorOpen = "DoorOpen";
-    private string doorClose = "DoorClose";
-    private string Idle = "Idle";
+    //private string doorOpen = "DoorOpen";
+    //private string doorClose = "DoorClose";
+    //private string Idle = "Idle";
     public static bool playedCloseAnim = false;
     private Door loungeDoor;
 
@@ -45,17 +45,15 @@ public class TriggerDoorController : MonoBehaviour
         //get parent - interactive door
         //get first child - door
         //get first child - door_handle that has the script attached
-        Transform door_handle_transform = this.transform.parent.gameObject.transform.GetChild(0).gameObject.transform.GetChild(0);
-        Debug.Log("Get the sibling: " + door_handle_transform.gameObject.name);
+        Transform door_handle_transform = this.transform.parent.gameObject.transform.GetChild(0).GetChild(0);
+        //Debug.Log("Get the sibling: " + door_handle_transform.gameObject.name);
         try
         {
             loungeDoor = door_handle_transform.gameObject.GetComponent<Door>();
-            Debug.Log("Door script?" + loungeDoor);
+            //Debug.Log("Door script?" + loungeDoor);
         }
-        catch(NullReferenceException e)
-        {
-            
-        }
+        catch { }
+        
 
     }
 
@@ -109,7 +107,7 @@ public class TriggerDoorController : MonoBehaviour
                     GameObject taggedObject = GameObject.FindWithTag("LoungeDoor");
                     if (taggedObject != null)
                     {
-                        Debug.Log("change to Close trigger!");
+                        //Debug.Log("change to Close trigger!");
                         TriggerDoorController trigScript = taggedObject.GetComponent<TriggerDoorController>();
 
                         if (trigScript == null) Debug.Log("more than one object has this LoungeDoor tag");

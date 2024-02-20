@@ -77,7 +77,7 @@ public class NoSightAllowed : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F))
         {
             EyeAnimation();
-            Debug.Log("animation played");
+            //Debug.Log("animation played");
             //eye_UI.onClick.Invoke();
             FInstructionText.text = FInstructionText.text == "to open your eyes" ? "to close your eyes" : "to open your eyes";
             
@@ -113,7 +113,7 @@ public class NoSightAllowed : MonoBehaviour
 
             if (CurrentEyeBarAmount <= 0 && FInstructionText.text != "to open your eyes")
             {
-                Debug.Log(CurrentEyeBarAmount);
+                //Debug.Log(CurrentEyeBarAmount);
                 //Respawn.dead = true;
                 FInstructionText.text = "to open your eyes";
                 CloseEyeAnimation();
@@ -193,7 +193,7 @@ public class NoSightAllowed : MonoBehaviour
     private IEnumerator RechargeBar()
     {
         yield return new WaitForSeconds(1.5f);
-        Debug.Log("recharge waited");
+        //Debug.Log("recharge waited");
         while (CurrentEyeBarAmount < 100 - openedTimes * 10)
         {
             CurrentEyeBarAmount += RechargeSpeed * Time.deltaTime;
@@ -201,7 +201,7 @@ public class NoSightAllowed : MonoBehaviour
         }
 
         rechargeC = null;
-        Debug.Log("Supposed CurrentEyeBarAmount" + (100 - openedTimes * 10));
-        Debug.Log("recharge finished");
+        //Debug.Log("Supposed CurrentEyeBarAmount" + (100 - openedTimes * 10));
+        //Debug.Log("recharge finished");
     }
 }

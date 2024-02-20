@@ -7,6 +7,7 @@ using TMPro;
 public class InspectionCameraTransition : MonoBehaviour
 {
     public static InspectionCameraTransition instance;
+    public InteractableItem DocInfo;
     private Camera playercam;
     public Transform InspectionCam;
 
@@ -22,6 +23,7 @@ public class InspectionCameraTransition : MonoBehaviour
 
     private void Start()
     {
+        DocInfo = GetComponent<InteractableItemWithEvent>();
         InspectionCam = GetComponentInChildren<Camera>().transform;
         taskmanager = GameObject.FindWithTag("TaskManager");
         instance = this;
@@ -61,7 +63,10 @@ public class InspectionCameraTransition : MonoBehaviour
     }
 
     public void TransitCamToInspectionPos()
-    { 
+    {
+
+        transcriptWindow.transform.GetChild(3).GetChild(0).GetChild(0).GetComponent<TMP_Text>().text = DocInfo.Doc.transcript[0];
+
         Debug.Log("In cam?"+isInCam);
 
         originalCamPosition = playercam.transform;

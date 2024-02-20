@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="MixerGroup" id="{c5d7a39d-df5a-43c9-a0fc-42e2a756e7e4}">
+		<property name="name">
+			<value>Door Knock</value>
+		</property>
+		<relationship name="effectChain">
+			<destination>{41d78cfc-c6eb-4c79-ac36-9faac38ef411}</destination>
+		</relationship>
+		<relationship name="panner">
+			<destination>{7fcfbc97-ff58-4c7f-824a-057af50b6c41}</destination>
+		</relationship>
+		<relationship name="output">
+			<destination>{4f1e3ae9-67eb-4a12-aced-ad619fd0a3d4}</destination>
+		</relationship>
+	</object>
+	<object class="MixerBusEffectChain" id="{41d78cfc-c6eb-4c79-ac36-9faac38ef411}">
+		<relationship name="effects">
+			<destination>{1734d553-955d-4bd5-b2f4-b46464482502}</destination>
+			<destination>{2cdc86b0-394c-406a-aa1d-ef344d4a9f17}</destination>
+		</relationship>
+	</object>
+	<object class="MixerBusPanner" id="{7fcfbc97-ff58-4c7f-824a-057af50b6c41}" />
+	<object class="MixerBusFader" id="{1734d553-955d-4bd5-b2f4-b46464482502}" />
+	<object class="Sidechain" id="{2cdc86b0-394c-406a-aa1d-ef344d4a9f17}">
+		<property name="level">
+			<value>3</value>
+		</property>
+	</object>
+</objects>

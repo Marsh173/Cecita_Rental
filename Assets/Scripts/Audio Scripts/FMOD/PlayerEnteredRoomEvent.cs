@@ -4,3 +4,6 @@ using UnityEngine;
 using UnityEngine.Events;
 
 public class PlayerEnteredRoomEvent : UnityEvent<GameObject> { }
+
+
+public class PlayerLeaveRoomEvent : UnityEvent<GameObject> { }

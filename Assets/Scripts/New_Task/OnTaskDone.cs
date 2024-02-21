@@ -16,7 +16,11 @@ public class OnTaskDone : MonoBehaviour
         bool b = true;
         for (int i = 0; i < conditions.Count; i ++)
         {
-            if (b) b = tlt.task_track[conditions[i]];
+            if (b) {
+
+                if (tlt.task_track.ContainsKey(conditions[i]))b = tlt.task_track[conditions[i]]; 
+
+            }
             else break;
         }
         return b;

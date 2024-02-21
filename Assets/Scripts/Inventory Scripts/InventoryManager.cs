@@ -26,7 +26,7 @@ public class InventoryManager : MonoBehaviour
     public static bool EquipmentCollected, RecorderCollected, EarbudsCollected = false;
     public static bool ThirdFloorElevatorCardCollected, keyCollected = false;
 
-    private  InspectionCameraTransition inspectScript;
+    private InspectionCameraTransition inspectScript;
     public GameObject inspectionScreen;
     private void Awake()
     {
@@ -71,7 +71,7 @@ public class InventoryManager : MonoBehaviour
                 //if inspect script is in scene, check the state of it first
                 if (inspectScript != null)
                 {
-                    if (!inspectScript.isInCam)
+                    if (!InspectionCameraTransition.isInCam) 
                     {
                         FirstPersonAIO.instance.enableCameraMovement = true;
                         FirstPersonAIO.instance.playerCanMove = true;
@@ -111,7 +111,7 @@ public class InventoryManager : MonoBehaviour
                 //disable inspection screen when opening inventory in inspection cam
                 if (inspectScript != null)
                 {
-                    if (inspectScript.isInCam)
+                    if (InspectionCameraTransition.isInCam)
                     {
                         inspectionScreen.SetActive(false);
                     }
@@ -198,7 +198,7 @@ public class InventoryManager : MonoBehaviour
 
         foreach (Transform item in DocumentContent)
         {
-            if (DItems.Find(item => item.name == item.name))
+            if (DItems!= null && DItems.Find(item => item.name == item.name))
             {
                 Destroy(item.gameObject);
             }

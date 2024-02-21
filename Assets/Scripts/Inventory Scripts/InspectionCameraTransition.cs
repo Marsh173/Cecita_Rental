@@ -3,36 +3,44 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class InspectionCameraTransition : MonoBehaviour
 {
-    public static InspectionCameraTransition instance;
     public InteractableItem DocInfo;
+
+    public float initialFOV = 60f, FOVOnInteraction = 60f;
+
+    public static InspectionCameraTransition instance;
+    [SerializeField] private Transform InspectionCam, originalCamPosition;
     private Camera playercam;
-    public Transform InspectionCam;
-
-    public float initialFOV = 60f;
-    public float FOVOnInteraction = 60f;
-
-    public Transform originalCamPosition;
     private Vector3 originalPos, originalAngle;
-    public bool isInCam;
 
-    public GameObject inspectionScreen, inspectionButtonW, transcriptWindow, taskmanager; //for adding transcript overlay
-    private GameObject PlayBody;
+    public static bool isInCam;
+
+    public FirstPersonAIO player;
+    public GameObject inspectionScreen, taskmanager; //for adding transcript overlay
+    [SerializeField] private GameObject PlayBody, inspectionButton, transcriptWindow;
 
     private void Start()
     {
         DocInfo = GetComponent<InteractableItemWithEvent>();
+
         InspectionCam = GetComponentInChildren<Camera>().transform;
-        taskmanager = GameObject.FindWithTag("TaskManager");
-        instance = this;
-        playercam = FirstPersonAIO.instance.gameObject.GetComponentInChildren<Camera>();
-        originalCamPosition = playercam.transform;
-        PlayBody = FirstPersonAIO.instance.transform.GetChild(1).GetChild(0).gameObject;
-        initialFOV = playercam.fieldOfView;
+        playercam = player.gameObject.GetComponentInChildren<Camera>();
+        PlayBody = player.transform.GetChild(1).GetChild(0).gameObject;
         FOVOnInteraction = GetComponentInChildren<Camera>().fieldOfView;
+        originalCamPosition = playercam.transform;
+
+        instance = this;
         initialFOV = 60f;
+        initialFOV = playercam.fieldOfView;
+
+        inspectionScreen.SetActive(false);
+        inspectionButton = inspectionScreen.transform.GetChild(0).gameObject;
+        transcriptWindow = inspectionScreen.transform.GetChild(1).gameObject;
+        inspectionButton.SetActive(false);
+        transcriptWindow.SetActive(false);
     }
 
     private void Update()
@@ -54,7 +62,7 @@ public class InspectionCameraTransition : MonoBehaviour
         //playercam.transform.rotation = originalCamPosition.rotation;
         //StartCoroutine(LerpPosition(playercam.transform, originalPos, 1f));
         //StartCoroutine(LerpFunction(playercam.transform, originalAngle, 1f));
-        FirstPersonAIO.instance.enableFOVShift = true;
+        player.enableFOVShift = true;
         playercam.transform.DOMove(originalPos, 1f);
         playercam.transform.DORotate(originalAngle, 1f).OnComplete(() => EnableMovement());
         playercam.fieldOfView = initialFOV;
@@ -79,13 +87,13 @@ public class InspectionCameraTransition : MonoBehaviour
         Debug.Log(playercam.transform.position + "player pos");
         Debug.Log(InspectionCam.position + "cam pos");
 
-        FirstPersonAIO.instance.enableFOVShift = false;
+        player.enableFOVShift = false;
         playercam.transform.DOMove(InspectionCam.position, 1);
         playercam.transform.DORotate(InspectionCam.rotation.eulerAngles, 1);
         playercam.fieldOfView = FOVOnInteraction;
 
-        FirstPersonAIO.instance.enableCameraMovement = false;
-        FirstPersonAIO.instance.playerCanMove = false;
+        player.enableCameraMovement = false;
+        player.playerCanMove = false;
         Cursor.visible = true;
         isInCam = true;
 
@@ -95,9 +103,9 @@ public class InspectionCameraTransition : MonoBehaviour
         {
             inspectionScreen.SetActive(true);
 
-            if (inspectionButtonW != null && DocInfo.Doc != null)
+            if (inspectionButton != null && DocInfo.Doc != null)
             {
-                inspectionButtonW.SetActive(true);
+                inspectionButton.SetActive(true);
             }
         }
         PlayBody.GetComponent<SkinnedMeshRenderer>().enabled = false;
@@ -113,8 +121,8 @@ public class InspectionCameraTransition : MonoBehaviour
 
     private void EnableMovement()
     {
-        FirstPersonAIO.instance.enableCameraMovement = true;
-        FirstPersonAIO.instance.playerCanMove = true;
+        player.enableCameraMovement = true;
+        player.playerCanMove = true;
 
         Cursor.visible = false;
 
@@ -124,9 +132,9 @@ public class InspectionCameraTransition : MonoBehaviour
         {
             inspectionScreen.SetActive(false);
 
-            if (inspectionButtonW != null)
+            if (inspectionButton != null)
             {
-                inspectionButtonW.SetActive(false);
+                inspectionButton.SetActive(false);
             }
         }
 

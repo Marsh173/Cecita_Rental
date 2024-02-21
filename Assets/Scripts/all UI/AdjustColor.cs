@@ -7,24 +7,40 @@ using UnityEngine.SceneManagement;
 public class AdjustColor : MonoBehaviour
 {
     public RawImage bgImage;
-    [SerializeField] private Slider blackS;
-    public static Color eyeBgColor;
+    private Slider blackS;
+    [SerializeField] public static float sliderValueHolder = 0.2f;
+    [SerializeField] public static Color eyeBgColor;
+    public static bool settingsOn;
+    public float holderVisualizer;
     public string sceneName;
 
     void Start()
     {
+        settingsOn = false;
         blackS = GetComponent<Slider>();
-        bgImage.color = eyeBgColor;
-        blackS.value = 0.2f;
+        if (sliderValueHolder != 0.2f)
+        {
+            blackS.value = sliderValueHolder;
+        }
+        else blackS.value = 0.2f;
+
+        bgImage.color = eyeBgColor = new Color(blackS.value, blackS.value, blackS.value, 1f);
+
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = true;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        bgImage.color = new Color(blackS.value, blackS.value, blackS.value,1f);
-        eyeBgColor = bgImage.color;
+        if (gameObject.activeSelf)
+        {
+            settingsOn = true;
+            bgImage.color = new Color(blackS.value, blackS.value, blackS.value, 1f);
+            eyeBgColor = bgImage.color;
+            sliderValueHolder = blackS.value;
+            holderVisualizer = sliderValueHolder;
+        }
+        else settingsOn = false;
     }
 
     public void NextScene()

@@ -30,7 +30,8 @@ public class InventoryManager : MonoBehaviour
     public GameObject inspectionScreen;
     private void Awake()
     {
-        Inventory.transform.position = new Vector2(960, -2000);
+        Inventory.SetActive(false);
+        //Inventory.transform.position = new Vector2(960, -2000);
 
         //add all pre-made display into a list for further reference
         /*foreach (Transform child in NormalItemContent.transform)
@@ -62,12 +63,13 @@ public class InventoryManager : MonoBehaviour
     {
         if (Input.GetKeyDown(inventoryKey))
         {
-            if(Inventory.transform.position.y == 540)
+            if(Inventory.activeSelf) //Inventory.transform.position.y == 540
             {
-                Inventory.transform.position = new Vector2(960, -1000);
+                Inventory.SetActive(false);
+                //Inventory.transform.position = new Vector2(960, -1000);
 
                 //if inspect script is in scene, check the state of it first
-                if(inspectScript != null)
+                if (inspectScript != null)
                 {
                     if (!inspectScript.isInCam)
                     {
@@ -97,7 +99,9 @@ public class InventoryManager : MonoBehaviour
                 Cursor.lockState = CursorLockMode.Confined;
                 Cursor.visible = true;
 
-                Inventory.transform.position = new Vector2(960, 540);
+                Inventory.SetActive(true);
+                //Inventory.transform.position = new Vector2(960, 540);
+
                 FirstPersonAIO.instance.enableCameraMovement = false;
                 FirstPersonAIO.instance.playerCanMove = false;
 

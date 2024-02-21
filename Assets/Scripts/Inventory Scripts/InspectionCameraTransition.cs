@@ -64,8 +64,10 @@ public class InspectionCameraTransition : MonoBehaviour
 
     public void TransitCamToInspectionPos()
     {
-
-        transcriptWindow.transform.GetChild(3).GetChild(0).GetChild(0).GetComponent<TMP_Text>().text = DocInfo.Doc.transcript[0];
+        if(DocInfo.Doc != null)
+        {
+            transcriptWindow.transform.GetChild(3).GetChild(0).GetChild(0).GetComponent<TMP_Text>().text = DocInfo.Doc.transcript[0];
+        }
 
         Debug.Log("In cam?"+isInCam);
 
@@ -92,7 +94,7 @@ public class InspectionCameraTransition : MonoBehaviour
         {
             inspectionScreen.SetActive(true);
 
-            if (inspectionButtonW != null)
+            if (inspectionButtonW != null && DocInfo.Doc != null)
             {
                 inspectionButtonW.SetActive(true);
             }

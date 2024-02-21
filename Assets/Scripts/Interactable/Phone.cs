@@ -8,7 +8,6 @@ using UnityEngine.SceneManagement;
 
 public class Phone : MonoBehaviour
 {
-    public RawImage PhoneCam;
     public bool isInCam;
     public GameObject PhoneUI;
     public string phoneNumber;
@@ -16,7 +15,13 @@ public class Phone : MonoBehaviour
     public string correctNumber;
     private bool CanDial;
     public Camera playercam;
-    public Transform PhoneCamTrans;
+
+    //public GameObject hallway, hallwayAudio, bedroom;
+
+    private void Start()
+    {
+        //bedroom.SetActive(false);
+    }
     public void PhoneInteract()
     {
         //PhoneCam.enabled = true;
@@ -32,8 +37,6 @@ public class Phone : MonoBehaviour
 
     public void PhoneInteract2()
     {
-        playercam.transform.DOMove(PhoneCamTrans.position, 2, true);
-        playercam.transform.DORotate(PhoneCamTrans.rotation.eulerAngles, 2);
         FirstPersonAIO.instance.enableCameraMovement = false;
         FirstPersonAIO.instance.playerCanMove = false;
         isInCam = true;
@@ -83,6 +86,9 @@ public class Phone : MonoBehaviour
     {
         if (phoneNumber == correctNumber) //PuzzleHandler.hasSolvedClockPuzzle && 
         {
+            //hallway.SetActive(false);
+            //hallwayAudio.SetActive(false);
+            //bedroom.SetActive(true);
             PhoneNumberText.text = "Dialing...";
             SceneManager.LoadScene("TemporaryMenu");
         }

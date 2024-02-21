@@ -7,7 +7,7 @@ public class TaskDoneTrigger : MonoBehaviour
     public FinishTask_By fin;
     public TaskManager_Test_Yunfei tm;
     public TaskListTrack tlt;
-
+    bool done = false;
 
 
     public int task_num_DONOTCHANGE = 0;
@@ -38,8 +38,13 @@ public class TaskDoneTrigger : MonoBehaviour
 
     public void Task_Done()
     {
-        tlt.task_track[task_num_DONOTCHANGE-1] = true;
-        StartCoroutine(tm.TaskFinish(task_num_DONOTCHANGE));
+        if (!done)
+        {
+            done = true;
+            tlt.task_track[task_num_DONOTCHANGE - 1] = true;
+            StartCoroutine(tm.TaskFinish(task_num_DONOTCHANGE));
+        }
+        
     }
 
 }

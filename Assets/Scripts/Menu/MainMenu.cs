@@ -15,6 +15,10 @@ namespace FMODUnity
         private void Start()
         {
             Time.timeScale = 1;
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.Confined;
+
+            
         }
 
 

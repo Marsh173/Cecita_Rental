@@ -109,11 +109,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e3b626f5aaea5740975126f14b0cbb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myDoor: {fileID: 4144927403493989589}
+  myDoorAnimator: {fileID: 0}
   openTrigger: 0
   closeTrigger: 1
-  doorOpen: DoorOpen
-  doorClose: DoorClose
+  playedOpen: 0
+  doorOpenEventPath:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  doorCloseEventPath:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!114 &8828569566192919967
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -403,7 +416,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.9341893, y: 4.356148, z: 0.3534938}
+  m_Size: {x: 1.9341893, y: 4.356148, z: 0.83}
   m_Center: {x: -1, y: 0, z: 0}
 --- !u!95 &4144927403493989589
 Animator:

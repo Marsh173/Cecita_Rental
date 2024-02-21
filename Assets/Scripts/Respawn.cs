@@ -75,6 +75,10 @@ public class Respawn : MonoBehaviour
         restarted = true;
 
         yield return new WaitForSeconds(10f);
-        placeholderDeathText.SetActive(false);
+
+        if (placeholderDeathText != null)
+        {
+            placeholderDeathText.SetActive(false);
+        }
     }
 }

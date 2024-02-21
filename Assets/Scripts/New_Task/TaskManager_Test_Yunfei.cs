@@ -139,7 +139,7 @@ public class TaskManager_Test_Yunfei : MonoBehaviour
            
             t.GetComponent<RectTransform>().anchoredPosition = new Vector3(50 + t.GetComponent<TaskData>().sub * 15, 60 + y_shift , 0);
         }
-        StartCoroutine(showTasks(1));
+        if(!coroutine_running)StartCoroutine(showTasks(1));
     }
 
     public int GetTaskIndex(int num)

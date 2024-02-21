@@ -18,8 +18,9 @@ public class OnTaskDone : MonoBehaviour
         {
             if (b) {
 
-                if (tlt.task_track.ContainsKey(conditions[i]))b = tlt.task_track[conditions[i]]; 
-
+                if (tlt.task_track.ContainsKey(conditions[i]))
+                    b = tlt.task_track[conditions[i]];
+                else b = false;
             }
             else break;
         }

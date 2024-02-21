@@ -48,7 +48,10 @@ public class Elevator : InteractableItemWithEvent
             //play elevator open sequence
             StartCoroutine(ElevatorArrivalSequence());
 
-            monologue.enabled = false;
+            if(monologue != null)
+            {
+                monologue.enabled = false;
+            }
             
 
         }

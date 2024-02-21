@@ -11,8 +11,8 @@ public class InspectionCameraTransition : MonoBehaviour
     private Camera playercam;
     public Transform InspectionCam;
 
-    public float initialFOV;
-    public float FOVOnInteraction;
+    public float initialFOV = 60f;
+    public float FOVOnInteraction = 60f;
 
     public Transform originalCamPosition;
     private Vector3 originalPos, originalAngle;
@@ -88,7 +88,8 @@ public class InspectionCameraTransition : MonoBehaviour
         FirstPersonAIO.instance.playerCanMove = false;
         Cursor.visible = true;
         isInCam = true;
-        taskmanager.SetActive(false);
+
+        //taskmanager.SetActive(false);
 
         if (inspectionScreen != null)
         {
@@ -116,7 +117,8 @@ public class InspectionCameraTransition : MonoBehaviour
         FirstPersonAIO.instance.playerCanMove = true;
 
         Cursor.visible = false;
-        taskmanager.SetActive(true);
+
+        //taskmanager.SetActive(true);
 
         if (inspectionScreen != null)
         {

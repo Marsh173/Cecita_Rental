@@ -60,14 +60,14 @@ public class PlayerEarBudSequence : MonoBehaviour
         {
             inventoryTutorialObj.SetActive(true);
 
-            if (inventory.transform.position.y == 540)
+            if (inventory.activeInHierarchy)
             {
                 TabToOpen = true;
                 inventoryTutorialObj.SetActive(false);
             }
         }
-
-        if (/*!inventory.activeInHierarchy*/inventory.transform.position.y != 540 && TabToOpen && !earBudVoice.isPlaying)
+        /*inventory.transform.position.y != 540*/
+        if (!inventory.activeInHierarchy && TabToOpen && !earBudVoice.isPlaying)
         {
             FinishInventory = true;
         }

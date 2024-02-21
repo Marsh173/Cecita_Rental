@@ -147,6 +147,11 @@ public class NoSightAllowed : MonoBehaviour
 
         EyeBarImage.fillAmount = slider.value = CurrentEyeBarAmount / 100f;
         AlertBarimage.fillAmount = openedTimes * 0.1f;
+
+        if (AdjustColor.settingsOn)
+        {
+            eyeBlinkImage.color = AdjustColor.eyeBgColor;
+        }
     }
 
     //Animation

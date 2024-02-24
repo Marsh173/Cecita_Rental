@@ -19,7 +19,7 @@ public class InspectionCameraTransition : MonoBehaviour
     public static bool isInCam;
 
     public FirstPersonAIO player;
-    public GameObject inspectionScreen, taskmanager; //for adding transcript overlay
+    public GameObject inspectionScreen, taskmanager, inventory; //for adding transcript overlay
     [SerializeField] private GameObject PlayBody, inspectionButton, transcriptWindow;
 
     private void Start()
@@ -65,9 +65,18 @@ public class InspectionCameraTransition : MonoBehaviour
         //playercam.transform.rotation = originalCamPosition.rotation;
         //StartCoroutine(LerpPosition(playercam.transform, originalPos, 1f));
         //StartCoroutine(LerpFunction(playercam.transform, originalAngle, 1f));
+
+       
         player.enableFOVShift = true;
         playercam.transform.DOMove(originalPos, 1f);
-        playercam.transform.DORotate(originalAngle, 1f).OnComplete(() => EnableMovement());
+
+        //if inventory not active, enable player movement
+        if (!inventory.activeInHierarchy)
+        {
+            playercam.transform.DORotate(originalAngle, 1f).OnComplete(() => EnableMovement());
+        }
+        else playercam.transform.DORotate(originalAngle, 1f)/*.OnComplete(() => EnableMovement())*/;
+
         playercam.fieldOfView = initialFOV;
 
         Debug.Log(playercam.transform.position + "after transfrom back cam pos");
@@ -101,6 +110,7 @@ public class InspectionCameraTransition : MonoBehaviour
         player.enableCameraMovement = false;
         player.playerCanMove = false;
         Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.Confined;
         isInCam = true;
 
         //taskmanager.SetActive(false);

@@ -139,7 +139,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &17301191
 Transform:
   m_ObjectHideFlags: 0
@@ -912,6 +912,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 302162671290387368, guid: 324fb356f7432fc4db2dc095fab39281, type: 3}
     - target: {fileID: 254446210889785142, guid: baa45a6adc565eb4d95dd7617b45c679, type: 3}
+      propertyPath: inspectScript
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 254446210889785142, guid: baa45a6adc565eb4d95dd7617b45c679, type: 3}
       propertyPath: DocumentContent
       value: 
       objectReference: {fileID: 242468472}
@@ -999,6 +1003,17 @@ MonoBehaviour:
   PlaylistItemContent: {fileID: 3256127325359878670}
   PlaylistItem: {fileID: 302162671290387368, guid: baffac96d8524db4e9a242a4905fef25, type: 3}
   Inventory: {fileID: 747427654138229564}
+--- !u!114 &71065247 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 254446210889785142, guid: baa45a6adc565eb4d95dd7617b45c679, type: 3}
+  m_PrefabInstance: {fileID: 71065243}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 71065245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e137c11ff51d6f46936410d6bd20cad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &78361172
 GameObject:
   m_ObjectHideFlags: 0
@@ -9038,6 +9053,33 @@ MonoBehaviour:
       componentIndex: 0
       editorLocalId: 1822208468
       editorPrefabRelativePath: sixfloor button_toPress
+      version: 1
+    _data:
+      data: []
+  - _sourceObject: {fileID: 71065247}
+    _sourceField: inspectScript
+    DEPRECATED_fromObject:
+      scene:
+        editorAssetGUID: 
+        name: 
+        _path: 
+      fullPath: 
+      componentName: 
+      componentIndex: 0
+      editorLocalId: 0
+      editorPrefabRelativePath: 
+      version: 0
+    _toObject:
+      scene:
+        editorAssetGUID: d8d6aad72831516449a0ce2968d88960
+        name: Protagonist_Room
+        _path: Assets/Scenes/Day_Scenes/Protagonist_Room.unity
+      fullPath: /= INTERACTABLE/Cecita Rental Booklet
+      componentName: InspectionCameraTransition, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+      componentIndex: 0
+      editorLocalId: 64211965
+      editorPrefabRelativePath: 
       version: 1
     _data:
       data: []
@@ -17646,7 +17688,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1356750879}
   m_Layer: 5
-  m_Name: Document Inspection Screen
+  m_Name: Inspection Screen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31270,7 +31312,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1783813161435628999}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.024, y: 0.084, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 738670840}

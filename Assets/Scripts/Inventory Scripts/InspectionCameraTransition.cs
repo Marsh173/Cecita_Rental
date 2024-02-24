@@ -32,9 +32,12 @@ public class InspectionCameraTransition : MonoBehaviour
         FOVOnInteraction = GetComponentInChildren<Camera>().fieldOfView;
         originalCamPosition = playercam.transform;
 
+        originalPos = originalCamPosition.position;
+        
         instance = this;
         initialFOV = 60f;
         initialFOV = playercam.fieldOfView;
+        isInCam = false;
 
         inspectionScreen.SetActive(false);
         inspectionButton = inspectionScreen.transform.GetChild(0).gameObject;
@@ -67,6 +70,8 @@ public class InspectionCameraTransition : MonoBehaviour
         playercam.transform.DORotate(originalAngle, 1f).OnComplete(() => EnableMovement());
         playercam.fieldOfView = initialFOV;
 
+        Debug.Log(playercam.transform.position + "after transfrom back cam pos");
+
         gameObject.layer = 7;
     }
 
@@ -80,10 +85,11 @@ public class InspectionCameraTransition : MonoBehaviour
         Debug.Log("In cam?"+isInCam);
 
         originalCamPosition = playercam.transform;
+        Debug.Log("originalCamPosition registered: " + originalCamPosition.position);
         originalPos = originalCamPosition.position;
+        Debug.Log("originalPos registered: " + originalPos);
         originalAngle = originalCamPosition.rotation.eulerAngles;
 
-        Debug.Log(originalPos + "original pos");
         Debug.Log(playercam.transform.position + "player pos");
         Debug.Log(InspectionCam.position + "cam pos");
 

@@ -26,7 +26,7 @@ public class InventoryManager : MonoBehaviour
     public static bool EquipmentCollected, RecorderCollected, EarbudsCollected = false;
     public static bool ThirdFloorElevatorCardCollected, keyCollected = false;
 
-    private InspectionCameraTransition inspectScript;
+    public InspectionCameraTransition inspectScript;
     public GameObject inspectionScreen;
     private void Awake()
     {

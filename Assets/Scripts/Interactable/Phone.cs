@@ -16,6 +16,8 @@ public class Phone : MonoBehaviour
     private bool CanDial;
     public Camera playercam;
 
+    public LoadingScreen loadingscreen;
+
     //public GameObject hallway, hallwayAudio, bedroom;
 
     private void Start()
@@ -90,7 +92,18 @@ public class Phone : MonoBehaviour
             //hallwayAudio.SetActive(false);
             //bedroom.SetActive(true);
             PhoneNumberText.text = "Dialing...";
-            SceneManager.LoadScene("TemporaryMenu");
+
+            //get Current Scene first
+            Scene currentScene = SceneManager.GetActiveScene();
+            if (currentScene.name != "Night_Two")
+            {
+                loadingscreen.LoadSceneWithLoadingScreen("Night_Two");
+            }
+            else
+            {
+                loadingscreen.LoadSceneWithLoadingScreen("MainMenu");
+            }
+            
         }
         else
         {

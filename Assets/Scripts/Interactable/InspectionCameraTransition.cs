@@ -8,17 +8,14 @@ public class InspectionCameraTransition : MonoBehaviour
 
     public Transform inspectionCameraPosition;
     public float transitionDuration = 1f;
-    public float originalFOV = 60f;
-    public float inspectionFOV = 60f;
+    public float originalFOV = 60f, inspectionFOV = 60f;
 
-    public GameObject inspectionScreen, inventory;
+    public GameObject inspectionScreen, playerObj, inventory;
     private GameObject playBody, inspectionButton, transcriptWindow;
 
     private Camera playerCamera;
     private Vector3 originalCameraPosition;
     private Quaternion originalCameraRotation;
-
-    public GameObject playerObj;
     private FirstPersonAIO player;
 
     public static bool isInCam = false; //for inventory reference only
@@ -52,6 +49,10 @@ public class InspectionCameraTransition : MonoBehaviour
 
     public void TransitionToInspectionPosition()
     {
+
+        //active cursor, deactive player.
+        EnablePlayerMovement(false);
+
         if (inspectionCameraPosition == null)
         {
             Debug.LogError("Inspection camera position is not assigned!");
@@ -66,12 +67,6 @@ public class InspectionCameraTransition : MonoBehaviour
         originalCameraPosition = playerCamera.transform.position;
         originalCameraRotation = playerCamera.transform.rotation;
 
-
-        //active cursor, deactive player.
-        EnablePlayerMovement(false);
-        Cursor.lockState = CursorLockMode.Confined;
-
-
         //move camera position/rotation
         playerCamera.transform.DOMove(inspectionCameraPosition.position, transitionDuration);
         playerCamera.transform.DORotate(inspectionCameraPosition.rotation.eulerAngles, transitionDuration);
@@ -79,7 +74,6 @@ public class InspectionCameraTransition : MonoBehaviour
 
         isInCam = true;
         isInInspection = true;
-
 
         //disable outline & interactable ability
         if (this.GetComponent<Outline>() != null)
@@ -94,41 +88,47 @@ public class InspectionCameraTransition : MonoBehaviour
 
     public void TransitionToOriginalPosition()
     {
-        playerCamera.transform.DOMove(originalCameraPosition, transitionDuration);
-        playerCamera.transform.DORotate(originalCameraRotation.eulerAngles, transitionDuration);
         playerCamera.fieldOfView = originalFOV;
-
+        playerCamera.transform.DOMove(originalCameraPosition, transitionDuration);
+        playerCamera.transform.DORotate(originalCameraRotation.eulerAngles, transitionDuration).OnComplete(() => EnablePlayerMovement(true));
+        
         isInCam = false;
         isInInspection = false;
 
         EnableInspectionUI(false);
 
         //deactive cursor, active player.
-        if (!inventory.activeSelf)
+        if (inventory.activeSelf)
         {
-            EnablePlayerMovement(true);
+            inventory.SetActive(false);
         }
-        
-        this.gameObject.layer = 7;
 
+        //EnablePlayerMovement(true);
+        this.gameObject.layer = 7;
     }
 
     void EnableInspectionUI(bool enable)
     {
         inspectionScreen.SetActive(enable);
-        playBody.SetActive(!enable);
-        if (inspectionButton != null && DocInfo.Doc != null)
+
+        if (/*inspectionButton != null && */DocInfo.Doc != null)
+        {
             inspectionButton.SetActive(enable);
-        
+        }
+        else inspectionButton.SetActive(!enable);
+
         if (transcriptWindow.activeSelf)
             transcriptWindow.SetActive(false);
     }
 
     void EnablePlayerMovement(bool enable) 
     {
+        playBody.SetActive(enable);
         player.enableFOVShift = enable;
         player.enableCameraMovement = enable;
         player.playerCanMove = enable;
+        playerCamera.transform.localPosition = new Vector3(0, 0, 0);
         Cursor.visible = !enable;
+        Cursor.lockState = CursorLockMode.Confined;
     }
 }

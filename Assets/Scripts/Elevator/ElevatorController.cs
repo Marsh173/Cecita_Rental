@@ -187,7 +187,7 @@ public class ElevatorController : MonoBehaviour
         // Unload scenes asynchronously
         foreach (Scene scene in loadedScenes)
         {
-            if (scene.name != "Day_General_System" && scene.name != "Elevator")
+            if (scene.name != "Day_General_System")
             {
                 yield return SceneManager.UnloadSceneAsync(scene);
                 Debug.Log("Unloaded Scene: " + scene.name);
@@ -242,7 +242,7 @@ public class ElevatorController : MonoBehaviour
         {
             foreach (Scene scene in loadedScenes)
             {
-                if (scene.name != "Day_General_System" && scene.name != "Elevator")
+                if (scene.name != "Day_General_System")
                 {
                     SceneManager.UnloadSceneAsync(scene);
                     Debug.Log("Unloaded scene: " + scene.name);

@@ -49,24 +49,25 @@ namespace FMODUnity
 
 
 
-        void Start()
+        protected void Start()
         {
             OnEnable();
             audioEvent = FMODUnity.RuntimeManager.CreateInstance(audioEventPath);
             audioEvent.setProperty(FMOD.Studio.EVENT_PROPERTY.MINIMUM_DISTANCE, originalMinDistance);
             audioEvent.setProperty(FMOD.Studio.EVENT_PROPERTY.MAXIMUM_DISTANCE, originalMaxDistance);
- 
-  
+
+
             Masterbus = FMODUnity.RuntimeManager.GetBus("Bus:/");
 
             if (activationMode == ActivationMode.ObjectStart)
             {
+                Debug.Log("Play audio on start");
                 PlayAudioEvent();
             }
         }
 
         
-        void Update()
+        public void Update()
         {
             DeathReset();
 
@@ -87,7 +88,8 @@ namespace FMODUnity
             }
         }
 
-        private void OnTriggerEnter(Collider other)
+
+        public void OnTriggerEnter(Collider other)
         {
             if(activationMode == ActivationMode.OnTriggerEnter && other.tag == "Player")
             {
@@ -96,7 +98,7 @@ namespace FMODUnity
             }
         }
 
-        private void OnTriggerExit(Collider other)
+        public void OnTriggerExit(Collider other)
         {
             if (deactivationMode == DeactivationMode.OnTriggerExit && other.tag == "Player")
             { 
@@ -105,7 +107,7 @@ namespace FMODUnity
             }
         }
 
-        private void DeathReset()
+        public void DeathReset()
         {
             if (NeedToResetAfterDeath && Respawn.dead)
             {
@@ -115,7 +117,7 @@ namespace FMODUnity
             }
         }
 
-        private void OnDestroy()
+        public void OnDestroy()
         {
             if (deactivationMode == DeactivationMode.ObjectDestroy)
             {
@@ -123,25 +125,29 @@ namespace FMODUnity
             }
         }
 
-        private void PlayAudioEvent()
+        protected void PlayAudioEvent()
         {
             FMOD.Studio.PLAYBACK_STATE fmodPbState;
             audioEvent.getPlaybackState(out fmodPbState);
 
             if (fmodPbState != FMOD.Studio.PLAYBACK_STATE.PLAYING)
             {
+                Debug.Log("Play event");
+                Set3DAttributes();
+
                 audioEvent.start();
             }
         }
 
-        private void StopAudioEvent()
+        protected void StopAudioEvent()
         {
             FMOD.Studio.PLAYBACK_STATE fmodPbState;
             audioEvent.getPlaybackState(out fmodPbState);
 
-            if (fmodPbState != FMOD.Studio.PLAYBACK_STATE.PLAYING)
+            if (fmodPbState == FMOD.Studio.PLAYBACK_STATE.PLAYING)
             {
-                audioEvent.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                Debug.Log("Stop event");
+                audioEvent.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
             }
         }
 
@@ -155,12 +161,12 @@ namespace FMODUnity
             audioEvent.setProperty(FMOD.Studio.EVENT_PROPERTY.MAXIMUM_DISTANCE, originalMaxDistance);
         }
 
-        private void OnEnable()
+        public void OnEnable()
         {
             SceneManager.sceneUnloaded += OnSceneUnloaded;
         }
 
-        private void OnDisable()
+        public void OnDisable()
         {
             SceneManager.sceneUnloaded -= OnSceneUnloaded;
             if (deactivationMode == DeactivationMode.ObjectDisable)
@@ -179,6 +185,16 @@ namespace FMODUnity
             Masterbus.stopAllEvents(FMOD.Studio.STOP_MODE.IMMEDIATE);
         }
 
+        private void Set3DAttributes()
+        {
+            // You should set appropriate 3D attributes based on your game's spatial characteristics
+            FMOD.ATTRIBUTES_3D attributes = new FMOD.ATTRIBUTES_3D();
+            attributes.position = this.transform.position.ToFMODVector();
+            attributes.forward = this.transform.forward.ToFMODVector();
+            attributes.up = this.transform.up.ToFMODVector();
+
+            audioEvent.set3DAttributes(attributes);
+        }
 #if UNITY_EDITOR
         [CustomEditor(typeof(FMODStudioNewEmitter))]
                 public class FMODStudioNewEmitterEditor : Editor

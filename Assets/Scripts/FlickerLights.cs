@@ -1,10 +1,9 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Experimental.GlobalIllumination;
-using FMODUnity;
 
-public class FlickerLights : FMODStudioNewEmitter
-{
+
+public class FlickerLights : MonoBehaviour { 
     
     private Renderer rendererComponent;
     private Light spotlight;
@@ -15,8 +14,10 @@ public class FlickerLights : FMODStudioNewEmitter
     public float minTime = 0.1f;
     public float maxTime = 0.5f;
 
+     
     private void Start()
     {
+
         try
         {
             rendererComponent = GetComponent<Renderer>();   

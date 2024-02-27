@@ -45,6 +45,8 @@ namespace FMODUnity
             awful_broadcast.setProperty(FMOD.Studio.EVENT_PROPERTY.MINIMUM_DISTANCE, originalMinDistance);
             awful_broadcast.setProperty(FMOD.Studio.EVENT_PROPERTY.MAXIMUM_DISTANCE, originalMaxDistance);
 
+            Set3DAttributes(beautiful_broadcast);
+
             beautiful_broadcast.start();
 
             Masterbus = FMODUnity.RuntimeManager.GetBus("Bus:/");
@@ -93,6 +95,7 @@ namespace FMODUnity
 
                 if (fmodPbState != FMOD.Studio.PLAYBACK_STATE.PLAYING)
                 {
+                    Set3DAttributes(beautiful_broadcast);
                     beautiful_broadcast.start();
                 }
             }
@@ -111,6 +114,7 @@ namespace FMODUnity
 
                 if (fmodPbState != FMOD.Studio.PLAYBACK_STATE.PLAYING)
                 {
+                    Set3DAttributes(awful_broadcast);
                     beautiful_broadcast.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
                     awful_broadcast.start();
                     //awful_broadcast.release();
@@ -131,6 +135,7 @@ namespace FMODUnity
 
                 if (fmodPbState != FMOD.Studio.PLAYBACK_STATE.PLAYING)
                 {
+                    Set3DAttributes(beautiful_broadcast);
                     awful_broadcast.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
                     beautiful_broadcast.start();
                     //beautiful_broadcast.release();
@@ -174,6 +179,17 @@ namespace FMODUnity
             FMODUnity.RuntimeManager.CoreSystem.getMasterChannelGroup(out mcg);
             mcg.stop();
             Masterbus.stopAllEvents(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        }
+
+        private void Set3DAttributes(FMOD.Studio.EventInstance audioEvent)
+        {
+            // You should set appropriate 3D attributes based on your game's spatial characteristics
+            FMOD.ATTRIBUTES_3D attributes = new FMOD.ATTRIBUTES_3D();
+            attributes.position = this.transform.position.ToFMODVector();
+            attributes.forward = this.transform.forward.ToFMODVector();
+            attributes.up = this.transform.up.ToFMODVector();
+
+            audioEvent.set3DAttributes(attributes);
         }
 
 #if UNITY_EDITOR
@@ -226,7 +242,7 @@ namespace FMODUnity
                         Handles.Label(targetScript.transform.position, "SOUND!", labelStyle);
             }
                 }
-        #endif
+#endif
 
 
     }

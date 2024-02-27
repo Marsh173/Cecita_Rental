@@ -5,8 +5,27 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 
+/**
+ * This is a parent script for any other fmod related script to inherit from.
+ * It contains the basic functionality of original EventEmitter with more leniency.
+ */
+
 namespace FMODUnity
 {
+    public enum ActivationMode
+    {
+        OnTriggerEnter,
+        ObjectEnable,
+        ObjectStart
+    }
+
+    public enum DeactivationMode
+    {
+        OnTriggerExit,
+        ObjectDisable,
+        ObjectDestroy
+    }
+
     public class FMODStudioNewEmitter : MonoBehaviour
     {
         FMOD.ChannelGroup mcg;
@@ -14,7 +33,10 @@ namespace FMODUnity
 
         [Header("FMOD Settings")]
         [SerializeField] EventReference audioEventPath;
-        
+        [SerializeField] ActivationMode activationMode = ActivationMode.OnTriggerEnter;
+        [SerializeField] DeactivationMode deactivationMode = DeactivationMode.OnTriggerExit;
+        [SerializeField] bool NeedToResetAfterDeath = false;
+
         FMOD.Studio.EventInstance audioEvent; 
         
         [Header("Override Attenuation (for both track)")]
@@ -36,12 +58,28 @@ namespace FMODUnity
  
   
             Masterbus = FMODUnity.RuntimeManager.GetBus("Bus:/");
+
+            if (activationMode == ActivationMode.ObjectStart)
+            {
+                PlayAudioEvent();
+            }
         }
 
         
         void Update()
         {
             DeathReset();
+
+            switch (activationMode)
+            {
+                case ActivationMode.ObjectEnable:
+                    if (gameObject.activeSelf)
+                    {
+                        PlayAudioEvent();
+                    }
+                    break;
+                    // Add additional activation modes here
+            }
 
             if (OverrideAttenuation)
             {
@@ -51,57 +89,61 @@ namespace FMODUnity
 
         private void OnTriggerEnter(Collider other)
         {
-            if(other.tag == "Player")
+            if(activationMode == ActivationMode.OnTriggerEnter && other.tag == "Player")
             {
-                
                 Debug.Log("enter trigger");
-
-                FMOD.Studio.PLAYBACK_STATE fmodPbState;
-                audioEvent.getPlaybackState(out fmodPbState);
-
-                if (fmodPbState != FMOD.Studio.PLAYBACK_STATE.PLAYING)
-                {
-                    audioEvent.start();
-                }
-
-                
+                PlayAudioEvent();
             }
         }
 
         private void OnTriggerExit(Collider other)
         {
-            if (other.tag == "Player")
-            {
-                
+            if (deactivationMode == DeactivationMode.OnTriggerExit && other.tag == "Player")
+            { 
                 Debug.Log("exit trigger");
-
-                FMOD.Studio.PLAYBACK_STATE fmodPbState;
-                audioEvent.getPlaybackState(out fmodPbState);
-
-                if (fmodPbState == FMOD.Studio.PLAYBACK_STATE.PLAYING)
-                {
-                    audioEvent.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-                    
-                }
-
+                StopAudioEvent();
             }
         }
 
         private void DeathReset()
         {
-            if (Respawn.dead)
+            if (NeedToResetAfterDeath && Respawn.dead)
             {
+                //stop all music 
                 Debug.Log("reset audio event");
-                FMOD.Studio.PLAYBACK_STATE fmodPbState;
-                audioEvent.getPlaybackState(out fmodPbState);
-
-                if (fmodPbState != FMOD.Studio.PLAYBACK_STATE.PLAYING)
-                {
-                    audioEvent.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-                }
+                StopAudioEvent();
             }
         }
 
+        private void OnDestroy()
+        {
+            if (deactivationMode == DeactivationMode.ObjectDestroy)
+            {
+                StopAudioEvent();
+            }
+        }
+
+        private void PlayAudioEvent()
+        {
+            FMOD.Studio.PLAYBACK_STATE fmodPbState;
+            audioEvent.getPlaybackState(out fmodPbState);
+
+            if (fmodPbState != FMOD.Studio.PLAYBACK_STATE.PLAYING)
+            {
+                audioEvent.start();
+            }
+        }
+
+        private void StopAudioEvent()
+        {
+            FMOD.Studio.PLAYBACK_STATE fmodPbState;
+            audioEvent.getPlaybackState(out fmodPbState);
+
+            if (fmodPbState != FMOD.Studio.PLAYBACK_STATE.PLAYING)
+            {
+                audioEvent.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            }
+        }
 
         public void SetAttenuationDistances(float newMinDistance, float newMaxDistance)
         {
@@ -121,6 +163,10 @@ namespace FMODUnity
         private void OnDisable()
         {
             SceneManager.sceneUnloaded -= OnSceneUnloaded;
+            if (deactivationMode == DeactivationMode.ObjectDisable)
+            {
+                StopAudioEvent();
+            }
         }
 
         public void OnSceneUnloaded(Scene unloadedScene)
@@ -134,8 +180,8 @@ namespace FMODUnity
         }
 
 #if UNITY_EDITOR
-        [CustomEditor(typeof(FMODStudioChangeMusic))]
-                public class FMODStudioChangeMusicEditor : Editor
+        [CustomEditor(typeof(FMODStudioNewEmitter))]
+                public class FMODStudioNewEmitterEditor : Editor
                 {
                     private SerializedProperty maxDistanceProperty;
                     private SerializedProperty minDistanceProperty;
@@ -165,7 +211,7 @@ namespace FMODUnity
                         GUIStyle labelStyle = new GUIStyle();
                         labelStyle.fontSize = 50;
                         labelStyle.alignment = TextAnchor.MiddleCenter; // Center the text
-                        labelStyle.normal.textColor = Color.red;
+                        labelStyle.normal.textColor = Color.yellow;
 
 
                 // Allow the max and min distances to be adjusted interactively in the Scene View
@@ -180,7 +226,7 @@ namespace FMODUnity
                         }
 
                         // Display the audio icon label
-                        Handles.Label(targetScript.transform.position, "SOUND!", labelStyle);
+                        Handles.Label(targetScript.transform.position, "AHHHH!", labelStyle);
             }
                 }
 #endif

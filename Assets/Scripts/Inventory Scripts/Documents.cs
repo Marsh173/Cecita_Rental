@@ -8,5 +8,6 @@ public class Documents : ScriptableObject
     public string displayName;
     [TextArea(5,10)]
     public List<string> transcript = new List<string>();
+    public List<Sprite> images = new List<Sprite>();
     public Sprite image;
 }

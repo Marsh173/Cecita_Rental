@@ -18,7 +18,7 @@ public class InspectionCameraTransition : MonoBehaviour
     private Quaternion originalCameraRotation;
     private FirstPersonAIO player;
 
-    public static bool isInCam = false; //for inventory reference only
+    public static bool isInCam = false; //for reference only
     private bool isInInspection = false;
 
     void Start()
@@ -50,6 +50,8 @@ public class InspectionCameraTransition : MonoBehaviour
     public void TransitionToInspectionPosition()
     {
 
+        this.gameObject.layer = 0;
+
         //active cursor, deactive player.
         EnablePlayerMovement(false);
 
@@ -71,6 +73,7 @@ public class InspectionCameraTransition : MonoBehaviour
         playerCamera.transform.DOMove(inspectionCameraPosition.position, transitionDuration);
         playerCamera.transform.DORotate(inspectionCameraPosition.rotation.eulerAngles, transitionDuration);
         playerCamera.fieldOfView = inspectionFOV;
+        Debug.Log("Camera transformed to inspect");
 
         isInCam = true;
         isInInspection = true;
@@ -81,17 +84,20 @@ public class InspectionCameraTransition : MonoBehaviour
             this.GetComponent<Outline>().enabled = false;
         }
 
-        this.gameObject.layer = 0;
-
         EnableInspectionUI(true);
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.Confined;
     }
 
     public void TransitionToOriginalPosition()
     {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Confined;
         playerCamera.fieldOfView = originalFOV;
         playerCamera.transform.DOMove(originalCameraPosition, transitionDuration);
         playerCamera.transform.DORotate(originalCameraRotation.eulerAngles, transitionDuration).OnComplete(() => EnablePlayerMovement(true));
-        
+        Debug.Log("Camera transformed back");
+
         isInCam = false;
         isInInspection = false;
 
@@ -103,7 +109,6 @@ public class InspectionCameraTransition : MonoBehaviour
             inventory.SetActive(false);
         }
 
-        //EnablePlayerMovement(true);
         this.gameObject.layer = 7;
     }
 
@@ -128,7 +133,6 @@ public class InspectionCameraTransition : MonoBehaviour
         player.enableCameraMovement = enable;
         player.playerCanMove = enable;
         playerCamera.transform.localPosition = new Vector3(0, 0, 0);
-        Cursor.visible = !enable;
-        Cursor.lockState = CursorLockMode.Confined;
+        //Debug.Log("camera state: " + player.enableCameraMovement);
     }
 }

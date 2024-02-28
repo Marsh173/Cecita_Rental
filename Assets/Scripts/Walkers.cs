@@ -17,10 +17,7 @@ public class Walkers : MonoBehaviour
 
     public Respawn respawn;
 
-
     public bool stopMusic = false;
-
-
 
     bool trigger;
     public bool stalker;
@@ -105,7 +102,8 @@ public class Walkers : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
 
-        if (stalker) {
+        if (stalker) 
+        {
             if (other.CompareTag("Monster"))
             {
                 stopMoving = true;

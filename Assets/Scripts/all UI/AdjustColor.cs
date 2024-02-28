@@ -13,11 +13,14 @@ public class AdjustColor : MonoBehaviour
     public static bool settingsOn;
     public float holderVisualizer;
     public string sceneName;
+    public float gamma = 2.2f;
+
 
     void Start()
     {
         settingsOn = false;
         blackS = GetComponent<Slider>();
+
         if (sliderValueHolder != 0.2f)
         {
             blackS.value = sliderValueHolder;
@@ -35,12 +38,27 @@ public class AdjustColor : MonoBehaviour
         if (gameObject.activeSelf)
         {
             settingsOn = true;
-            bgImage.color = new Color(blackS.value, blackS.value, blackS.value, 1f);
+            
+            //bgImage.color = new Color(blackS.value, blackS.value, blackS.value, 1f);
+
+            bgImage.color = ApplyGammaCorrection(gamma);
+
             eyeBgColor = bgImage.color;
             sliderValueHolder = blackS.value;
             holderVisualizer = sliderValueHolder;
         }
         else settingsOn = false;
+    }
+
+    private Color ApplyGammaCorrection(float gamma)
+    {
+        float gammaCorrection = 1f / gamma;
+
+        float r = Mathf.Pow(blackS.value, gammaCorrection);
+        float g = Mathf.Pow(blackS.value, gammaCorrection);
+        float b = Mathf.Pow(blackS.value, gammaCorrection);
+
+        return new Color(r, g, b, 1);
     }
 
     public void NextScene()

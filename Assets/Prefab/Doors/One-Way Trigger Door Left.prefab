@@ -362,6 +362,7 @@ GameObject:
   - component: {fileID: 2200559544288187068}
   - component: {fileID: 8077869970731114760}
   - component: {fileID: 8270887504685929930}
+  - component: {fileID: 1318097560954321380}
   m_Layer: 0
   m_Name: Door_Handle_Base
   m_TagString: Untagged
@@ -441,11 +442,30 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1877328959772915533}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.8666673, y: 3.251917, z: 0.24473745}
-  m_Center: {x: -0.00000023841858, y: 0, z: 0.04469056}
+  m_Size: {x: 2, y: 8, z: 2}
+  m_Center: {x: 0, y: 0, z: 0.88}
+--- !u!114 &1318097560954321380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1877328959772915533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe0823493b3fe476ca2ae629e21eeba8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  promptMessage: 
+  monologueText: It's locked.
+  promptIcon: {fileID: 6605191074340573057}
+  interacted: 0
+  NItem: {fileID: 0}
+  AItem: {fileID: 0}
+  Doc: {fileID: 0}
 --- !u!1 &2483865552919167526
 GameObject:
   m_ObjectHideFlags: 0
@@ -1307,6 +1327,7 @@ GameObject:
   - component: {fileID: 9125030186572619544}
   - component: {fileID: 3261121048338559961}
   - component: {fileID: 6735403709344725268}
+  - component: {fileID: 6766472225624179151}
   m_Layer: 0
   m_Name: Door_Frame
   m_TagString: Untagged
@@ -1380,3 +1401,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &6766472225624179151
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8407466542202342796}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 9023796950703523539, guid: 2fca9afdae1ed3f41b0e62f9390e8451, type: 3}

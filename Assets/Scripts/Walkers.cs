@@ -59,7 +59,7 @@ public class Walkers : MonoBehaviour
                 currentPointIndex = (currentPointIndex + 1) % patrolPoints.Length;
             }
         }
-        else if (trigger && stalker)
+        else if (trigger && stalker && !stopMoving)
         {
             walker.transform.position = Vector3.MoveTowards(walker.transform.position, stop.position, speed * Time.deltaTime * 2f);
    

@@ -128,10 +128,11 @@ public class InventoryManager : MonoBehaviour
             EquipmentCollected = true;
         }
 
+        /*
         if (!ThirdFloorElevatorCardCollected)
         {
             FindThirdFloorElevatorCard();
-        }
+        }*/
 
         if(!keyCollected)
         {
@@ -240,6 +241,7 @@ public class InventoryManager : MonoBehaviour
             ThirdFloorElevatorCardCollected = true;
             //Debug.Log("Got Elevator card " + ThirdFloorElevatorCardCollected);
         }
+        else ThirdFloorElevatorCardCollected = false;
     }
 
     public void TempKeyUnlock()

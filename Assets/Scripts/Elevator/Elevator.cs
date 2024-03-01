@@ -44,7 +44,7 @@ public class Elevator : InteractableItemWithEvent
 
             //Audio: Tenant in 303 is accesing the elevator. 
 
-
+            Debug.Log("Are you doing weird things?");
             //play elevator open sequence
             StartCoroutine(ElevatorArrivalSequence());
 

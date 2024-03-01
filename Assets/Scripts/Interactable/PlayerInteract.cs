@@ -13,8 +13,9 @@ public class PlayerInteract : MonoBehaviour
     public UnityEvent EventTurnOffInteraction;
 
     public Camera cam;
+    public Ray ray;
     public TMP_Text pMessage, monologue;
-    public GameObject itemIcon;
+    public GameObject itemIcon, inventory;
     private GameObject lastHitObject;
 
     [SerializeField]
@@ -26,6 +27,8 @@ public class PlayerInteract : MonoBehaviour
 
     [Header("Crosshair")]
     public GameObject crosshair;
+
+    public InspectionCameraTransition inspectScript;
 
     private int LayerWall;
 
@@ -45,7 +48,7 @@ public class PlayerInteract : MonoBehaviour
     private void Update()
     {
         //Event system to turn camera on/off                                                        -Bryan
-        if (Input.GetKeyUp(KeyCode.R) && InventoryManager.EquipmentCollected)
+        /*if (Input.GetKeyUp(KeyCode.R) && InventoryManager.EquipmentCollected)
         {
             if (!hasRecorderInHand)
             {
@@ -58,11 +61,21 @@ public class PlayerInteract : MonoBehaviour
                 RunTurnOffEvent();
                 hasRecorderInHand = false;
             }
-        }
+        }*/
         //End of Event system code
 
         #region General Raycast
-        Ray ray = new Ray(cam.transform.position, cam.transform.forward);
+        //disable ray when in inspection cam or in inventory
+
+        if (InspectionCameraTransition.isInCam || inventory.activeSelf)
+        {
+            ray = new Ray(new Vector3(0, 0, 0), Vector3.forward);
+        }
+        else
+        {
+            ray = new Ray(cam.transform.position, cam.transform.forward);
+        }
+
         Debug.DrawRay(ray.origin, ray.direction * distance);
         RaycastHit hitInfo;
 

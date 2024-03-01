@@ -9,7 +9,7 @@ public class InventoryViewItem : MonoBehaviour
     //if there's an object, set the view item active and pull the model
     public TMP_Text iconname;
     [TextArea(3, 10)] public string icon_Description = "";
-    [SerializeField] int index;
+    [SerializeField] int ObjChildIndex;
     [SerializeField] GameObject vig;
 
     private void Awake()
@@ -21,7 +21,7 @@ public class InventoryViewItem : MonoBehaviour
         Debug.Log("viewed");
         
         vig.transform.GetChild(0).gameObject.SetActive(true);
-        vig.GetComponentInChildren<UIInspectCamController>().index_obj = index;
+        vig.GetComponentInChildren<UIInspectCamController>().index_obj = ObjChildIndex;
         vig.GetComponentInChildren<UIInspectCamController>().changeOBJ();
         
         vig.transform.GetChild(0).GetChild(1).GetChild(1).gameObject.GetComponent<TMP_Text>().text = iconname.text;

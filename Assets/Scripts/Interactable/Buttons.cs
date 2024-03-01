@@ -8,7 +8,7 @@ public class Buttons : MonoBehaviour
     public AudioClip buttonSound;
     void Start()
     {
-        soundSource = GetComponent<AudioSource>();
+        soundSource = this.GetComponent<AudioSource>();
     }
 
     public void playSound()
@@ -17,7 +17,12 @@ public class Buttons : MonoBehaviour
 
         if (!soundSource.isPlaying)
         {
-            Debug.Log("playing");
+            Debug.Log("button playing");
+            soundSource.Play();
+        }
+        else
+        {
+            soundSource.Stop();
             soundSource.Play();
         }
     }

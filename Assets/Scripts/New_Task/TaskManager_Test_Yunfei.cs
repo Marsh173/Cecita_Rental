@@ -19,6 +19,8 @@ public class TaskManager_Test_Yunfei : MonoBehaviour
 
     public bool coroutine_running = false;
 
+    public float task_done_time = 3;
+
     private void Start()
     {
         PressT.SetActive(false);
@@ -120,7 +122,7 @@ public class TaskManager_Test_Yunfei : MonoBehaviour
         coroutine_running = true;
         GameObject t = Tasks[GetTaskIndex(num)];
         t.GetComponent<Animator>().SetBool("Done", true);
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(task_done_time);
         Tasks.RemoveAt(GetTaskIndex(num));
         Destroy(t);
         RearrangeTasks();
@@ -137,7 +139,7 @@ public class TaskManager_Test_Yunfei : MonoBehaviour
            
             t.GetComponent<RectTransform>().anchoredPosition = new Vector3(50 + t.GetComponent<TaskData>().sub * 15, 60 + y_shift , 0);
         }
-        StartCoroutine(showTasks(1));
+        if(!coroutine_running)StartCoroutine(showTasks(1));
     }
 
     public int GetTaskIndex(int num)

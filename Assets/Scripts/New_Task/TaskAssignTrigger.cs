@@ -12,6 +12,7 @@ public class TaskAssignTrigger : MonoBehaviour
     public int attach_to_number = 0;
 
     public float setafterawake = 0;
+    public float set_after = 0;
 
     private TaskManager_Test_Yunfei tm;
 
@@ -25,6 +26,11 @@ public class TaskAssignTrigger : MonoBehaviour
             else
                 Set_Tasks();
         }
+    }
+
+    public void settimer(float t)
+    {
+        set_after = t;
     }
 
     public enum AssignTask_By
@@ -50,23 +56,31 @@ public class TaskAssignTrigger : MonoBehaviour
 
     public void Set_Tasks()
     {
-        switch (type)
+        if(set_after != 0)
         {
-            case Task_Type.Main_Task:
-                tm.AddTask(task_num_DONOTCHANGE,task_name);
-                break;
-
-            case Task_Type.Sub_Task:
-                tm.AddTask_Attach(attach_to_number,task_num_DONOTCHANGE, task_name,1);
-
-                break;
-
-            case Task_Type.Sub_Sub_Task:
-                tm.AddTask_Attach(attach_to_number, task_num_DONOTCHANGE, task_name,2);
-                break;
+            StartCoroutine(delay(set_after));
         }
+        else
+        {
+            switch (type)
+            {
+                case Task_Type.Main_Task:
+                    tm.AddTask(task_num_DONOTCHANGE, task_name);
+                    break;
 
-        if (assign == AssignTask_By.trigger) GetComponent<Collider>().enabled = false;
-        gameObject.GetComponent<TaskAssignTrigger>().enabled = false;
+                case Task_Type.Sub_Task:
+                    tm.AddTask_Attach(attach_to_number, task_num_DONOTCHANGE, task_name, 1);
+
+                    break;
+
+                case Task_Type.Sub_Sub_Task:
+                    tm.AddTask_Attach(attach_to_number, task_num_DONOTCHANGE, task_name, 2);
+                    break;
+            }
+
+            if (assign == AssignTask_By.trigger) GetComponent<Collider>().enabled = false;
+            gameObject.GetComponent<TaskAssignTrigger>().enabled = false;
+        }
+       
     }
 }

@@ -9,8 +9,8 @@ using UnityEngine.Events;
 
 public class KeypadGeneral : MonoBehaviour
 {
-    public bool KeypadisInCam;
-    public GameObject KeypadObj;
+    public bool KeypadisInCam, isPhone, Unlocked;
+    public GameObject KeypadObj, container;
     public TMP_Text NumberText;
     public string correctNumber;
     public int codeLength;
@@ -19,7 +19,6 @@ public class KeypadGeneral : MonoBehaviour
 
     [SerializeField] private string EnteredNumber;
     private bool CanEnter;
-    public bool EnteredCorrectNumber;
 
     public LoadingScreen loadingscreen;
     public string thisSceneName, nextSceneName;
@@ -31,8 +30,8 @@ public class KeypadGeneral : MonoBehaviour
     {
         //bedroom.SetActive(false);
         audioS = GetComponent<AudioSource>();
-        EnteredCorrectNumber = false;
         KeypadObj.SetActive(false);
+        Unlocked = false;
     }
     public void KeypadInteract()
     {
@@ -55,11 +54,6 @@ public class KeypadGeneral : MonoBehaviour
                 CanEnter = false;
                 KeypadisInCam = false;
             }
-        }
-
-        if(EnteredCorrectNumber)
-        {
-            EventIfCorrect.Invoke();
         }
     }
 
@@ -87,12 +81,8 @@ public class KeypadGeneral : MonoBehaviour
     {
         if (EnteredNumber == correctNumber) //PuzzleHandler.hasSolvedClockPuzzle && 
         {
-            //hallway.SetActive(false);
-            //hallwayAudio.SetActive(false);
-            //bedroom.SetActive(true);
-
+            Unlocked = true;
             KeypadObj.SetActive(false);
-            EnteredCorrectNumber = true;
             Debug.Log("number correct");
             Debug.Log("camera state keypad: " + FirstPersonAIO.instance.enableCameraMovement);
 
@@ -103,17 +93,32 @@ public class KeypadGeneral : MonoBehaviour
             }
             else audioS.PlayOneShot(correctSound);
 
+            if(container != null && container.GetComponent<Animation>())
+            {
+                container.GetComponent<Animation>().Play();
+                Debug.Log("Animation played");
+            }
+
+            EventIfCorrect.Invoke();
+
             //get Current Scene first
             Scene currentScene = SceneManager.GetActiveScene();
 
-            if (currentScene.name != "Night_Two")
+            if (currentScene.name != "Night_Two" && isPhone)
             {
                 loadingscreen.LoadSceneWithLoadingScreen("Night_Two");
+
+                //hallway.SetActive(false);
+                //hallwayAudio.SetActive(false);
+                //bedroom.SetActive(true);
             }
-            else
+            else if (isPhone)
             {
                 loadingscreen.LoadSceneWithLoadingScreen("MainMenu");
             }
+
+            this.gameObject.layer = 0;
+            ClearNumber();
 
         }
         else
@@ -133,7 +138,6 @@ public class KeypadGeneral : MonoBehaviour
         else audioS.PlayOneShot(wrongSound);
 
         CanEnter = false;
-        EnteredCorrectNumber = false;
         yield return new WaitForSeconds(1);
         EnteredNumber = "";
         NumberText.text = EnteredNumber;

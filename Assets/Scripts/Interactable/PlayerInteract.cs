@@ -13,6 +13,7 @@ public class PlayerInteract : MonoBehaviour
     public UnityEvent EventTurnOffInteraction;
 
     public Camera cam;
+    public Ray ray;
     public TMP_Text pMessage, monologue;
     public GameObject itemIcon;
     private GameObject lastHitObject;
@@ -26,6 +27,8 @@ public class PlayerInteract : MonoBehaviour
 
     [Header("Crosshair")]
     public GameObject crosshair;
+
+    public InspectionCameraTransition inspectScript;
 
     private int LayerWall;
 
@@ -61,8 +64,17 @@ public class PlayerInteract : MonoBehaviour
         }
         //End of Event system code
 
+        //disable ray when in inspection cam
         #region General Raycast
-        Ray ray = new Ray(cam.transform.position, cam.transform.forward);
+        if(!InspectionCameraTransition.isInCam)
+        {
+            ray = new Ray(cam.transform.position, cam.transform.forward);
+        }
+        else
+        {
+            ray = new Ray(new Vector3(0, 0, 0), Vector3.forward);
+        }
+
         Debug.DrawRay(ray.origin, ray.direction * distance);
         RaycastHit hitInfo;
 

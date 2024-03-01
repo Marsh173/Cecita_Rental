@@ -23,11 +23,13 @@ public class InspectionCameraTransition : MonoBehaviour
 
     public static bool isInCam = false; //for reference only
     private bool isInInspection = false;
+    private KeypadGeneral keyPad; //for checking if it is a keypad lock
 
     void Start()
     {
         DocInfo = GetComponent<InteractableItemWithEvent>();
         player = playerObj.GetComponent<FirstPersonAIO>();
+        keyPad = GetComponent<KeypadGeneral>();
 
         playerCamera = playerObj.GetComponentInChildren<Camera>();
         playerCamera = Camera.main;
@@ -52,7 +54,6 @@ public class InspectionCameraTransition : MonoBehaviour
 
     public void TransitionToInspectionPosition()
     {
-
         this.gameObject.layer = 0;
 
         //active cursor, deactive player.
@@ -112,8 +113,13 @@ public class InspectionCameraTransition : MonoBehaviour
         {
             inventory.SetActive(false);
         }
-
-        this.gameObject.layer = 7;
+        
+        //if it is a keypad lock and has been unlocked, deactivate the object interact
+        if(keyPad != null && keyPad.Unlocked)
+        {
+            this.gameObject.layer = 0;
+        }
+        else this.gameObject.layer = 7;
     }
 
     void EnableInspectionUI(bool enable)

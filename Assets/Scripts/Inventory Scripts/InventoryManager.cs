@@ -217,6 +217,8 @@ public class InventoryManager : MonoBehaviour
             itemName.text = item.displayName;
             //itemTranscript.text = item.transcript;
             itemIcon.sprite = item.image;
+
+            Debug.Log("Doc Added");
         }
     }
 

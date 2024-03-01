@@ -20,5 +20,10 @@ public class Buttons : MonoBehaviour
             Debug.Log("button playing");
             soundSource.Play();
         }
+        else
+        {
+            soundSource.Stop();
+            soundSource.Play();
+        }
     }
 }

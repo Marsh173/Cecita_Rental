@@ -1,10 +1,13 @@
 using UnityEngine;
+using System.Collections.Generic;
 using DG.Tweening;
 using TMPro;
 
 public class InspectionCameraTransition : MonoBehaviour
 {
     private InteractableItem DocInfo;
+    private List<string> pages = new List<string>();
+    private int pageNumber = 0;
 
     public Transform inspectionCameraPosition;
     public float transitionDuration = 1f;
@@ -63,7 +66,8 @@ public class InspectionCameraTransition : MonoBehaviour
 
         if (DocInfo.Doc != null)
         {
-            transcriptWindow.transform.GetChild(3).GetChild(0).GetChild(0).GetComponent<TMP_Text>().text = DocInfo.Doc.transcript[0];
+            pages = DocInfo.Doc.transcript;
+            transcriptWindow.transform.GetChild(3).GetChild(0).GetChild(0).GetComponent<TMP_Text>().text = pages[0];
         }
 
         originalCameraPosition = playerCamera.transform.position;
@@ -134,5 +138,29 @@ public class InspectionCameraTransition : MonoBehaviour
         player.playerCanMove = enable;
         playerCamera.transform.localPosition = new Vector3(0, 0, 0);
         //Debug.Log("camera state: " + player.enableCameraMovement);
+    }
+
+    void NextPage()
+    {
+        if (pageNumber < pages.Count)
+        {
+            pageNumber++;
+            transcriptWindow.transform.GetChild(3).GetChild(0).GetChild(0).GetComponent<TMP_Text>().text = pages[pageNumber];
+        }
+        else pageNumber = pageNumber;
+
+        Debug.Log("N Total page" + pages.Count + " Current page: " + pageNumber);
+    }
+
+    void PreviousPage()
+    {
+        if (pageNumber >= 0)
+        {
+            pageNumber--;
+            transcriptWindow.transform.GetChild(3).GetChild(0).GetChild(0).GetComponent<TMP_Text>().text = pages[pageNumber];
+        }
+        else pageNumber = pageNumber;
+
+        Debug.Log("P Total page" + pages.Count + " Current page: " + pageNumber);
     }
 }

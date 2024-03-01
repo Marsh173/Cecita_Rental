@@ -8,7 +8,6 @@ public class Walkers : MonoBehaviour
     public Transform[] patrolPoints;
     int currentPointIndex = 0;
 
-
     public float speed;
     public Transform stop;
     public GameObject walker;
@@ -94,7 +93,7 @@ public class Walkers : MonoBehaviour
         {
             stopMoving = true;
             walker.SetActive(false);
-
+            Debug.Log("Stalker stopped");
         }
 
     }

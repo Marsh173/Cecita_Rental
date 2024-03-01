@@ -38,7 +38,7 @@ public class HoverInventory : MonoBehaviour
         
         if (hovertext != null)
         {
-            hovertext.GetComponentInChildren<TMP_Text>().text = "";
+            //hovertext.GetComponentInChildren<TMP_Text>().text = "";
             hovertext.transform.GetChild(0).gameObject.SetActive(false);
             
         }

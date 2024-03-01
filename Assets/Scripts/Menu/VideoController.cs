@@ -9,6 +9,9 @@ public class VideoController : MonoBehaviour
 
     private void Start()
     {
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
+
         if (videoPlayer == null)
         {
             // If VideoPlayer is not assigned, try to find one on the current GameObject

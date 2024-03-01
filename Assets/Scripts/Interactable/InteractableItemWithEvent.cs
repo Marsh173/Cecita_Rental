@@ -13,9 +13,11 @@ public class InteractableItemWithEvent : InteractableItem
     public UnityEvent EventPreRecording;
     public UnityEvent EventOnInteraction;
 
+    //[SerializeField] private GameObject taskUI;
     private void Start()
     {
         playerInteract = FindObjectOfType<PlayerInteract>();
+        //taskUI = GameObject.FindWithTag("TaskManager");
     }
 
     public void Update()
@@ -48,8 +50,13 @@ public class InteractableItemWithEvent : InteractableItem
 
     protected IEnumerator RunInteractEvents()
     {
+        /*if (this.tag == "NPC")
+        {
+            taskUI.SetActive(false);
+        }*/
         EventOnInteraction.Invoke();
         yield return new WaitForSeconds(interactWaitTime);                                                       //Put this line on top or middle of this section of code in case we want a hold input to complete the recording
+        //taskUI.SetActive(true);
     }
 
     protected IEnumerator RunRecordEvents()

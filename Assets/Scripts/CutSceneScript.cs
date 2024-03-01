@@ -75,7 +75,7 @@ public class CutSceneScript : MonoBehaviour
     private void NexteStep(PlayableDirector obj)
     {
         endscneneObj.SetActive(false);
-        SceneManager.LoadScene("Night_One");
+        SceneManager.LoadScene("Temp");
     }
 
         public IEnumerator shoMonologue(int sec)

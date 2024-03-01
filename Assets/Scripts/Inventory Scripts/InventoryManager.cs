@@ -9,26 +9,35 @@ public class InventoryManager : MonoBehaviour
     public static InventoryManager Instance;
     public List<PlaylistItems> AItems = new List<PlaylistItems>();
     public List<NormalItems> NItems = new List<NormalItems>();
+    public List<Documents> DItems = new List<Documents>();
+    
     //Audio list
     public AudioSource audioSource;
     public AudioClip[] soundArray;
     public AudioClip sound;
     public int audioIndex = 0;
 
-    public Transform PlaylistBroadcastContent, PlaylistMonsterContent, NormalItemContent;
-    public GameObject PlaylistItem, NormalItem;
+    public Transform PlaylistBroadcastContent, PlaylistMonsterContent, NormalItemContent, DocumentContent;
+    public GameObject PlaylistItem, NormalItem, DocumentItem;
     public KeyCode inventoryKey;
     public GameObject Inventory;
 
     //Find Specific Item
-    public static bool EquipmentCollected = false;
-    public static bool EarbudsCollected = false;
-    public static bool RecorderCollected = false;
-    public static bool ThirdFloorElevatorCardCollected = false;
+    public static bool EquipmentCollected, RecorderCollected, EarbudsCollected = false;
+    public static bool ThirdFloorElevatorCardCollected, keyCollected = false;
 
+    private  InspectionCameraTransition inspectScript;
+    public GameObject inspectionScreen;
     private void Awake()
     {
-        Inventory.transform.position = new Vector2(960, -2000);
+        Inventory.SetActive(false);
+        //Inventory.transform.position = new Vector2(960, -2000);
+
+        //add all pre-made display into a list for further reference
+        /*foreach (Transform child in NormalItemContent.transform)
+        {
+            NItemDisplayObjs.Add(child.gameObject);
+        }*/
 
         Instance = this;
         //hide cursor at game start
@@ -45,32 +54,68 @@ public class InventoryManager : MonoBehaviour
         NItems.Add(Item);
     }
 
+    public void AddDocuments(Documents Item)
+    {
+        DItems.Add(Item);
+    }
+
     private void Update()
     {
         if (Input.GetKeyDown(inventoryKey))
         {
-            if(Inventory.transform.position.y == 540)
+            if(Inventory.activeSelf) //Inventory.transform.position.y == 540
             {
-                Inventory.transform.position = new Vector2(960, -1000);
-                FirstPersonAIO.instance.enableCameraMovement = true;
-                FirstPersonAIO.instance.playerCanMove = true;
+                Inventory.SetActive(false);
+                //Inventory.transform.position = new Vector2(960, -1000);
 
-                //hide cursor when close inventory 
-                Cursor.visible = false;
+                //if inspect script is in scene, check the state of it first
+                if (inspectScript != null)
+                {
+                    if (!inspectScript.isInCam)
+                    {
+                        FirstPersonAIO.instance.enableCameraMovement = true;
+                        FirstPersonAIO.instance.playerCanMove = true;
+
+                        //hide cursor when close inventory 
+                        Cursor.visible = false;
+                    }
+                    else
+                    {
+                        //disable inspection screen when opening inventory in inspection cam
+                        inspectionScreen.SetActive(true);
+                    }
+                }
+                //if inspect script is not in scene, do it normally
+                else
+                {
+                    FirstPersonAIO.instance.enableCameraMovement = true;
+                    FirstPersonAIO.instance.playerCanMove = true;
+                    Cursor.visible = false;
+                }
             }
-            else if(Inventory.transform.position.y != 540)
+            else
             {
-                Inventory.transform.position = new Vector2(960, 540);
-                FirstPersonAIO.instance.enableCameraMovement = false;
-                FirstPersonAIO.instance.playerCanMove = false;
-
-                
-                //List every item each time the inventory is opened
-                ListItems();
-
                 //show cursor when open inventory 
                 Cursor.lockState = CursorLockMode.Confined;
                 Cursor.visible = true;
+
+                Inventory.SetActive(true);
+                //Inventory.transform.position = new Vector2(960, 540);
+
+                FirstPersonAIO.instance.enableCameraMovement = false;
+                FirstPersonAIO.instance.playerCanMove = false;
+
+                //List every item each time the inventory is opened
+                ListItems();
+
+                //disable inspection screen when opening inventory in inspection cam
+                if (inspectScript != null)
+                {
+                    if (inspectScript.isInCam)
+                    {
+                        inspectionScreen.SetActive(false);
+                    }
+                }
             }
         }
 
@@ -87,11 +132,16 @@ public class InventoryManager : MonoBehaviour
         {
             FindThirdFloorElevatorCard();
         }
+
+        if(!keyCollected)
+        {
+            TempKeyUnlock();
+        }
     }
 
     public void ListItems()
     {
-        //clean inventory before listing the items
+        //clean audio inventory before listing the items
         foreach (Transform item in PlaylistBroadcastContent)
         {
             if (AItems.Find(item => item.name == item.name))
@@ -114,6 +164,8 @@ public class InventoryManager : MonoBehaviour
             itemLength.text = item.audioLength;
             itemIcon.sprite = item.icon;
             itemAudio.clip = item.audio;
+
+            itemobj.GetComponentInChildren<HoverInventory>().transcript = item.Atranscript;
         }
 
 
@@ -128,15 +180,42 @@ public class InventoryManager : MonoBehaviour
             GameObject itemobj = Instantiate(NormalItem, NormalItemContent);
             var itemName = itemobj.transform.Find("itemName").GetComponent<TMP_Text>();
             var itemIcon = itemobj.transform.Find("icon").GetComponent<Image>();
+            var itemButton = itemobj.transform.Find("Button").GetComponent<InventoryViewItem>();
 
             //display name and image in inventory UI
-            itemName.text = item.displayName;
+            itemButton.iconname.text =  itemName.text = item.displayName;
+            itemButton.icon_Description = item.descriptions;
             itemIcon.sprite = item.icon;
+
+            
 
             if(itemName.text == "Bluetooth Earbuds" || itemName.text == "Recorder")
             {
                 Destroy(itemobj);
             }
+        }
+
+
+        foreach (Transform item in DocumentContent)
+        {
+            if (DItems.Find(item => item.name == item.name))
+            {
+                Destroy(item.gameObject);
+            }
+        }
+
+        foreach (var item in DItems)
+        {
+            //find the elemets in each item and replace inventory default
+            GameObject itemobj = Instantiate(DocumentItem, DocumentContent);
+            var itemName = itemobj.transform.Find("itemName").GetComponent<TMP_Text>();
+            //var itemTranscript = itemobj.transform.Find("transcript").GetComponent<TMP_Text>();
+            var itemIcon = itemobj.transform.Find("image").GetComponent<Image>();
+
+            //display name and image in inventory UI
+            itemName.text = item.displayName;
+            //itemTranscript.text = item.transcript;
+            itemIcon.sprite = item.image;
         }
     }
 
@@ -160,6 +239,14 @@ public class InventoryManager : MonoBehaviour
         {
             ThirdFloorElevatorCardCollected = true;
             //Debug.Log("Got Elevator card " + ThirdFloorElevatorCardCollected);
+        }
+    }
+
+    public void TempKeyUnlock()
+    {
+        if (NItems.Find(item => item.name == "Night 2 Key"))
+        {
+            keyCollected = true;
         }
     }
 

@@ -16,8 +16,8 @@ public class WallHitCheck : MonoBehaviour
     [Header("Event On Hitting Wall")]
     public UnityEvent EventOnWallHit;
     public UnityEvent EventOnWallHitExit;
-    private bool hasWallHitEnterEventTriggered = false;
-    private bool hasWallHitExitEventTriggered = false;
+    //private bool hasWallHitEnterEventTriggered = false;
+    //private bool hasWallHitExitEventTriggered = false;
 
     [Header("Wall Hit UI")]
     public float length;

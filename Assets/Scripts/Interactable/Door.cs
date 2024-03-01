@@ -12,12 +12,15 @@ public class Door : InteractableItemWithEvent
     public GameObject closeSound;
 
 
-
-
     public void ChangeBehavior()
     {
+        //Debug.Log("close" + anim.GetBool("Closed"));
+        //Debug.Log("opened" + anim.GetBool("Opened"));
 
-        if(promptMessage == "Open the Door")
+        //opened = true: play door close anim
+        //closed = true: play door open anim
+
+        if (promptMessage == "Open the Door")
         {
             promptMessage = "Close the Door";
             anim.SetBool("Closed", true);
@@ -27,8 +30,8 @@ public class Door : InteractableItemWithEvent
             openSound.SetActive(true);
             closeSound.SetActive(false);
 
-            Debug.Log("opened" + anim.GetBool("Opened"));
-            Debug.Log("close" + anim.GetBool("Closed"));
+            //Debug.Log("opened" + anim.GetBool("Opened"));
+            //Debug.Log("close" + anim.GetBool("Closed"));
         }
         else if(promptMessage == "Close the Door")
         {

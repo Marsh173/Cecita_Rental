@@ -23,12 +23,12 @@ public class InventoryCollapseController : MonoBehaviour
     //trigger recorder and earbud display to be true
     private void Update()
     {
-        if (!EarbudsImage.active && InventoryManager.EarbudsCollected)
+        if (!EarbudsImage.activeSelf && InventoryManager.EarbudsCollected)
         {
             EarbudsImage.SetActive(true);
         }
 
-        if(!RecorderImage.active && InventoryManager.RecorderCollected)
+        if(!RecorderImage.activeSelf && InventoryManager.RecorderCollected)
         {
             RecorderImage.SetActive(true);
         }
@@ -38,8 +38,8 @@ public class InventoryCollapseController : MonoBehaviour
         if(catagory == "Audio")
         {
             audio_viewport.SetActive(true);
-            monster_title.GetComponent<RectTransform>().anchoredPosition = new Vector3(audio_t.anchoredPosition.x, audio_t.anchoredPosition.y - 100, 0);
-            monsterspe_t.anchoredPosition = new Vector3(audio_t.anchoredPosition.x, monster_t.anchoredPosition.y - 25, 0);
+            //monster_title.GetComponent<RectTransform>().anchoredPosition = new Vector3(audio_t.anchoredPosition.x, audio_t.anchoredPosition.y - 100, 0);
+            //monsterspe_t.anchoredPosition = new Vector3(audio_t.anchoredPosition.x, monster_t.anchoredPosition.y - 25, 0);
         }
         else if(catagory == "Monster")
         {

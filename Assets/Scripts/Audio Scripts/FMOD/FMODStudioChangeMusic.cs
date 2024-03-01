@@ -5,7 +5,10 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-
+/***
+ * Broadcast Script
+ * 
+ */
 namespace FMODUnity
 {
     public class FMODStudioChangeMusic : MonoBehaviour
@@ -32,6 +35,15 @@ namespace FMODUnity
 
         void Start()
         {
+            // Find all enclosed rooms in the scene
+            EnclosedRoomDetector[] enclosedRooms = FindObjectsOfType<EnclosedRoomDetector>();
+
+            // Subscribe to the event of each enclosed room
+            foreach (var room in enclosedRooms)
+            {
+                room.onPlayerEnteredRoom.AddListener(PlayerEnteredRoomHandler);
+            }
+
             OnEnable();
             beautiful_broadcast = FMODUnity.RuntimeManager.CreateInstance(BeautifulBroadcastEventPath);
             beautiful_broadcast.setProperty(FMOD.Studio.EVENT_PROPERTY.MINIMUM_DISTANCE, originalMinDistance);
@@ -52,11 +64,75 @@ namespace FMODUnity
             FMODUnity.RuntimeManager.AttachInstanceToGameObject(beautiful_broadcast, transform, GetComponent<Rigidbody>()); 
             FMODUnity.RuntimeManager.AttachInstanceToGameObject(awful_broadcast, transform, GetComponent<Rigidbody>());
 
-            DeathReset();
+            //DeathReset();
 
             if (OverrideAttenuation)
             {
                 SetAttenuationDistances(minDistance, maxDistance);
+            }
+        }
+
+        private void PlayerEnteredRoomHandler(GameObject roomObject)
+        {
+            //Debug.Log("Event triggered at " + roomObject.name);
+
+            if (roomObject.name == "startroom")
+            {
+                //activate all speakers
+                if (gameObject.CompareTag("Broadcast-Startroom") || gameObject.CompareTag("Broadcast-Saferoom1") || gameObject.CompareTag("Broadcast-Saferoom2"))
+                {
+                    // Activate the speaker
+                    //Debug.Log("reset broadcast for checkpoint room");
+                    FMOD.Studio.PLAYBACK_STATE fmodPbState;
+                    beautiful_broadcast.getPlaybackState(out fmodPbState);
+
+                    if (fmodPbState != FMOD.Studio.PLAYBACK_STATE.PLAYING)
+                    {
+                        awful_broadcast.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+                        beautiful_broadcast.start();
+                       
+                    }
+
+                }
+               
+            }
+            else if (roomObject.name == "saferoom1")
+            {
+                //activate all speakers
+                if (gameObject.CompareTag("Broadcast-Saferoom1") || gameObject.CompareTag("Broadcast-Saferoom2"))
+                {
+                    // Activate the speaker
+                    //Debug.Log("reset broadcast for checkpoint room");
+                    FMOD.Studio.PLAYBACK_STATE fmodPbState;
+                    beautiful_broadcast.getPlaybackState(out fmodPbState);
+
+                    if (fmodPbState != FMOD.Studio.PLAYBACK_STATE.PLAYING)
+                    {
+                        awful_broadcast.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+                        beautiful_broadcast.start();
+
+                    }
+
+                }
+            }
+            else if (roomObject.name == "saferoom2")
+            {
+                //activate all speakers
+                if (gameObject.CompareTag("Broadcast-Saferoom2"))
+                {
+                    // Activate the speaker
+                    //Debug.Log("reset broadcast for checkpoint room");
+                    FMOD.Studio.PLAYBACK_STATE fmodPbState;
+                    beautiful_broadcast.getPlaybackState(out fmodPbState);
+
+                    if (fmodPbState != FMOD.Studio.PLAYBACK_STATE.PLAYING)
+                    {
+                        awful_broadcast.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+                        beautiful_broadcast.start();
+
+                    }
+
+                }
             }
         }
 
@@ -65,7 +141,7 @@ namespace FMODUnity
             if(other.tag == "Player")
             {
                 //fade out beautiful music, fade in awful music
-                Debug.Log("enter trigger");
+                //Debug.Log("enter trigger");
 
                 FMOD.Studio.PLAYBACK_STATE fmodPbState;
                 awful_broadcast.getPlaybackState(out fmodPbState);
@@ -80,7 +156,7 @@ namespace FMODUnity
                         beautiful_broadcast.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
                         awful_broadcast.start();
                         //awful_broadcast.release();
-                        Debug.Log("Play awful sound now...");
+                        //Debug.Log("Broadcast Turned off");
                     }
                     
                 }
@@ -99,7 +175,7 @@ namespace FMODUnity
 
                 if (fmodPbState != FMOD.Studio.PLAYBACK_STATE.PLAYING)
                 {
-                    awful_broadcast.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                    awful_broadcast.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
                     beautiful_broadcast.start();
                     //beautiful_broadcast.release();
                     // Debug.Log("Play awful sound now...");
@@ -138,7 +214,7 @@ namespace FMODUnity
             // Stop the audio playback here
             beautiful_broadcast.release();
             awful_broadcast.release();
-            Debug.Log("Unloaded");
+            //Debug.Log("Unloaded");
             FMODUnity.RuntimeManager.CoreSystem.getMasterChannelGroup(out mcg);
             mcg.stop();
             Masterbus.stopAllEvents(FMOD.Studio.STOP_MODE.IMMEDIATE);

@@ -5,12 +5,16 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
+using System.Linq.Expressions;
 
 public class LoadingScreen : MonoBehaviour
 {
     public GameObject LoadingScreenUI;
     public TextMeshProUGUI loadingText;
     public Image LoadingBackground;
+
+    public float text_stay_second = 3.0f;
+    private Coroutine loadingTextCoroutine;
 
     [SerializeField, TextArea(3, 10)] private string[] tips;
     [SerializeField] private Sprite[] loadingImages;
@@ -33,7 +37,7 @@ public class LoadingScreen : MonoBehaviour
 
     public void LoadSceneWithLoadingScreen(string sceneName)
     {
-        //Debug.Log("TEST");
+        // Debug.Log("TEST");
         int sceneId = GetSceneBuildIndex(sceneName);
 
         SetRandomLoadingText();
@@ -46,10 +50,23 @@ public class LoadingScreen : MonoBehaviour
     {
         // Randomly select a loading text from the array
         int randomIndex = UnityEngine.Random.Range(0, tips.Length);
-        string randomLoadingText = tips[randomIndex];
 
-        // Set the selected loading text to the TextMeshProUGUI component
-        loadingText.text = randomLoadingText;
+        // Start loop through texts every x seconds
+        loadingTextCoroutine = StartCoroutine(LoopTips(randomIndex));
+
+
+    }
+
+    private IEnumerator LoopTips(int randomIndex)
+    {
+        while (true)
+        {
+            string randomLoadingText = tips[randomIndex];
+            loadingText.text = randomLoadingText;
+            yield return new WaitForSeconds(text_stay_second);
+            randomIndex = (randomIndex + 1) % tips.Length;
+        }
+
     }
 
     private void SetRandomLoadingImage()
@@ -58,7 +75,6 @@ public class LoadingScreen : MonoBehaviour
         int randomIndex = UnityEngine.Random.Range(0, loadingImages.Length);
         Sprite randomLoadingImage = loadingImages[randomIndex];
 
-        // Set the selected loading image to the Image component
         LoadingBackground.sprite = randomLoadingImage;
     }
 
@@ -68,7 +84,7 @@ public class LoadingScreen : MonoBehaviour
         LoadingScreenUI.SetActive(true);
 
         yield return new WaitForSeconds(1f);
-        Debug.Log("1111");
+        //Debug.Log("1111");
 
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneId);
         
@@ -77,7 +93,10 @@ public class LoadingScreen : MonoBehaviour
             yield return null;
         }
 
-        
+        if (loadingTextCoroutine != null)
+            StopCoroutine(loadingTextCoroutine);
+
+        LoadingScreenUI.SetActive(false);
 
     }
 }

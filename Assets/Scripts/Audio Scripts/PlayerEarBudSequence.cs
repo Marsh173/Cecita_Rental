@@ -8,10 +8,9 @@ public class PlayerEarBudSequence : MonoBehaviour
 {
     public List<AudioClip> audioClips = new List<AudioClip>();
     private AudioSource earBudVoice;
-    public GameObject invisibleWall, tutorialMessageObj, inventory, interactiveDoor, UIPauseTutorial;
-    private TMP_Text tutoriaMessage;
+    public GameObject invisibleWall, interactTutorialObj, inventoryTutorialObj, inventory, crosshair, interactiveDoor, UIPauseTutorial;
     private float warningTimes, audioTime;
-    private int listCounter;
+    private int listCounter, interactCounter;
 
     private bool firstAudioPlayed, TabToOpen, FinishInventory;
     private bool DelayedAlready, interrupted;
@@ -21,11 +20,11 @@ public class PlayerEarBudSequence : MonoBehaviour
     {
         UIPauseTutorial.SetActive(false);
         interactiveDoor.layer = 0; //set door to default layer
-        tutorialMessageObj.SetActive(false);
-        tutoriaMessage = tutorialMessageObj.GetComponent<TMP_Text>();
+        inventoryTutorialObj.SetActive(false);
+        interactTutorialObj.SetActive(false);
         earBudVoice = GetComponent<AudioSource>();
         DelayedAlready = firstAudioPlayed = FinishInventory = TabToOpen = false;
-        warningTimes = audioTime = 0;
+        warningTimes = audioTime = interactCounter = 0;
         interrupted = false;
 
         audioClips.Add(Resources.Load<AudioClip>("Night 0/" + "Night 0 - Stop!"));
@@ -40,6 +39,14 @@ public class PlayerEarBudSequence : MonoBehaviour
 
     void Update()
     {
+        //LMB to interact tutorial
+        if (!crosshair.activeSelf/* && interactCounter <= 3*/)
+        {
+            interactTutorialObj.SetActive(true);
+            //interactCounter++;
+        }
+        else interactTutorialObj.SetActive(false);
+
         if (InventoryManager.EquipmentCollected && !firstAudioPlayed)
         {
             //taskPlaceholder1.SetActive(false);
@@ -47,16 +54,16 @@ public class PlayerEarBudSequence : MonoBehaviour
             delay = 16f;
             firstAudioPlayed = true;
         }
-        
+
+        //Tab to open inventory tutorial
         if (DelayedAlready && !TabToOpen)
         {
-            tutorialMessageObj.SetActive(true);
+            inventoryTutorialObj.SetActive(true);
 
             if (inventory.transform.position.y == 540)
             {
                 TabToOpen = true;
-                tutorialMessageObj.SetActive(false);
-                tutoriaMessage.text = "";
+                inventoryTutorialObj.SetActive(false);
             }
         }
 
@@ -165,7 +172,8 @@ public class PlayerEarBudSequence : MonoBehaviour
         {
             yield return null;
         }
-        Debug.Log(inventory.activeInHierarchy);
+
+        Debug.Log("Inventory state: " + inventory.activeInHierarchy + "Finish invenTutor?: " + FinishInventory);
         earBudVoice.clip = Resources.Load<AudioClip>("Night 0/" + "Night 0 - Hallway");
         earBudVoice.PlayOneShot(earBudVoice.clip);
         interactiveDoor.layer = 7; //set door to be interactble layer

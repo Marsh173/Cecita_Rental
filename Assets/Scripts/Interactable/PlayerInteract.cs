@@ -19,7 +19,7 @@ public class PlayerInteract : MonoBehaviour
 
     [SerializeField]
     private float distance = 6f;
-    private float wallHitDistance = 6f;
+    //private float wallHitDistance = 6f;
 
     [SerializeField]
     private LayerMask mask;
@@ -80,11 +80,11 @@ public class PlayerInteract : MonoBehaviour
             if (crosshair != null && !crosshair.activeSelf) crosshair.SetActive(true);
         }
 
-        if (Physics.Raycast(ray, out hitInfo, distance, mask))
+        if (Physics.Raycast(ray, out hitInfo, distance, mask) && hitInfo.collider.GetComponent<Interactable>() != null)
         {
             if (hitInfo.collider.GetComponent<Interactable>() != null)
             {
-                if (lastHitObject == null)                                                                  //Make sure overlapped interactable objects remove outlines as intended
+                if (lastHitObject == null)         //Make sure overlapped interactable objects remove outlines as intended
                 {
                     if (hitInfo.collider.gameObject.GetComponent<Outline>() == null)
                     {
@@ -96,9 +96,9 @@ public class PlayerInteract : MonoBehaviour
                         //Turn on interactble item icon                                                     -Bryan's latest
                         itemIcon = hitInfo.collider.GetComponent<Interactable>().promptIcon;
                         itemIcon.SetActive(true);
+
                         //Turn off crosshair
                         if (crosshair != null && crosshair.activeSelf) crosshair.SetActive(false);
-
 
                         GameObject hitObject = hitInfo.collider.gameObject;
                         lastHitObject = hitObject;
@@ -108,6 +108,9 @@ public class PlayerInteract : MonoBehaviour
             }
             else
             {
+                //Turn on crosshair
+                if (crosshair != null && !crosshair.activeSelf) crosshair.SetActive(true);
+
                 if (pMessage.text != null) pMessage.text = "";
                 if (monologue.text != null) monologue.text = "";
 
@@ -118,8 +121,7 @@ public class PlayerInteract : MonoBehaviour
                     itemIcon = null;
                 }
 
-                //Turn on crosshair
-                if (crosshair != null && !crosshair.activeSelf) crosshair.SetActive(true);
+                
             }
         }
         else

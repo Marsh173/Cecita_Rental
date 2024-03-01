@@ -7,29 +7,32 @@ using TMPro;
 public class InspectionCameraTransition : MonoBehaviour
 {
     public static InspectionCameraTransition instance;
+    public InteractableItem DocInfo;
     private Camera playercam;
     public Transform InspectionCam;
 
-    public float initialFOV;
-    public float FOVOnInteraction;
+    public float initialFOV = 60f;
+    public float FOVOnInteraction = 60f;
 
     public Transform originalCamPosition;
     private Vector3 originalPos, originalAngle;
     public bool isInCam;
 
-    public GameObject inspectionButton; //for adding transcript overlay
-    public GameObject inspectionWindow;
+    public GameObject inspectionScreen, inspectionButtonW, transcriptWindow, taskmanager; //for adding transcript overlay
     private GameObject PlayBody;
-
 
     private void Start()
     {
+        DocInfo = GetComponent<InteractableItemWithEvent>();
+        InspectionCam = GetComponentInChildren<Camera>().transform;
+        taskmanager = GameObject.FindWithTag("TaskManager");
         instance = this;
         playercam = FirstPersonAIO.instance.gameObject.GetComponentInChildren<Camera>();
         originalCamPosition = playercam.transform;
-        inspectionButton.SetActive(false);
-        PlayBody = FirstPersonAIO.instance.transform.GetChild(1).gameObject;
+        PlayBody = FirstPersonAIO.instance.transform.GetChild(1).GetChild(0).gameObject;
         initialFOV = playercam.fieldOfView;
+        FOVOnInteraction = GetComponentInChildren<Camera>().fieldOfView;
+        initialFOV = 60f;
     }
 
     private void Update()
@@ -61,6 +64,11 @@ public class InspectionCameraTransition : MonoBehaviour
 
     public void TransitCamToInspectionPos()
     {
+        if(DocInfo.Doc != null)
+        {
+            transcriptWindow.transform.GetChild(3).GetChild(0).GetChild(0).GetComponent<TMP_Text>().text = DocInfo.Doc.transcript[0];
+        }
+
         Debug.Log("In cam?"+isInCam);
 
         originalCamPosition = playercam.transform;
@@ -80,11 +88,19 @@ public class InspectionCameraTransition : MonoBehaviour
         FirstPersonAIO.instance.playerCanMove = false;
         Cursor.visible = true;
         isInCam = true;
-        if(inspectionButton != null)
+
+        //taskmanager.SetActive(false);
+
+        if (inspectionScreen != null)
         {
-            inspectionButton.SetActive(true);
+            inspectionScreen.SetActive(true);
+
+            if (inspectionButtonW != null && DocInfo.Doc != null)
+            {
+                inspectionButtonW.SetActive(true);
+            }
         }
-        PlayBody.GetComponent<MeshRenderer>().enabled = false;
+        PlayBody.GetComponent<SkinnedMeshRenderer>().enabled = false;
 
         //outline + prompt message hide
         if (this.GetComponent<Outline>() != null)
@@ -101,12 +117,22 @@ public class InspectionCameraTransition : MonoBehaviour
         FirstPersonAIO.instance.playerCanMove = true;
 
         Cursor.visible = false;
-        if (inspectionButton != null)
+
+        //taskmanager.SetActive(true);
+
+        if (inspectionScreen != null)
         {
-            inspectionButton.SetActive(false);
+            inspectionScreen.SetActive(false);
+
+            if (inspectionButtonW != null)
+            {
+                inspectionButtonW.SetActive(false);
+            }
         }
-        inspectionWindow.SetActive(false);
-        PlayBody.GetComponent<MeshRenderer>().enabled = true;
+
+        transcriptWindow.SetActive(false);
+
+        PlayBody.GetComponent<SkinnedMeshRenderer>().enabled = true;
         //outline + prompt message show
         if (this.GetComponent<Outline>() != null)
         {

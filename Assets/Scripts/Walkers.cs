@@ -18,6 +18,9 @@ public class Walkers : MonoBehaviour
     public Respawn respawn;
 
 
+    public bool stopMusic = false;
+
+
 
     bool trigger;
     public bool stalker;
@@ -40,11 +43,12 @@ public class Walkers : MonoBehaviour
         {
             trigger = false;
             walker.transform.position = initialPosition;
+            stopMusic = true;
         }
 
         if (trigger && !stalker)
         {
-
+            stopMusic = false;
 
             if (walker.transform.position != patrolPoints[currentPointIndex].position)
             {
@@ -54,6 +58,7 @@ public class Walkers : MonoBehaviour
             }
             else
             {
+                
                 currentPointIndex = (currentPointIndex + 1) % patrolPoints.Length;
             }
         }
@@ -63,13 +68,16 @@ public class Walkers : MonoBehaviour
    
         }
 
+        float threshold = 0.005f;
 
-        if(patrolPoints.Length != 0)
+        if (patrolPoints.Length != 0)
         {
-            if (walker.transform.position == stop.position || walker.transform.position == patrolPoints[currentPointIndex].position)
+            
+            if (Vector3.Distance(walker.transform.position, stop.position) < threshold || walker.transform.position == patrolPoints[currentPointIndex].position)
             {
                 Debug.Log("stopped");
-                walker.SetActive(false);
+                stopMusic = true;
+                //walker.SetActive(false);
             }
         }
     }

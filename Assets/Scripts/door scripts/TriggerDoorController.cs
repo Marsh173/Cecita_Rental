@@ -3,16 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using FMODUnity;
+using System;
 
 
 public class TriggerDoorController : MonoBehaviour
 {
     [SerializeField] private Animator myDoorAnimator;
     [SerializeField] public bool openTrigger = false, closeTrigger = false, playedOpen = false;
-    private string doorOpen = "DoorOpen";
-    private string doorClose = "DoorClose";
-    private string Idle = "Idle";
+    //private string doorOpen = "DoorOpen";
+    //private string doorClose = "DoorClose";
+    //private string Idle = "Idle";
     public static bool playedCloseAnim = false;
+    private Door loungeDoor;
 
     [Header("Door Sounds")]
     [SerializeField] EventReference doorOpenEventPath;
@@ -33,22 +35,32 @@ public class TriggerDoorController : MonoBehaviour
         Masterbus = FMODUnity.RuntimeManager.GetBus("Bus:/");
 
         playedOpen = false;
+
+        findDoorScript();
+
+    }
+
+    void findDoorScript()
+    {
+        //get parent - interactive door
+        //get first child - door
+        //get first child - door_handle that has the script attached
+        Transform door_handle_transform = this.transform.parent.gameObject.transform.GetChild(0).GetChild(0);
+        //Debug.Log("Get the sibling: " + door_handle_transform.gameObject.name);
+        try
+        {
+            loungeDoor = door_handle_transform.gameObject.GetComponent<Door>();
+            //Debug.Log("Door script?" + loungeDoor);
+        }
+        catch { }
+        
+
     }
 
     private void Update()
     {
-        if(Respawn.dead)
-        {
-            gameObject.SetActive(true);
-        }
+        if(Respawn.dead) gameObject.SetActive(true);
 
-        /*if (gameObject.CompareTag("LoungeDoor") && openTrigger && playedCloseAnim)
-        {
-            Debug.Log("DoorLeftClose animation started playing.");
-            openTrigger = false;
-            closeTrigger = true;
-            playedCloseAnim = false;
-        }*/
     }
 
 
@@ -57,7 +69,6 @@ public class TriggerDoorController : MonoBehaviour
         if (other.CompareTag("Player") || (other.CompareTag("Monster") && this.CompareTag("MonsterDoor")))
         {
 
-            
             if (openTrigger)
             {
                 myDoorAnimator.SetBool("Opened", false);
@@ -65,7 +76,6 @@ public class TriggerDoorController : MonoBehaviour
 
                 //Debug.Log("Closed" + myDoorAnimator.GetBool("Closed"));
                 //Debug.Log("Opened" + myDoorAnimator.GetBool("Opened"));
-
 
                 FMOD.Studio.PLAYBACK_STATE fmodPbState;
                 doorOpenSound.getPlaybackState(out fmodPbState);
@@ -92,12 +102,12 @@ public class TriggerDoorController : MonoBehaviour
                     doorCloseSound.start();
                 }
 
-                    if (gameObject.CompareTag("LoungeDoorInside"))
+                if (gameObject.CompareTag("LoungeDoorInside"))
                 {
                     GameObject taggedObject = GameObject.FindWithTag("LoungeDoor");
                     if (taggedObject != null)
                     {
-                        Debug.Log("change to Close trigger!");
+                        //Debug.Log("change to Close trigger!");
                         TriggerDoorController trigScript = taggedObject.GetComponent<TriggerDoorController>();
 
                         if (trigScript == null) Debug.Log("more than one object has this LoungeDoor tag");
@@ -106,6 +116,10 @@ public class TriggerDoorController : MonoBehaviour
                         trigScript.openTrigger = false;
 
                     }
+
+                    //change prompt message of this door to open the door
+                    if(loungeDoor != null)
+                        loungeDoor.promptMessage = "Open the Door";
                 }
 
     
@@ -132,14 +146,7 @@ public class TriggerDoorController : MonoBehaviour
 
             //change the outside trigger from open door to close door.
             //check if open door trigger has been used (close door animation is played) 
-            //else if (gameObject.CompareTag("LoungeDoor") && openTrigger && playedCloseAnim)
-            //{
-            //    Debug.Log("DoorLeftClose animation started playing.");
-            //    openTrigger = false;
-            //    closeTrigger = true;
-
-            //}
-
+          
             //change the outside trigger from close door to open door.
             else if (gameObject.CompareTag("LoungeDoor") && closeTrigger)
             {

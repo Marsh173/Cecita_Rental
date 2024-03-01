@@ -5,7 +5,7 @@ using UnityEngine;
 public class RandomDoorAnimation : MonoBehaviour
 {
     [SerializeField] private Animator myDoor = null;
-    private bool openTrigger = false;
+    //private bool openTrigger = false;
     private bool loopAnimation = true;
 
     [SerializeField] private AnimationClip open;
@@ -35,7 +35,7 @@ public class RandomDoorAnimation : MonoBehaviour
                 Debug.Log("open");
                 myDoor.Play(openAnimationName, 0, 0.0f);
                 gameObject.GetComponent<BoxCollider>().enabled = false;
-                openTrigger = true;
+                //openTrigger = true;
 
             //}
         }

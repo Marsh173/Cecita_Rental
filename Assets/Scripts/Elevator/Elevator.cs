@@ -3,6 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+
+/***
+ * This Script is applied on each individual button presses, refer to ElevatorController to load/unload scenes.
+ * Contains open/close door couroutine.
+ * Contains elevator moving couroutine. 
+ */
 public class Elevator : InteractableItemWithEvent
 {
     //elevator door
@@ -17,6 +23,9 @@ public class Elevator : InteractableItemWithEvent
     public static bool elevatorIsMoving;
     private string activeButtonName;
 
+    private bool isEnteringElevator = false;
+
+    public ElevatorController elevatorController;
 
     private void Start()
     {
@@ -33,13 +42,16 @@ public class Elevator : InteractableItemWithEvent
             //Play button animation
             anim.SetBool("isPressed", true);
 
-            //Audio: Tenant in 303 is accessing the elevator. 
+            //Audio: Tenant in 303 is accesing the elevator. 
 
 
             //play elevator open sequence
             StartCoroutine(ElevatorArrivalSequence());
 
-            monologue.enabled = false;
+            if(monologue != null)
+            {
+                monologue.enabled = false;
+            }
             
 
         }
@@ -48,13 +60,14 @@ public class Elevator : InteractableItemWithEvent
             //animated text, tells player you don't have an elevator card. 
             monologue.text = "I need to pick up my elevator card first.";
         }
+
     }
 
     public void OpenElevator()
     {
         anim.SetBool("isPressed", true);
 
-        //audio: elevator door is opening
+        //audio: elevator door opening
 
         //play elevator open sequence
         StartCoroutine(ElevatorDoorOpenSequence(outsideDoor, closeDoorPos.position.z, false));
@@ -72,16 +85,25 @@ public class Elevator : InteractableItemWithEvent
         StartCoroutine(ElevatorDoorCloseSequence(insideDoor, openDoorPos.position.z, true));
     }
 
-    IEnumerator ElevatorArrivalSequence()
+    public IEnumerator ElevatorArrivalSequence()
     {
-        //play elevator sound, going up or down then open
 
-        yield return new WaitForSeconds(1.0f);
+        StartCoroutine(elevatorController.ElevatorArrive());
 
-        
+        while (!elevatorController.FinishArrival())
+        {
+            yield return null;
+        }
+
+
+        isEnteringElevator = true; //when arrived, player is entering the elevator
+
         //elevator door opens
+
         StartCoroutine(ElevatorDoorOpenSequence(outsideDoor, closeDoorPos.position.z, false));
         StartCoroutine(ElevatorDoorOpenSequence(insideDoor, closeDoorPos.position.z, true));
+        
+        
     }
 
     IEnumerator ElevatorDoorOpenSequence(GameObject door, float target, bool inside)
@@ -109,10 +131,38 @@ public class Elevator : InteractableItemWithEvent
         //reset button to be original color
         anim.SetBool("isPressed", false);
 
-        //close the door
-        //wait several seconds before door closes
-        yield return new WaitForSeconds(3.0f);
-        StartCoroutine(ElevatorDoorCloseSequence(door, openDoorPos.position.z, inside));
+        // close the door automatically after opening
+        if (isEnteringElevator) //player pressed button, wait for elevator to arrive. 
+        {
+            //yield return new WaitForSeconds(2f);
+
+            while (!elevatorController.isInsideElevator)
+            {
+                yield return new WaitForSeconds(1f);
+            }
+
+            Debug.Log("Player inside, close door now");
+            Debug.Log("Am I inside?" + elevatorController.isInsideElevator);
+            yield return new WaitForSeconds(1f);
+            StartCoroutine(ElevatorDoorCloseSequence(outsideDoor, openDoorPos.position.z, false));
+            StartCoroutine(ElevatorDoorCloseSequence(insideDoor, openDoorPos.position.z, true));
+
+        }
+        else //player took the elevator, reach destination
+        {
+            while(elevatorController.isInsideElevator)
+            {
+                yield return new WaitForSeconds(1f);
+            }
+
+            Debug.Log("Player outside, close door now");
+            Debug.Log("Exit: am I still inside?" + elevatorController.isInsideElevator);
+            yield return new WaitForSeconds(1f);
+            StartCoroutine(ElevatorDoorCloseSequence(outsideDoor, openDoorPos.position.z, false));
+            StartCoroutine(ElevatorDoorCloseSequence(insideDoor, openDoorPos.position.z, true));
+
+        }
+
        
     }
 
@@ -209,7 +259,7 @@ public class Elevator : InteractableItemWithEvent
             UnavailableButtons();
         }
     }
-
+    
     public void FourthFloor()
     {
         UnavailableButtons();
@@ -252,35 +302,35 @@ public class Elevator : InteractableItemWithEvent
 
     IEnumerator ElevatorMoving()
     {
-        //moving sound
-
-        //camera shake
-
-        elevatorIsMoving = true;
-        yield return new WaitForSeconds(5.0f);
-
-        Debug.Log("Right now the name is: " + activeButtonName);
-
         switch (activeButtonName)
         {
             case "lobby":
-                ElevatorController.GotoLobby();
+                Debug.Log("Going to Lobby");
+                elevatorController.GotoLobby();
                 
                 break;
 
             case "Third_Floor":
-                ElevatorController.GotoThirdFloor();
+                Debug.Log("Going to Third Floor");
+                elevatorController.GotoThirdFloor();
                 break;
             default:
                 break;
         }
 
-       
+
+        while (!elevatorController.FinishMoving())
+        {
+            yield return null;
+        }
+
 
         StartCoroutine(ElevatorDoorOpenSequence(outsideDoor, closeDoorPos.position.z, false));
         StartCoroutine(ElevatorDoorOpenSequence(insideDoor, closeDoorPos.position.z, true));
 
         anim.SetBool("isPressed", false);
-        elevatorIsMoving = false;
+
+        isEnteringElevator = false; //after moving finished, player will exist the elevator
+
     }
 }

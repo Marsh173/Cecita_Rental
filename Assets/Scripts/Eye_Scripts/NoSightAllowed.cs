@@ -52,22 +52,24 @@ public class NoSightAllowed : MonoBehaviour
     //reset everything when enabled (entered a safe room)
     private void OnEnable()
     {
+        //initialize values
         Respawn.restarted = false;
         Respawn.dead = false;
         instance = this;
-        
         RedAura.color = new Color(RedAura.color.r, RedAura.color.g, RedAura.color.b, 0);
-        TimerActive = true;
         countDownTime = 5f;
-        eye_UI.image.sprite = Eye_Open;
-        FInstructionText.text = "to close your eyes";
-        anim.SetBool("isBegun", false);
-
         CurrentEyeBarAmount = 100f;
+        openedTimes = 0;
         EyeBarImage.fillAmount = slider.value = 1f;
         AlertBarimage.fillAmount = 0f;
-        wallHitUI.SetActive(false);
-        openedTimes = 0;
+
+        //close eyes when walk out
+        TimerActive = false;
+        CloseEyeAnimation();
+        eye_UI.image.sprite = Eye_Close;
+        FInstructionText.text = "to open your eyes";
+        anim.SetBool("isBegun", true);
+        wallHitUI.SetActive(true);
     }
 
     private void Update()

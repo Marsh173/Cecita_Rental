@@ -123,4 +123,15 @@ public class WallHitCheck : MonoBehaviour
         }
         #endregion
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Enclosed"))
+        {
+            GetComponent<WallHitCheck>().enabled = false;
+        }
+        else
+        {
+            GetComponent<WallHitCheck>().enabled = true;
+        }
+    }
 }

@@ -73,7 +73,7 @@ public class PlayerEarBudSequence : MonoBehaviour
         }
 
         //UI tutorial screen
-        if (Input.GetKeyDown(KeyCode.F) && Time.timeScale == 0)
+        if (Input.GetMouseButtonDown(0) && Time.timeScale == 0)
         {
             UIPauseTutorial.SetActive(false);
             Time.timeScale = 1;

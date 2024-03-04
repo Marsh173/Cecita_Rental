@@ -13,8 +13,8 @@ public class UISpriteAnim : MonoBehaviour
     [Tooltip("Loop animation when finished")]
     public bool loop = false;
 
-    [Tooltip("Destroy object when animation finished")]
-    public bool destroyOnFinish = false;
+    /*[Tooltip("Destroy object when animation finished")]
+    public bool destroyOnFinish = false;*/
 
     private Image image;
     private int spriteIndex;
@@ -25,12 +25,14 @@ public class UISpriteAnim : MonoBehaviour
         image = GetComponent<Image>();
     }
 
-    private void OnEnable()
-    {
-        spriteIndex = 0;
-    }
     private void Update()
     {
+        if(this.gameObject.activeInHierarchy)
+        {
+            spriteIndex = 0;
+            Debug.Log("Animation index start " + spriteIndex);
+        }
+
         timer += Time.deltaTime;
 
         if (timer >= 1 / frameRate)
@@ -41,15 +43,16 @@ public class UISpriteAnim : MonoBehaviour
             {
                 spriteIndex = loop ? 0 : sprites.Length - 1;
 
-                if (destroyOnFinish)
+                /*if (destroyOnFinish)
                 {
                     Destroy(gameObject);
                     return;
-                }
+                }*/
             }
 
             image.sprite = sprites[spriteIndex];
             timer -= 1 / frameRate;
         }
+        else loop = true;
     }
 }

@@ -9,7 +9,7 @@ using UnityEngine.Events;
 
 public class KeypadGeneral : MonoBehaviour
 {
-    public bool KeypadisInCam, isPhone, Unlocked;
+    public bool KeypadIsInCam, isPhone, Unlocked;
     public GameObject KeypadObj, container;
     public TMP_Text NumberText;
     public string correctNumber;
@@ -35,7 +35,7 @@ public class KeypadGeneral : MonoBehaviour
     }
     public void KeypadInteract()
     {
-        KeypadisInCam = true;
+        KeypadIsInCam = true;
         KeypadObj.SetActive(true);
         CanEnter = true;
         Debug.Log("KeypadisInCam");
@@ -43,7 +43,7 @@ public class KeypadGeneral : MonoBehaviour
     
     private void Update()
     {
-        if (KeypadisInCam)
+        if (KeypadIsInCam)
         {
             if (Input.GetMouseButtonDown(1))
             {
@@ -52,7 +52,7 @@ public class KeypadGeneral : MonoBehaviour
                 Cursor.visible = false;
                 KeypadObj.SetActive(false);
                 CanEnter = false;
-                KeypadisInCam = false;
+                KeypadIsInCam = false;
             }
         }
     }
@@ -104,7 +104,7 @@ public class KeypadGeneral : MonoBehaviour
             //get Current Scene first
             Scene currentScene = SceneManager.GetActiveScene();
 
-            if (currentScene.name != "Night_Two" && isPhone)
+            if (currentScene.name != "Night_Two" && isPhone) //if it's night 1
             {
                 loadingscreen.LoadSceneWithLoadingScreen("Night_Two");
 
@@ -123,6 +123,8 @@ public class KeypadGeneral : MonoBehaviour
         }
         else
         {
+            Debug.Log("wrong number");
+
             StartCoroutine(WrongNumber());
             ClearNumber();
         }

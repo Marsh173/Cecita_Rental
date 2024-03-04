@@ -31,8 +31,6 @@ public class InventoryManager : MonoBehaviour
     private void Awake()
     {
         Inventory.SetActive(false);
-        //FirstPersonAIO.instance.enableCameraMovement = true;
-        //FirstPersonAIO.instance.playerCanMove = true;
         
         //add all pre-made display into a list for further reference
         /*foreach (Transform child in NormalItemContent.transform)

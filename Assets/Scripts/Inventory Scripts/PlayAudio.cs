@@ -7,8 +7,10 @@ using TMPro;
 public class PlayAudio : MonoBehaviour
 {
     private AudioSource sound;
-    public GameObject bTextObj;
-    TMP_Text buttonText;
+    public GameObject bObj;
+    private RawImage buttonImage;
+    public Texture playIcon, pauseIcon;
+    private Vector3 playIconPos, pauseIconPos;
     bool playing;
     private PuzzleHandler puzzleHandler;
 
@@ -21,7 +23,9 @@ public class PlayAudio : MonoBehaviour
     {
         playing = false;
         sound = gameObject.GetComponent<AudioSource>();
-        buttonText = bTextObj.GetComponent<TMP_Text>();
+        buttonImage = bObj.GetComponent<RawImage>();
+        playIconPos = new Vector3(1.8f, 0, 0);
+        pauseIconPos = new Vector3(0, 0, 0);
     }
 
     // Update is called once per frame
@@ -29,7 +33,8 @@ public class PlayAudio : MonoBehaviour
     {
         if (!sound.isPlaying)
         {
-            buttonText.text = "Play";
+            buttonImage.texture = playIcon;
+            buttonImage.transform.localPosition = playIconPos;
         }
     }
 
@@ -51,32 +56,33 @@ public class PlayAudio : MonoBehaviour
 
             playing = true;
             sound.Play();
-            buttonText.text = "Pause";
+            buttonImage.texture = pauseIcon;
+            buttonImage.transform.localPosition = pauseIconPos;
         }
         else if(playing)
         {
-            sound.Pause();
-            buttonText.text = "Play";
             playing = false;
+            sound.Pause();
+            buttonImage.texture = playIcon;
+            buttonImage.transform.localPosition = playIconPos;
         }
-
-        Debug.Log(playing);
     }
 
     public void playInventorySound()
     {
         if (!sound.isPlaying)
         {
-            Debug.Log("playing");
             playing = true;
             sound.Play();
-            buttonText.text = "Pause";
+            buttonImage.texture = pauseIcon;
+            buttonImage.transform.localPosition = pauseIconPos;
         }
         else
         {
-            sound.Pause();
-            buttonText.text = "Play";
             playing = false;
+            sound.Pause();
+            buttonImage.texture = playIcon;
+            buttonImage.transform.localPosition = playIconPos;
         }
     }
 }

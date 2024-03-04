@@ -10,9 +10,13 @@ public class PauseGameController : MonoBehaviour
     public GameObject inventory_manager;
     public bool invent_open;
 
-    private void Awake()
+    private void Start()
     {
         Cursor.lockState = CursorLockMode.Confined;
+        FirstPersonAIO.instance.enableCameraMovement = true;
+        FirstPersonAIO.instance.playerCanMove = true;
+        Time.timeScale = 1f;
+        Physics.autoSimulation = true;
     }
     void Update()
     {
@@ -39,7 +43,12 @@ public class PauseGameController : MonoBehaviour
         Cursor.visible = true;
         inventory_manager.SetActive(false);
         pauseMenuUI.SetActive(true);
-        FirstPersonAIO.instance.ControllerPause();
+        Time.timeScale = 0f; // Freeze the game
+        Physics.autoSimulation = false;
+        FirstPersonAIO.instance.enableCameraMovement = false;
+        FirstPersonAIO.instance.playerCanMove = false;
+        //FirstPersonAIO.instance.ControllerPause();
+
         if (inventory.activeSelf)
         {
             invent_open = true;
@@ -49,9 +58,6 @@ public class PauseGameController : MonoBehaviour
             invent_open = false;
         }
         inventory.SetActive(false);
-        Physics.autoSimulation = false;
-
-        Time.timeScale = 0f; // Freeze the game
 
         Debug.Log(invent_open);
     }
@@ -61,11 +67,13 @@ public class PauseGameController : MonoBehaviour
         Cursor.visible = false;
         inventory_manager.SetActive(true);
         pauseMenuUI.SetActive(false);
-        FirstPersonAIO.instance.ControllerPause();
-        inventory.SetActive(invent_open);
-        
-        Physics.autoSimulation = true;
-
         Time.timeScale = 1f; // Unfreeze the game
+        Physics.autoSimulation = true;
+        FirstPersonAIO.instance.enableCameraMovement = true;
+        FirstPersonAIO.instance.playerCanMove = true;
+        //FirstPersonAIO.instance.ControllerPause();
+
+        inventory.SetActive(invent_open);
+
     }
 }

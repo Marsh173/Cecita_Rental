@@ -139,7 +139,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &17301191
 Transform:
   m_ObjectHideFlags: 0
@@ -1871,7 +1871,7 @@ MonoBehaviour:
     transmit the Broadcaster's instructions \u2014 your lifeline in the darkness.
     Listen closely to evade lurking horrors and find your way to safety. You never
     want to take them off."
-  index: 1
+  ObjChildIndex: 0
   vig: {fileID: 0}
 --- !u!114 &126928490
 MonoBehaviour:
@@ -2862,7 +2862,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &172912574
 GameObject:
@@ -7743,7 +7743,7 @@ Transform:
   - {fileID: 1358731181}
   - {fileID: 264967905}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &484769501
 GameObject:
@@ -10392,7 +10392,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &707657570
 GameObject:
@@ -17372,7 +17372,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1234124382
 GameObject:
@@ -17867,6 +17867,19 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1719387714285152478, guid: 6aa568dc71d398e4b939d335ca4034e2, type: 3}
   m_PrefabInstance: {fileID: 1719387715511338629}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1260023388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1260023387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d2e23633a9fb8e40a9d33be9df3eeba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  save_name: Task Triggers
 --- !u!1 &1260708750
 GameObject:
   m_ObjectHideFlags: 0
@@ -20745,7 +20758,7 @@ Transform:
   - {fileID: 1088954033}
   - {fileID: 988681583}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1409027454
 GameObject:
@@ -23136,7 +23149,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: d93ef614c63a1bc43a4b3d8d84b9d267, type: 3}
   frameRate: 3
   loop: 1
-  destroyOnFinish: 0
 --- !u!114 &1654210424
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24513,6 +24525,49 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1675238070
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1675238071}
+  - component: {fileID: 1675238072}
+  m_Layer: 0
+  m_Name: Save Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1675238071
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1675238070}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 207.4582, y: 199.90533, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1675238072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1675238070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23907fa8f38c2ac4caa484a288054388, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1682884683 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6429483277891773776, guid: 170a163f784b97b48b57b77337e27610, type: 3}
@@ -31121,7 +31176,7 @@ MonoBehaviour:
   icon_Description: "Automatically capturing daily broadcasts and the sounds of unseen
     entities, this device is more than just a tool \u2014 it's the key to understanding
     the unknown. "
-  index: 2
+  ObjChildIndex: 0
   vig: {fileID: 0}
 --- !u!114 &2047288272
 MonoBehaviour:
@@ -33123,7 +33178,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 727e11a36c92d6041a10d92dc117ee44, type: 3}
   frameRate: 18
   loop: 1
-  destroyOnFinish: 0
 --- !u!4 &543450653125303779
 Transform:
   m_ObjectHideFlags: 0
@@ -33220,7 +33274,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 49b83377d6cb4c44a9cbf7c0f60df46f, type: 3}
   frameRate: 4
   loop: 1
-  destroyOnFinish: 0
 --- !u!1001 &816049785793797624
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -33755,7 +33808,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1719387714285152473, guid: 6aa568dc71d398e4b939d335ca4034e2, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1719387714285152473, guid: 6aa568dc71d398e4b939d335ca4034e2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -34022,11 +34075,13 @@ MonoBehaviour:
   pMessage: {fileID: 6561419313453605103}
   monologue: {fileID: 1429556762}
   itemIcon: {fileID: 0}
+  inventory: {fileID: 71065245}
   distance: 2
   mask:
     serializedVersion: 2
     m_Bits: 128
   crosshair: {fileID: 6561419314199830267}
+  inspectScript: {fileID: 0}
 --- !u!4 &1786278639713074813
 Transform:
   m_ObjectHideFlags: 0
@@ -35788,7 +35843,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 07a8d2ed3e8cdd345a2e7db0498faeec, type: 3}
   frameRate: 3
   loop: 1
-  destroyOnFinish: 0
 --- !u!1 &5700482421475063675
 GameObject:
   m_ObjectHideFlags: 0
@@ -35908,7 +35962,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 5b374bda68cde914a815f50afc4683b6, type: 3}
   frameRate: 2
   loop: 1
-  destroyOnFinish: 0
 --- !u!23 &6235526928628246557
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -36474,7 +36527,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 0f70e5d434350544cb409632e54fd032, type: 3}
   frameRate: 4
   loop: 1
-  destroyOnFinish: 0
 --- !u!222 &6637561824670057588
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -36593,7 +36645,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: d93ef614c63a1bc43a4b3d8d84b9d267, type: 3}
   frameRate: 3
   loop: 1
-  destroyOnFinish: 0
 --- !u!114 &7676011559126660540
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36612,7 +36663,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 96bfbbcc7535b3c4ea281697cf6617ef, type: 3}
   frameRate: 3
   loop: 1
-  destroyOnFinish: 0
 --- !u!114 &7676593223102806877
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37111,7 +37161,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: fd4506d23f5ed5549901d5c3815e10de, type: 3}
   frameRate: 4
   loop: 1
-  destroyOnFinish: 0
 --- !u!224 &8665286891683734949
 RectTransform:
   m_ObjectHideFlags: 0

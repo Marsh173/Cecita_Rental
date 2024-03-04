@@ -13,8 +13,6 @@ public class PauseGameController : MonoBehaviour
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Confined;
-        FirstPersonAIO.instance.enableCameraMovement = true;
-        FirstPersonAIO.instance.playerCanMove = true;
         Time.timeScale = 1f;
         Physics.autoSimulation = true;
     }

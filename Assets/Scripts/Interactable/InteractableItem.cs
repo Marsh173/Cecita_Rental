@@ -45,8 +45,10 @@ public class InteractableItem : Interactable
     {
         Debug.Log("collected");
         if (!InventoryManager.Instance.NItems.Contains(NItem))
+        {
             InventoryManager.Instance.AddNormal(NItem);
-        Destroy(gameObject);
+            Destroy(gameObject);
+        }
     }
 
     private void ReadMe()

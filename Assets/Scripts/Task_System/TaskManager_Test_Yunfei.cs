@@ -137,7 +137,7 @@ public class TaskManager_Test_Yunfei : MonoBehaviour
             var t = Tasks[i];
             var y_shift =  i * y_height_task;
            
-            t.GetComponent<RectTransform>().anchoredPosition = new Vector3(50 + t.GetComponent<TaskData>().sub * 15, 60 + y_shift , 0);
+            t.GetComponent<RectTransform>().anchoredPosition = new Vector3(40 + t.GetComponent<TaskData>().sub * 15, 70 + y_shift , 0);
         }
         if(!coroutine_running)StartCoroutine(showTasks(1));
     }

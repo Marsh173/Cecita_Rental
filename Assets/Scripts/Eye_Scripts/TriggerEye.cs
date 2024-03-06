@@ -60,7 +60,6 @@ public class TriggerEye : MonoBehaviour
         if (other.CompareTag("Enclosed"))
         {
             FirstPersonAIO.instance.cameraInputMethod = FirstPersonAIO.CameraInputMethod.Traditional;
-            //enteredCantOpen = false;
             //needs to play open eye animation then false
 
             eyeIcon.SetActive(false);
@@ -82,11 +81,18 @@ public class TriggerEye : MonoBehaviour
         if (other.CompareTag("Hallway") || other.CompareTag("CantOpen"))
         {
             FirstPersonAIO.instance.cameraInputMethod = FirstPersonAIO.CameraInputMethod.Traditional;
+            eyeIcon.SetActive(false);
         }
 
         if (other.CompareTag("CantOpen"))
         {
             enteredCantOpen = false;
+        }
+
+        if (other.CompareTag("Enclosed"))
+        {
+            FirstPersonAIO.instance.cameraInputMethod = FirstPersonAIO.CameraInputMethod.TraditionalWithConstraints;
+            eyeIcon.SetActive(true);
         }
     }
 

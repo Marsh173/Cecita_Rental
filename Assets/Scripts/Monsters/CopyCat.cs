@@ -27,7 +27,7 @@ public class CopyCat : MonoBehaviour
 
     private void Update()
     {
-        followpos = new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z + 4f);
+        followpos = new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z + 3f);
 
         Debug.DrawRay(copycat.transform.position, Vector3.back * 6f, Color.red);
         bool facingPlayer = Physics.Raycast(copycat.transform.position, -copycat.transform.forward, out RaycastHit hit, 6.0f) && hit.collider.CompareTag("Player");

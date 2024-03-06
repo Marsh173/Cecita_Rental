@@ -5,7 +5,7 @@ using TMPro;
 
 public class InteractableItem : Interactable
 {
-    [HideInInspector] public bool interacted;
+    [HideInInspector] public bool ableToInteract;
     protected private bool interactedAndClicked = false;
     public NormalItems NItem;
     public PlaylistItems AItem;
@@ -18,7 +18,7 @@ public class InteractableItem : Interactable
 
     private void Start()
     {
-        interacted = false;
+        ableToInteract = false;
        // materialRenderer = GetComponent<Renderer>();
     }
 
@@ -30,22 +30,23 @@ public class InteractableItem : Interactable
         //Debug.Log("rendering");
 
         //LMB to open
-        if (interacted)
+        if (ableToInteract)
         {
             if (Input.GetMouseButtonDown(0))
             {
                 PickupMe();
                 ReadMe();
-                interacted = false;
+                ableToInteract = false;
+                Debug.Log("interacted");
             }
         }
     }
 
     private void PickupMe()
     {
-        Debug.Log("collected");
         if (!InventoryManager.Instance.NItems.Contains(NItem))
         {
+            Debug.Log("collected");
             InventoryManager.Instance.AddNormal(NItem);
             Destroy(gameObject);
         }
@@ -67,13 +68,13 @@ public class InteractableItem : Interactable
     protected override void Interact()
     {
         //Debug.Log("Interacted with Player");
-        interacted = true;
+        ableToInteract = true;
     }
 
     protected override void DisableInteract()
     {
         //Debug.Log("Interacted with Player");
-        interacted = false;
+        ableToInteract = false;
     }
 
 }

@@ -46,7 +46,7 @@ public class PlayAudio : MonoBehaviour
             //else if (puzzleHandler.detectedNames[1] == "") { puzzleHandler.detectedNames[1] = sound.clip.ToString(); }
             //else if (puzzleHandler.detectedNames[2] == "") { puzzleHandler.detectedNames[2] = sound.clip.ToString(); }
             //else if (puzzleHandler.detectedNames[3] == "") { puzzleHandler.detectedNames[3] = sound.clip.ToString(); }
-            if (puzzleHandler.interacted)
+            if (puzzleHandler.ableToInteract)
             {
                 for (int i = 0; i < puzzleHandler.detectedNames.Count; i++)
                 {

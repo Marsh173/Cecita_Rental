@@ -8,7 +8,7 @@ public class PlayerEarBudSequence : MonoBehaviour
 {
     public List<AudioClip> audioClips = new List<AudioClip>();
     private AudioSource earBudVoice;
-    public GameObject invisibleWall, interactTutorialObj, inventoryTutorialObj, inventory, crosshair, interactiveDoor, UIPauseTutorial;
+    public GameObject interactTutorialObj, inventoryTutorialObj, inventory, crosshair, interactiveDoor, UIPauseTutorial;
     private float warningTimes, audioTime;
     private int listCounter, interactCounter;
 

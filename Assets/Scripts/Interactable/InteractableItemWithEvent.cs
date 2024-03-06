@@ -24,7 +24,7 @@ public class InteractableItemWithEvent : InteractableItem
     {
         if (PlayerInteract.hasRecorderInHand)
         {
-            if (interacted)
+            if (ableToInteract)
             {
                 if (this.AItem != null)
                 {
@@ -35,7 +35,7 @@ public class InteractableItemWithEvent : InteractableItem
         }
         else
         {
-            if (interacted)
+            if (ableToInteract)
             {
                 if (Input.GetMouseButtonDown(0))
                 {

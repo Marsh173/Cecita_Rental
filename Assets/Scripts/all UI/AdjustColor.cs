@@ -8,7 +8,7 @@ public class AdjustColor : MonoBehaviour
 {
     public RawImage bgImage;
     private Slider blackS;
-    [SerializeField] public static float sliderValueHolder = 0.2f;
+    [SerializeField] public static float sliderValueHolder = 0.1f;
     [SerializeField] public static Color eyeBgColor;
     public static bool settingsOn;
     public float holderVisualizer;
@@ -21,11 +21,11 @@ public class AdjustColor : MonoBehaviour
         settingsOn = false;
         blackS = GetComponent<Slider>();
 
-        if (sliderValueHolder != 0.2f)
+        if (sliderValueHolder != 0.1f)
         {
             blackS.value = sliderValueHolder;
         }
-        else blackS.value = 0.2f;
+        else blackS.value = 0.1f;
 
         bgImage.color = eyeBgColor = new Color(blackS.value, blackS.value, blackS.value, 1f);
 

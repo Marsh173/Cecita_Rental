@@ -35,8 +35,8 @@ public class NoSightAllowed : MonoBehaviour
         instance = this;
 
         eye_UI = GetComponent<Button>();
-        eye_UI.GetComponent<Image>().sprite = Eye_Open;
-        eyeBlinkImage.color = AdjustColor.eyeBgColor /*= new Color(0.2f, 0.2f, 0.2f, 1f)*/;
+        eye_UI.GetComponent<Image>().sprite = Eye_Close;
+        eyeBlinkImage.color = AdjustColor.eyeBgColor;
         FInstructionText = FInstruction.GetComponent<TMP_Text>();
         EyeBarImage = EyeBarUI.GetComponent<Image>();
         slider = slider.GetComponent<Slider>();
@@ -47,12 +47,17 @@ public class NoSightAllowed : MonoBehaviour
         AlertBarimage.fillAmount = 0f;
         openedTimes = 0;
         wallHitUI.SetActive(false);
-        anim.SetBool("isBegun", false);
+        anim.SetBool("isBegun", true);
     }
     //reset everything when enabled (entered a safe room)
     private void OnEnable()
     {
         //initialize values
+        if(eyeBlinkImage.color.a == 0)
+        {
+            eyeBlinkImage.color = new Color(0.1f, 0.1f, 0.1f, 1f);
+        }
+        else eyeBlinkImage.color = AdjustColor.eyeBgColor;
         Respawn.restarted = false;
         Respawn.dead = false;
         instance = this;

@@ -198,10 +198,11 @@ public class InventoryManager : MonoBehaviour
 
         foreach (Transform item in DocumentContent)
         {
-            if (DItems!= null && DItems.Find(item => item.name == item.name))
-            {
+            /*if (DItems!= null && DItems.Find(item => item.name == item.name))
+            {*/
                 Destroy(item.gameObject);
-            }
+                Debug.Log("Doc Relisted");
+            //}
         }
 
         foreach (var item in DItems)
@@ -209,13 +210,11 @@ public class InventoryManager : MonoBehaviour
             //find the elemets in each item and replace inventory default
             GameObject itemobj = Instantiate(DocumentItem, DocumentContent);
             var itemName = itemobj.transform.Find("itemName").GetComponent<TMP_Text>();
-            //var itemTranscript = itemobj.transform.Find("transcript").GetComponent<TMP_Text>();
-            var itemIcon = itemobj.transform.Find("image").GetComponent<Image>();
+            //var itemImages = itemobj.transform.Find("images").GetComponent<Image>();
 
             //display name and image in inventory UI
             itemName.text = item.displayName;
-            //itemTranscript.text = item.transcript;
-            itemIcon.sprite = item.image;
+            //itemImages.sprite = item.image;
 
             Debug.Log("Doc Added");
         }
@@ -251,6 +250,7 @@ public class InventoryManager : MonoBehaviour
         {
             keyCollected = true;
         }
+        else keyCollected = false;
     }
 
 }

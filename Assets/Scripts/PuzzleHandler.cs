@@ -28,7 +28,7 @@ public class PuzzleHandler : InteractableItem                               //Pu
     // Update is called once per frame
     void Update()
     {
-        if (interacted)
+        if (ableToInteract)
         {
             if (correctNames.SequenceEqual(detectedNames) && !hasSolvedClockPuzzle)
             {

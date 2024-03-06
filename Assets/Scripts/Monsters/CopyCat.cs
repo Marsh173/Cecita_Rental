@@ -19,30 +19,44 @@ public class CopyCat : MonoBehaviour
     private float startTime;
     private float exitTime;
 
+
+
     private void Start()
     {
         copycat.SetActive(false);
         origin = gameObject.transform;
+        
+
     }
 
     private void Update()
     {
-        followpos = new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z + 4f);
-
-        Debug.DrawRay(copycat.transform.position, Vector3.back * 6f, Color.red);
-        bool facingPlayer = Physics.Raycast(copycat.transform.position, -copycat.transform.forward, out RaycastHit hit, 6.0f) && hit.collider.CompareTag("Player");
-
-        if (facingPlayer)
-        {
-            Debug.Log("Facing the player");
-        }
-
-
+        
 
         if (trigger && hasStarted)
         {
-            copycat.transform.position = Vector3.MoveTowards(copycat.transform.position, followpos, speed * Time.deltaTime * 2f);
             copycat.transform.rotation = player.transform.rotation;
+
+            Vector3 playerRotation = player.transform.rotation.eulerAngles;
+
+            // Check if the player's rotation falls within the range: player is 167 degree when facing the door.
+            if (playerRotation.y >= 90f && playerRotation.y <= 270f)
+            {
+                Debug.Log("player is facing the emergency door");
+                //Copycat goes near the opposite wall. run past player until position is set.
+                followpos = new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z + 4f);
+                copycat.transform.position = Vector3.MoveTowards(copycat.transform.position, followpos, speed * Time.deltaTime * 2f);
+
+            }
+            else
+            {
+                Debug.Log("player is looking at the wall.");
+                followpos = new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z - 4f);
+                copycat.transform.position = Vector3.MoveTowards(copycat.transform.position, followpos, speed * Time.deltaTime * 2f);
+            }
+            
+            
+            
         }
         else if (exit && hasExited)
         {

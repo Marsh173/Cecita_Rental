@@ -31,8 +31,7 @@ public class InventoryManager : MonoBehaviour
     private void Awake()
     {
         Inventory.SetActive(false);
-        //Inventory.transform.position = new Vector2(960, -2000);
-
+        
         //add all pre-made display into a list for further reference
         /*foreach (Transform child in NormalItemContent.transform)
         {

@@ -74,9 +74,9 @@ public class InspectionCameraTransition : MonoBehaviour
         originalCameraPosition = playerCamera.transform.position;
         originalCameraRotation = playerCamera.transform.rotation;
 
-        //move camera position/rotation
+        //move camera position/rotation, disable player body after finished transition
         playerCamera.transform.DOMove(inspectionCameraPosition.position, transitionDuration);
-        playerCamera.transform.DORotate(inspectionCameraPosition.rotation.eulerAngles, transitionDuration);
+        playerCamera.transform.DORotate(inspectionCameraPosition.rotation.eulerAngles, transitionDuration).OnComplete(() => playBody.SetActive(false));
         playerCamera.fieldOfView = inspectionFOV;
         Debug.Log("Camera transformed to inspect");
 
@@ -98,6 +98,9 @@ public class InspectionCameraTransition : MonoBehaviour
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Confined;
+
+        //show player as soon as exit cam
+        playBody.SetActive(true);
         playerCamera.fieldOfView = originalFOV;
         playerCamera.transform.DOMove(originalCameraPosition, transitionDuration);
         playerCamera.transform.DORotate(originalCameraRotation.eulerAngles, transitionDuration).OnComplete(() => EnablePlayerMovement(true));
@@ -138,7 +141,6 @@ public class InspectionCameraTransition : MonoBehaviour
 
     void EnablePlayerMovement(bool enable) 
     {
-        playBody.SetActive(enable);
         player.enableFOVShift = enable;
         player.enableCameraMovement = enable;
         player.playerCanMove = enable;

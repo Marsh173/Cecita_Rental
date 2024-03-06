@@ -1871,7 +1871,7 @@ MonoBehaviour:
     transmit the Broadcaster's instructions \u2014 your lifeline in the darkness.
     Listen closely to evade lurking horrors and find your way to safety. You never
     want to take them off."
-  index: 1
+  ObjChildIndex: 0
   vig: {fileID: 0}
 --- !u!114 &126928490
 MonoBehaviour:
@@ -10122,15 +10122,9 @@ MonoBehaviour:
   _sceneSetupMode: 0
   _sceneSetup:
   - scene:
-      editorAssetGUID: d8d6aad72831516449a0ce2968d88960
-      name: Protagonist_Room
-      _path: Assets/Scenes/Day_Scenes/Protagonist_Room.unity
-    loadInEditor: 1
-    loadMethod: 1
-  - scene:
-      editorAssetGUID: 6a68bbe3aa7880e409e20cf93bac4cca
-      name: Third_Floor
-      _path: Assets/Scenes/Day_Scenes/Third_Floor.unity
+      editorAssetGUID: 0194b271cd46b72419c768be5a195450
+      name: Lobby
+      _path: Assets/Scenes/Day_Scenes/Lobby.unity
     loadInEditor: 1
     loadMethod: 1
   _isMainScene: 0
@@ -17281,6 +17275,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2275573381989924413, guid: f66ab2f4bb5642344a60670f259e8b4d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.8406412
+      objectReference: {fileID: 0}
+    - target: {fileID: 2275573381989924413, guid: f66ab2f4bb5642344a60670f259e8b4d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.19407731
+      objectReference: {fileID: 0}
+    - target: {fileID: 2275573381989924413, guid: f66ab2f4bb5642344a60670f259e8b4d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.11374081
+      objectReference: {fileID: 0}
+    - target: {fileID: 2275573381989924413, guid: f66ab2f4bb5642344a60670f259e8b4d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.49266562
+      objectReference: {fileID: 0}
     - target: {fileID: 2275573382648755495, guid: f66ab2f4bb5642344a60670f259e8b4d, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.5
@@ -23136,7 +23146,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: d93ef614c63a1bc43a4b3d8d84b9d267, type: 3}
   frameRate: 3
   loop: 1
-  destroyOnFinish: 0
 --- !u!114 &1654210424
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31121,7 +31130,7 @@ MonoBehaviour:
   icon_Description: "Automatically capturing daily broadcasts and the sounds of unseen
     entities, this device is more than just a tool \u2014 it's the key to understanding
     the unknown. "
-  index: 2
+  ObjChildIndex: 0
   vig: {fileID: 0}
 --- !u!114 &2047288272
 MonoBehaviour:
@@ -32586,15 +32595,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dddab24af7a02a54c9631fd5c532d7c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputDevice: 1
+  inputDevice: 2
   joystickKeyCodesToCheck: 4a0100004b0100004c01000051010000
   joystickButtonsToCheck: []
   joystickAxesToCheck: []
   joystickAxisThreshold: 0.5
   keyButtonsToCheck: []
   keyCodesToCheck: 1b000000
-  keyInputSwitchesModeTo: 0
-  alwaysAutoFocus: 1
+  keyInputSwitchesModeTo: 1
+  alwaysAutoFocus: 0
   detectMouseControl: 1
   mouseMoveThreshold: 0.1
   controlCursorState: 0
@@ -33123,7 +33132,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 727e11a36c92d6041a10d92dc117ee44, type: 3}
   frameRate: 18
   loop: 1
-  destroyOnFinish: 0
 --- !u!4 &543450653125303779
 Transform:
   m_ObjectHideFlags: 0
@@ -33220,7 +33228,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 49b83377d6cb4c44a9cbf7c0f60df46f, type: 3}
   frameRate: 4
   loop: 1
-  destroyOnFinish: 0
 --- !u!1001 &816049785793797624
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -33801,6 +33808,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: = TASK TRIGGERS
       objectReference: {fileID: 0}
+    - target: {fileID: 1719387714285152478, guid: 6aa568dc71d398e4b939d335ca4034e2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1719387714798447418, guid: 6aa568dc71d398e4b939d335ca4034e2, type: 3}
       propertyPath: tm
       value: 
@@ -34022,11 +34033,13 @@ MonoBehaviour:
   pMessage: {fileID: 6561419313453605103}
   monologue: {fileID: 1429556762}
   itemIcon: {fileID: 0}
+  inventory: {fileID: 0}
   distance: 2
   mask:
     serializedVersion: 2
     m_Bits: 128
   crosshair: {fileID: 6561419314199830267}
+  inspectScript: {fileID: 0}
 --- !u!4 &1786278639713074813
 Transform:
   m_ObjectHideFlags: 0
@@ -34051,7 +34064,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1784319151483798915}
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -31, y: 1.39, z: -40}
+  m_LocalPosition: {x: -0.59, y: 1.39, z: -26}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1786784224719251287}
@@ -35788,7 +35801,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 07a8d2ed3e8cdd345a2e7db0498faeec, type: 3}
   frameRate: 3
   loop: 1
-  destroyOnFinish: 0
 --- !u!1 &5700482421475063675
 GameObject:
   m_ObjectHideFlags: 0
@@ -35908,7 +35920,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 5b374bda68cde914a815f50afc4683b6, type: 3}
   frameRate: 2
   loop: 1
-  destroyOnFinish: 0
 --- !u!23 &6235526928628246557
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -36474,7 +36485,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 0f70e5d434350544cb409632e54fd032, type: 3}
   frameRate: 4
   loop: 1
-  destroyOnFinish: 0
 --- !u!222 &6637561824670057588
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -36593,7 +36603,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: d93ef614c63a1bc43a4b3d8d84b9d267, type: 3}
   frameRate: 3
   loop: 1
-  destroyOnFinish: 0
 --- !u!114 &7676011559126660540
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36612,7 +36621,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 96bfbbcc7535b3c4ea281697cf6617ef, type: 3}
   frameRate: 3
   loop: 1
-  destroyOnFinish: 0
 --- !u!114 &7676593223102806877
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37111,7 +37119,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: fd4506d23f5ed5549901d5c3815e10de, type: 3}
   frameRate: 4
   loop: 1
-  destroyOnFinish: 0
 --- !u!224 &8665286891683734949
 RectTransform:
   m_ObjectHideFlags: 0

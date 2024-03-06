@@ -44,14 +44,14 @@ public class CopyCat : MonoBehaviour
             {
                 Debug.Log("player is facing the emergency door");
                 //Copycat goes near the opposite wall. run past player until position is set.
-                followpos = new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z + 4f);
+                followpos = new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z + 3f);
                 copycat.transform.position = Vector3.MoveTowards(copycat.transform.position, followpos, speed * Time.deltaTime * 2f);
 
             }
             else
             {
                 Debug.Log("player is looking at the wall.");
-                followpos = new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z - 4f);
+                followpos = new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z - 3f);
                 copycat.transform.position = Vector3.MoveTowards(copycat.transform.position, followpos, speed * Time.deltaTime * 2f);
             }
             

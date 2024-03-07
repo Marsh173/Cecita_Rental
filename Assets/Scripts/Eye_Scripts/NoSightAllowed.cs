@@ -49,15 +49,20 @@ public class NoSightAllowed : MonoBehaviour
         wallHitUI.SetActive(false);
         anim.SetBool("isBegun", true);
     }
+
     //reset everything when enabled (entered a safe room)
     private void OnEnable()
     {
-        //initialize values
+        //for developer playtest
         if(eyeBlinkImage.color.a == 0)
         {
             eyeBlinkImage.color = new Color(0.1f, 0.1f, 0.1f, 1f);
+            Debug.Log("auto set eye color");
         }
-        else eyeBlinkImage.color = AdjustColor.eyeBgColor;
+        //for developer playtest
+
+
+        //initialize values
         Respawn.restarted = false;
         Respawn.dead = false;
         instance = this;

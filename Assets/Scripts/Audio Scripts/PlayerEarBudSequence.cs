@@ -24,12 +24,16 @@ public class PlayerEarBudSequence : MonoBehaviour
         interactTutorialObj.SetActive(false);
         earBudVoice = GetComponent<AudioSource>();
         DelayedAlready = firstAudioPlayed = FinishInventory = TabToOpen = false;
-        warningTimes = audioTime = interactCounter = 0;
+        warningTimes = audioTime = interactCounter = listCounter = 0;
         interrupted = false;
 
-        audioClips.Add(Resources.Load<AudioClip>("Night 0/" + "Night 0 - Stop!"));
+        //audioClips.Add(Resources.Load<AudioClip>("Night 0/" + "Night 0 - Stop!"));
         audioClips.Add(Resources.Load<AudioClip>("Night 0/" + "Night 0 - Follow music"));
-        audioClips.Add(Resources.Load<AudioClip>("Night 0/" + "Night 0 - stick to wall"));
+        audioClips.Add(Resources.Load<AudioClip>("Night 0/" + "Night 0 - broadcast 2"));
+        audioClips.Add(Resources.Load<AudioClip>("Night 0/" + "Night 0 - broadcast 3"));
+        audioClips.Add(Resources.Load<AudioClip>("Night 0/" + "Night 0 - midpoint"));
+        audioClips.Add(Resources.Load<AudioClip>("Night 0/" + "Night 0 - final point"));
+        audioClips.Add(Resources.Load<AudioClip>("Night 0/" + "Night 0 - Entered bedroom"));
 
         foreach (AudioClip element in audioClips)
         {
@@ -92,26 +96,29 @@ public class PlayerEarBudSequence : MonoBehaviour
     {
         if(InventoryManager.EquipmentCollected)
         {
+            //Wallhit tutorial
             if (other.CompareTag("Hallway"))
             {
                 Time.timeScale = 0;
                 UIPauseTutorial.SetActive(true);
             }
-                if (other.CompareTag("EnterMonster") && !earBudVoice.isPlaying)
+            //Monster Sequence
+            if (other.CompareTag("EnterMonster") && !earBudVoice.isPlaying)
             {
                 earBudVoice.clip = Resources.Load<AudioClip>("Night 0/" + "Night 0 - Stop!");
                 earBudVoice.PlayOneShot(earBudVoice.clip);
                 Destroy(other);
-                listCounter = 1;
                 audioTime = 0;
             }
 
+            //broadcast turn off guide
             if (other.CompareTag("FollowMusicA") && !earBudVoice.isPlaying)
             {
-                earBudVoice.clip = Resources.Load<AudioClip>("Night 0/" + "Night 0 - Follow music");
+                earBudVoice.clip = audioClips[listCounter];
+                Debug.Log("Audio: " + audioClips[listCounter]);
                 earBudVoice.PlayOneShot(earBudVoice.clip);
+                listCounter++;
                 Destroy(other);
-                listCounter = 2;
             }
 
             if (other.CompareTag("walker Trigger") && !earBudVoice.isPlaying)
@@ -119,7 +126,6 @@ public class PlayerEarBudSequence : MonoBehaviour
                 earBudVoice.clip = Resources.Load<AudioClip>("Night 0/" + "Night 0 - stick to wall");
                 earBudVoice.PlayOneShot(earBudVoice.clip);
                 Destroy(other);
-                listCounter = 3;
             }
 
             if(interrupted)
@@ -142,11 +148,13 @@ public class PlayerEarBudSequence : MonoBehaviour
                 earBudVoice.PlayOneShot(earBudVoice.clip);
                 warningTimes++;
             }
+
+            if (other.CompareTag("InFrontOfMonster"))
+            {
+
+            }
         }
-        else
-        {
-            earBudVoice.Stop();
-        }
+        else earBudVoice.Stop();
         
         
     }

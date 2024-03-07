@@ -20,29 +20,31 @@ public class CopyCat : MonoBehaviour
     private float exitTime;
 
 
+    private bool playerFacingDoor = false;
+
 
     private void Start()
     {
         copycat.SetActive(false);
         origin = gameObject.transform;
-        
-
     }
 
     private void Update()
     {
-        
-
         if (trigger && hasStarted)
         {
             copycat.transform.rotation = player.transform.rotation;
-
             Vector3 playerRotation = player.transform.rotation.eulerAngles;
 
             // Check if the player's rotation falls within the range: player is 167 degree when facing the door.
             if (playerRotation.y >= 90f && playerRotation.y <= 270f)
             {
-                Debug.Log("player is facing the emergency door");
+                if (!playerFacingDoor) // Check if player is facing the door for the first time
+                {
+                    Debug.Log("Player is facing the emergency door");
+                    playerFacingDoor = true; 
+                }
+
                 //Copycat goes near the opposite wall. run past player until position is set.
                 followpos = new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z + 3f);
                 copycat.transform.position = Vector3.MoveTowards(copycat.transform.position, followpos, speed * Time.deltaTime * 2f);
@@ -50,12 +52,15 @@ public class CopyCat : MonoBehaviour
             }
             else
             {
-                Debug.Log("player is looking at the wall.");
+                if (playerFacingDoor) // Check if player is no longer facing the door
+                {
+                    Debug.Log("Player is looking at the wall.");
+                    playerFacingDoor = false;
+                }
+
                 followpos = new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z - 3f);
                 copycat.transform.position = Vector3.MoveTowards(copycat.transform.position, followpos, speed * Time.deltaTime * 2f);
             }
-            
-            
             
         }
         else if (exit && hasExited)

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class NightEndings : MonoBehaviour
 {
     public AudioClip EndingAudio;
-    public GameObject Bedroom, EmergencyRoomParts, endTimeline, player;
+    public GameObject Bedroom, EmergencyRoomParts, endTimeline, player, system;
     private AudioSource audioS;
     private FirstPersonAIO playerControl;
     private Animator Anim;
@@ -21,11 +21,8 @@ public class NightEndings : MonoBehaviour
 
     private void Tutorial()
     {
-        playerControl.playerCanMove = false;
-        //a line of code that disables camera movement
-        Anim.enabled = true;
-
-        endTimeline.SetActive(true);
+        //Anim.enabled = true;
+        //endTimeline.SetActive(true);
         audioS.PlayOneShot(EndingAudio);
     }
 
@@ -36,10 +33,16 @@ public class NightEndings : MonoBehaviour
     }
     private void Night2()
     {
-
+        system.SetActive(false);
     }
 
-   
+    private void SleepCutScene()
+    {
+        playerControl.playerCanMove = false;
+        system.SetActive(false);
+        //a line of code that disables camera movement
+    }
+
 
     // Update is called once per frame
     void Update()

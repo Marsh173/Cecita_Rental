@@ -2,13 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerEarBudSequence : MonoBehaviour
 {
     public List<AudioClip> audioClips = new List<AudioClip>();
     private AudioSource earBudVoice;
-    public GameObject interactTutorialObj, inventoryTutorialObj, inventory, crosshair, interactiveDoor, UIPauseTutorial;
+    public GameObject basicMovementUI, interactTutorialObj, inventoryTutorialObj, inventory, crosshair, interactiveDoor, UIPauseTutorial;
+    public float fadeDuration = 2f;
+    private RawImage bMUI;
     private float warningTimes, audioTime;
     private int listCounter, interactCounter;
 
@@ -18,6 +20,8 @@ public class PlayerEarBudSequence : MonoBehaviour
     [SerializeField] private float delay = 0.0f;
     void Start()
     {
+        basicMovementUI.SetActive(true);
+        bMUI = basicMovementUI.GetComponent<RawImage>();
         UIPauseTutorial.SetActive(false);
         interactiveDoor.layer = 0; //set door to default layer
         inventoryTutorialObj.SetActive(false);
@@ -43,6 +47,11 @@ public class PlayerEarBudSequence : MonoBehaviour
 
     void Update()
     {
+        if(Input.anyKey)
+        {
+            StartCoroutine(FadeOut(bMUI));
+        }
+
         //LMB to interact tutorial
         if (!crosshair.activeSelf/* && interactCounter <= 3*/)
         {
@@ -187,5 +196,23 @@ public class PlayerEarBudSequence : MonoBehaviour
         interactiveDoor.layer = 7; //set door to be interactble layer
     }
 
+    private IEnumerator FadeOut(RawImage rImage)
+    {
+        Color originalColor = rImage.color;
+        float alphaStep = Time.fixedDeltaTime / fadeDuration;
 
+        // Loop until the image is completely faded out
+        while (rImage.color.a > 0f)
+        {
+            originalColor.a -= alphaStep;
+            rImage.color = originalColor;
+            yield return new WaitForFixedUpdate();
+        }
+
+        Debug.Log("Faded");
+        // Ensure the image is completely faded out
+        originalColor.a = 0f;
+        rImage.color = originalColor;
+        basicMovementUI.SetActive(false);
+    }
 }

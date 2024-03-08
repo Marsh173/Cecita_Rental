@@ -9,16 +9,80 @@ using System.Linq.Expressions;
 
 public class LoadingScreen : MonoBehaviour
 {
+    //Night Ending needed stuff
+    public AudioClip EndingAudio;
+    public GameObject Bedroom, EmergencyRoomParts, endTimeline, player, system;
+    private AudioSource audioS;
+    private FirstPersonAIO playerControl;
+    private Animator Anim;
+
+    //Loading Screen needed stuff
     public GameObject LoadingScreenUI;
     public TextMeshProUGUI loadingText;
     public Image LoadingBackground;
+    public string sceneName;
 
-    public float text_stay_second = 3.0f;
+    public float text_stay_second = 2.0f;
     private Coroutine loadingTextCoroutine;
 
     [SerializeField, TextArea(3, 10)] private string[] tips;
     [SerializeField] private Sprite[] loadingImages;
 
+    void Start()
+    {
+        audioS = player.GetComponent<AudioSource>();
+        playerControl = player.GetComponent<FirstPersonAIO>();
+        playerControl.enabled = true;
+        Anim = player.GetComponentInChildren<Animator>();
+        Anim.enabled = false;
+    }
+
+    #region Night Ending Events
+    public void TutorialEnding()
+    {
+        //Anim.enabled = true;
+        //endTimeline.SetActive(true);
+        audioS.PlayOneShot(EndingAudio);
+        StartCoroutine(WaitForCutscene(EndingAudio));
+
+    }
+    public IEnumerator WaitForCutscene(AudioClip aClip)
+    {
+        yield return new WaitUntil(() => audioS.isPlaying == false);
+        Debug.Log("Finished playing");
+        SleepCutScene();
+        LoadSceneWithLoadingScreen(sceneName);
+    }
+    public void Night1Ending()
+    {
+        EmergencyRoomParts.SetActive(false);
+        Bedroom.SetActive(true);
+    }
+    public void Night2Ending()
+    {
+        system.SetActive(false);
+    }
+
+    private void SleepCutScene()
+    {
+        playerControl.enabled = false;
+        system.SetActive(false);
+    }
+
+    #endregion
+
+    #region LoadingScene Code
+    public void LoadSceneWithLoadingScreen(string sceneName)
+    {
+        // Debug.Log("TEST");
+        int sceneId = GetSceneBuildIndex(sceneName);
+
+        SetRandomLoadingText();
+        SetRandomLoadingImage();
+
+        StartCoroutine(LoadSceneAsync(sceneId));
+    }
+    
     public int GetSceneBuildIndex(string sceneName)
     {
         for (int i = 0; i < SceneManager.sceneCountInBuildSettings; i++)
@@ -33,17 +97,6 @@ public class LoadingScreen : MonoBehaviour
         }
 
         return -1; // Scene not found
-    }
-
-    public void LoadSceneWithLoadingScreen(string sceneName)
-    {
-        // Debug.Log("TEST");
-        int sceneId = GetSceneBuildIndex(sceneName);
-
-        SetRandomLoadingText();
-        SetRandomLoadingImage();
-
-        StartCoroutine(LoadSceneAsync(sceneId));
     }
 
     private void SetRandomLoadingText()
@@ -99,4 +152,5 @@ public class LoadingScreen : MonoBehaviour
         LoadingScreenUI.SetActive(false);
 
     }
+    #endregion
 }

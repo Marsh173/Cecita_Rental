@@ -42,12 +42,15 @@ public class CopyCat : MonoBehaviour
                 if (!playerFacingDoor) // Check if player is facing the door for the first time
                 {
                     Debug.Log("Player is facing the emergency door");
+                    // Check for Player position relative to the wall. Copycat turn 180 around and run behind the player.
+                    StartCoroutine(TurnAroundAndRunPastPlayer(3f));
                     playerFacingDoor = true; 
                 }
 
-                //Copycat goes near the opposite wall. run past player until position is set.
+                StartCoroutine(TurnAroundAndRunPastPlayer(3f));
                 followpos = new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z + 3f);
                 copycat.transform.position = Vector3.MoveTowards(copycat.transform.position, followpos, speed * Time.deltaTime * 2f);
+
 
             }
             else
@@ -55,11 +58,14 @@ public class CopyCat : MonoBehaviour
                 if (playerFacingDoor) // Check if player is no longer facing the door
                 {
                     Debug.Log("Player is looking at the wall.");
+                    
                     playerFacingDoor = false;
                 }
 
+                StartCoroutine(TurnAroundAndRunPastPlayer(-3f));
                 followpos = new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z - 3f);
                 copycat.transform.position = Vector3.MoveTowards(copycat.transform.position, followpos, speed * Time.deltaTime * 2f);
+               
             }
             
         }
@@ -71,6 +77,26 @@ public class CopyCat : MonoBehaviour
                 copycat.SetActive(false);
             }
         }
+    }
+
+    private IEnumerator TurnAroundAndRunPastPlayer(float offset)
+    {
+        yield return new WaitForSeconds(3f);
+        // Turn CopyCat around by 180 degrees
+        Quaternion targetRotation = Quaternion.LookRotation(-copycat.transform.forward);
+        float turnDuration = 0.5f; // Duration for turning around
+        float elapsedTime = 0f;
+
+        while (elapsedTime < turnDuration)
+        {
+            copycat.transform.rotation = Quaternion.Slerp(copycat.transform.rotation, targetRotation, elapsedTime / turnDuration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        Debug.Log("Copycat looks at player.");
+
+        
     }
 
     private void OnTriggerEnter(Collider other)

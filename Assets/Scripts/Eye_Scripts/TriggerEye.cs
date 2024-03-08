@@ -81,7 +81,6 @@ public class TriggerEye : MonoBehaviour
         if (other.CompareTag("Hallway") || other.CompareTag("CantOpen"))
         {
             FirstPersonAIO.instance.cameraInputMethod = FirstPersonAIO.CameraInputMethod.Traditional;
-            eyeIcon.SetActive(false);
         }
 
         if (other.CompareTag("CantOpen"))

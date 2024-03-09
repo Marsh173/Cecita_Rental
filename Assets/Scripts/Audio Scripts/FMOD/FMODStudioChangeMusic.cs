@@ -35,6 +35,7 @@ namespace FMODUnity
 
         void Start()
         {
+            /*
             // Find all enclosed rooms in the scene
             EnclosedRoomDetector[] enclosedRooms = FindObjectsOfType<EnclosedRoomDetector>();
 
@@ -42,7 +43,7 @@ namespace FMODUnity
             foreach (var room in enclosedRooms)
             {
                 room.onPlayerEnteredRoom.AddListener(PlayerEnteredRoomHandler);
-            }
+            }*/
 
             OnEnable();
             beautiful_broadcast = FMODUnity.RuntimeManager.CreateInstance(BeautifulBroadcastEventPath);
@@ -55,6 +56,7 @@ namespace FMODUnity
 
 
             Set3DAttributes(beautiful_broadcast);
+            Set3DAttributes(awful_broadcast);
             beautiful_broadcast.start();
 
             Masterbus = FMODUnity.RuntimeManager.GetBus("Bus:/");
@@ -74,71 +76,46 @@ namespace FMODUnity
             }
         }
 
+
+        /*
         private void PlayerEnteredRoomHandler(GameObject roomObject)
         {
             //Debug.Log("Event triggered at " + roomObject.name);
 
             if (roomObject.name == "startroom")
             {
-                //activate all speakers
                 if (gameObject.CompareTag("Broadcast-Startroom") || gameObject.CompareTag("Broadcast-Saferoom1") || gameObject.CompareTag("Broadcast-Saferoom2"))
                 {
-                    // Activate the speaker
-                    //Debug.Log("reset broadcast for checkpoint room");
-                    FMOD.Studio.PLAYBACK_STATE fmodPbState;
-                    beautiful_broadcast.getPlaybackState(out fmodPbState);
-
-                    if (fmodPbState != FMOD.Studio.PLAYBACK_STATE.PLAYING)
-                    {
-                        awful_broadcast.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
-
-                        Set3DAttributes(beautiful_broadcast);
-                        beautiful_broadcast.start();
-                       
-                    }
-
+                    ActivateSpeaker();
                 }
                
             }
             else if (roomObject.name == "saferoom1")
             {
-                //activate all speakers
                 if (gameObject.CompareTag("Broadcast-Saferoom1") || gameObject.CompareTag("Broadcast-Saferoom2"))
                 {
-                    // Activate the speaker
-                    //Debug.Log("reset broadcast for checkpoint room");
-                    FMOD.Studio.PLAYBACK_STATE fmodPbState;
-                    beautiful_broadcast.getPlaybackState(out fmodPbState);
-
-                    if (fmodPbState != FMOD.Studio.PLAYBACK_STATE.PLAYING)
-                    {
-                        Set3DAttributes(beautiful_broadcast);
-                        awful_broadcast.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
-                        beautiful_broadcast.start();
-
-                    }
-
+                    ActivateSpeaker();
                 }
             }
             else if (roomObject.name == "saferoom2")
             {
-                //activate all speakers
                 if (gameObject.CompareTag("Broadcast-Saferoom2"))
                 {
-                    // Activate the speaker
-                    //Debug.Log("reset broadcast for checkpoint room");
-                    FMOD.Studio.PLAYBACK_STATE fmodPbState;
-                    beautiful_broadcast.getPlaybackState(out fmodPbState);
-
-                    if (fmodPbState != FMOD.Studio.PLAYBACK_STATE.PLAYING)
-                    {
-                        Set3DAttributes(beautiful_broadcast);
-                        awful_broadcast.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
-                        beautiful_broadcast.start();
-
-                    }
-
+                    ActivateSpeaker();
                 }
+            }
+        }*/
+
+        public void ActivateSpeaker()
+        {
+            FMOD.Studio.PLAYBACK_STATE fmodPbState;
+            beautiful_broadcast.getPlaybackState(out fmodPbState);
+
+            if (fmodPbState != FMOD.Studio.PLAYBACK_STATE.PLAYING)
+            {
+                Debug.Log("broadcast activated");
+                awful_broadcast.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+                beautiful_broadcast.start();
             }
         }
 
@@ -147,50 +124,32 @@ namespace FMODUnity
             if(other.tag == "Player")
             {
                 //fade out beautiful music, fade in awful music
-                //Debug.Log("enter trigger");
-
                 FMOD.Studio.PLAYBACK_STATE fmodPbState;
                 awful_broadcast.getPlaybackState(out fmodPbState);
 
-                FMOD.Studio.PLAYBACK_STATE fmodPbStateSpeaker;
-                beautiful_broadcast.getPlaybackState(out fmodPbStateSpeaker);
+                FMOD.Studio.PLAYBACK_STATE fmodPbState1;
+                beautiful_broadcast.getPlaybackState(out fmodPbState1);
 
-                if (fmodPbStateSpeaker == FMOD.Studio.PLAYBACK_STATE.PLAYING)
+                if (fmodPbState != FMOD.Studio.PLAYBACK_STATE.PLAYING && fmodPbState1 == FMOD.Studio.PLAYBACK_STATE.PLAYING)
                 {
-                    if(fmodPbState != FMOD.Studio.PLAYBACK_STATE.PLAYING)
-                    {
-                        Set3DAttributes(awful_broadcast);
-                        beautiful_broadcast.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-                        awful_broadcast.start();
-                        //awful_broadcast.release();
-                        //Debug.Log("Broadcast Turned off");
-                    }
-                    
+                    Debug.Log("enter trigger");
+                    beautiful_broadcast.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                    awful_broadcast.start();
                 }
-
-                
             }
         }
 
+
+        /*
         private void DeathReset()
         {
             if (Respawn.dead)
             {
                 Debug.Log("reset broadcast");
-                FMOD.Studio.PLAYBACK_STATE fmodPbState;
-                beautiful_broadcast.getPlaybackState(out fmodPbState);
-
-                if (fmodPbState != FMOD.Studio.PLAYBACK_STATE.PLAYING)
-                {
-                    Set3DAttributes(beautiful_broadcast);
-                    awful_broadcast.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
-                    beautiful_broadcast.start();
-                    //beautiful_broadcast.release();
-                    // Debug.Log("Play awful sound now...");
-                }
+                ActivateSpeaker();
             }
         }
-
+        */
 
         public void SetAttenuationDistances(float newMinDistance, float newMaxDistance)
         {

@@ -61,7 +61,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1783813163347602581}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 925922423865267009}
@@ -206,6 +206,8 @@ GameObject:
   - component: {fileID: 74692380}
   - component: {fileID: 74692390}
   - component: {fileID: 5326717526596135503}
+  - component: {fileID: 40307213}
+  - component: {fileID: 40307212}
   m_Layer: 0
   m_Name: FirstPerson-AIO
   m_TagString: Player
@@ -359,7 +361,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 0
-  m_Radius: 0.37211514
+  m_Radius: 0.48
   m_Height: 4.2387004
   m_Direction: 1
   m_Center: {x: -0, y: 1.0004399, z: -0.22837353}
@@ -698,8 +700,8 @@ MonoBehaviour:
   EventOnWallHitExit:
     m_PersistentCalls:
       m_Calls: []
-  length: 0
-  UIFadeRate: 0
+  length: 2
+  UIFadeRate: 0.3
   ForwardWallHitUI: {fileID: 0}
   RightWallHitUI: {fileID: 0}
   LeftWallHitUI: {fileID: 0}
@@ -720,6 +722,41 @@ MonoBehaviour:
   deathCutScene: {fileID: 0}
   deathCanvas: {fileID: 0}
   system: {fileID: 0}
+--- !u!65 &40307213
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1784319153359301841}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 0.4, y: 0.4, z: 0.4}
+  m_Center: {x: 0, y: 1.17, z: -0.31}
+--- !u!114 &40307212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1784319153359301841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db47eab4db5cc364da17e7dcede4e292, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClips: []
+  basicMovementUI: {fileID: 0}
+  interactTutorialObj: {fileID: 0}
+  inventoryTutorialObj: {fileID: 0}
+  inventory: {fileID: 0}
+  crosshair: {fileID: 0}
+  interactiveDoor: {fileID: 0}
+  UIPauseTutorial: {fileID: 0}
+  fadeDuration: 1.5
+  delay: 16
 --- !u!1001 &816049784475595946
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -810,6 +847,138 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1786473008633198075}
     m_Modifications:
+    - target: {fileID: 53566471296479587, guid: c54551bb757e7d54b9e1e085cedc85cb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 53566471296479587, guid: c54551bb757e7d54b9e1e085cedc85cb, type: 3}
+      propertyPath: m_TagString
+      value: Broadcast-Startroom
+      objectReference: {fileID: 0}
+    - target: {fileID: 155210036392405547, guid: c54551bb757e7d54b9e1e085cedc85cb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 155210036392405547, guid: c54551bb757e7d54b9e1e085cedc85cb, type: 3}
+      propertyPath: m_TagString
+      value: Broadcast-Startroom
+      objectReference: {fileID: 0}
+    - target: {fileID: 1076797426006710958, guid: c54551bb757e7d54b9e1e085cedc85cb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1076797426006710958, guid: c54551bb757e7d54b9e1e085cedc85cb, type: 3}
+      propertyPath: m_TagString
+      value: Broadcast-Startroom
+      objectReference: {fileID: 0}
+    - target: {fileID: 1548191106389364785, guid: c54551bb757e7d54b9e1e085cedc85cb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1548191106389364785, guid: c54551bb757e7d54b9e1e085cedc85cb, type: 3}
+      propertyPath: m_TagString
+      value: Broadcast-Startroom
+      objectReference: {fileID: 0}
+    - target: {fileID: 1754944127396359820, guid: c54551bb757e7d54b9e1e085cedc85cb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1754944127396359820, guid: c54551bb757e7d54b9e1e085cedc85cb, type: 3}
+      propertyPath: m_TagString
+      value: Broadcast-Startroom
+      objectReference: {fileID: 0}
+    - target: {fileID: 3118786565685227683, guid: c54551bb757e7d54b9e1e085cedc85cb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3118786565685227683, guid: c54551bb757e7d54b9e1e085cedc85cb, type: 3}
+      propertyPath: m_TagString
+      value: Broadcast-Startroom
+      objectReference: {fileID: 0}
+    - target: {fileID: 3127771096225550061, guid: c54551bb757e7d54b9e1e085cedc85cb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3127771096225550061, guid: c54551bb757e7d54b9e1e085cedc85cb, type: 3}
+      propertyPath: m_TagString
+      value: Broadcast-Startroom
+      objectReference: {fileID: 0}
+    - target: {fileID: 3241793900943485939, guid: c54551bb757e7d54b9e1e085cedc85cb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3241793900943485939, guid: c54551bb757e7d54b9e1e085cedc85cb, type: 3}
+      propertyPath: m_TagString
+      value: Broadcast-Startroom
+      objectReference: {fileID: 0}
+    - target: {fileID: 3316961281909522557, guid: c54551bb757e7d54b9e1e085cedc85cb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3316961281909522557, guid: c54551bb757e7d54b9e1e085cedc85cb, type: 3}
+      propertyPath: m_TagString
+      value: Broadcast-Startroom
+      objectReference: {fileID: 0}
+    - target: {fileID: 3482593656852585752, guid: c54551bb757e7d54b9e1e085cedc85cb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3482593656852585752, guid: c54551bb757e7d54b9e1e085cedc85cb, type: 3}
+      propertyPath: m_TagString
+      value: Broadcast-Startroom
+      objectReference: {fileID: 0}
+    - target: {fileID: 6596044641950732319, guid: c54551bb757e7d54b9e1e085cedc85cb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6596044641950732319, guid: c54551bb757e7d54b9e1e085cedc85cb, type: 3}
+      propertyPath: m_TagString
+      value: Broadcast-Startroom
+      objectReference: {fileID: 0}
+    - target: {fileID: 6707497773933536910, guid: c54551bb757e7d54b9e1e085cedc85cb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6707497773933536910, guid: c54551bb757e7d54b9e1e085cedc85cb, type: 3}
+      propertyPath: m_TagString
+      value: Broadcast-Startroom
+      objectReference: {fileID: 0}
+    - target: {fileID: 7412691778378819667, guid: c54551bb757e7d54b9e1e085cedc85cb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7412691778378819667, guid: c54551bb757e7d54b9e1e085cedc85cb, type: 3}
+      propertyPath: m_TagString
+      value: Broadcast-Startroom
+      objectReference: {fileID: 0}
+    - target: {fileID: 7551298702636208905, guid: c54551bb757e7d54b9e1e085cedc85cb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7551298702636208905, guid: c54551bb757e7d54b9e1e085cedc85cb, type: 3}
+      propertyPath: m_TagString
+      value: Broadcast-Startroom
+      objectReference: {fileID: 0}
+    - target: {fileID: 7576421770648856685, guid: c54551bb757e7d54b9e1e085cedc85cb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7576421770648856685, guid: c54551bb757e7d54b9e1e085cedc85cb, type: 3}
+      propertyPath: m_TagString
+      value: Broadcast-Startroom
+      objectReference: {fileID: 0}
+    - target: {fileID: 7872354453516464857, guid: c54551bb757e7d54b9e1e085cedc85cb, type: 3}
+      propertyPath: manipulator
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8443174171335456962, guid: c54551bb757e7d54b9e1e085cedc85cb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8443174171335456962, guid: c54551bb757e7d54b9e1e085cedc85cb, type: 3}
+      propertyPath: m_TagString
+      value: Broadcast-Startroom
+      objectReference: {fileID: 0}
     - target: {fileID: 8573673966059843747, guid: c54551bb757e7d54b9e1e085cedc85cb, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -854,13 +1023,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8799757218024461439, guid: c54551bb757e7d54b9e1e085cedc85cb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8799757218024461439, guid: c54551bb757e7d54b9e1e085cedc85cb, type: 3}
+      propertyPath: m_TagString
+      value: Broadcast-Startroom
+      objectReference: {fileID: 0}
+    - target: {fileID: 8885922437917259446, guid: c54551bb757e7d54b9e1e085cedc85cb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8885922437917259446, guid: c54551bb757e7d54b9e1e085cedc85cb, type: 3}
+      propertyPath: m_TagString
+      value: Broadcast-Startroom
+      objectReference: {fileID: 0}
     - target: {fileID: 9056773654468274713, guid: c54551bb757e7d54b9e1e085cedc85cb, type: 3}
       propertyPath: m_Name
       value: protagonist_ver1
       objectReference: {fileID: 0}
     - target: {fileID: 9056773654468274713, guid: c54551bb757e7d54b9e1e085cedc85cb, type: 3}
       propertyPath: m_TagString
-      value: Player
+      value: Broadcast-Startroom
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c54551bb757e7d54b9e1e085cedc85cb, type: 3}

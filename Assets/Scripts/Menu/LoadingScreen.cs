@@ -34,7 +34,7 @@ public class LoadingScreen : MonoBehaviour
         playerControl = player.GetComponent<FirstPersonAIO>();
         playerControl.enabled = true;
         Anim = player.GetComponentInChildren<Animator>();
-        Anim.enabled = false;
+        //Anim.enabled = false;
     }
 
     #region Night Ending Events

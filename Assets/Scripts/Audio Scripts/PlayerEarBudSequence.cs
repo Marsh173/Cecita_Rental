@@ -39,10 +39,11 @@ public class PlayerEarBudSequence : MonoBehaviour
         audioClips.Add(Resources.Load<AudioClip>("Night 0/" + "Night 0 - final point"));
         audioClips.Add(Resources.Load<AudioClip>("Night 0/" + "Night 0 - Entered bedroom"));
 
+        /*
         foreach (AudioClip element in audioClips)
         {
             Debug.Log(element);
-        }
+        }*/
     }
 
     void Update()
@@ -96,20 +97,22 @@ public class PlayerEarBudSequence : MonoBehaviour
         if (earBudVoice.isPlaying && audioTime <= earBudVoice.clip.length)
         {
             audioTime = audioTime +  Time.deltaTime;
-            Debug.Log("audioTime" + audioTime);
+            //Debug.Log("audioTime" + audioTime);
 
         }
     }
     
     private void OnTriggerEnter(Collider other)
     {
-        if(InventoryManager.EquipmentCollected)
+        if(InventoryManager.EquipmentCollected && this.tag == "Player")
         {
             //Wallhit tutorial
             if (other.CompareTag("Hallway"))
             {
                 Time.timeScale = 0;
                 UIPauseTutorial.SetActive(true);
+
+                Debug.Log("Collition stuff: " + this.name);
             }
             //Monster Sequence
             if (other.CompareTag("EnterMonster") && !earBudVoice.isPlaying)

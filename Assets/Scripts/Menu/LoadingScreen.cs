@@ -42,9 +42,12 @@ public class LoadingScreen : MonoBehaviour
     {
         //Anim.enabled = true;
         //endTimeline.SetActive(true);
-        audioS.PlayOneShot(EndingAudio);
-        StartCoroutine(WaitForCutscene(EndingAudio));
+        if (!audioS.isPlaying)
+        {
+            audioS.PlayOneShot(EndingAudio);
 
+        }
+        StartCoroutine(WaitForCutscene(EndingAudio));
     }
     public IEnumerator WaitForCutscene(AudioClip aClip)
     {

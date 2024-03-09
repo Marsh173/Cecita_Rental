@@ -30,10 +30,14 @@ public class LoadingScreen : MonoBehaviour
 
     void Start()
     {
-        audioS = player.GetComponent<AudioSource>();
-        playerControl = player.GetComponent<FirstPersonAIO>();
-        playerControl.enabled = true;
-        Anim = player.GetComponentInChildren<Animator>();
+        if(player != null)
+        {
+            audioS = player.GetComponent<AudioSource>();
+            playerControl = player.GetComponent<FirstPersonAIO>();
+            playerControl.enabled = true;
+            Anim = player.GetComponentInChildren<Animator>();
+        }
+        
         //Anim.enabled = false;
     }
 

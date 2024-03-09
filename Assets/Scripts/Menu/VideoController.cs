@@ -44,7 +44,7 @@ public class VideoController : MonoBehaviour
             videoPlayer.time = videoPlayer.length;
 
             // Trigger the end event manually (in case it didn't naturally reach the end)
-            OnVideoEnd(videoPlayer);
+            // OnVideoEnd(videoPlayer);
         }
         else
         {

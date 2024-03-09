@@ -17,6 +17,8 @@ public class PlayerEarBudSequence : MonoBehaviour
     private bool firstAudioPlayed, TabToOpen, FinishInventory;
     private bool DelayedAlready, interrupted;
 
+    public GameObject wallhitUItemp;
+
     [SerializeField] private float delay = 0.0f;
     void Start()
     {
@@ -91,6 +93,7 @@ public class PlayerEarBudSequence : MonoBehaviour
         {
             UIPauseTutorial.SetActive(false);
             Time.timeScale = 1;
+            wallhitUItemp.SetActive(true);
         }
 
         //detect if a clip has finished playing
@@ -104,7 +107,7 @@ public class PlayerEarBudSequence : MonoBehaviour
     
     private void OnTriggerEnter(Collider other)
     {
-        if(InventoryManager.EquipmentCollected && this.tag == "Player")
+        if(InventoryManager.EquipmentCollected)
         {
             //Wallhit tutorial
             if (other.CompareTag("Hallway"))
@@ -112,7 +115,7 @@ public class PlayerEarBudSequence : MonoBehaviour
                 Time.timeScale = 0;
                 UIPauseTutorial.SetActive(true);
 
-                Debug.Log("Collition stuff: " + this.name);
+                
             }
             //Monster Sequence
             if (other.CompareTag("EnterMonster") && !earBudVoice.isPlaying)

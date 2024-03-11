@@ -8,6 +8,7 @@ public class HoverInventory : MonoBehaviour
 {
     public GameObject hovertext;
     [SerializeField] public string transcript;
+    public GameObject highlighttxt;
     //[SerializeField] private float yPos;
 
     private void Start()
@@ -42,5 +43,11 @@ public class HoverInventory : MonoBehaviour
             hovertext.transform.GetChild(0).gameObject.SetActive(false);
             
         }
+    }
+
+    public void changecolorText()
+    {
+        
+
     }
 }

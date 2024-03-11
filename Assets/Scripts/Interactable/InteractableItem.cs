@@ -11,6 +11,8 @@ public class InteractableItem : Interactable
     public PlaylistItems AItem;
     public Documents Doc;
 
+    public bool notPickable = false;
+
     //public Renderer materialRenderer;
     //public Color originalColor;
     //public Color blinkColor = Color.red;
@@ -34,8 +36,11 @@ public class InteractableItem : Interactable
         {
             if (Input.GetMouseButtonDown(0))
             {
-                PickupMe();
-                ReadMe();
+                if (!notPickable)
+                {
+                    PickupMe();
+                    ReadMe();
+                }
                 ableToInteract = false;
                 Debug.Log("interacted");
             }

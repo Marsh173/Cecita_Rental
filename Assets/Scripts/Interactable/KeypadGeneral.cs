@@ -20,8 +20,7 @@ public class KeypadGeneral : MonoBehaviour
     [SerializeField] private string EnteredNumber;
     private bool CanEnter;
 
-    public LoadingScreen loadingscreen;
-    public string thisSceneName, nextSceneName;
+    
     public UnityEvent EventIfCorrect;
 
     //public GameObject hallway, hallwayAudio, bedroom;
@@ -101,21 +100,7 @@ public class KeypadGeneral : MonoBehaviour
 
             EventIfCorrect.Invoke();
 
-            //get Current Scene first
-            Scene currentScene = SceneManager.GetActiveScene();
-
-            if (currentScene.name != "Night_Two" && isPhone) //if it's night 1
-            {
-                loadingscreen.LoadSceneWithLoadingScreen("Night_Two");
-
-                //hallway.SetActive(false);
-                //hallwayAudio.SetActive(false);
-                //bedroom.SetActive(true);
-            }
-            else if (isPhone)
-            {
-                loadingscreen.LoadSceneWithLoadingScreen("MainMenu");
-            }
+            
 
             this.gameObject.layer = 0;
             ClearNumber();

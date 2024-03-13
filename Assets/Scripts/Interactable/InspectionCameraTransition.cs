@@ -34,7 +34,7 @@ public class InspectionCameraTransition : MonoBehaviour
         playerCamera = playerObj.GetComponentInChildren<Camera>();
         playerCamera = Camera.main;
 
-        playBody = playerObj.transform.GetChild(1).gameObject;
+        playBody = playerObj.transform.GetChild(0).gameObject;
 
         originalCameraPosition = playerCamera.transform.position;
         originalCameraRotation = playerCamera.transform.rotation;
@@ -76,7 +76,7 @@ public class InspectionCameraTransition : MonoBehaviour
 
         //move camera position/rotation, disable player body after finished transition
         playerCamera.transform.DOMove(inspectionCameraPosition.position, transitionDuration);
-        playerCamera.transform.DORotate(inspectionCameraPosition.rotation.eulerAngles, transitionDuration).OnComplete(() => playBody.SetActive(false));
+        playerCamera.transform.DORotate(inspectionCameraPosition.rotation.eulerAngles, transitionDuration).OnComplete(() => playBody.GetComponentInChildren<SkinnedMeshRenderer>().enabled = false);
         playerCamera.fieldOfView = inspectionFOV;
         Debug.Log("Camera transformed to inspect");
 
@@ -100,7 +100,7 @@ public class InspectionCameraTransition : MonoBehaviour
         Cursor.lockState = CursorLockMode.Confined;
 
         //show player as soon as exit cam
-        playBody.SetActive(true);
+        playBody.GetComponentInChildren<SkinnedMeshRenderer>().enabled = true;
         playerCamera.fieldOfView = originalFOV;
         playerCamera.transform.DOMove(originalCameraPosition, transitionDuration);
         playerCamera.transform.DORotate(originalCameraRotation.eulerAngles, transitionDuration).OnComplete(() => EnablePlayerMovement(true));

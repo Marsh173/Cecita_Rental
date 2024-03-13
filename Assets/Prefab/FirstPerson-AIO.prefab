@@ -1,36 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1783739228446484897
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1786784226106920453}
-  m_Layer: 0
-  m_Name: HeadJoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1786784226106920453
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1783739228446484897}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.345, z: 0.08}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1786278638371559215}
-  m_Father: {fileID: 1786473008633198075}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1783813163347602581
 GameObject:
   m_ObjectHideFlags: 0
@@ -60,13 +29,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1783813163347602581}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalRotation: {x: 0.00014546508, y: 0.00088730315, z: 0.000061000126, w: 0.9999996}
+  m_LocalPosition: {x: 0.0023697142, y: 0.15619351, z: 0.25383562}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 925922423865267009}
-  m_Father: {fileID: 1786784226106920453}
-  m_RootOrder: 0
+  m_Father: {fileID: 2212107922356599096}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &1768997895139496567
 Camera:
@@ -226,7 +195,6 @@ Transform:
   m_LocalPosition: {x: 4.8, y: 1.927, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1786784226106920453}
   - {fileID: 3885403094671053106}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -429,7 +397,7 @@ MonoBehaviour:
   isCrouching: 0
   fps_Rigidbody: {fileID: 0}
   useHeadbob: 1
-  head: {fileID: 1786784226106920453}
+  head: {fileID: 0}
   snapHeadjointToCapsul: 1
   headbobFrequency: 1.5
   headbobSwayAngle: 2.5
@@ -756,6 +724,7 @@ MonoBehaviour:
   interactiveDoor: {fileID: 0}
   UIPauseTutorial: {fileID: 0}
   fadeDuration: 1.5
+  wallhitUItemp: {fileID: 0}
   delay: 16
 --- !u!1001 &816049784475595946
 PrefabInstance:
@@ -849,7 +818,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8573673966059843747, guid: c54551bb757e7d54b9e1e085cedc85cb, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8573673966059843747, guid: c54551bb757e7d54b9e1e085cedc85cb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -900,5 +869,10 @@ PrefabInstance:
 --- !u!4 &3885403094671053106 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8573673966059843747, guid: c54551bb757e7d54b9e1e085cedc85cb, type: 3}
+  m_PrefabInstance: {fileID: 4832492746454376849}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2212107922356599096 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6747107903493429417, guid: c54551bb757e7d54b9e1e085cedc85cb, type: 3}
   m_PrefabInstance: {fileID: 4832492746454376849}
   m_PrefabAsset: {fileID: 0}

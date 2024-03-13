@@ -28,6 +28,7 @@ public class NoSightAllowed : MonoBehaviour
     public Image RedAura, EyeBarImage, AlertBarimage;
     private WaitForSeconds rechargeTick = new WaitForSeconds(0.001f);
     private Coroutine rechargeC;
+    private bool startedRecharge;
     private void Start()
     {
         Respawn.restarted = false;
@@ -42,6 +43,7 @@ public class NoSightAllowed : MonoBehaviour
         slider = slider.GetComponent<Slider>();
         AlertBarimage = AlertBarUI.GetComponent<Image>();
 
+        startedRecharge = false;
         CurrentEyeBarAmount = 100f;
         EyeBarImage.fillAmount = slider.value = 1f;
         AlertBarimage.fillAmount = 0f;
@@ -155,6 +157,7 @@ public class NoSightAllowed : MonoBehaviour
             {
                 RedAura.color = new Color(RedAura.color.r, RedAura.color.g, RedAura.color.b, (2.5f - CurrentEyeBarAmount / 10f) / 2f );
             }
+            startedRecharge = false;
         }
 
         EyeBarImage.fillAmount = slider.value = CurrentEyeBarAmount / 100f;
@@ -178,7 +181,7 @@ public class NoSightAllowed : MonoBehaviour
         //open eye animation
         else
         {
-            if (100 - openedTimes * 10 > 10f)
+            if (100 - openedTimes * 10 > 15f && startedRecharge)
             {
                 openedTimes++;
             }
@@ -209,8 +212,9 @@ public class NoSightAllowed : MonoBehaviour
 
     private IEnumerator RechargeBar()
     {
+        startedRecharge = false;
         yield return new WaitForSeconds(1.5f);
-        //Debug.Log("recharge waited");
+        startedRecharge = true;
         while (CurrentEyeBarAmount < 100 - openedTimes * 10)
         {
             CurrentEyeBarAmount += RechargeSpeed * Time.deltaTime;

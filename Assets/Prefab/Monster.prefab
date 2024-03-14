@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1907325579613890065}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.82099986, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7074337523161778340}
@@ -101,7 +101,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3003794039202407172}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.82099986, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7074337523161778340}
@@ -136,6 +136,7 @@ MonoBehaviour:
   OverrideAttenuation: 0
   minDistance: 1
   maxDistance: 20
+  walkScript: {fileID: 0}
 --- !u!1 &7074337521807118303
 GameObject:
   m_ObjectHideFlags: 0
@@ -223,7 +224,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7074337523161778340}
   - component: {fileID: 7074337523161778337}
-  - component: {fileID: 7074337523161778342}
   - component: {fileID: 7074337523161778343}
   - component: {fileID: 7074337523161778336}
   - component: {fileID: 7580477251175384455}
@@ -243,7 +243,7 @@ Transform:
   m_GameObject: {fileID: 7074337523161778341}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1.365, z: -21.4}
-  m_LocalScale: {x: 1.5349, y: 1.5349, z: 1.5349}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 847079976807513793}
   - {fileID: 2353035904497504041}
@@ -259,47 +259,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7074337523161778341}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &7074337523161778342
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7074337523161778341}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!136 &7074337523161778343
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -403,6 +362,9 @@ MonoBehaviour:
   speed: 1
   stop: {fileID: 7074337523019683464}
   walker: {fileID: 7074337523161778341}
+  initialPosition: {x: 0, y: 0, z: 0}
+  respawn: {fileID: 0}
+  stopMusic: 0
   stalker: 0
 --- !u!1 &8567063898953167215
 GameObject:
@@ -429,7 +391,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8567063898953167215}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.821, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7074337523161778340}

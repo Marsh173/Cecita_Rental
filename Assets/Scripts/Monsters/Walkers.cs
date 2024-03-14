@@ -13,6 +13,7 @@ public class Walkers : MonoBehaviour
     public GameObject walker;
     public Vector3 initialPosition;
     bool stopMoving = false;
+    Animator MonsterAnim;
 
     public Respawn respawn;
 
@@ -29,12 +30,16 @@ public class Walkers : MonoBehaviour
     private void Start()
     {
         walker.SetActive(false);
+        trigger = false;
         initialPosition = walker.transform.position;
- 
+        MonsterAnim = this.transform.parent.GetChild(0).GetComponentInChildren<Animator>();
+        MonsterAnim.StopPlayback();
+        Debug.Log("animator pos: " + this.transform.parent.GetChild(0).GetComponentInChildren<Animator>());
     }
 
     private void Update()
     {
+       
         if (Respawn.dead)
         {
             trigger = false;
@@ -76,6 +81,12 @@ public class Walkers : MonoBehaviour
                 //walker.SetActive(false);
             }
         }
+
+        //if not moving stop animation
+        if(!trigger)
+        {
+            MonsterAnim.StopPlayback();
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -84,7 +95,6 @@ public class Walkers : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             trigger = true;
-           
             walker.SetActive(true);
 
         }

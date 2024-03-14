@@ -5,9 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class KillPlayer : MonoBehaviour
 {
+    private Animator monsterAnim;
     private void Start()
     {
         Respawn.dead = false;
+        monsterAnim = GetComponentInChildren<Animator>();
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -16,5 +18,10 @@ public class KillPlayer : MonoBehaviour
         {
             Respawn.dead = true;
         }
+    }
+
+    IEnumerator MonsterLook()
+    {
+        yield return new WaitForSeconds(12f);
     }
 }

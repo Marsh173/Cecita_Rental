@@ -215,7 +215,6 @@ public class PlayerEarBudSequence : MonoBehaviour
             yield return new WaitForFixedUpdate();
         }
 
-        Debug.Log("Faded");
         // Ensure the image is completely faded out
         originalColor.a = 0f;
         rImage.color = originalColor;

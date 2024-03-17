@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.Playables;
 
 public class Respawn : MonoBehaviour
 {
@@ -10,7 +10,7 @@ public class Respawn : MonoBehaviour
     public static bool dead, restarted;
     private Transform playerPos;
     private Animator playerAnim;
-    public GameObject placeholderDeathText, deathCanvas, system;
+    public GameObject placeholderDeathText, deathCanvas, deathTimeLine, system;
 
     void Start()
     {
@@ -19,8 +19,9 @@ public class Respawn : MonoBehaviour
         playerPos = GetComponent<Transform>();
 
         playerAnim = transform.GetChild(0).GetComponent<Animator>();
-
+        
         deathCanvas.SetActive(false);
+        deathTimeLine.SetActive(false);
         system.SetActive(true);
     }
 
@@ -59,7 +60,9 @@ public class Respawn : MonoBehaviour
 
         //play death cutscen
         playerAnim.SetBool("Dead", true);
-        yield return new WaitForSeconds(12f);
+        deathTimeLine.SetActive(true);
+        deathTimeLine.GetComponent<PlayableDirector>().Play();
+        yield return new WaitForSeconds(9f);
         Debug.Log("Animation finished playing");
         Cursor.visible = true;
         deathCanvas.SetActive(true);
@@ -72,6 +75,7 @@ public class Respawn : MonoBehaviour
             Cursor.visible = false;
             system.SetActive(true);
             deathCanvas.SetActive(false);
+            deathTimeLine.SetActive(false);
             playerAnim.SetBool("Dead", false);
 
             playerPos.SetPositionAndRotation(checkpoint.transform.position, checkpoint.transform.rotation);
@@ -82,7 +86,7 @@ public class Respawn : MonoBehaviour
                 placeholderDeathText.SetActive(true);
             }
         }
-
         restarted = true;
+        Debug.Log("restarted? "+restarted);
     }
 }

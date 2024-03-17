@@ -14,30 +14,40 @@ public class RaycastFromMouseClick : MonoBehaviour
         RaycastHit hitInfo;
 
         // Check if the ray hits something
-        if (Physics.Raycast(ray, out hitInfo))
+        if (Physics.Raycast(ray, out hitInfo) && hitInfo.collider.GetComponent<Interactable>() != null)
         {
-            if (hitInfo.collider.GetComponent<Interactable>() != null)
+            GameObject hitObject = hitInfo.collider.gameObject;
+
+            if (hitObject.layer == LayerMask.NameToLayer("Keypad Buttons"))
             {
+                hitInfo.collider.GetComponent<Interactable>().BaseInteract();
+
                 if (lastHitObject == null)         //Make sure overlapped interactable objects remove outlines as intended
                 {
                     if (hitInfo.collider.gameObject.GetComponent<Outline>() == null)
                     {
-                        itemIcon = hitInfo.collider.GetComponent<Interactable>().promptIcon;
-                        itemIcon.SetActive(true);
-
-                        GameObject hitObject = hitInfo.collider.gameObject;
                         lastHitObject = hitObject;
                         Outline outlineScript = hitObject.AddComponent<Outline>();
+
                     }
 
+                    //Debug.Log("Hover on: " + hitObject.name);
 
-                    if (Input.GetMouseButtonDown(0))
-                    {
-                        Debug.Log("Clicked on: " + hitInfo.collider.gameObject.name);
-                        hitInfo.collider.GetComponent<Interactable>().BaseInteract();
-                        // Perform actions when clicked
-                    }
                 }
+            }
+        }
+        else
+        {
+            if (lastHitObject != null)
+            {
+                lastHitObject.GetComponent<Interactable>().BaseDisableInteract();
+                Outline scriptToDetach = lastHitObject.GetComponent<Outline>();
+                if (scriptToDetach != null)
+                {
+                    Destroy(scriptToDetach);
+                }
+                lastHitObject = null;
+
             }
         }
     }

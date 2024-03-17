@@ -5,15 +5,14 @@ using TMPro;
 
 public class KeypadCameraTransition : MonoBehaviour
 {
-    
     public Transform inspectionCameraPosition;
     public float transitionDuration = 1f;
     public float originalFOV = 60f, inspectionFOV = 60f;
 
     public GameObject playerObj, inventory;
-    private GameObject playBody;
+    public GameObject playBody;
 
-    private Camera playerCamera;
+    public Camera playerCamera;
     private Vector3 originalCameraPosition;
     private Quaternion originalCameraRotation;
     private FirstPersonAIO player;
@@ -32,10 +31,10 @@ public class KeypadCameraTransition : MonoBehaviour
         keyPad = GetComponent<KeypadGeneral>();
         box = GetComponent<BoxCollider>();
 
-        playerCamera = playerObj.GetComponentInChildren<Camera>();
+        //playerCamera = playerObj.GetComponentInChildren<Camera>();
         playerCamera = Camera.main;
 
-        playBody = playerObj.transform.GetChild(1).gameObject;
+        //playBody = playerObj.transform.GetChild(1).gameObject;
 
         originalCameraPosition = playerCamera.transform.position;
         originalCameraRotation = playerCamera.transform.rotation;
@@ -105,8 +104,9 @@ public class KeypadCameraTransition : MonoBehaviour
         isInInspection = false;
 
         box.enabled = true;
+        MouseRaycast.SetActive(false);
 
-        
+
         //deactive cursor, active player.
         if (inventory.activeSelf)
         {
@@ -121,7 +121,7 @@ public class KeypadCameraTransition : MonoBehaviour
         else this.gameObject.layer = 7;
     }
 
-    
+  
 
     void EnablePlayerMovement(bool enable) 
     {

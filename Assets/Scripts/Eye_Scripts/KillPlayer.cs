@@ -8,7 +8,7 @@ public class KillPlayer : MonoBehaviour
     private Animator monsterAnim;
     private GameObject footstep, glitch;
     private Vector3 originalPosF, originalPosG;
-    private void Start()
+    private void Awake()
     {
         Respawn.dead = false;
         monsterAnim = GetComponentInChildren<Animator>();
@@ -26,6 +26,7 @@ public class KillPlayer : MonoBehaviour
         footstep.transform.localPosition = originalPosF;
         glitch.transform.localPosition = originalPosG;
     }
+
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.CompareTag("Player"))

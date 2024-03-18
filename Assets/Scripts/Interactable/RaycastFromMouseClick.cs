@@ -5,7 +5,6 @@ using UnityEngine;
 public class RaycastFromMouseClick : MonoBehaviour
 {
     private GameObject lastHitObject;
-    public GameObject itemIcon;
 
     void Update()
     {
@@ -20,8 +19,6 @@ public class RaycastFromMouseClick : MonoBehaviour
 
             if (hitObject.layer == LayerMask.NameToLayer("Keypad Buttons"))
             {
-                hitInfo.collider.GetComponent<Interactable>().BaseInteract();
-
                 if (lastHitObject == null)         //Make sure overlapped interactable objects remove outlines as intended
                 {
                     if (hitInfo.collider.gameObject.GetComponent<Outline>() == null)
@@ -31,7 +28,8 @@ public class RaycastFromMouseClick : MonoBehaviour
 
                     }
 
-                    //Debug.Log("Hover on: " + hitObject.name);
+                    Debug.Log("Hover on: " + hitObject.name);
+                    hitInfo.collider.GetComponent<Interactable>().BaseInteract();
 
                 }
             }

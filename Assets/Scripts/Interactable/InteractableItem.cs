@@ -42,7 +42,7 @@ public class InteractableItem : Interactable
                     ReadMe();
                 }
                 ableToInteract = false;
-                Debug.Log("interacted");
+                
             }
         }
     }

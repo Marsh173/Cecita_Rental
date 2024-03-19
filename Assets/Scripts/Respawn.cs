@@ -21,7 +21,7 @@ public class Respawn : MonoBehaviour
         playerAnim = transform.GetChild(0).GetComponent<Animator>();
         
         deathCanvas.SetActive(false);
-        deathTimeLine.SetActive(false);
+        //deathTimeLine.SetActive(false);
         system.SetActive(true);
     }
 
@@ -60,8 +60,8 @@ public class Respawn : MonoBehaviour
 
         //play death cutscen
         playerAnim.SetBool("Dead", true);
-        deathTimeLine.SetActive(true);
-        deathTimeLine.GetComponent<PlayableDirector>().Play();
+        //deathTimeLine.SetActive(true);
+        //deathTimeLine.GetComponent<PlayableDirector>().Play();
         yield return new WaitForSeconds(9f);
         Debug.Log("Animation finished playing");
         Cursor.visible = true;
@@ -75,7 +75,7 @@ public class Respawn : MonoBehaviour
             Cursor.visible = false;
             system.SetActive(true);
             deathCanvas.SetActive(false);
-            deathTimeLine.SetActive(false);
+            //deathTimeLine.SetActive(false);
             playerAnim.SetBool("Dead", false);
 
             playerPos.SetPositionAndRotation(checkpoint.transform.position, checkpoint.transform.rotation);

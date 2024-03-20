@@ -17,7 +17,7 @@ public class KeypadCameraTransition : MonoBehaviour
     private Quaternion originalCameraRotation;
     private FirstPersonAIO player;
 
-    public static bool isInCam = false; //for reference only
+    public static bool isInKeyCam = false; //for reference only
     private bool isInInspection = false;
     private KeypadGeneral keyPad; //for checking if it is a keypad lock
 
@@ -74,7 +74,7 @@ public class KeypadCameraTransition : MonoBehaviour
         playerCamera.fieldOfView = inspectionFOV;
         Debug.Log("Camera transformed to inspect");
 
-        isInCam = true;
+        isInKeyCam = true;
         isInInspection = true;
 
         //disable outline & interactable ability
@@ -97,14 +97,17 @@ public class KeypadCameraTransition : MonoBehaviour
         playBody.SetActive(true);
         playerCamera.fieldOfView = originalFOV;
         playerCamera.transform.DOMove(originalCameraPosition, transitionDuration);
-        playerCamera.transform.DORotate(originalCameraRotation.eulerAngles, transitionDuration).OnComplete(() => EnablePlayerMovement(true));
+        playerCamera.transform.DORotate(originalCameraRotation.eulerAngles, transitionDuration).OnComplete(() => {
+            EnablePlayerMovement(true);
+            MouseRaycast.SetActive(false);
+        });
         Debug.Log("Camera transformed back");
 
-        isInCam = false;
+        isInKeyCam = false;
         isInInspection = false;
 
         box.enabled = true;
-        MouseRaycast.SetActive(false);
+        
 
 
         //deactive cursor, active player.

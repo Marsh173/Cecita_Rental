@@ -64,6 +64,16 @@ public class PlayerInteract : MonoBehaviour
         }*/
         //End of Event system code
 
+
+        if(KeypadCameraTransition.isInKeyCam || InspectionCameraTransition.isInCam)
+        {
+            if (crosshair != null && crosshair.activeSelf) crosshair.SetActive(false);
+        }
+        else if (!KeypadCameraTransition.isInKeyCam || !InspectionCameraTransition.isInCam)
+        {
+            if (crosshair != null && !crosshair.activeSelf) crosshair.SetActive(true);
+        }
+
         #region General Raycast
         //disable ray when in inspection cam or in inventory
 
@@ -90,7 +100,7 @@ public class PlayerInteract : MonoBehaviour
         }
         else
         {
-            if (crosshair != null && !crosshair.activeSelf) crosshair.SetActive(true);
+            if (crosshair != null && !crosshair.activeSelf && (!KeypadCameraTransition.isInKeyCam || !InspectionCameraTransition.isInCam)) crosshair.SetActive(true);
         }
 
         if (Physics.Raycast(ray, out hitInfo, distance, mask) && hitInfo.collider.GetComponent<Interactable>() != null)
@@ -122,7 +132,7 @@ public class PlayerInteract : MonoBehaviour
             else
             {
                 //Turn on crosshair
-                if (crosshair != null && !crosshair.activeSelf) crosshair.SetActive(true);
+                if (crosshair != null && !crosshair.activeSelf && (!KeypadCameraTransition.isInKeyCam || !InspectionCameraTransition.isInCam)) crosshair.SetActive(true);
 
                 if (pMessage.text != null) pMessage.text = "";
                 if (monologue.text != null) monologue.text = "";

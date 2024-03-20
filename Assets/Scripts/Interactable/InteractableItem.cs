@@ -36,11 +36,11 @@ public class InteractableItem : Interactable
         {
             if (Input.GetMouseButtonDown(0))
             {
-                if (!notPickable)
+                PickupMe();
+                ReadMe();
+                /*if (!notPickable)
                 {
-                    PickupMe();
-                    ReadMe();
-                }
+                }*/
                 ableToInteract = false;
                 
             }
@@ -49,7 +49,7 @@ public class InteractableItem : Interactable
 
     private void PickupMe()
     {
-        if (!InventoryManager.Instance.NItems.Contains(NItem))
+        if (!InventoryManager.Instance.NItems.Contains(NItem) && NItem != null)
         {
             Debug.Log("collected");
             InventoryManager.Instance.AddNormal(NItem);

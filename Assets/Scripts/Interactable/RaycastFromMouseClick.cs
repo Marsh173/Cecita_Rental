@@ -5,6 +5,7 @@ using UnityEngine;
 public class RaycastFromMouseClick : MonoBehaviour
 {
     private GameObject lastHitObject;
+    public GameObject crosshair;
 
     void Update()
     {
@@ -27,6 +28,7 @@ public class RaycastFromMouseClick : MonoBehaviour
                         Outline outlineScript = hitObject.AddComponent<Outline>();
 
                     }
+                    
 
                     Debug.Log("Hover on: " + hitObject.name);
                     hitInfo.collider.GetComponent<Interactable>().BaseInteract();
@@ -38,6 +40,8 @@ public class RaycastFromMouseClick : MonoBehaviour
         {
             if (lastHitObject != null)
             {
+                
+
                 lastHitObject.GetComponent<Interactable>().BaseDisableInteract();
                 Outline scriptToDetach = lastHitObject.GetComponent<Outline>();
                 if (scriptToDetach != null)

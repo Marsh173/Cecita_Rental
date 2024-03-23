@@ -65,12 +65,12 @@ public class PauseGameController : MonoBehaviour
         Time.timeScale = 1f; // Unfreeze the game
         Physics.autoSimulation = true;
 
-        if(!InspectionCameraTransition.isInCam && !invent_open)
+        if(!InspectionCameraTransition.isInCam && !KeypadCameraTransition.isInKeyCam && !invent_open)
         {
             FirstPersonAIO.instance.enableCameraMovement = true;
             FirstPersonAIO.instance.playerCanMove = true;
         }
-        else if(InspectionCameraTransition.isInCam && invent_open)
+        else if(InspectionCameraTransition.isInCam || KeypadCameraTransition.isInKeyCam || invent_open)
         {
             FirstPersonAIO.instance.enableCameraMovement = false;
             FirstPersonAIO.instance.playerCanMove = false;

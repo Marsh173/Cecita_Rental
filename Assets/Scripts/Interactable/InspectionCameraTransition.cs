@@ -34,7 +34,7 @@ public class InspectionCameraTransition : MonoBehaviour
         playerCamera = playerObj.GetComponentInChildren<Camera>();
         playerCamera = Camera.main;
 
-        playBody = playerObj.transform.GetChild(1).gameObject;
+        playBody = playerObj.transform.GetChild(0).GetChild(2).gameObject;
 
         originalCameraPosition = playerCamera.transform.position;
         originalCameraRotation = playerCamera.transform.rotation;

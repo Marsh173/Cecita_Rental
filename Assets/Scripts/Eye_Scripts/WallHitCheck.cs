@@ -8,7 +8,7 @@ using UnityEngine.Events;
 
 public class WallHitCheck : MonoBehaviour
 {
-    public Camera cam;
+    private Camera cam;
     public float distance;
     [SerializeField] private LayerMask mask;
     private int LayerWall;
@@ -32,6 +32,7 @@ public class WallHitCheck : MonoBehaviour
     void Start()
     {
         LayerWall = LayerMask.NameToLayer("Wall");
+        cam = Camera.main;
     }
 
     // Update is called once per frame

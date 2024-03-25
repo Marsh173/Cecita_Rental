@@ -5,9 +5,7 @@ using UnityEngine.UI;
 
 public class PauseGameController : MonoBehaviour
 {
-    public GameObject pauseMenuUI;
-    public GameObject inventory;
-    public GameObject inventory_manager;
+    public GameObject pauseMenuUI, inventory, inventory_manager;
     public bool invent_open;
 
     private void Start()
@@ -45,7 +43,6 @@ public class PauseGameController : MonoBehaviour
         Physics.autoSimulation = false;
         FirstPersonAIO.instance.enableCameraMovement = false;
         FirstPersonAIO.instance.playerCanMove = false;
-        //FirstPersonAIO.instance.ControllerPause();
 
         if (inventory.activeSelf)
         {
@@ -55,9 +52,9 @@ public class PauseGameController : MonoBehaviour
         {
             invent_open = false;
         }
-        inventory.SetActive(false);
 
-        Debug.Log(invent_open);
+        //inventory.SetActive(false);
+        Debug.Log("inventory state: " + invent_open);
     }
 
     public void ResumeGame()
@@ -67,11 +64,19 @@ public class PauseGameController : MonoBehaviour
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f; // Unfreeze the game
         Physics.autoSimulation = true;
-        FirstPersonAIO.instance.enableCameraMovement = true;
-        FirstPersonAIO.instance.playerCanMove = true;
-        //FirstPersonAIO.instance.ControllerPause();
 
-        inventory.SetActive(invent_open);
+        if(!InspectionCameraTransition.isInCam && !KeypadCameraTransition.isInKeyCam && !invent_open)
+        {
+            FirstPersonAIO.instance.enableCameraMovement = true;
+            FirstPersonAIO.instance.playerCanMove = true;
+        }
+        else if(InspectionCameraTransition.isInCam || KeypadCameraTransition.isInKeyCam || invent_open)
+        {
+            FirstPersonAIO.instance.enableCameraMovement = false;
+            FirstPersonAIO.instance.playerCanMove = false;
+        }
+
+        //inventory.SetActive(invent_open);
 
     }
 }

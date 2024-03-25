@@ -13,6 +13,7 @@ public class Walkers : MonoBehaviour
     public GameObject walker;
     public Vector3 initialPosition;
     bool stopMoving = false;
+    Animator MonsterAnim;
 
     public Respawn respawn;
 
@@ -29,8 +30,10 @@ public class Walkers : MonoBehaviour
     private void Start()
     {
         walker.SetActive(false);
+        trigger = false;
         initialPosition = walker.transform.position;
- 
+        MonsterAnim = this.transform.parent.GetChild(0).GetComponentInChildren<Animator>();
+        Debug.Log("animator pos: " + this.transform.parent.GetChild(0).GetComponentInChildren<Animator>());
     }
 
     private void Update()
@@ -38,9 +41,14 @@ public class Walkers : MonoBehaviour
         if (Respawn.dead)
         {
             trigger = false;
-            walker.transform.position = initialPosition;
             stopMusic = true;
         }
+        if (Respawn.restarted)
+        {
+            walker.transform.position = initialPosition;
+            walker.SetActive(false);
+        }
+
 
         if (trigger && !stalker)
         {
@@ -76,15 +84,29 @@ public class Walkers : MonoBehaviour
                 //walker.SetActive(false);
             }
         }
+
+        //if not moving stop animation
+        if(MonsterAnim != null)
+        {
+            if (!trigger)
+            {
+                MonsterAnim.SetBool("Stop", true);
+            }
+            if (trigger)
+            {
+                MonsterAnim.SetBool("Stop", false);
+            }
+        }
+        
     }
 
+    //trigger monster walk
     private void OnTriggerEnter(Collider other)
     {
         
         if (other.CompareTag("Player"))
         {
             trigger = true;
-           
             walker.SetActive(true);
 
         }
@@ -98,6 +120,7 @@ public class Walkers : MonoBehaviour
 
     }
 
+    //disable stalker after exit trigger
     private void OnTriggerExit(Collider other)
     {
 

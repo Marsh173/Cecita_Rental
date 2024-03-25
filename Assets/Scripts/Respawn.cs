@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.Playables;
 
 public class Respawn : MonoBehaviour
 {
@@ -9,7 +9,8 @@ public class Respawn : MonoBehaviour
     [SerializeField] private Transform checkpoint;
     public static bool dead, restarted;
     private Transform playerPos;
-    public GameObject placeholderDeathText, deathCutScene, deathCanvas, system;
+    private Animator playerAnim;
+    public GameObject placeholderDeathText, deathCanvas, deathTimeLine, system;
 
     void Start()
     {
@@ -17,8 +18,10 @@ public class Respawn : MonoBehaviour
         placeholderDeathText.SetActive(false);
         playerPos = GetComponent<Transform>();
 
-        deathCutScene.SetActive(false);
+        playerAnim = transform.GetChild(0).GetComponent<Animator>();
+        
         deathCanvas.SetActive(false);
+        //deathTimeLine.SetActive(false);
         system.SetActive(true);
     }
 
@@ -51,26 +54,18 @@ public class Respawn : MonoBehaviour
         yield return new WaitForSeconds(0.01f);
         dead = false;
 
+        GetComponent<FirstPersonAIO>().speed = 0;
         GetComponent<FirstPersonAIO>().enabled = false;
-        foreach (Transform child in transform)
-        {
-            child.gameObject.SetActive(false);
-        }
+        system.SetActive(false);
 
         //play death cutscen
-        deathCutScene.transform.position = playerPos.position;
-        deathCutScene.transform.rotation = playerPos.rotation;
-        system.SetActive(false);
-        deathCutScene.SetActive(true);
-        deathCutScene.GetComponent<Animator>().Play("death");
-
-       /* if (deathCutScene.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("death"))
-        {*/
-            yield return new WaitForSeconds(12f);
-            Debug.Log("Animation finished playing");
-            Cursor.visible = true;
-            deathCanvas.SetActive(true);
-        //}
+        playerAnim.SetBool("Dead", true);
+        //deathTimeLine.SetActive(true);
+        //deathTimeLine.GetComponent<PlayableDirector>().Play();
+        yield return new WaitForSeconds(9f);
+        Debug.Log("Animation finished playing");
+        Cursor.visible = true;
+        deathCanvas.SetActive(true);
     }
 
     public void RespawnPlayer()
@@ -79,29 +74,19 @@ public class Respawn : MonoBehaviour
         {
             Cursor.visible = false;
             system.SetActive(true);
-            deathCutScene.SetActive(false);
             deathCanvas.SetActive(false);
-            foreach (Transform child in transform)
-            {
-                child.gameObject.SetActive(true);
-            }
+            //deathTimeLine.SetActive(false);
+            playerAnim.SetBool("Dead", false);
 
             playerPos.SetPositionAndRotation(checkpoint.transform.position, checkpoint.transform.rotation);
             GetComponent<FirstPersonAIO>().enabled = true;
-
-            //playerPos = checkpoint;
-            /*transform.position = checkpoint.position;
-            transform.rotation = checkpoint.rotation;*/
-
-            //Debug.Log("respawned");
-            //Debug.Log(playerPos.rotation);
 
             if (placeholderDeathText != null)
             {
                 placeholderDeathText.SetActive(true);
             }
         }
-
         restarted = true;
+        Debug.Log("restarted? "+restarted);
     }
 }

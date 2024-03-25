@@ -11,7 +11,7 @@ public class LoadingScreen : MonoBehaviour
 {
     //Night Ending needed stuff
     public AudioClip EndingAudio;
-    public GameObject Bedroom, EmergencyRoomParts, endTimeline, player, system;
+    public GameObject Bedroom, EmergencyRoomParts, outside, endTimeline, player, system;
     private AudioSource audioS;
     private FirstPersonAIO playerControl;
     private Animator Anim;
@@ -63,6 +63,7 @@ public class LoadingScreen : MonoBehaviour
     public void Night1Ending()
     {
         EmergencyRoomParts.SetActive(false);
+        outside.SetActive(false);
         Bedroom.SetActive(true);
     }
     public void Night2Ending()

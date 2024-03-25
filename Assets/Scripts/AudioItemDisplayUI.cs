@@ -14,6 +14,7 @@ public class AudioItemDisplayUI : MonoBehaviour
     public TextMeshProUGUI audiolength;
 
     public AudioSource a;
+    public Slider s;
 
     private void Start()
     {
@@ -38,8 +39,14 @@ public class AudioItemDisplayUI : MonoBehaviour
             
 
             audiolength.text = min + " : " + second;
+            if (a.isPlaying)
+            {
+                s.value = progress;
+            }
 
         }
+
+        
        
     }
 }

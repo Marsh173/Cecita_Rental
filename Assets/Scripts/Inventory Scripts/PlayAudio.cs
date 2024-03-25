@@ -13,6 +13,7 @@ public class PlayAudio : MonoBehaviour
     private Vector3 playIconPos, pauseIconPos;
     bool playing;
     private PuzzleHandler puzzleHandler;
+    public Slider s;
 
     private void Awake()
     {
@@ -66,6 +67,11 @@ public class PlayAudio : MonoBehaviour
             buttonImage.texture = playIcon;
             buttonImage.transform.localPosition = playIconPos;
         }
+    }
+
+    public void playAtTime()
+    {
+        sound.time = s.value * sound.clip.length;
     }
 
     public void playInventorySound()

@@ -39,7 +39,7 @@ public class AudioItemDisplayUI : MonoBehaviour
             
 
             audiolength.text = min + " : " + second;
-            if (s != null)
+            if (a.isPlaying)
             {
                 s.value = progress;
             }

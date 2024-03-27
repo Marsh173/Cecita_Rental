@@ -14,7 +14,6 @@ public class HoverInventory : MonoBehaviour
     {
         hovertext = GameObject.FindGameObjectWithTag("HoverText");
         hidehovertext();
-        //yPos = 0;
     }
 
     private void Update()

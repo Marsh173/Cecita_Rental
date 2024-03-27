@@ -65,6 +65,7 @@ public class InspectionCameraTransition : MonoBehaviour
             return;
         }
 
+
         if (DocInfo.Doc != null)
         {
             pages = DocInfo.Doc.transcript;

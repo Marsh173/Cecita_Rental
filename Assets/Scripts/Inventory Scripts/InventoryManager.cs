@@ -210,11 +210,16 @@ public class InventoryManager : MonoBehaviour
             //find the elemets in each item and replace inventory default
             GameObject itemobj = Instantiate(DocumentItem, DocumentContent);
             var itemName = itemobj.transform.Find("itemName").GetComponent<TMP_Text>();
+            //var itemTranscript = itemobj.transform.Find("transcript").GetComponent<TMP_Text>();
             //var itemImages = itemobj.transform.Find("images").GetComponent<Image>();
 
             //display name and image in inventory UI
             itemName.text = item.displayName;
             //itemImages.sprite = item.image;
+
+            itemobj.GetComponentInChildren<ShowDocDetail>().title = item.displayName;
+            itemobj.GetComponentInChildren<ShowDocDetail>().image = item.image;
+            itemobj.GetComponentInChildren<ShowDocDetail>().transcript = item.wholeTranscript;
 
             Debug.Log("Doc Added");
         }

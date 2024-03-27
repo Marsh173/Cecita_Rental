@@ -12,4 +12,5 @@ public class PlaylistItems : ScriptableObject
     public string audioLength;
     public Sprite icon;
     public AudioClip audio;
+    public bool isNew = false;
 }

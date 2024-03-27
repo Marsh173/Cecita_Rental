@@ -46,6 +46,7 @@ public class InventoryManager : MonoBehaviour
     public void AddPlaylist(PlaylistItems Item)
     {
         AItems.Add(Item);
+        AItems[AItems.Count -1].isNew = true;
     }
 
     public void AddNormal(NormalItems Item)
@@ -56,6 +57,7 @@ public class InventoryManager : MonoBehaviour
     public void AddDocuments(Documents Item)
     {
         DItems.Add(Item);
+        DItems[DItems.Count - 1].isNew = true;
     }
 
     private void Update()
@@ -152,6 +154,7 @@ public class InventoryManager : MonoBehaviour
 
         foreach (var item in AItems)
         {
+            
             //find the elemets in each item and replace inventory default
             GameObject itemobj = Instantiate(PlaylistItem, PlaylistBroadcastContent);
             var itemName = itemobj.transform.Find("itemName").GetComponent<TMP_Text>();
@@ -166,6 +169,7 @@ public class InventoryManager : MonoBehaviour
             itemAudio.clip = item.audio;
 
             itemobj.GetComponentInChildren<HoverInventory>().transcript = item.Atranscript;
+            if (item.isNew) itemobj.GetComponent<notificationMark>().isNew = true;
         }
 
 
@@ -210,16 +214,11 @@ public class InventoryManager : MonoBehaviour
             //find the elemets in each item and replace inventory default
             GameObject itemobj = Instantiate(DocumentItem, DocumentContent);
             var itemName = itemobj.transform.Find("itemName").GetComponent<TMP_Text>();
-            //var itemTranscript = itemobj.transform.Find("transcript").GetComponent<TMP_Text>();
             //var itemImages = itemobj.transform.Find("images").GetComponent<Image>();
 
             //display name and image in inventory UI
             itemName.text = item.displayName;
             //itemImages.sprite = item.image;
-
-            itemobj.GetComponentInChildren<ShowDocDetail>().title = item.displayName;
-            itemobj.GetComponentInChildren<ShowDocDetail>().image = item.image;
-            itemobj.GetComponentInChildren<ShowDocDetail>().transcript = item.wholeTranscript;
 
             Debug.Log("Doc Added");
         }

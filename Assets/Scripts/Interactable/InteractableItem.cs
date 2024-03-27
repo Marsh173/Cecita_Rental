@@ -38,16 +38,13 @@ public class InteractableItem : Interactable
             {
                 PickupMe();
                 ReadMe();
-                /*if (!notPickable)
-                {
-                }*/
                 ableToInteract = false;
                 
             }
         }
     }
 
-    private void PickupMe()
+    public void PickupMe()
     {
         if (!InventoryManager.Instance.NItems.Contains(NItem) && NItem != null)
         {
@@ -57,7 +54,7 @@ public class InteractableItem : Interactable
         }
     }
 
-    private void ReadMe()
+    public void ReadMe()
     {
         Debug.Log("Read");
         if (!InventoryManager.Instance.DItems.Contains(Doc))

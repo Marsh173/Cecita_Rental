@@ -41,7 +41,8 @@ public class InteractableItemWithEvent : InteractableItem
                 {
                     coroutineRef = StartCoroutine(RunInteractEvents());
                     interactedAndClicked = true;
-                    //Debug.Log("interacted with" + gameObject.name);
+                    PickupMe();
+                    ReadMe();
                 }
                 //if (Input.GetMouseButtonUp(0)) StopCoroutine(coroutineRef);                           //In case we want a hold to record input
             }

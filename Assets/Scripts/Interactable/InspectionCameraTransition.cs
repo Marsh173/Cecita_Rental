@@ -68,7 +68,7 @@ public class InspectionCameraTransition : MonoBehaviour
 
         if (DocInfo.Doc != null)
         {
-            pages = DocInfo.Doc.transcript;
+            pages = DocInfo.Doc.transcriptPages;
             transcriptWindow.transform.GetChild(3).GetChild(0).GetChild(0).GetComponent<TMP_Text>().text = pages[0];
         }
 

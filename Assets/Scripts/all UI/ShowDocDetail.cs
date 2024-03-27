@@ -13,14 +13,14 @@ public class ShowDocDetail : MonoBehaviour
 
     void Start()
     {
-        objectsWithTag = GameObject.FindGameObjectsWithTag("");
+        objectsWithTag = GameObject.FindGameObjectsWithTag("DocDetails");
 
         // Iterate over each GameObject found
         foreach (GameObject obj in objectsWithTag)
         {
-            if(obj.name == "") titleObj = obj;
-            if (obj.name == "") transcriptObj = obj;
-            if (obj.name == "") imageObj = obj;
+            if(obj.name == "Title") titleObj = obj;
+            if (obj.name == "transcript") transcriptObj = obj;
+            if (obj.name == "Image") imageObj = obj;
         }
     }
     public void ShowDocumentDetails()

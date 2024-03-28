@@ -11,6 +11,7 @@ public class Respawn : MonoBehaviour
     private Transform playerPos;
     private Animator playerAnim;
     public GameObject placeholderDeathText, deathCanvas, deathTimeLine, system;
+    [SerializeField] GameObject checkpointReachedUI;
 
     void Start()
     {
@@ -36,8 +37,21 @@ public class Respawn : MonoBehaviour
     {
         if(other.CompareTag("checkpoint"))
         {
-            checkpoint = other.transform;
+            if (checkpoint != other.transform)
+            {
+                checkpoint = other.transform;
+                if(checkpointReachedUI!= null)StartCoroutine(checkpointani());
+            }
+            
         }
+    }
+
+    public IEnumerator checkpointani()
+    {
+        checkpointReachedUI.GetComponent<Animator>().SetBool("checkpoint", true);
+        yield return new WaitForSeconds(1.5f);
+        checkpointReachedUI.GetComponent<Animator>().SetBool("checkpoint", false);
+
     }
 
     public void deathSituations()

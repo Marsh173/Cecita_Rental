@@ -68,7 +68,9 @@ public class LoadingScreen : MonoBehaviour
     }
     public void Night2Ending()
     {
-        system.SetActive(false);
+        EmergencyRoomParts.SetActive(false);
+        outside.SetActive(false);
+        Bedroom.SetActive(true);
     }
 
     private void SleepCutScene()

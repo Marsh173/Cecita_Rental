@@ -30,7 +30,7 @@ public class RaycastFromMouseClick : MonoBehaviour
                     }
                     
 
-                    Debug.Log("Hover on: " + hitObject.name);
+                    //Debug.Log("Hover on: " + hitObject.name);
                     hitInfo.collider.GetComponent<Interactable>().BaseInteract();
 
                 }

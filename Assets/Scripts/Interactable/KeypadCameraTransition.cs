@@ -72,7 +72,7 @@ public class KeypadCameraTransition : MonoBehaviour
         playerCamera.transform.DOMove(inspectionCameraPosition.position, transitionDuration);
         playerCamera.transform.DORotate(inspectionCameraPosition.rotation.eulerAngles, transitionDuration).OnComplete(() => playBody.SetActive(false));
         playerCamera.fieldOfView = inspectionFOV;
-        Debug.Log("Camera transformed to inspect");
+        Debug.Log("Camera transformed to inspect keypad");
 
         isInKeyCam = true;
         isInInspection = true;
